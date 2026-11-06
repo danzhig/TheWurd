@@ -4,21 +4,22 @@
   place-content: center;
   text-align: center;
   padding: 2rem 1rem;
-  background: radial-gradient(circle at 50% 45%, #3a2c1c 0%, var(--night) 70%);
-  color: var(--cloud);
 }
 
 .title {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-variant: small-caps;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-variant-caps: small-caps;
   letter-spacing: 0.12em;
-  font-weight: 400;
   font-size: clamp(2rem, 6vw, 3.5rem);
-  color: var(--gold-light);
+  color: var(--accent-strong);
   margin: 0 0 0.5rem;
 }
 
 .tagline {
+  font-family: var(--font-display);
   font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text-muted);
   margin: 0;
 }

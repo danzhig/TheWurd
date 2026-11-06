@@ -1,0 +1,292 @@
+.main {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 5rem;
+  display: grid;
+  gap: 3.5rem;
+}
+
+.main > * {
+  min-width: 0; /* let grid rows shrink; wide content (the contrast table) scrolls in place */
+}
+
+.main h2 {
+  font-size: 1.9rem;
+  margin: 0 0 0.75rem;
+}
+
+.header h1 {
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  margin: 0.25rem 0;
+}
+
+.header :global(.tagline) {
+  font-size: 1.3rem;
+  margin: 0 0 1.5rem;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.hex {
+  font-variant-numeric: lining-nums;
+  color: var(--text-muted);
+}
+
+/* Palette */
+.swatches {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.9rem 1.25rem;
+}
+
+.swatch {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.chip {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--text) 25%, transparent),
+    0 0 0 3px var(--bg),
+    0 0 0 4px color-mix(in srgb, var(--rule) 45%, transparent);
+}
+
+/* Contrast table */
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.35rem 0.75rem 0.35rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  white-space: nowrap;
+}
+
+.sample {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 3px;
+}
+
+/* Type */
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem;
+}
+
+.typeGrid p {
+  margin: 0;
+}
+
+.typeGrid :global(.tagline) {
+  font-size: 1.2rem;
+}
+
+.bookName {
+  font-size: 2.1rem;
+}
+
+/* Reader samples */
+.readerPair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+  gap: 1.5rem;
+}
+
+.page {
+  background: var(--bg);
+  color: var(--text);
+  padding: 1.75rem clamp(1rem, 4vw, 2.5rem) 2rem;
+  border: 1px solid color-mix(in srgb, var(--rule) 40%, transparent);
+}
+
+.page h3 {
+  font-size: 2rem;
+  margin: 0.25rem 0 0;
+}
+
+.ref {
+  color: var(--text-muted);
+  font-variant-numeric: lining-nums;
+  margin: 0 0 1.25rem;
+}
+
+/* Reader parts */
+.parts {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 40rem;
+}
+
+.parts p {
+  margin: 0 0 0.5rem;
+}
+
+.fold,
+.note,
+.contentNote {
+  background: var(--surface);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+}
+
+.fold {
+  border-top: 1px solid var(--rule);
+}
+
+.contentNote {
+  border-left: 3px solid var(--alert);
+}
+
+.contentNote :global(.label) {
+  color: var(--alert);
+}
+
+.skip p {
+  color: var(--text-muted);
+  margin-top: 0.6rem;
+}
+
+.next {
+  display: grid;
+  gap: 0.15rem;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
+  border-radius: 4px;
+  transition:
+    border-color var(--dur-ui) ease,
+    background-color var(--dur-ui) ease;
+}
+
+.next:hover {
+  border-color: var(--rule);
+  background: var(--surface);
+}
+
+.next :global(.display) {
+  font-size: 1.6rem;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button,
+.buttonQuiet {
+  font: inherit;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-ui) ease,
+    color var(--dur-ui) ease,
+    border-color var(--dur-ui) ease;
+}
+
+.button {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  color: var(--accent-strong);
+}
+
+.button:hover {
+  background: color-mix(in srgb, var(--surface) 80%, var(--gold));
+}
+
+.buttonQuiet {
+  border: 1px solid var(--rule-soft);
+  background: transparent;
+  color: var(--text);
+}
+
+.buttonQuiet:hover {
+  border-color: var(--rule);
+}
+
+/* Materials */
+.sky {
+  aspect-ratio: 1;
+  max-width: 34rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.medallion {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  padding: 1.1rem 1.8rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--umber) 88%, transparent);
+  text-align: center;
+}
+
+.medallion :global(.book-name) {
+  font-size: 1.6rem;
+}
+
+/* Motion */
+.motion {
+  display: grid;
+  gap: 1rem;
+  max-width: 34rem;
+}
+
+.track {
+  position: relative;
+  height: 2.5rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.disc {
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  transition: transform var(--dur-camera) var(--ease-camera);
+}
+
+.discOn {
+  transform: translateX(min(30rem, calc(100vw - 4.5rem)));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disc {
+    transition: opacity var(--dur-camera) ease;
+  }
+}
+
+.figures {
+  font-variant-numeric: oldstyle-nums;
+}

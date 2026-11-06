@@ -1,0 +1,94 @@
+/* Typography (PLAN §8). Shared classes for book names, taglines, the reader column and verses. */
+
+.book-name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-variant-caps: small-caps; /* true small capitals (smcp) from Cormorant Garamond */
+  letter-spacing: 0.1em;
+  color: var(--text-strong);
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--text-strong);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+/* The reader column. */
+.prose {
+  font-family: var(--font-body);
+  font-size: var(--reader-size);
+  line-height: var(--line-height);
+  max-width: var(--measure);
+  hyphens: auto;
+  font-variant-numeric: oldstyle-nums;
+  color: var(--text);
+}
+
+.prose p {
+  margin: 0 0 0.9em;
+}
+
+.prose .poetry {
+  margin: 0;
+  padding-left: 2em;
+  text-indent: -1.25em;
+}
+
+.prose .poetry.indent-2 {
+  padding-left: 3.25em;
+}
+
+.prose .poetry.indent-3 {
+  padding-left: 4.5em;
+}
+
+/* Gold drop cap, two lines deep. */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: calc(var(--line-height) * 2em + 0.1em);
+  line-height: 0.85;
+  padding: 0.06em 0.08em 0 0;
+  color: var(--accent);
+}
+
+.verse-num {
+  font-family: var(--font-body);
+  font-size: 0.62em;
+  font-variant-numeric: lining-nums;
+  vertical-align: 0.55em;
+  line-height: 0;
+  margin: 0 0.25em 0 0.1em;
+  color: var(--accent);
+  user-select: none;
+}
+
+:root[data-verse-numbers='off'] .verse-num {
+  display: none;
+}
+
+.footnote-call {
+  font-size: 0.6em;
+  vertical-align: 0.6em;
+  line-height: 0;
+  color: var(--link);
+}
