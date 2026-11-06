@@ -26,8 +26,6 @@ jobs:
 
   content:
     # Rebuilds the content from the pinned sources and fails if committed public/data differs.
-    # Runs once public/data has been committed (after the M1 review).
-    if: ${{ hashFiles('public/data/manifest.json') != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
