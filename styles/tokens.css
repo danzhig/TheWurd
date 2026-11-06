@@ -1,0 +1,89 @@
+/* Generated from lib/design/tokens.ts by `pnpm tokens`. Do not edit by hand. */
+
+:root {
+  --night: #14100C;
+  --umber: #2A1F16;
+  --smoke: #5B5248;
+  --cloud: #B9AB97;
+  --vellum: #F4ECDC;
+  --ink: #2A2118;
+  --gold: #C9A24A;
+  --gold-light: #F0D48A;
+  --vermilion: #9E3B26;
+  --lapis: #2E4A6B;
+  --smoke-light: #958879;
+  --vermilion-light: #D66B54;
+  --lapis-light: #648CBC;
+  --gold-ink: #795F24;
+  --parchment: #EAE0CB;
+
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --measure: 34em;
+  --line-height: 1.6;
+  --text-size-1: 18px;
+  --text-size-2: 20px;
+  --text-size-3: 22px;
+  --text-size-4: 24px;
+  --reader-size: var(--text-size-2);
+
+  --ease-camera: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --dur-camera: 850ms;
+  --dur-cover: 700ms;
+  --dur-ui: 200ms;
+}
+
+:root[data-text-size='1'] {
+  --reader-size: var(--text-size-1);
+}
+
+:root[data-text-size='2'] {
+  --reader-size: var(--text-size-2);
+}
+
+:root[data-text-size='3'] {
+  --reader-size: var(--text-size-3);
+}
+
+:root[data-text-size='4'] {
+  --reader-size: var(--text-size-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-camera: 150ms;
+    --dur-cover: 150ms;
+    --dur-ui: 150ms;
+  }
+}
+
+:root,
+[data-theme='vault'] {
+  color-scheme: dark;
+  --bg: #14100C;
+  --surface: #2A1F16;
+  --text: #B9AB97;
+  --text-strong: #F4ECDC;
+  --text-muted: #958879;
+  --accent: #C9A24A;
+  --accent-strong: #F0D48A;
+  --link: #648CBC;
+  --alert: #D66B54;
+  --rule: #C9A24A;
+  --rule-soft: #5B5248;
+}
+
+[data-theme='vellum'] {
+  color-scheme: light;
+  --bg: #F4ECDC;
+  --surface: #EAE0CB;
+  --text: #2A2118;
+  --text-strong: #2A2118;
+  --text-muted: #5B5248;
+  --accent: #795F24;
+  --accent-strong: #795F24;
+  --link: #2E4A6B;
+  --alert: #9E3B26;
+  --rule: #C9A24A;
+  --rule-soft: #B9AB97;
+}

@@ -1,16 +1,4 @@
-/* Placeholder tokens for M0; the full design system arrives in M2. */
-:root {
-  --night: #14100c;
-  --umber: #2a1f16;
-  --smoke: #5b5248;
-  --cloud: #b9ab97;
-  --vellum: #f4ecdc;
-  --ink: #2a2118;
-  --gold: #c9a24a;
-  --gold-light: #f0d48a;
-  --vermilion: #9e3b26;
-  --lapis: #2e4a6b;
-}
+/* Base styles. Tokens: styles/tokens.css (generated). Fonts: styles/fonts.css. */
 
 *,
 *::before,
@@ -18,9 +6,59 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html,
 body {
   margin: 0;
-  background: var(--night);
-  color: var(--cloud);
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: var(--line-height);
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: var(--dur-ui) !important;
+    transition-duration: var(--dur-ui) !important;
+  }
 }

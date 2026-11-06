@@ -1,0 +1,104 @@
+/* Materials (PLAN §8): gilt hairlines, cloud depth, grain and vignette. Textures are pre-rendered
+   by `pnpm textures`; nothing here animates a filter or a blur. */
+
+.gilt-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--rule) 18%,
+    var(--gold-light) 50%,
+    var(--rule) 82%,
+    transparent
+  );
+  opacity: 0.85;
+}
+
+.gilt-frame {
+  border: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  box-shadow:
+    inset 0 0 0 3px color-mix(in srgb, var(--bg) 100%, transparent),
+    inset 0 0 0 4px color-mix(in srgb, var(--rule) 35%, transparent);
+}
+
+/* The Vault ceiling: night at the edges, a gold oculus at the centre, cloud bands, vignette, grain. */
+.vault-sky {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      color-mix(in srgb, var(--gold-light) 55%, transparent) 0%,
+      color-mix(in srgb, var(--gold) 22%, transparent) 14%,
+      transparent 38%
+    ),
+    radial-gradient(circle at 50% 50%, #3a2a1a 0%, var(--umber) 35%, var(--night) 75%);
+}
+
+.vault-sky .cloud-layer {
+  position: absolute;
+  inset: -6%;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.vault-sky .cloud-far {
+  background-image: url('/textures/clouds-far.webp');
+  background-image: image-set(
+    url('/textures/clouds-far.avif') type('image/avif'),
+    url('/textures/clouds-far.webp') type('image/webp')
+  );
+  opacity: 0.55;
+}
+
+.vault-sky .cloud-mid {
+  background-image: url('/textures/clouds-mid.webp');
+  background-image: image-set(
+    url('/textures/clouds-mid.avif') type('image/avif'),
+    url('/textures/clouds-mid.webp') type('image/webp')
+  );
+  opacity: 0.7;
+}
+
+.vault-sky .cloud-near {
+  background-image: url('/textures/clouds-near.webp');
+  background-image: image-set(
+    url('/textures/clouds-near.avif') type('image/avif'),
+    url('/textures/clouds-near.webp') type('image/webp')
+  );
+  opacity: 0.8;
+}
+
+/* Soft vignette and a faint film grain sit over everything in the Vault. */
+.vault-sky::before,
+.vault-sky::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.vault-sky::before {
+  background: url('/textures/grain.webp');
+  background-size: 256px 256px;
+  opacity: 0.18;
+  mix-blend-mode: soft-light;
+}
+
+.vault-sky::after {
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 45%,
+    color-mix(in srgb, var(--night) 85%, transparent) 100%
+  );
+}
+
+/* A highlighted ("slow down") passage: thin gold bar in the margin. */
+.highlight-bar {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+}

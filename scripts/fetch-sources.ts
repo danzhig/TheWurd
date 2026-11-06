@@ -24,6 +24,8 @@ export const SourceSchema = z.object({
   attribution: z.string(),
   usedFor: z.string(),
   phase: z.number(),
+  /** Which script downloads it: the content pipeline (default) or `pnpm fonts`. */
+  pipeline: z.enum(['content', 'fonts']).optional(),
 });
 export type Source = z.infer<typeof SourceSchema>;
 
@@ -32,11 +34,11 @@ export function readSourcesManifest(): Source[] {
   return z.object({ note: z.string(), sources: z.array(SourceSchema) }).parse(json).sources;
 }
 
-function sha256(file: string): string {
+export function sha256(file: string): string {
   return createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 }
 
-async function download(url: string, dest: string): Promise<void> {
+export async function download(url: string, dest: string): Promise<void> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Download failed (${res.status}) for ${url}`);
   fs.writeFileSync(dest, Buffer.from(await res.arrayBuffer()));
@@ -45,7 +47,7 @@ async function download(url: string, dest: string): Promise<void> {
 export async function fetchSources(): Promise<Record<string, string>> {
   fs.mkdirSync(RAW_DIR, { recursive: true });
   const out: Record<string, string> = {};
-  for (const src of readSourcesManifest()) {
+  for (const src of readSourcesManifest().filter((s) => (s.pipeline ?? 'content') === 'content')) {
     const dest = path.join(RAW_DIR, src.file);
     if (!fs.existsSync(dest)) {
       console.log(`fetch  ${src.id}  ${src.url}`);
