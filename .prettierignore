@@ -1,0 +1,10 @@
+.next
+out
+node_modules
+pnpm-lock.yaml
+public/data
+sources/raw
+content/plan/reading-plan.json
+docs/PLAN.md
+playwright-report
+test-results

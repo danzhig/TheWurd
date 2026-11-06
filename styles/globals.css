@@ -1,0 +1,26 @@
+/* Placeholder tokens for M0; the full design system arrives in M2. */
+:root {
+  --night: #14100c;
+  --umber: #2a1f16;
+  --smoke: #5b5248;
+  --cloud: #b9ab97;
+  --vellum: #f4ecdc;
+  --ink: #2a2118;
+  --gold: #c9a24a;
+  --gold-light: #f0d48a;
+  --vermilion: #9e3b26;
+  --lapis: #2e4a6b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--cloud);
+}
