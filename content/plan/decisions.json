@@ -1,0 +1,26 @@
+{
+  "note": "Placements approved by David for WEBC verses the plan's ranges cannot place on their own (see docs/versification-log.md). The pipeline fails if a placement is needed that is not listed here, or if a listed one no longer matches.",
+  "placements": [
+    {
+      "unit": "Num.26.1",
+      "kind": "split-verse",
+      "section": "num-11",
+      "approved": "2026-11-06",
+      "why": "WEBC Num 26:1 holds Hebrew 25:19 and 26:1; it stays with the section holding its first part."
+    },
+    {
+      "unit": "1Sam.20.42",
+      "kind": "split-verse",
+      "section": "1sam-09",
+      "approved": "2026-11-06",
+      "why": "WEBC 1 Sam 20:42 holds Hebrew 20:42 and 21:1; it stays with the section holding its first part."
+    },
+    {
+      "unit": "Neh.7.68",
+      "kind": "orphan-verse",
+      "section": "neh-07",
+      "approved": "2026-11-06",
+      "why": "WEBC Neh 7:68 has no Hebrew counterpart; it goes with the verse before it."
+    }
+  ]
+}

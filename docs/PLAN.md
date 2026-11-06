@@ -38,6 +38,7 @@ This is the complete spec for **Scripture as Story** (working title): a static, 
 | D7 | Static export on Vercel; no database; reading progress in `localStorage` | Matches the brief; bookmarks and highlights come later (section 15). |
 | D8 | Job sits after Genesis by default; a setting moves it elsewhere in the sequence | Job's setting is undated and patriarchal. |
 | D9 | Lists inside read ranges are marked **skim** (shown collapsed, one line of summary) | Applies the plan's own rule to Genesis 36 and 46:8–27, Exodus 6:14–27, Numbers 15, 18–19, the roster passages of 2 Samuel, 1 Kings, Ezra and Nehemiah. Reverting any one is a one-word change in the JSON. |
+| D10 | Verse numbers printed beside the text are WEBC's; the page header shows the plan's (Catholic/NABRE) reference, with a short note where the two differ | The numbers must match the text actually shown. Approved by David, Nov 6, 2026. |
 
 **Status values used throughout:** `read` (main path), `skim` (on the path, collapsed with a summary), `optional` (offered as a detour, off by default), `skip` (folded away, expandable), plus a `highlight` flag for passages the reader should slow down for.
 
@@ -417,7 +418,7 @@ interface Verse {
 | --- | --- | --- | --- | --- |
 | dan-01 | Exiles at Court | 1 | Read |  |
 | dan-02 | Nebuchadnezzar's Dream | 2 | Read |  |
-| dan-03 | The Fiery Furnace | 3 | Read | Skim 3:24-90 (the Prayer of Azariah and Song of the Three); narrative resumes at 3:91. Anchors: 3:24 «flame» |
+| dan-03 | The Fiery Furnace | 3 | Read | Skim 3:24-90 (the Prayer of Azariah and Song of the Three); narrative resumes at 3:91. Anchors: 3:24 «fire» |
 | dan-04 | The King's Madness | 4 | Read |  |
 | dan-05 | The Writing on the Wall | 5 | Read |  |
 | dan-06 | The Lions' Den | 6 | Read |  |
@@ -496,7 +497,7 @@ interface Verse {
 | 1macc-01 | Alexander's Heirs and the Persecution | 1 | Read |  |
 | 1macc-02 | Mattathias Revolts | 2 | Read |  |
 | 1macc-03 | Judas's First Victories | 3:1-4:35 | Read | Anchors: 4:35 «Lysias» |
-| 1macc-04 | The Temple Rededicated | 4:36-61 | Read · slow down | Origin of Hanukkah. Anchors: 4:36 «sanctuary» |
+| 1macc-04 | The Temple Rededicated | 4:36-61 | Read · slow down | Origin of Hanukkah. Anchors: 4:36 «holy place» |
 | 1macc-05 | Campaigns; the Death of Antiochus | 5-6 | Read |  |
 | 1macc-06 | Nicanor; Alliance with Rome | 7-8 | Read |  |
 | 1macc-07 | The Death of Judas | 9:1-22 | Read | Anchors: 9:18 «Judas» |
