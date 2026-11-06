@@ -75,3 +75,64 @@ export function writeSettings(patch: Partial<Settings>): Settings {
   writeRaw('settings', JSON.stringify(next));
   return next;
 }
+
+// ---------------------------------------------------------------------------
+// Reading progress (PLAN §10): `progress` = { [sectionId]: completedAtISO }, `last` = where to continue.
+// ---------------------------------------------------------------------------
+
+export type Progress = Record<string, string>;
+
+export function readProgress(): Progress {
+  try {
+    const p = JSON.parse(readRaw('progress') ?? '{}') as unknown;
+    return p && typeof p === 'object' ? (p as Progress) : {};
+  } catch {
+    return {};
+  }
+}
+
+export function markRead(sectionId: string): void {
+  const p = readProgress();
+  if (p[sectionId]) return;
+  p[sectionId] = new Date().toISOString();
+  writeRaw('progress', JSON.stringify(p));
+}
+
+export function markUnread(sectionId: string): void {
+  const p = readProgress();
+  delete p[sectionId];
+  writeRaw('progress', JSON.stringify(p));
+}
+
+export interface LastPlace {
+  sectionId: string;
+  verse?: string;
+}
+
+export function readLast(): LastPlace | null {
+  try {
+    const l = JSON.parse(readRaw('last') ?? 'null') as LastPlace | null;
+    return l && typeof l.sectionId === 'string' ? l : null;
+  } catch {
+    return null;
+  }
+}
+
+export function writeLast(place: LastPlace): void {
+  writeRaw('last', JSON.stringify(place));
+}
+
+/** Content notes the reader has dismissed, by section id. */
+export function readDismissed(): string[] {
+  try {
+    const d = JSON.parse(readRaw('dismissed') ?? '[]') as unknown;
+    return Array.isArray(d) ? (d as string[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function dismiss(sectionId: string): void {
+  const d = readDismissed();
+  if (!d.includes(sectionId)) writeRaw('dismissed', JSON.stringify([...d, sectionId]));
+}

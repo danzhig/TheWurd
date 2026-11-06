@@ -18,6 +18,7 @@ import type {
 } from '../lib/types';
 import { CANON } from './lib/canon';
 import type { BookMapping } from './map-versification';
+import { numberingDiff } from './lib/numbering';
 import type { ParsedBook } from './parse-usfm';
 import type { Resolution, ResolvedSection } from './resolve-plan';
 import type { Source } from './fetch-sources';
@@ -104,7 +105,7 @@ export function buildSectionFiles(input: EmitInput): SectionFile[] {
       return rest;
     });
     out.push({
-      ...indexEntry(rs, verses),
+      ...indexEntry(rs, verses, numberingDiff(rs.section.range, rs.units, m).differs),
       bookName: book.name,
       verses: stored,
       folds,
@@ -115,7 +116,7 @@ export function buildSectionFiles(input: EmitInput): SectionFile[] {
   return out;
 }
 
-function indexEntry(rs: ResolvedSection, verses: Verse[]): SectionIndexEntry {
+function indexEntry(rs: ResolvedSection, verses: Verse[], webcDiffers: boolean): SectionIndexEntry {
   const s = rs.section;
   const words = verses.reduce((n, v) => n + countWords(v.text), 0);
   const e: SectionIndexEntry = {
@@ -133,6 +134,7 @@ function indexEntry(rs: ResolvedSection, verses: Verse[]): SectionIndexEntry {
   if (s.summary) e.summary = s.summary;
   if (s.highlight) e.highlight = true;
   if (s.contentNote) e.contentNote = s.contentNote;
+  if (webcDiffers) e.webcDiffers = true;
   return e;
 }
 
@@ -194,6 +196,7 @@ export function emit(input: EmitInput, sectionFiles: SectionFile[]): EmitResult 
     if (sf.summary) e.summary = sf.summary;
     if (sf.highlight) e.highlight = true;
     if (sf.contentNote) e.contentNote = sf.contentNote;
+    if (sf.webcDiffers) e.webcDiffers = true;
     return e;
   });
   for (const pb of plan.books) {

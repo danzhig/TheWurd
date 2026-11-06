@@ -1,0 +1,419 @@
+/* The reader (PLAN §10): one quiet column; notes in the right margin on desktop, inline on phone. */
+
+.page {
+  max-width: calc(var(--measure) + 2rem);
+  margin: 0 auto;
+  padding: 5.5rem 1rem 1.5rem;
+  font-size: var(--reader-size);
+}
+
+@media (min-width: 72rem) {
+  .page {
+    /* room for the margin column */
+    padding-right: calc(16rem + 3rem);
+    max-width: calc(var(--measure) + 21rem);
+    padding-left: 3rem;
+  }
+}
+
+/* Header */
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  margin: 0.2rem 0 0.35rem;
+  outline: none;
+}
+
+.ref {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85em;
+  font-variant-numeric: lining-nums;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.75rem;
+}
+
+.badge {
+  font-family: var(--font-display);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.85em;
+  color: var(--accent);
+}
+
+.highlight {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin-left: -1rem;
+}
+
+@media (min-width: 72rem) {
+  .highlight {
+    padding-left: 1.5rem;
+    margin-left: -1.5rem;
+  }
+}
+
+/* Notes: inline cards on phone, margin notes on desktop */
+.note {
+  font-size: 0.85em;
+  line-height: 1.5;
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0 1.25rem;
+  border-radius: 3px;
+}
+
+.note p {
+  margin: 0 0 0.35rem;
+}
+
+@media (min-width: 72rem) {
+  .note {
+    float: right;
+    clear: right;
+    width: 15rem;
+    margin: 0.2rem -18rem 1rem 0;
+    position: relative;
+  }
+}
+
+.contentNote,
+.statusCard {
+  background: var(--surface);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  margin: 0 0 1.75rem;
+}
+
+.contentNote {
+  border-left: 3px solid var(--alert);
+}
+
+.contentNote :global(.label) {
+  color: var(--alert);
+}
+
+.contentNote p,
+.statusCard > p {
+  margin: 0 0 0.5rem;
+}
+
+.statusCard {
+  border-top: 1px solid var(--rule);
+}
+
+.detour {
+  border: 1px dashed var(--rule);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.detour p {
+  margin: 0;
+}
+
+/* Folds */
+.fold,
+.wholeFold {
+  margin: 0 0 1.25rem;
+}
+
+.fold {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 40%, transparent);
+}
+
+.fold > summary,
+.wholeFold > summary {
+  cursor: pointer;
+  list-style: none;
+  min-height: 44px;
+  padding: 0.6rem 0;
+}
+
+.fold > summary::-webkit-details-marker,
+.wholeFold > summary::-webkit-details-marker {
+  display: none;
+}
+
+.fold > summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.1rem 0.75rem;
+  align-items: baseline;
+  font-size: 0.9em;
+}
+
+.foldRange {
+  color: var(--text-muted);
+  font-variant-numeric: lining-nums;
+}
+
+.foldLabel {
+  grid-column: 1 / -1;
+}
+
+.foldAction {
+  grid-column: 1 / -1;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.fold[open] .foldAction::before {
+  content: 'Fold it away · ';
+}
+
+.fold[open] .foldAction {
+  font-size: 0;
+}
+
+.fold[open] .foldAction::before {
+  font-size: 0.9rem;
+}
+
+.wholeFold > summary {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.fold > summary:focus-visible,
+.wholeFold > summary:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+/* Footnotes */
+.footnotes {
+  margin-top: 2rem;
+  font-size: 0.8em;
+  color: var(--text-muted);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 0.75rem;
+}
+
+.footnotes ol {
+  padding-left: 1.5rem;
+  margin: 0.4rem 0 0;
+}
+
+.backref {
+  font-variant-numeric: lining-nums;
+}
+
+/* Top bar */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 30%, transparent);
+  transition: transform var(--dur-ui) ease;
+}
+
+.topbarHidden {
+  transform: translateY(-100%);
+}
+
+.topTitle {
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text-strong);
+}
+
+.up,
+.iconButton {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: none;
+  font: inherit;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hairline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--gold);
+  transform-origin: left;
+}
+
+/* End of page */
+.end {
+  height: 1px;
+}
+
+.pathNav {
+  display: grid;
+  gap: 1rem;
+  max-width: calc(var(--measure) + 2rem);
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+  font-size: var(--reader-size);
+}
+
+@media (min-width: 72rem) {
+  .pathNav {
+    max-width: calc(var(--measure) + 21rem);
+    padding: 0 calc(16rem + 3rem) 4rem 3rem;
+  }
+}
+
+.readState {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 44px;
+}
+
+.readMark {
+  font-family: var(--font-display);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.readMark::before {
+  content: '✓ ';
+}
+
+.nextCard {
+  display: grid;
+  gap: 0.2rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color var(--dur-ui) ease;
+}
+
+a.nextCard:hover {
+  border-color: var(--rule);
+}
+
+.nextTitle {
+  font-size: 1.7rem;
+}
+
+.nextMeta {
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+.prev {
+  color: var(--link);
+  font-size: 0.9em;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.keys {
+  color: var(--text-muted);
+  font-size: 0.8em;
+  margin: 0;
+}
+
+@media (hover: none) {
+  .keys {
+    display: none;
+  }
+}
+
+.quietButton,
+.linkButton {
+  font: inherit;
+  font-size: 0.9em;
+  min-height: 44px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.quietButton {
+  border: 1px solid var(--rule-soft);
+  border-radius: 999px;
+  background: transparent;
+  padding: 0 1.1rem;
+}
+
+.quietButton:hover {
+  border-color: var(--rule);
+}
+
+.linkButton {
+  border: 0;
+  background: transparent;
+  color: var(--link);
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Bridge cards */
+.bridge {
+  min-height: 80dvh;
+  display: grid;
+  place-items: center;
+  padding: 5rem 1rem 3rem;
+}
+
+.bridgeCard {
+  max-width: 36rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.bridgeCard h1 {
+  font-size: clamp(2.2rem, 7vw, 3.2rem);
+  margin: 0.3rem 0 1.25rem;
+  outline: none;
+}
+
+.bridgeText {
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--text);
+  text-align: left;
+}
+
+.bridgeNav {
+  text-align: left;
+}

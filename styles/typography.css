@@ -46,6 +46,11 @@
   margin: 0 0 0.9em;
 }
 
+/* A paragraph divided only so a note can sit at its verse reads as one paragraph. */
+.prose .para-split {
+  margin-bottom: 0;
+}
+
 .prose .poetry {
   margin: 0;
   padding-left: 2em;
@@ -91,4 +96,14 @@
   vertical-align: 0.6em;
   line-height: 0;
   color: var(--link);
+}
+
+/* WEBC section headings inside the text (e.g. in Daniel 3). */
+.verse-heading {
+  font-family: var(--font-display);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 1.25rem 0 0.4rem;
 }
