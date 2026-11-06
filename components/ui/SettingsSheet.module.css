@@ -1,0 +1,74 @@
+.sheet {
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  border: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
+  border-radius: 6px;
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: var(--bg);
+  color: var(--text);
+  display: grid;
+  gap: 1.25rem;
+}
+
+.sheet:not([open]) {
+  display: none;
+}
+
+.sheet::backdrop {
+  background: color-mix(in srgb, var(--night) 60%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.close {
+  font: inherit;
+  font-size: 1.6rem;
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.path {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field select {
+  font: inherit;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+}
+
+.check input {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--accent);
+}

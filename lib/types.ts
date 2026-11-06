@@ -183,6 +183,8 @@ export interface SectionIndexEntry {
   summary?: string;
   highlight?: boolean;
   contentNote?: string;
+  /** True when WEBC numbers this passage differently from the plan's reference (PLAN D10). */
+  webcDiffers?: boolean;
   verseCount: number;
   words: number;
   minutes: number; // at 230 words per minute

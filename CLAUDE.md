@@ -66,3 +66,11 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 - All client state goes through `lib/store.ts` (`sas:v1:` keys, every access in try/catch, in-memory fallback when storage is blocked).
 - Fonts are subset from upstream with `smcp` and `onum` kept: use `font-variant-caps: small-caps` (book names) or `all-small-caps` (labels), and `oldstyle-nums` in prose. Hebrew and Greek fonts come in Phase 3.
 - `/styleguide` shows every token, contrast ratio, type style, reader part and material; its sample scripture is read from `public/data`, never typed.
+
+## Reader notes (M3)
+
+- Routes: `/read/[sectionId]` for all 252 sections and `/bridge/[bridgeId]` for the four bridges, all pre-rendered from `public/data` (`lib/data.ts`).
+- `lib/path.ts` defines the path: book steps expand to `read` and `skim` sections (stops), `optional` sections and the John 11 excursion only when optional sections are on, never `skip`; bridges are stops; Job follows the book chosen in settings. Pages render the default path; `components/reader/ReaderShell.tsx` recomputes Previous/Next on the client when the reader's settings differ.
+- `components/reader/SectionBody.tsx` renders folds as `<details>` (inner folds and whole-section skim/skip), notes at `start`, `end`, `fold` or before their verse (a paragraph is divided at the verse if needed), and the translator footnotes.
+- Progress: a stop completes when its end scrolls into view or on "Mark as read"; whole-section skims count when opened. `last` records the section and top visible verse for "Continue".
+- e2e: `tests/e2e/reader.spec.ts` walks Next from Genesis 1 to Acts 28 against an order computed independently from `reading-plan.json`. Tests wait for `html[data-reader]` (set after hydration) before using the keyboard.
