@@ -16,6 +16,7 @@ import { parseAllBooks } from './parse-usfm';
 import { buildMappings, readStructureMaps, type BookMapping } from './map-versification';
 import { resolvePlan, type Resolution } from './resolve-plan';
 import {
+  checkApprovedPlacements,
   buildShingles,
   checkChapterEnds,
   checkNoHandwrittenScripture,
@@ -24,7 +25,14 @@ import {
 import { buildSectionFiles, emit, writeMarkdownCopies, type EmitResult } from './emit';
 import { estherDanielMap, pipelineReport, versificationLog } from './reports';
 import { readTvtmsCondensed } from './lib/tvtms';
-import { CONTENT_DIR, DATA_DIR, DOCS_DIR, PLAN_FILE, STRUCTURE_MAPS } from './lib/paths';
+import {
+  CONTENT_DIR,
+  DATA_DIR,
+  DECISIONS_FILE,
+  DOCS_DIR,
+  PLAN_FILE,
+  STRUCTURE_MAPS,
+} from './lib/paths';
 import { readSourcesManifest } from './fetch-sources';
 
 const args = process.argv.slice(2);
@@ -87,6 +95,7 @@ async function main() {
 
   step(5, 'validate');
   errors.push(...checkReferences(plan));
+  errors.push(...checkApprovedPlacements(resolution.decisions, DECISIONS_FILE));
   errors.push(...checkChapterEnds(parsed));
   writeMarkdownCopies(plan, CONTENT_DIR);
   errors.push(...checkNoHandwrittenScripture(CONTENT_DIR, buildShingles(parsed)));

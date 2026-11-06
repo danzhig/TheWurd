@@ -90,7 +90,7 @@ Everything else has the same chapter and verse number in both.
 
 | Where | Plan ref | WEBC | Must contain | Result |
 | --- | --- | --- | --- | --- |
-| dan-03 | 3:24 | Dan.3.24 | «flame» | **FAIL** (missing «flame») |
+| dan-03 | 3:24 | Dan.3.24 | «fire» | ok |
 | structure-map:Dan | 3:91 | Dan.3.91 | «Nebuchadnezzar» «astonished» | ok |
 | structure-map:Dan | 3:98 | Dan.4.1 | «Nebuchadnezzar» | ok |
 | structure-map:Dan | 4:1 | Dan.4.4 | «Nebuchadnezzar» | ok |

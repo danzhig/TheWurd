@@ -80,18 +80,18 @@ export function versificationLog(
   );
 
   const decisions = resolution.decisions;
-  L.push('## Needs your decision', '');
-  if (!decisions.length) L.push('Nothing.', '');
+  L.push('## Verse placements', '');
+  if (!decisions.length) L.push('None needed.', '');
   else {
     L.push(
-      'WEBC cannot divide these verses, so the pipeline applied the rule shown. Approve the rule, or tell me which section each verse should belong to.',
+      'WEBC cannot divide these verses, so each is placed by the rule shown. Every placement must be approved in `content/plan/decisions.json`; an unapproved one stops the build.',
       '',
-      '| WEBC verse | Kind | Plan sections that touch it | Placed in | Why |',
-      '| --- | --- | --- | --- | --- |',
+      '| WEBC verse | Kind | Plan sections that touch it | Placed in | Why | Approved |',
+      '| --- | --- | --- | --- | --- | --- |',
     );
     for (const d of decisions) {
       L.push(
-        `| ${d.unit} | ${d.kind} | ${esc(d.candidates.join('; '))} | **${d.assignedTo}** | ${esc(d.detail)} |`,
+        `| ${d.unit} | ${d.kind} | ${esc(d.candidates.join('; '))} | **${d.assignedTo}** | ${esc(d.detail)} | ${d.approved ?? '**not yet**'} |`,
       );
     }
     L.push('');
@@ -328,12 +328,16 @@ export function pipelineReport(args: {
   else for (const e of errors) L.push(`- ${e}`);
   L.push('');
   L.push(
-    '## Placement decisions awaiting approval',
+    '## Verse placements',
     '',
-    'See `docs/versification-log.md` → "Needs your decision".',
+    'Details in `docs/versification-log.md` → "Verse placements".',
     '',
   );
-  for (const d of resolution.decisions) L.push(`- ${d.unit} → ${d.assignedTo} (${d.kind})`);
+  for (const d of resolution.decisions) {
+    L.push(
+      `- ${d.unit} → ${d.assignedTo} (${d.kind}) — ${d.approved ? `approved ${d.approved}` : '**not approved**'}`,
+    );
+  }
   L.push('');
 
   L.push(

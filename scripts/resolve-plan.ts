@@ -39,6 +39,7 @@ export interface Decision {
   assignedTo: string;
   candidates: string[];
   detail: string;
+  approved?: string; // date from content/plan/decisions.json
 }
 
 export interface Resolution {

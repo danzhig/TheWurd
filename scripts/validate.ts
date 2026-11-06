@@ -5,7 +5,9 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { z } from 'zod';
 import type { ReadingPlan } from '../lib/types';
+import type { Decision } from './resolve-plan';
 import type { ParsedBook } from './parse-usfm';
 
 export function checkReferences(plan: ReadingPlan): string[] {
@@ -132,6 +134,49 @@ export function checkNoHandwrittenScripture(contentDir: string, shingles: Set<st
         errors.push(`${path.relative(contentDir, file)}: 12 consecutive words match WEBC: "${s}"`);
         break;
       }
+    }
+  }
+  return errors;
+}
+
+// ---------------------------------------------------------------------------
+// Approved placements (content/plan/decisions.json)
+// ---------------------------------------------------------------------------
+
+const DecisionsSchema = z.object({
+  note: z.string(),
+  placements: z.array(
+    z.object({
+      unit: z.string(),
+      kind: z.enum(['split-verse', 'orphan-verse']),
+      section: z.string(),
+      approved: z.string(),
+      why: z.string(),
+    }),
+  ),
+});
+
+/** Every placement the pipeline makes must be approved, and every approval must still apply. */
+export function checkApprovedPlacements(decisions: Decision[], file: string): string[] {
+  const { placements } = DecisionsSchema.parse(JSON.parse(fs.readFileSync(file, 'utf8')));
+  const errors: string[] = [];
+  for (const d of decisions) {
+    const p = placements.find((x) => x.unit === d.unit && x.kind === d.kind);
+    if (!p)
+      errors.push(
+        `${d.unit}: placed in ${d.assignedTo} (${d.kind}) without approval in decisions.json`,
+      );
+    else if (p.section !== d.assignedTo) {
+      errors.push(
+        `${d.unit}: approved for ${p.section} but the pipeline placed it in ${d.assignedTo}`,
+      );
+    } else d.approved = p.approved;
+  }
+  for (const p of placements) {
+    if (!decisions.some((d) => d.unit === p.unit && d.kind === p.kind)) {
+      errors.push(
+        `decisions.json: ${p.unit} is approved but no longer needs a placement; remove it`,
+      );
     }
   }
   return errors;

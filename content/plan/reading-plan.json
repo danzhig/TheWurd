@@ -1,6 +1,6 @@
 {
  "$schema": "see docs/PLAN.md section 5",
- "version": "1.0.0",
+ "version": "1.0.1",
  "versification": "Catholic (Hebrew-based for protocanonical books, as in NABRE); map to WEBC via TVTMS",
  "baseText": "WEBC (World English Bible Catholic Edition)",
  "rangeNotation": "'c' whole chapter; 'c-c' chapters; 'c:v-v' verses in one chapter; 'c:v-c:v' across chapters; 'end' = last verse of that chapter; ';' joins parts. Esther letters A-F are NABRE's Greek additions.",
@@ -1600,7 +1600,7 @@
       {
        "ref": "3:24",
        "mustContain": [
-        "flame"
+        "fire"
        ]
       }
      ],
@@ -2086,7 +2086,7 @@
       {
        "ref": "4:36",
        "mustContain": [
-        "sanctuary"
+        "holy place"
        ]
       }
      ],

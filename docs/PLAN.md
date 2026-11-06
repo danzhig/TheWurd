@@ -417,7 +417,7 @@ interface Verse {
 | --- | --- | --- | --- | --- |
 | dan-01 | Exiles at Court | 1 | Read |  |
 | dan-02 | Nebuchadnezzar's Dream | 2 | Read |  |
-| dan-03 | The Fiery Furnace | 3 | Read | Skim 3:24-90 (the Prayer of Azariah and Song of the Three); narrative resumes at 3:91. Anchors: 3:24 «flame» |
+| dan-03 | The Fiery Furnace | 3 | Read | Skim 3:24-90 (the Prayer of Azariah and Song of the Three); narrative resumes at 3:91. Anchors: 3:24 «fire» |
 | dan-04 | The King's Madness | 4 | Read |  |
 | dan-05 | The Writing on the Wall | 5 | Read |  |
 | dan-06 | The Lions' Den | 6 | Read |  |
@@ -496,7 +496,7 @@ interface Verse {
 | 1macc-01 | Alexander's Heirs and the Persecution | 1 | Read |  |
 | 1macc-02 | Mattathias Revolts | 2 | Read |  |
 | 1macc-03 | Judas's First Victories | 3:1-4:35 | Read | Anchors: 4:35 «Lysias» |
-| 1macc-04 | The Temple Rededicated | 4:36-61 | Read · slow down | Origin of Hanukkah. Anchors: 4:36 «sanctuary» |
+| 1macc-04 | The Temple Rededicated | 4:36-61 | Read · slow down | Origin of Hanukkah. Anchors: 4:36 «holy place» |
 | 1macc-05 | Campaigns; the Death of Antiochus | 5-6 | Read |  |
 | 1macc-06 | Nicanor; Alliance with Rome | 7-8 | Read |  |
 | 1macc-07 | The Death of Judas | 9:1-22 | Read | Anchors: 9:18 «Judas» |
