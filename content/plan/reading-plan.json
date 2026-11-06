@@ -1,0 +1,2730 @@
+{
+ "$schema": "see docs/PLAN.md section 5",
+ "version": "1.0.0",
+ "versification": "Catholic (Hebrew-based for protocanonical books, as in NABRE); map to WEBC via TVTMS",
+ "baseText": "WEBC (World English Bible Catholic Edition)",
+ "rangeNotation": "'c' whole chapter; 'c-c' chapters; 'c:v-v' verses in one chapter; 'c:v-c:v' across chapters; 'end' = last verse of that chapter; ';' joins parts. Esther letters A-F are NABRE's Greek additions.",
+ "steps": [
+  {
+   "kind": "book",
+   "id": "Gen"
+  },
+  {
+   "kind": "book",
+   "id": "Job",
+   "movable": true,
+   "note": "Default after Genesis; user may move it."
+  },
+  {
+   "kind": "book",
+   "id": "Exod"
+  },
+  {
+   "kind": "book",
+   "id": "Num"
+  },
+  {
+   "kind": "book",
+   "id": "Deut"
+  },
+  {
+   "kind": "book",
+   "id": "Josh"
+  },
+  {
+   "kind": "book",
+   "id": "Judg"
+  },
+  {
+   "kind": "book",
+   "id": "Ruth"
+  },
+  {
+   "kind": "book",
+   "id": "1Sam"
+  },
+  {
+   "kind": "book",
+   "id": "2Sam"
+  },
+  {
+   "kind": "book",
+   "id": "1Kgs"
+  },
+  {
+   "kind": "book",
+   "id": "2Kgs"
+  },
+  {
+   "kind": "bridge",
+   "id": "br-inside"
+  },
+  {
+   "kind": "book",
+   "id": "Jer"
+  },
+  {
+   "kind": "bridge",
+   "id": "br-assyria"
+  },
+  {
+   "kind": "book",
+   "id": "Tob"
+  },
+  {
+   "kind": "book",
+   "id": "Dan"
+  },
+  {
+   "kind": "book",
+   "id": "Jdt"
+  },
+  {
+   "kind": "book",
+   "id": "Esth"
+  },
+  {
+   "kind": "book",
+   "id": "Ezra"
+  },
+  {
+   "kind": "book",
+   "id": "Neh"
+  },
+  {
+   "kind": "book",
+   "id": "Jonah"
+  },
+  {
+   "kind": "bridge",
+   "id": "br-greeks"
+  },
+  {
+   "kind": "book",
+   "id": "1Macc"
+  },
+  {
+   "kind": "bridge",
+   "id": "br-rome"
+  },
+  {
+   "kind": "book",
+   "id": "Luke"
+  },
+  {
+   "kind": "excursion",
+   "id": "john-01",
+   "after": "luke-12",
+   "optional": true
+  },
+  {
+   "kind": "book",
+   "id": "Acts"
+  }
+ ],
+ "books": [
+  {
+   "id": "Gen",
+   "name": "Genesis",
+   "setting": "Primeval history; the patriarchs",
+   "tagline": "Creation, catastrophe, and one family",
+   "sections": [
+    {
+     "id": "gen-01",
+     "title": "Creation",
+     "range": "1:1-2:3",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "1:1",
+       "mustContain": [
+        "beginning"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gen-02",
+     "title": "The Garden and the Fall",
+     "range": "2:4-3:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "2:4",
+       "mustContain": [
+        "heavens",
+        "earth"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gen-03",
+     "title": "Cain and Abel",
+     "range": "4",
+     "status": "read"
+    },
+    {
+     "id": "gen-x1",
+     "title": "From Adam to Noah",
+     "range": "5",
+     "status": "skip",
+     "summary": "Ten generations from Adam to Noah, with their lifespans."
+    },
+    {
+     "id": "gen-04",
+     "title": "The Flood",
+     "range": "6-9",
+     "status": "read"
+    },
+    {
+     "id": "gen-x2",
+     "title": "The Table of Nations",
+     "range": "10",
+     "status": "skip",
+     "summary": "The nations descended from Noah's sons Shem, Ham and Japheth."
+    },
+    {
+     "id": "gen-05",
+     "title": "The Tower of Babel",
+     "range": "11:1-9",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "11:1",
+       "mustContain": [
+        "language"
+       ]
+      },
+      {
+       "ref": "11:9",
+       "mustContain": [
+        "Babel"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gen-x3",
+     "title": "From Shem to Terah",
+     "range": "11:10-26",
+     "status": "skip",
+     "summary": "Ten generations from Shem to Terah, Abram's father.",
+     "anchors": [
+      {
+       "ref": "11:10",
+       "mustContain": [
+        "Shem"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gen-06",
+     "title": "From Ur to Haran",
+     "range": "11:27-32",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "11:27",
+       "mustContain": [
+        "Terah"
+       ]
+      },
+      {
+       "ref": "11:30",
+       "mustContain": [
+        "barren"
+       ]
+      }
+     ],
+     "noteIds": [
+      "n-gen-11"
+     ]
+    },
+    {
+     "id": "gen-07",
+     "title": "The Call and Wanderings of Abram",
+     "range": "12-14",
+     "status": "read"
+    },
+    {
+     "id": "gen-08",
+     "title": "Covenant, Hagar and Ishmael",
+     "range": "15-17",
+     "status": "read"
+    },
+    {
+     "id": "gen-09",
+     "title": "Sodom and Gomorrah",
+     "range": "18-19",
+     "status": "read"
+    },
+    {
+     "id": "gen-10",
+     "title": "Isaac Born, Abraham Tested",
+     "range": "20-22",
+     "status": "read"
+    },
+    {
+     "id": "gen-11",
+     "title": "Sarah's Death and Rebekah",
+     "range": "23:1-25:18",
+     "status": "read",
+     "inner": [
+      {
+       "range": "25:12-18",
+       "status": "skim",
+       "label": "The descendants of Ishmael"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "25:12",
+       "mustContain": [
+        "Ishmael"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gen-12",
+     "title": "Jacob and Esau",
+     "range": "25:19-28:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "25:19",
+       "mustContain": [
+        "Isaac"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gen-13",
+     "title": "Jacob in Haran",
+     "range": "29-31",
+     "status": "read"
+    },
+    {
+     "id": "gen-14",
+     "title": "Jacob Returns",
+     "range": "32-35",
+     "status": "read"
+    },
+    {
+     "id": "gen-15",
+     "title": "The Line of Esau",
+     "range": "36",
+     "status": "skim",
+     "summary": "Esau's descendants and the early chiefs and kings of Edom."
+    },
+    {
+     "id": "gen-16",
+     "title": "Joseph Sold; Judah and Tamar",
+     "range": "37-38",
+     "status": "read"
+    },
+    {
+     "id": "gen-17",
+     "title": "Joseph in Egypt",
+     "range": "39-41",
+     "status": "read"
+    },
+    {
+     "id": "gen-18",
+     "title": "The Brothers in Egypt",
+     "range": "42-45",
+     "status": "read"
+    },
+    {
+     "id": "gen-19",
+     "title": "Jacob's Family Comes to Egypt",
+     "range": "46-47",
+     "status": "read",
+     "inner": [
+      {
+       "range": "46:8-27",
+       "status": "skim",
+       "label": "The names of Jacob's household"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "46:8",
+       "mustContain": [
+        "names"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "gen-20",
+     "title": "Jacob's Blessings and Death; Joseph's Last Days",
+     "range": "48-50",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "Job",
+   "name": "Job",
+   "setting": "An undated patriarchal world",
+   "tagline": "An interlude on suffering",
+   "sections": [
+    {
+     "id": "job-01",
+     "title": "The Wager in Heaven",
+     "range": "1-2",
+     "status": "read"
+    },
+    {
+     "id": "job-x1",
+     "title": "The Great Debate",
+     "range": "3-37",
+     "status": "skip",
+     "summary": "Job and three friends argue in poetry; they insist his suffering is punishment, he maintains his innocence. Elihu then speaks.",
+     "noteIds": [
+      "n-job-debate"
+     ]
+    },
+    {
+     "id": "job-02",
+     "title": "The Voice from the Whirlwind",
+     "range": "38:1-11",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "38:1",
+       "mustContain": [
+        "whirlwind"
+       ]
+      }
+     ],
+     "highlight": true
+    },
+    {
+     "id": "job-x2",
+     "title": "The Rest of God's First Speech",
+     "range": "38:12-39:end",
+     "status": "skip",
+     "summary": "God continues with questions about light, weather and wild animals."
+    },
+    {
+     "id": "job-03",
+     "title": "Job's First Reply",
+     "range": "40:1-5",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "40:4",
+       "mustContain": [
+        "hand",
+        "mouth"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "job-x3",
+     "title": "God's Second Speech",
+     "range": "40:6-41:end",
+     "status": "skip",
+     "summary": "God speaks of Behemoth and Leviathan, creatures beyond human mastery."
+    },
+    {
+     "id": "job-04",
+     "title": "Restoration",
+     "range": "42",
+     "status": "read",
+     "noteIds": [
+      "n-job-42"
+     ]
+    }
+   ],
+   "movable": true
+  },
+  {
+   "id": "Exod",
+   "name": "Exodus",
+   "setting": "Egypt to Sinai",
+   "tagline": "Out of Egypt, to the mountain",
+   "sections": [
+    {
+     "id": "exod-01",
+     "title": "Slavery and the Birth of Moses",
+     "range": "1-2",
+     "status": "read"
+    },
+    {
+     "id": "exod-02",
+     "title": "The Burning Bush",
+     "range": "3-4",
+     "status": "read"
+    },
+    {
+     "id": "exod-03",
+     "title": "Confronting Pharaoh",
+     "range": "5:1-7:13",
+     "status": "read",
+     "inner": [
+      {
+       "range": "6:14-27",
+       "status": "skim",
+       "label": "The genealogy of Moses and Aaron"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "6:14",
+       "mustContain": [
+        "heads"
+       ]
+      },
+      {
+       "ref": "6:26",
+       "mustContain": [
+        "Aaron",
+        "Moses"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exod-04",
+     "title": "The Plagues",
+     "range": "7:14-11:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "7:14",
+       "mustContain": [
+        "Pharaoh"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exod-05",
+     "title": "Passover and Departure",
+     "range": "12-13",
+     "status": "read"
+    },
+    {
+     "id": "exod-06",
+     "title": "Crossing the Sea",
+     "range": "14:1-15:21",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "15:20",
+       "mustContain": [
+        "Miriam"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exod-07",
+     "title": "Bitter Water, Manna, and Amalek",
+     "range": "15:22-17:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "15:22",
+       "mustContain": [
+        "Shur"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "exod-08",
+     "title": "Jethro's Counsel",
+     "range": "18",
+     "status": "read"
+    },
+    {
+     "id": "exod-09",
+     "title": "Sinai and the Ten Commandments",
+     "range": "19-20",
+     "status": "read"
+    },
+    {
+     "id": "exod-x1",
+     "title": "The Book of the Covenant",
+     "range": "21-23",
+     "status": "skip",
+     "summary": "Civil and religious case law: slaves, injuries, property, festivals."
+    },
+    {
+     "id": "exod-10",
+     "title": "The Covenant Sealed",
+     "range": "24",
+     "status": "read",
+     "noteIds": [
+      "n-exod-24"
+     ]
+    },
+    {
+     "id": "exod-x2",
+     "title": "Instructions for the Tabernacle",
+     "range": "25-31",
+     "status": "skip",
+     "summary": "Detailed plans for the tabernacle, its furnishings, and the priests' vestments."
+    },
+    {
+     "id": "exod-11",
+     "title": "The Golden Calf",
+     "range": "32",
+     "status": "read"
+    },
+    {
+     "id": "exod-12",
+     "title": "Moses Intercedes",
+     "range": "33",
+     "status": "read"
+    },
+    {
+     "id": "exod-13",
+     "title": "The Covenant Renewed",
+     "range": "34",
+     "status": "read"
+    },
+    {
+     "id": "exod-x3",
+     "title": "The Tabernacle Built",
+     "range": "35:1-40:33",
+     "status": "skip",
+     "summary": "The instructions of chapters 25–31 carried out, item by item."
+    },
+    {
+     "id": "exod-14",
+     "title": "Glory Fills the Tabernacle",
+     "range": "40:34-38",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "40:34",
+       "mustContain": [
+        "cloud"
+       ]
+      }
+     ],
+     "noteIds": [
+      "n-exod-40"
+     ],
+     "highlight": true
+    }
+   ]
+  },
+  {
+   "id": "Num",
+   "name": "Numbers",
+   "setting": "The wilderness",
+   "tagline": "Forty years in the wilderness",
+   "sections": [
+    {
+     "id": "num-x1",
+     "title": "Census and Camp",
+     "range": "1-9",
+     "status": "skip",
+     "summary": "The tribes counted and arranged around the tabernacle; Levite duties; purity laws; the second Passover."
+    },
+    {
+     "id": "num-01",
+     "title": "Breaking Camp",
+     "range": "10",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "10:11",
+       "mustContain": [
+        "cloud"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "num-02",
+     "title": "Complaints, Quail, and the Seventy Elders",
+     "range": "11",
+     "status": "read"
+    },
+    {
+     "id": "num-03",
+     "title": "Miriam and Aaron Oppose Moses",
+     "range": "12",
+     "status": "read"
+    },
+    {
+     "id": "num-04",
+     "title": "The Twelve Spies",
+     "range": "13-14",
+     "status": "read"
+    },
+    {
+     "id": "num-05",
+     "title": "Laws for the Land",
+     "range": "15",
+     "status": "skim",
+     "summary": "Offerings, the Sabbath-breaker, and tassels on garments."
+    },
+    {
+     "id": "num-06",
+     "title": "Korah's Rebellion",
+     "range": "16-17",
+     "status": "read"
+    },
+    {
+     "id": "num-07",
+     "title": "Priestly Duties and the Red Heifer",
+     "range": "18-19",
+     "status": "skim",
+     "summary": "The priests' and Levites' portions; purification after contact with the dead."
+    },
+    {
+     "id": "num-08",
+     "title": "Water from the Rock; Aaron's Death",
+     "range": "20",
+     "status": "read"
+    },
+    {
+     "id": "num-09",
+     "title": "The Bronze Serpent and the March East",
+     "range": "21",
+     "status": "read"
+    },
+    {
+     "id": "num-10",
+     "title": "Balaam",
+     "range": "22-24",
+     "status": "read"
+    },
+    {
+     "id": "num-11",
+     "title": "Apostasy at Peor",
+     "range": "25",
+     "status": "read"
+    },
+    {
+     "id": "num-x2",
+     "title": "The Second Census and Laws",
+     "range": "26-31",
+     "status": "skip",
+     "summary": "A new generation counted; Zelophehad's daughters; Joshua appointed; offerings and vows; war on Midian."
+    },
+    {
+     "id": "num-12",
+     "title": "The Eastern Tribes' Bargain",
+     "range": "32",
+     "status": "read",
+     "noteIds": [
+      "n-num-32"
+     ]
+    },
+    {
+     "id": "num-x3",
+     "title": "Itinerary and Borders",
+     "range": "33-36",
+     "status": "skip",
+     "summary": "The route from Egypt, the land's borders, cities of refuge, inheritance laws."
+    }
+   ]
+  },
+  {
+   "id": "Deut",
+   "name": "Deuteronomy",
+   "setting": "The plains of Moab",
+   "tagline": "The last words of Moses",
+   "sections": [
+    {
+     "id": "deut-x1",
+     "title": "Moses Recounts the Journey",
+     "range": "1-5",
+     "status": "skip",
+     "summary": "Moses retells the wilderness years and repeats the Ten Commandments."
+    },
+    {
+     "id": "deut-x2",
+     "title": "Introduction to the Command",
+     "range": "6:1-3",
+     "status": "skip",
+     "summary": "A short preface to the commandment that follows."
+    },
+    {
+     "id": "deut-01",
+     "title": "The Shema",
+     "range": "6:4-9",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "6:4",
+       "mustContain": [
+        "Hear",
+        "Israel"
+       ]
+      },
+      {
+       "ref": "6:5",
+       "mustContain": [
+        "love"
+       ]
+      }
+     ],
+     "noteIds": [
+      "n-deut-6"
+     ]
+    },
+    {
+     "id": "deut-x3",
+     "title": "Sermons and the Law Code",
+     "range": "6:10-27:end",
+     "status": "skip",
+     "summary": "Exhortations, then the law code: worship, kings, prophets, war, family and justice, ending in the Shechem ceremony."
+    },
+    {
+     "id": "deut-02",
+     "title": "Blessings and Curses",
+     "range": "28",
+     "status": "optional",
+     "noteIds": [
+      "n-deut-28"
+     ]
+    },
+    {
+     "id": "deut-x4",
+     "title": "The Covenant in Moab",
+     "range": "29-30",
+     "status": "skip",
+     "summary": "A final covenant appeal: choose life."
+    },
+    {
+     "id": "deut-03",
+     "title": "Joshua Commissioned",
+     "range": "31",
+     "status": "read"
+    },
+    {
+     "id": "deut-04",
+     "title": "The Song of Moses",
+     "range": "32:1-47",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "32:1",
+       "mustContain": [
+        "heavens"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "deut-05",
+     "title": "Moses Sent Up the Mountain",
+     "range": "32:48-52",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "32:49",
+       "mustContain": [
+        "Nebo"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "deut-06",
+     "title": "Moses Blesses the Tribes",
+     "range": "33",
+     "status": "read"
+    },
+    {
+     "id": "deut-07",
+     "title": "The Death of Moses",
+     "range": "34",
+     "status": "read",
+     "highlight": true
+    }
+   ]
+  },
+  {
+   "id": "Josh",
+   "name": "Joshua",
+   "setting": "Canaan",
+   "tagline": "The conquest",
+   "sections": [
+    {
+     "id": "josh-01",
+     "title": "Joshua's Charge",
+     "range": "1",
+     "status": "read"
+    },
+    {
+     "id": "josh-02",
+     "title": "Rahab and the Spies",
+     "range": "2",
+     "status": "read"
+    },
+    {
+     "id": "josh-03",
+     "title": "Crossing the Jordan",
+     "range": "3-4",
+     "status": "read"
+    },
+    {
+     "id": "josh-04",
+     "title": "Gilgal and the Commander of the Army",
+     "range": "5",
+     "status": "read"
+    },
+    {
+     "id": "josh-05",
+     "title": "Jericho",
+     "range": "6",
+     "status": "read"
+    },
+    {
+     "id": "josh-06",
+     "title": "Achan and Ai",
+     "range": "7-8",
+     "status": "read"
+    },
+    {
+     "id": "josh-07",
+     "title": "The Gibeonite Ruse",
+     "range": "9",
+     "status": "read"
+    },
+    {
+     "id": "josh-08",
+     "title": "The Southern Campaign",
+     "range": "10",
+     "status": "read"
+    },
+    {
+     "id": "josh-09",
+     "title": "The Northern Campaign",
+     "range": "11",
+     "status": "read"
+    },
+    {
+     "id": "josh-x1",
+     "title": "Dividing the Land",
+     "range": "12-21",
+     "status": "skip",
+     "summary": "Lists of defeated kings, tribal boundaries, cities of refuge and Levite towns."
+    },
+    {
+     "id": "josh-10",
+     "title": "The Altar by the Jordan",
+     "range": "22",
+     "status": "read",
+     "noteIds": [
+      "n-josh-22"
+     ]
+    },
+    {
+     "id": "josh-11",
+     "title": "Joshua's Farewell",
+     "range": "23",
+     "status": "read"
+    },
+    {
+     "id": "josh-12",
+     "title": "Covenant at Shechem",
+     "range": "24",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "Judg",
+   "name": "Judges",
+   "setting": "Canaan, before the kings",
+   "tagline": "The dark age",
+   "sections": [
+    {
+     "id": "judg-01",
+     "title": "The Unfinished Conquest",
+     "range": "1:1-2:5",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "2:1",
+       "mustContain": [
+        "Bochim"
+       ]
+      }
+     ],
+     "noteIds": [
+      "n-judg"
+     ]
+    },
+    {
+     "id": "judg-02",
+     "title": "The Cycle Begins",
+     "range": "2:6-3:6",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "2:6",
+       "mustContain": [
+        "Joshua"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "judg-03",
+     "title": "Othniel, Ehud and Shamgar",
+     "range": "3:7-31",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "3:9",
+       "mustContain": [
+        "Othniel"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "judg-04",
+     "title": "Deborah and Barak",
+     "range": "4-5",
+     "status": "read"
+    },
+    {
+     "id": "judg-05",
+     "title": "Gideon",
+     "range": "6-8",
+     "status": "read"
+    },
+    {
+     "id": "judg-06",
+     "title": "Abimelech",
+     "range": "9",
+     "status": "read"
+    },
+    {
+     "id": "judg-07",
+     "title": "Jephthah and the Minor Judges",
+     "range": "10-12",
+     "status": "read"
+    },
+    {
+     "id": "judg-08",
+     "title": "Samson",
+     "range": "13-16",
+     "status": "read"
+    },
+    {
+     "id": "judg-09",
+     "title": "Micah's Idol and the Danites",
+     "range": "17-18",
+     "status": "read"
+    },
+    {
+     "id": "judg-10",
+     "title": "The Levite's Concubine and Civil War",
+     "range": "19-21",
+     "status": "read",
+     "contentNote": "Contains sexual violence and dismemberment.",
+     "noteIds": [
+      "n-judg"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Ruth",
+   "name": "Ruth",
+   "setting": "Bethlehem, in the days of the judges",
+   "tagline": "The hinge",
+   "sections": [
+    {
+     "id": "ruth-01",
+     "title": "Naomi and Ruth",
+     "range": "1",
+     "status": "read"
+    },
+    {
+     "id": "ruth-02",
+     "title": "The Field of Boaz",
+     "range": "2",
+     "status": "read"
+    },
+    {
+     "id": "ruth-03",
+     "title": "The Threshing Floor",
+     "range": "3",
+     "status": "read"
+    },
+    {
+     "id": "ruth-04",
+     "title": "The Redeemer",
+     "range": "4",
+     "status": "read",
+     "noteIds": [
+      "n-ruth-4"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "1Sam",
+   "name": "1 Samuel",
+   "setting": "Shiloh to Gilboa",
+   "tagline": "The birth of the monarchy",
+   "sections": [
+    {
+     "id": "1sam-01",
+     "title": "Hannah and the Birth of Samuel",
+     "range": "1:1-2:11",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "2:11",
+       "mustContain": [
+        "Ramah"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1sam-02",
+     "title": "Eli's Sons and Samuel's Call",
+     "range": "2:12-3:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "2:12",
+       "mustContain": [
+        "Eli"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1sam-03",
+     "title": "The Ark Lost and Returned",
+     "range": "4-7",
+     "status": "read"
+    },
+    {
+     "id": "1sam-04",
+     "title": "Israel Demands a King",
+     "range": "8-10",
+     "status": "read"
+    },
+    {
+     "id": "1sam-05",
+     "title": "Saul's Early Reign",
+     "range": "11-13",
+     "status": "read"
+    },
+    {
+     "id": "1sam-06",
+     "title": "Jonathan's Raid",
+     "range": "14",
+     "status": "read"
+    },
+    {
+     "id": "1sam-07",
+     "title": "Saul Rejected",
+     "range": "15",
+     "status": "read"
+    },
+    {
+     "id": "1sam-08",
+     "title": "David Anointed; Goliath",
+     "range": "16-17",
+     "status": "read"
+    },
+    {
+     "id": "1sam-09",
+     "title": "Saul's Jealousy, Jonathan's Friendship",
+     "range": "18-20",
+     "status": "read"
+    },
+    {
+     "id": "1sam-10",
+     "title": "David the Fugitive",
+     "range": "21-24",
+     "status": "read"
+    },
+    {
+     "id": "1sam-11",
+     "title": "Nabal and Abigail",
+     "range": "25",
+     "status": "read"
+    },
+    {
+     "id": "1sam-12",
+     "title": "David Spares Saul Again",
+     "range": "26-27",
+     "status": "read"
+    },
+    {
+     "id": "1sam-13",
+     "title": "The Medium of Endor",
+     "range": "28",
+     "status": "read"
+    },
+    {
+     "id": "1sam-14",
+     "title": "Ziklag",
+     "range": "29-30",
+     "status": "read"
+    },
+    {
+     "id": "1sam-15",
+     "title": "The Death of Saul",
+     "range": "31",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "2Sam",
+   "name": "2 Samuel",
+   "setting": "Hebron and Jerusalem",
+   "tagline": "David's kingdom",
+   "sections": [
+    {
+     "id": "2sam-01",
+     "title": "David's Lament",
+     "range": "1",
+     "status": "read"
+    },
+    {
+     "id": "2sam-02",
+     "title": "Civil War",
+     "range": "2-4",
+     "status": "read"
+    },
+    {
+     "id": "2sam-03",
+     "title": "King of All Israel; the Ark to Jerusalem",
+     "range": "5-6",
+     "status": "read"
+    },
+    {
+     "id": "2sam-04",
+     "title": "The Promise to David",
+     "range": "7",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "2sam-05",
+     "title": "Wars and Mephibosheth",
+     "range": "8-10",
+     "status": "read"
+    },
+    {
+     "id": "2sam-06",
+     "title": "Bathsheba and Uriah",
+     "range": "11-12",
+     "status": "read"
+    },
+    {
+     "id": "2sam-07",
+     "title": "Amnon, Tamar and Absalom",
+     "range": "13-14",
+     "status": "read",
+     "contentNote": "Contains sexual violence."
+    },
+    {
+     "id": "2sam-08",
+     "title": "Absalom's Revolt and David's Return",
+     "range": "15-19",
+     "status": "read"
+    },
+    {
+     "id": "2sam-09",
+     "title": "Sheba's Rebellion",
+     "range": "20",
+     "status": "read"
+    },
+    {
+     "id": "2sam-10",
+     "title": "Last Things: Famine, Song, Heroes, Census",
+     "range": "21-24",
+     "status": "read",
+     "inner": [
+      {
+       "range": "23:8-39",
+       "status": "skim",
+       "label": "The roll of David's mighty men"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "23:8",
+       "mustContain": [
+        "mighty"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "1Kgs",
+   "name": "1 Kings",
+   "setting": "Jerusalem and Samaria",
+   "tagline": "Golden age to division",
+   "sections": [
+    {
+     "id": "1kgs-01",
+     "title": "Solomon Takes the Throne",
+     "range": "1-2",
+     "status": "read"
+    },
+    {
+     "id": "1kgs-02",
+     "title": "Solomon's Wisdom and Splendour",
+     "range": "3-5",
+     "status": "read",
+     "inner": [
+      {
+       "range": "4:1-19",
+       "status": "skim",
+       "label": "Solomon's officials and districts"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "4:2",
+       "mustContain": [
+        "Azariah"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1kgs-03",
+     "title": "Building the Temple and Palace",
+     "range": "6-7",
+     "status": "skim",
+     "summary": "Temple and palace dimensions, cedar panelling, and bronze furnishings.",
+     "noteIds": [
+      "n-1kgs-6"
+     ]
+    },
+    {
+     "id": "1kgs-04",
+     "title": "The Temple Dedicated",
+     "range": "8-9",
+     "status": "read"
+    },
+    {
+     "id": "1kgs-05",
+     "title": "The Queen of Sheba; Solomon's Fall",
+     "range": "10-11",
+     "status": "read"
+    },
+    {
+     "id": "1kgs-06",
+     "title": "The Kingdom Splits",
+     "range": "12-14",
+     "status": "read"
+    },
+    {
+     "id": "1kgs-07",
+     "title": "Kings of Judah and Israel",
+     "range": "15-16",
+     "status": "read"
+    },
+    {
+     "id": "1kgs-08",
+     "title": "Elijah: Drought, the Widow, and Carmel",
+     "range": "17-18",
+     "status": "read",
+     "highlight": true,
+     "noteIds": [
+      "n-elijah"
+     ]
+    },
+    {
+     "id": "1kgs-09",
+     "title": "Elijah at Horeb",
+     "range": "19",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "1kgs-10",
+     "title": "Ahab's Wars; Naboth's Vineyard",
+     "range": "20-21",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "1kgs-11",
+     "title": "Micaiah and the Death of Ahab",
+     "range": "22",
+     "status": "read",
+     "highlight": true
+    }
+   ]
+  },
+  {
+   "id": "2Kgs",
+   "name": "2 Kings",
+   "setting": "Samaria, Jerusalem, Babylon",
+   "tagline": "The long decline",
+   "sections": [
+    {
+     "id": "2kgs-01",
+     "title": "Elijah's Last Acts; the Chariot of Fire",
+     "range": "1-2",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "2kgs-02",
+     "title": "Elisha's Wonders",
+     "range": "3-8",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "2kgs-03",
+     "title": "Jehu's Coup",
+     "range": "9-10",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "2kgs-04",
+     "title": "Athaliah and Joash",
+     "range": "11-12",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "2kgs-05",
+     "title": "The Death of Elisha",
+     "range": "13",
+     "status": "read",
+     "highlight": true
+    },
+    {
+     "id": "2kgs-06",
+     "title": "The Decline of Israel",
+     "range": "14-16",
+     "status": "read"
+    },
+    {
+     "id": "2kgs-07",
+     "title": "The Fall of Samaria",
+     "range": "17",
+     "status": "read"
+    },
+    {
+     "id": "2kgs-08",
+     "title": "Hezekiah and the Assyrian Siege",
+     "range": "18-20",
+     "status": "read"
+    },
+    {
+     "id": "2kgs-09",
+     "title": "Manasseh and Josiah's Reform",
+     "range": "21:1-23:30",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "23:30",
+       "mustContain": [
+        "Megiddo"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "2kgs-10",
+     "title": "The Fall of Jerusalem",
+     "range": "23:31-25:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "23:31",
+       "mustContain": [
+        "Jehoahaz"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Jer",
+   "name": "Jeremiah 37–43",
+   "setting": "Jerusalem under siege",
+   "tagline": "The fall, from inside the walls",
+   "sections": [
+    {
+     "id": "jer-x1",
+     "title": "Jeremiah's Oracles",
+     "range": "1-36",
+     "status": "skip",
+     "summary": "Sermons, laments and oracles from four decades of Jeremiah's ministry."
+    },
+    {
+     "id": "jer-01",
+     "title": "Jeremiah Arrested",
+     "range": "37",
+     "status": "read",
+     "noteIds": [
+      "n-jer"
+     ]
+    },
+    {
+     "id": "jer-02",
+     "title": "The Cistern",
+     "range": "38",
+     "status": "read"
+    },
+    {
+     "id": "jer-03",
+     "title": "The City Falls",
+     "range": "39",
+     "status": "read"
+    },
+    {
+     "id": "jer-04",
+     "title": "Gedaliah",
+     "range": "40-41",
+     "status": "read"
+    },
+    {
+     "id": "jer-05",
+     "title": "Flight into Egypt",
+     "range": "42-43",
+     "status": "read"
+    },
+    {
+     "id": "jer-x2",
+     "title": "In Egypt; Oracles to the Nations",
+     "range": "44-52",
+     "status": "skip",
+     "summary": "Jeremiah's last words in Egypt, oracles against the nations, and an appendix retelling Jerusalem's fall."
+    }
+   ]
+  },
+  {
+   "id": "Tob",
+   "name": "Tobit",
+   "setting": "Nineveh and Ecbatana, Assyrian exile",
+   "tagline": "A journey with an angel",
+   "sections": [
+    {
+     "id": "tob-01",
+     "title": "Tobit's Piety and Blindness",
+     "range": "1-2",
+     "status": "read"
+    },
+    {
+     "id": "tob-02",
+     "title": "Two Prayers",
+     "range": "3",
+     "status": "read"
+    },
+    {
+     "id": "tob-03",
+     "title": "Tobiah's Journey with Raphael",
+     "range": "4-6",
+     "status": "read"
+    },
+    {
+     "id": "tob-04",
+     "title": "The Wedding at Ecbatana",
+     "range": "7-9",
+     "status": "read"
+    },
+    {
+     "id": "tob-05",
+     "title": "Homecoming and Healing",
+     "range": "10-11",
+     "status": "read"
+    },
+    {
+     "id": "tob-06",
+     "title": "Raphael Revealed",
+     "range": "12",
+     "status": "read"
+    },
+    {
+     "id": "tob-07",
+     "title": "Tobit's Song and Last Words",
+     "range": "13-14",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "Dan",
+   "name": "Daniel 1–6, 13–14",
+   "setting": "Babylon and Persia",
+   "tagline": "Tales from the exile",
+   "sections": [
+    {
+     "id": "dan-01",
+     "title": "Exiles at Court",
+     "range": "1",
+     "status": "read"
+    },
+    {
+     "id": "dan-02",
+     "title": "Nebuchadnezzar's Dream",
+     "range": "2",
+     "status": "read"
+    },
+    {
+     "id": "dan-03",
+     "title": "The Fiery Furnace",
+     "range": "3",
+     "status": "read",
+     "inner": [
+      {
+       "range": "3:24-90",
+       "status": "skim",
+       "label": "The Prayer of Azariah and the Song of the Three"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "3:24",
+       "mustContain": [
+        "flame"
+       ]
+      }
+     ],
+     "noteIds": [
+      "n-dan-3"
+     ]
+    },
+    {
+     "id": "dan-04",
+     "title": "The King's Madness",
+     "range": "4",
+     "status": "read"
+    },
+    {
+     "id": "dan-05",
+     "title": "The Writing on the Wall",
+     "range": "5",
+     "status": "read"
+    },
+    {
+     "id": "dan-06",
+     "title": "The Lions' Den",
+     "range": "6",
+     "status": "read"
+    },
+    {
+     "id": "dan-x1",
+     "title": "Daniel's Visions",
+     "range": "7-12",
+     "status": "skip",
+     "summary": "Apocalyptic visions of beasts, the Son of Man, and the kingdoms to come."
+    },
+    {
+     "id": "dan-07",
+     "title": "Susanna",
+     "range": "13",
+     "status": "read",
+     "noteIds": [
+      "n-dan-13"
+     ]
+    },
+    {
+     "id": "dan-08",
+     "title": "Bel and the Dragon",
+     "range": "14",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "Jdt",
+   "name": "Judith",
+   "setting": "Bethulia under siege",
+   "tagline": "A widow saves her people",
+   "sections": [
+    {
+     "id": "jdt-01",
+     "title": "Holofernes' Campaign",
+     "range": "1-3",
+     "status": "skim",
+     "summary": "The Assyrian general Holofernes subdues the western nations.",
+     "noteIds": [
+      "n-jdt"
+     ]
+    },
+    {
+     "id": "jdt-02",
+     "title": "The Siege of Bethulia",
+     "range": "4-7",
+     "status": "skim",
+     "summary": "Israel prepares; Achior warns Holofernes; the town's water is cut off."
+    },
+    {
+     "id": "jdt-03",
+     "title": "Judith Rebukes the Elders",
+     "range": "8",
+     "status": "read"
+    },
+    {
+     "id": "jdt-04",
+     "title": "Judith's Prayer",
+     "range": "9",
+     "status": "read"
+    },
+    {
+     "id": "jdt-05",
+     "title": "Into the Enemy Camp",
+     "range": "10-12",
+     "status": "read"
+    },
+    {
+     "id": "jdt-06",
+     "title": "The Tent of Holofernes",
+     "range": "13",
+     "status": "read"
+    },
+    {
+     "id": "jdt-07",
+     "title": "Victory and Judith's Song",
+     "range": "14-16",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "Esth",
+   "name": "Esther",
+   "setting": "Susa, Persian court",
+   "tagline": "A thriller at the Persian court",
+   "sections": [
+    {
+     "id": "esth-01",
+     "title": "Mordecai's Dream; a Plot Uncovered",
+     "range": "A:1-17",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's",
+     "noteIds": [
+      "n-esth"
+     ]
+    },
+    {
+     "id": "esth-02",
+     "title": "Vashti Deposed",
+     "range": "1",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-03",
+     "title": "Esther Becomes Queen",
+     "range": "2",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-04",
+     "title": "Haman's Decree",
+     "range": "3; B:1-7",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-05",
+     "title": "Mordecai's Appeal and the Two Prayers",
+     "range": "4; C:1-30",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-06",
+     "title": "Esther Before the King",
+     "range": "D:1-16; 5",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-07",
+     "title": "The Sleepless King",
+     "range": "6",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-08",
+     "title": "Haman's Fall",
+     "range": "7",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-09",
+     "title": "The Counter-Decree",
+     "range": "8; E:1-24",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    },
+    {
+     "id": "esth-10",
+     "title": "Purim; the Dream Explained",
+     "range": "9-10; F:1-11",
+     "status": "read",
+     "mapByContent": "Map by content to WEBC's Greek Esther; references shown are NABRE's"
+    }
+   ]
+  },
+  {
+   "id": "Ezra",
+   "name": "Ezra",
+   "setting": "Jerusalem, Persian province",
+   "tagline": "The return",
+   "sections": [
+    {
+     "id": "ezra-01",
+     "title": "Cyrus's Decree and the First Return",
+     "range": "1-2",
+     "status": "read",
+     "inner": [
+      {
+       "range": "2",
+       "status": "skim",
+       "label": "The register of returning families"
+      }
+     ]
+    },
+    {
+     "id": "ezra-02",
+     "title": "The Altar and the Foundation",
+     "range": "3",
+     "status": "read"
+    },
+    {
+     "id": "ezra-03",
+     "title": "Opposition",
+     "range": "4",
+     "status": "read",
+     "noteIds": [
+      "n-ezra-4"
+     ]
+    },
+    {
+     "id": "ezra-04",
+     "title": "The Temple Completed",
+     "range": "5-6",
+     "status": "read"
+    },
+    {
+     "id": "ezra-05",
+     "title": "Ezra Arrives",
+     "range": "7-8",
+     "status": "read",
+     "inner": [
+      {
+       "range": "7:1-5",
+       "status": "skim",
+       "label": "Ezra's ancestry"
+      },
+      {
+       "range": "8:1-14",
+       "status": "skim",
+       "label": "The families who came with Ezra"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "8:1",
+       "mustContain": [
+        "heads"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ezra-06",
+     "title": "The Crisis of Mixed Marriages",
+     "range": "9-10",
+     "status": "read",
+     "inner": [
+      {
+       "range": "10:18-44",
+       "status": "skim",
+       "label": "The list of those who had married foreign wives"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "10:18",
+       "mustContain": [
+        "priests"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "Neh",
+   "name": "Nehemiah",
+   "setting": "Jerusalem's walls",
+   "tagline": "The wall rebuilt",
+   "sections": [
+    {
+     "id": "neh-01",
+     "title": "News from Jerusalem",
+     "range": "1",
+     "status": "read"
+    },
+    {
+     "id": "neh-02",
+     "title": "The Night Inspection",
+     "range": "2",
+     "status": "read"
+    },
+    {
+     "id": "neh-03",
+     "title": "The Builders",
+     "range": "3:1-32",
+     "status": "skim",
+     "summary": "Who rebuilt which stretch of wall and which gate."
+    },
+    {
+     "id": "neh-04",
+     "title": "Building Under Threat",
+     "range": "3:33-4:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "3:33",
+       "mustContain": [
+        "Sanballat"
+       ]
+      }
+     ],
+     "versificationNote": "Hebrew numbering; English Bibles number this 4:1-23."
+    },
+    {
+     "id": "neh-05",
+     "title": "Nehemiah Confronts Injustice",
+     "range": "5",
+     "status": "read"
+    },
+    {
+     "id": "neh-06",
+     "title": "The Wall Completed",
+     "range": "6:1-7:5",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "7:5",
+       "mustContain": [
+        "genealogy"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "neh-07",
+     "title": "The Register of Returnees",
+     "range": "7:6-end",
+     "status": "skim",
+     "summary": "The list of returning families, repeated from Ezra 2."
+    },
+    {
+     "id": "neh-08",
+     "title": "Ezra Reads the Law",
+     "range": "8",
+     "status": "read"
+    },
+    {
+     "id": "neh-09",
+     "title": "Confession and Covenant",
+     "range": "9-10",
+     "status": "read",
+     "inner": [
+      {
+       "range": "10:2-28",
+       "status": "skim",
+       "label": "The names of those who sealed the covenant"
+      }
+     ],
+     "anchors": [
+      {
+       "ref": "10:2",
+       "mustContain": [
+        "Nehemiah"
+       ]
+      }
+     ],
+     "versificationNote": "Hebrew numbering; English Bibles number the list 10:1-27."
+    },
+    {
+     "id": "neh-10",
+     "title": "Repopulating Jerusalem",
+     "range": "11:1-12:26",
+     "status": "read",
+     "inner": [
+      {
+       "range": "11:3-36",
+       "status": "skim",
+       "label": "Residents of Jerusalem and the towns"
+      },
+      {
+       "range": "12:1-26",
+       "status": "skim",
+       "label": "Priests and Levites"
+      }
+     ]
+    },
+    {
+     "id": "neh-11",
+     "title": "The Wall Dedicated",
+     "range": "12:27-47",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "12:27",
+       "mustContain": [
+        "dedication"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "neh-12",
+     "title": "Nehemiah's Last Reforms",
+     "range": "13",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "Jonah",
+   "name": "Jonah",
+   "setting": "The sea and Nineveh",
+   "tagline": "The reluctant prophet",
+   "sections": [
+    {
+     "id": "jonah-01",
+     "title": "Flight and Storm",
+     "range": "1",
+     "status": "read"
+    },
+    {
+     "id": "jonah-02",
+     "title": "In the Belly of the Fish",
+     "range": "2",
+     "status": "read"
+    },
+    {
+     "id": "jonah-03",
+     "title": "Nineveh Repents",
+     "range": "3",
+     "status": "read"
+    },
+    {
+     "id": "jonah-04",
+     "title": "The Vine",
+     "range": "4",
+     "status": "read",
+     "noteIds": [
+      "n-jonah"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "1Macc",
+   "name": "1 Maccabees",
+   "setting": "Judea under the Seleucids",
+   "tagline": "The revolt",
+   "sections": [
+    {
+     "id": "1macc-01",
+     "title": "Alexander's Heirs and the Persecution",
+     "range": "1",
+     "status": "read"
+    },
+    {
+     "id": "1macc-02",
+     "title": "Mattathias Revolts",
+     "range": "2",
+     "status": "read"
+    },
+    {
+     "id": "1macc-03",
+     "title": "Judas's First Victories",
+     "range": "3:1-4:35",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "4:35",
+       "mustContain": [
+        "Lysias"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1macc-04",
+     "title": "The Temple Rededicated",
+     "range": "4:36-61",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "4:36",
+       "mustContain": [
+        "sanctuary"
+       ]
+      }
+     ],
+     "highlight": true
+    },
+    {
+     "id": "1macc-05",
+     "title": "Campaigns; the Death of Antiochus",
+     "range": "5-6",
+     "status": "read"
+    },
+    {
+     "id": "1macc-06",
+     "title": "Nicanor; Alliance with Rome",
+     "range": "7-8",
+     "status": "read"
+    },
+    {
+     "id": "1macc-07",
+     "title": "The Death of Judas",
+     "range": "9:1-22",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "9:18",
+       "mustContain": [
+        "Judas"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1macc-08",
+     "title": "Jonathan Takes Command",
+     "range": "9:23-end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "9:23",
+       "mustContain": [
+        "Judas"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "1macc-09",
+     "title": "Jonathan's Diplomacy and Wars",
+     "range": "10-12",
+     "status": "skim",
+     "summary": "Rival Seleucid kings court Jonathan; he becomes high priest and is captured by treachery.",
+     "noteIds": [
+      "n-1macc-10"
+     ]
+    },
+    {
+     "id": "1macc-10",
+     "title": "Simon and Independence",
+     "range": "13-16",
+     "status": "skim",
+     "summary": "Simon wins independence, is honoured as leader and high priest, and is murdered; his son John succeeds him."
+    }
+   ]
+  },
+  {
+   "id": "Luke",
+   "name": "Luke",
+   "setting": "Galilee and Jerusalem",
+   "tagline": "The life of Jesus",
+   "sections": [
+    {
+     "id": "luke-01",
+     "title": "Prologue",
+     "range": "1:1-4",
+     "status": "read"
+    },
+    {
+     "id": "luke-02",
+     "title": "Two Annunciations",
+     "range": "1:5-56",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "1:5",
+       "mustContain": [
+        "Herod"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-03",
+     "title": "Two Births",
+     "range": "1:57-2:40",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "1:57",
+       "mustContain": [
+        "Elizabeth"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-04",
+     "title": "The Boy in the Temple",
+     "range": "2:41-52",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "2:41",
+       "mustContain": [
+        "Passover"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-05",
+     "title": "John the Baptist; the Baptism",
+     "range": "3:1-22",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "3:1",
+       "mustContain": [
+        "Tiberius"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-x1",
+     "title": "The Genealogy of Jesus",
+     "range": "3:23-38",
+     "status": "skip",
+     "summary": "Jesus' ancestry traced back through David and Abraham to Adam.",
+     "anchors": [
+      {
+       "ref": "3:23",
+       "mustContain": [
+        "thirty"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-06",
+     "title": "Temptation; Rejected at Nazareth",
+     "range": "4:1-30",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "4:1",
+       "mustContain": [
+        "wilderness"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-07",
+     "title": "The Disciples Called; Sermon on the Plain",
+     "range": "4:31-6:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "4:31",
+       "mustContain": [
+        "Capernaum"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-08",
+     "title": "Healings, Forgiveness, Parables",
+     "range": "7-8",
+     "status": "read"
+    },
+    {
+     "id": "luke-09",
+     "title": "Peter's Confession; the Transfiguration",
+     "range": "9:1-50",
+     "status": "read",
+     "highlight": true,
+     "noteIds": [
+      "n-luke-9"
+     ]
+    },
+    {
+     "id": "luke-10",
+     "title": "Toward Jerusalem: the Samaritan, Martha and Mary",
+     "range": "9:51-13:21",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "9:51",
+       "mustContain": [
+        "Jerusalem"
+       ]
+      }
+     ],
+     "noteIds": [
+      "n-luke-10"
+     ]
+    },
+    {
+     "id": "luke-11",
+     "title": "The Narrow Door to the Prodigal Son",
+     "range": "13:22-17:10",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "13:22",
+       "mustContain": [
+        "Jerusalem"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-12",
+     "title": "Lepers, the Widow, Zacchaeus",
+     "range": "17:11-19:27",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "17:11",
+       "mustContain": [
+        "Samaria"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-13",
+     "title": "Entry into Jerusalem; Teaching in the Temple",
+     "range": "19:28-21:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "19:28",
+       "mustContain": [
+        "Jerusalem"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-14",
+     "title": "The Last Supper and the Arrest",
+     "range": "22:1-53",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "22:1",
+       "mustContain": [
+        "Unleavened"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-15",
+     "title": "Trials and Crucifixion",
+     "range": "22:54-23:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "22:54",
+       "mustContain": [
+        "high priest"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "luke-16",
+     "title": "Resurrection and Emmaus",
+     "range": "24",
+     "status": "read"
+    }
+   ]
+  },
+  {
+   "id": "John",
+   "name": "John 11 (excursion)",
+   "setting": "Bethany",
+   "tagline": "The raising of Lazarus",
+   "sections": [
+    {
+     "id": "john-x1",
+     "title": "John 1–10",
+     "range": "1-10",
+     "status": "skip",
+     "summary": "Outside this reading."
+    },
+    {
+     "id": "john-01",
+     "title": "The Raising of Lazarus",
+     "range": "11",
+     "status": "optional",
+     "noteIds": [
+      "n-john-11"
+     ]
+    },
+    {
+     "id": "john-x2",
+     "title": "John 12–21",
+     "range": "12-21",
+     "status": "skip",
+     "summary": "Outside this reading."
+    }
+   ],
+   "excursion": true
+  },
+  {
+   "id": "Acts",
+   "name": "Acts",
+   "setting": "Jerusalem to Rome",
+   "tagline": "The first thirty years",
+   "sections": [
+    {
+     "id": "acts-01",
+     "title": "Ascension and Pentecost",
+     "range": "1-2",
+     "status": "read"
+    },
+    {
+     "id": "acts-02",
+     "title": "The Jerusalem Church",
+     "range": "3-5",
+     "status": "read"
+    },
+    {
+     "id": "acts-03",
+     "title": "Stephen",
+     "range": "6-7",
+     "status": "read"
+    },
+    {
+     "id": "acts-04",
+     "title": "Philip, Samaria and the Ethiopian",
+     "range": "8",
+     "status": "read"
+    },
+    {
+     "id": "acts-05",
+     "title": "Saul's Conversion",
+     "range": "9:1-31",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "9:1",
+       "mustContain": [
+        "Saul"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "acts-06",
+     "title": "Peter and Cornelius",
+     "range": "9:32-11:18",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "9:32",
+       "mustContain": [
+        "Peter"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "acts-07",
+     "title": "Antioch; Herod's Persecution",
+     "range": "11:19-12:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "11:19",
+       "mustContain": [
+        "Stephen"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "acts-08",
+     "title": "Paul's First Journey",
+     "range": "13-14",
+     "status": "read"
+    },
+    {
+     "id": "acts-09",
+     "title": "The Council of Jerusalem",
+     "range": "15:1-35",
+     "status": "read"
+    },
+    {
+     "id": "acts-10",
+     "title": "The Second Journey",
+     "range": "15:36-18:22",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "15:36",
+       "mustContain": [
+        "Paul"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "acts-11",
+     "title": "The Third Journey",
+     "range": "18:23-21:16",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "18:23",
+       "mustContain": [
+        "Galatia"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "acts-12",
+     "title": "Arrest in Jerusalem",
+     "range": "21:17-23:end",
+     "status": "read",
+     "anchors": [
+      {
+       "ref": "21:17",
+       "mustContain": [
+        "Jerusalem"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "acts-13",
+     "title": "Before Felix, Festus and Agrippa",
+     "range": "24-26",
+     "status": "read"
+    },
+    {
+     "id": "acts-14",
+     "title": "Shipwreck and Rome",
+     "range": "27-28",
+     "status": "read",
+     "noteIds": [
+      "n-acts-28"
+     ]
+    }
+   ]
+  }
+ ],
+ "bridges": [
+  {
+   "id": "br-inside",
+   "after": "2Kgs",
+   "title": "The Same Fall, Closer",
+   "text": "Kings tells the destruction of Jerusalem from a distance, in a few verses. The next seven chapters are the same catastrophe told from inside the walls, by a prophet who lived through the siege."
+  },
+  {
+   "id": "br-assyria",
+   "after": "Jer",
+   "title": "Two Exiles",
+   "text": "The story now steps back a century and a half. When Assyria destroyed the northern kingdom in 722 BC, its people were deported to Nineveh; Tobit is their story. Daniel follows the later exiles of Judah to Babylon."
+  },
+  {
+   "id": "br-greeks",
+   "after": "Jonah",
+   "title": "From Persia to the Greeks",
+   "text": "Nehemiah ends around 430 BC in a small Persian province. A century later Alexander the Great conquered Persia, and Judea passed to his successors: first the Ptolemies of Egypt, then, from about 200 BC, the Seleucids of Syria. In Alexandria, Jewish scholars translated the Scriptures into Greek, the Septuagint, which the early church would read. 1 Maccabees opens with Alexander and moves quickly to the crisis of 167 BC."
+  },
+  {
+   "id": "br-rome",
+   "after": "1Macc",
+   "title": "The Road to Bethlehem",
+   "text": "Simon's heirs, the Hasmoneans, ruled an independent Jewish state for about eighty years. In this era the Pharisees and Sadducees took shape, synagogues spread, and the community behind the Dead Sea Scrolls withdrew to the desert. Rome's general Pompey took Jerusalem in 63 BC. Rome later made Herod king of Judea; he rebuilt the temple on a grand scale. Luke opens in Herod's last years."
+  }
+ ],
+ "notes": [
+  {
+   "id": "n-gen-11",
+   "section": "gen-06",
+   "at": "start",
+   "text": "These six verses introduce Abram, Sarai and Lot and move the family from Ur to Haran. Note verse 30: Sarai is barren. That tension drives the whole Abraham story."
+  },
+  {
+   "id": "n-job-debate",
+   "section": "job-x1",
+   "at": "fold",
+   "text": "For 35 chapters Job's friends insist his suffering must be punishment for hidden sin. Job maintains his innocence and demands that God answer him. Then God does."
+  },
+  {
+   "id": "n-job-42",
+   "section": "job-04",
+   "at": "start",
+   "text": "God's rebuke of the friends in verse 7 is a ruling on the debate you skipped: God says the friends have not spoken rightly of him, as Job has."
+  },
+  {
+   "id": "n-exod-24",
+   "section": "exod-10",
+   "at": "start",
+   "text": "The people swear to the covenant, sealed in blood. Eight chapters later comes the golden calf, which is why it reads as betrayal."
+  },
+  {
+   "id": "n-exod-40",
+   "section": "exod-14",
+   "at": "end",
+   "text": "Numbers picks up with this same cloud lifting to lead Israel on. The two books are one motion."
+  },
+  {
+   "id": "n-num-32",
+   "section": "num-12",
+   "at": "start",
+   "text": "Reuben, Gad and half of Manasseh may settle east of the Jordan, on one condition: their soldiers fight the whole conquest first. Remember this for Joshua 22."
+  },
+  {
+   "id": "n-deut-6",
+   "section": "deut-01",
+   "at": "start",
+   "text": "The Shema, Israel's central prayer. In Luke 10:27 a lawyer quotes it to Jesus as the heart of the Law."
+  },
+  {
+   "id": "n-deut-28",
+   "section": "deut-02",
+   "at": "start",
+   "text": "Optional. The covenant's blessings and curses are the scorecard behind every verdict in Kings: \"he did evil in the sight of the LORD.\""
+  },
+  {
+   "id": "n-josh-22",
+   "section": "josh-10",
+   "at": "start",
+   "text": "The eastern tribes have kept the promise of Numbers 32 and are going home. What they build on the way nearly starts a civil war."
+  },
+  {
+   "id": "n-judg",
+   "section": "judg-01",
+   "at": "start",
+   "text": "Watch for the refrain: in those days there was no king in Israel, and everyone did what was right in their own eyes."
+  },
+  {
+   "id": "n-ruth-4",
+   "section": "ruth-04",
+   "at": "end",
+   "text": "The last verses are a genealogy kept on purpose: Ruth the Moabite is David's great-grandmother."
+  },
+  {
+   "id": "n-1kgs-6",
+   "section": "1kgs-03",
+   "at": "start",
+   "text": "Skim the measurements. The story resumes when the ark comes to the temple in chapter 8."
+  },
+  {
+   "id": "n-elijah",
+   "section": "1kgs-08",
+   "at": "start",
+   "text": "Slow down. From here to 2 Kings 13 run the Elijah and Elisha stories, among the best storytelling in the Old Testament. Elijah reappears beside Jesus in Luke 9."
+  },
+  {
+   "id": "n-jer",
+   "section": "jer-01",
+   "at": "start",
+   "text": "Jerusalem is under Babylonian siege. King Zedekiah wavers between surrender and resistance; Jeremiah tells him to surrender."
+  },
+  {
+   "id": "n-dan-3",
+   "section": "dan-03",
+   "at": "3:24",
+   "text": "Catholic Bibles place a long prayer and hymn here, sung inside the furnace. Skim it like a psalm; the story resumes at 3:91."
+  },
+  {
+   "id": "n-dan-13",
+   "section": "dan-07",
+   "at": "start",
+   "text": "These two stories stand at the end of Catholic Daniel. Susanna is set in Daniel's youth."
+  },
+  {
+   "id": "n-jdt",
+   "section": "jdt-01",
+   "at": "start",
+   "text": "Judith's history is deliberately scrambled (Nebuchadnezzar as king of Assyria), the ancient way of saying \"once upon a time.\" Skim the campaign; the heroine enters in chapter 8."
+  },
+  {
+   "id": "n-esth",
+   "section": "esth-01",
+   "at": "start",
+   "text": "This is the longer Greek Esther. The Hebrew book never names God; the Greek additions, including Mordecai's dream and the queen's prayer, bring God into the story openly."
+  },
+  {
+   "id": "n-ezra-4",
+   "section": "ezra-03",
+   "at": "start",
+   "text": "Verses 6-23 jump ahead decades to later opposition, then the story returns to its own time."
+  },
+  {
+   "id": "n-jonah",
+   "section": "jonah-04",
+   "at": "end",
+   "text": "Jonah lived in the days of the kings (2 Kings 14:25). His book closes the Old Testament story here on a question God asks about mercy."
+  },
+  {
+   "id": "n-1macc-10",
+   "section": "1macc-09",
+   "at": "start",
+   "text": "Skim from here: rival kings bargain for the Maccabees' loyalty."
+  },
+  {
+   "id": "n-luke-9",
+   "section": "luke-09",
+   "at": "9:30",
+   "text": "Moses and Elijah speak with Jesus about his \"departure\"; in Greek, his exodus."
+  },
+  {
+   "id": "n-luke-10",
+   "section": "luke-10",
+   "at": "10:27",
+   "text": "The lawyer's answer is the Shema you read in Deuteronomy 6."
+  },
+  {
+   "id": "n-john-11",
+   "section": "john-01",
+   "at": "start",
+   "text": "Optional detour: the raising of Lazarus, the one major story of Jesus that Luke does not tell. Luke 10:38-42 has already introduced Martha and Mary."
+  },
+  {
+   "id": "n-acts-28",
+   "section": "acts-14",
+   "at": "end",
+   "text": "Acts ends mid-history: Paul under house arrest in Rome, preaching openly. The story is left open."
+  }
+ ]
+}
