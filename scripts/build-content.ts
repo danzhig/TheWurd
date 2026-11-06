@@ -13,7 +13,12 @@ import path from 'node:path';
 import { ReadingPlanSchema, verseText, type SectionFile } from '../lib/types';
 import { fetchSources } from './fetch-sources';
 import { parseAllBooks } from './parse-usfm';
-import { buildMappings, readStructureMaps, type BookMapping } from './map-versification';
+import {
+  buildMappings,
+  checkStructureApprovals,
+  readStructureMaps,
+  type BookMapping,
+} from './map-versification';
 import { resolvePlan, type Resolution } from './resolve-plan';
 import {
   checkApprovedPlacements,
@@ -95,6 +100,7 @@ async function main() {
 
   step(5, 'validate');
   errors.push(...checkReferences(plan));
+  errors.push(...checkStructureApprovals(maps));
   errors.push(...checkApprovedPlacements(resolution.decisions, DECISIONS_FILE));
   errors.push(...checkChapterEnds(parsed));
   writeMarkdownCopies(plan, CONTENT_DIR);

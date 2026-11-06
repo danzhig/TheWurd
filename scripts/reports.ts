@@ -193,15 +193,18 @@ export function estherDanielMap(
   const L: string[] = [];
   L.push('# Esther and Daniel: how each section lands in WEBC', '', GENERATED, '');
   L.push(
-    "WEBC contains only the Greek forms of Esther and Daniel (docs/PLAN.md D3). The plan uses NABRE references. The mapping below comes from `content/plan/structure-maps.json`; every row's content check is verified against WEBC by the pipeline. Opening and closing words are copied from WEBC by code. **Please approve this mapping before M3 merges.**",
+    "WEBC contains only the Greek forms of Esther and Daniel (docs/PLAN.md D3). The plan uses NABRE references. The mapping below comes from `content/plan/structure-maps.json`; every row's content check is verified against WEBC by the pipeline. Opening and closing words are copied from WEBC by code.",
     '',
   );
   for (const id of ['Esth', 'Dan']) {
     const spec = maps.books[id]!;
+    const approval = spec.approval
+      ? `**Approved** by ${spec.approval.by} on ${spec.approval.date} (fingerprint \`${spec.approval.fingerprint}\`). Any change to this book's mapping fails the build until it is approved again.`
+      : '**Not yet approved.**';
     const m = mappings.get(id)!;
     const pb = plan.books.find((b) => b.id === id)!;
     const byRef = new Map(m.units.map((u) => [u.ref, u]));
-    L.push(`## ${pb.name}`, '', spec.source, '');
+    L.push(`## ${pb.name}`, '', approval, '', spec.source, '');
     if (spec.splits.length) {
       L.push('**Divided verses**', '');
       for (const s of spec.splits) L.push(`- WEBC ${s.ref}: ${s.why}`);

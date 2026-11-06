@@ -7,6 +7,7 @@
  *  - Esther and Daniel: content/plan/structure-maps.json (WEBC uses their Greek form).
  *  - Other books (Tobit, Judith, 1 Maccabees, Luke, John, Acts): identity, verified by anchors.
  */
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import { z } from 'zod';
 import type { Verse } from '../lib/types';
@@ -54,6 +55,7 @@ const StructureMapsSchema = z.object({
     z.string(),
     z.object({
       source: z.string(),
+      approval: z.object({ by: z.string(), date: z.string(), fingerprint: z.string() }).optional(),
       splits: z.array(
         z.object({ ref: z.string(), afterBlockEndingWith: z.string(), why: z.string() }),
       ),
@@ -70,6 +72,30 @@ const StructureMapsSchema = z.object({
   ),
 });
 export type StructureMaps = z.infer<typeof StructureMapsSchema>;
+
+/** Fingerprint of the parts of a book's structure map that decide where verses land. */
+export function structureFingerprint(spec: StructureMaps['books'][string]): string {
+  const { splits, segments, checks } = spec;
+  return createHash('sha256')
+    .update(JSON.stringify({ splits, segments, checks }))
+    .digest('hex')
+    .slice(0, 16);
+}
+
+/** A structure map must carry an approval whose fingerprint matches its current content. */
+export function checkStructureApprovals(maps: StructureMaps): string[] {
+  const errors: string[] = [];
+  for (const [id, spec] of Object.entries(maps.books)) {
+    const fp = structureFingerprint(spec);
+    if (!spec.approval) errors.push(`structure-maps.json ${id}: not approved (fingerprint ${fp})`);
+    else if (spec.approval.fingerprint !== fp) {
+      errors.push(
+        `structure-maps.json ${id}: changed since it was approved on ${spec.approval.date} (approved ${spec.approval.fingerprint}, now ${fp}); needs re-approval`,
+      );
+    }
+  }
+  return errors;
+}
 
 export function readStructureMaps(file: string): StructureMaps {
   return StructureMapsSchema.parse(JSON.parse(fs.readFileSync(file, 'utf8')));

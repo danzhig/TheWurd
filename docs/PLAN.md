@@ -38,6 +38,7 @@ This is the complete spec for **Scripture as Story** (working title): a static, 
 | D7 | Static export on Vercel; no database; reading progress in `localStorage` | Matches the brief; bookmarks and highlights come later (section 15). |
 | D8 | Job sits after Genesis by default; a setting moves it elsewhere in the sequence | Job's setting is undated and patriarchal. |
 | D9 | Lists inside read ranges are marked **skim** (shown collapsed, one line of summary) | Applies the plan's own rule to Genesis 36 and 46:8–27, Exodus 6:14–27, Numbers 15, 18–19, the roster passages of 2 Samuel, 1 Kings, Ezra and Nehemiah. Reverting any one is a one-word change in the JSON. |
+| D10 | Verse numbers printed beside the text are WEBC's; the page header shows the plan's (Catholic/NABRE) reference, with a short note where the two differ | The numbers must match the text actually shown. Approved by David, Nov 6, 2026. |
 
 **Status values used throughout:** `read` (main path), `skim` (on the path, collapsed with a summary), `optional` (offered as a detour, off by default), `skip` (folded away, expandable), plus a `highlight` flag for passages the reader should slow down for.
 

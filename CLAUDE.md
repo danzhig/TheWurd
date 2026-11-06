@@ -44,7 +44,8 @@ The full spec is `docs/PLAN.md`. The canonical reading plan is `content/plan/rea
 
 - Sources are pinned in `sources/manifest.json` (URL + SHA-256). Raw downloads live in `sources/raw/` (gitignored). Generated data in `public/data/` is committed so Vercel never runs the pipeline.
 - Plan references use Catholic (Hebrew-based, NABRE) numbering. WEBC uses English numbering for the protocanonical OT. `scripts/lib/versification.ts` maps Hebrew → English with STEPBible TVTMS and proves which column WEBC follows using TVTMS's own tests. Every renumbering is logged in `docs/versification-log.md`.
-- Esther and Daniel are mapped by content using `content/plan/structure-maps.json` (reviewed by David); see `docs/esther-daniel-map.md`.
+- Esther and Daniel are mapped by content using `content/plan/structure-maps.json`, approved by David on 2026-11-06; see `docs/esther-daniel-map.md`. Each book's approval carries a fingerprint of its mapping: any edit fails the build until David approves it again.
+- Reader display (PLAN.md D10): verse numbers beside the text are WEBC's (`Verse.c`/`Verse.v`); the page header shows the plan reference (`range`), with a short note when it differs from `webcRange`.
 - Anchor failures and unresolved ranges are reported in `docs/pipeline-report.md` and fail `pnpm content:build`. They are never "fixed" by editing the plan.
 - A WEBC verse that holds two plan verses in different sections (a "split verse"), or that has no Hebrew counterpart (an "orphan"), is placed by a fixed rule and must be approved in `content/plan/decisions.json`; an unapproved or stale placement stops the build. They are listed under "Verse placements" in `docs/versification-log.md`.
 - Text changes the pipeline makes, all reported: footnote callers are removed (kept as footnotes); where a caller sat between two words with no space, one space is inserted. Nothing else in the WEBC text is altered.

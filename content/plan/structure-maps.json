@@ -3,6 +3,11 @@
   "books": {
     "Esth": {
       "source": "WEBC 43-ESG: Esther translated from the Greek. WEBC merges the six Greek additions into the Hebrew chapters, each enclosed in [square brackets]: A at the start of 1:1, B inside 3:13, C as 4:18-47, D inside 5:1-2, E inside 8:13, F as 10:4-14.",
+      "approval": {
+        "by": "David",
+        "date": "2026-11-06",
+        "fingerprint": "b8f21d2dcf410dd9"
+      },
       "splits": [
         {
           "ref": "1:1",
@@ -16,7 +21,11 @@
           "webc": "1:1!a",
           "why": "Addition A (Mordecai's dream; the eunuchs' plot) is the bracketed opening of WEBC 1:1."
         },
-        { "plan": "1:1", "webc": "1:1!b", "why": "Hebrew 1:1 is the unbracketed end of WEBC 1:1." },
+        {
+          "plan": "1:1",
+          "webc": "1:1!b",
+          "why": "Hebrew 1:1 is the unbracketed end of WEBC 1:1."
+        },
         {
           "plan": "3:13",
           "webc": "3:13",
@@ -60,17 +69,43 @@
         }
       ],
       "checks": [
-        { "ref": "A:1", "mustContain": ["Mordecai", "dream"] },
-        { "ref": "1:1", "mustContain": ["Ahasuerus", "provinces"] },
-        { "ref": "B:1", "mustContain": ["copy", "letter"] },
-        { "ref": "C:1", "mustContain": ["prayed"] },
-        { "ref": "D:1", "mustContain": ["third day"] },
-        { "ref": "E:1", "mustContain": ["copy", "letter"] },
-        { "ref": "F:1", "mustContain": ["Mordecai"] }
+        {
+          "ref": "A:1",
+          "mustContain": ["Mordecai", "dream"]
+        },
+        {
+          "ref": "1:1",
+          "mustContain": ["Ahasuerus", "provinces"]
+        },
+        {
+          "ref": "B:1",
+          "mustContain": ["copy", "letter"]
+        },
+        {
+          "ref": "C:1",
+          "mustContain": ["prayed"]
+        },
+        {
+          "ref": "D:1",
+          "mustContain": ["third day"]
+        },
+        {
+          "ref": "E:1",
+          "mustContain": ["copy", "letter"]
+        },
+        {
+          "ref": "F:1",
+          "mustContain": ["Mordecai"]
+        }
       ]
     },
     "Dan": {
       "source": "WEBC 66-DAG: Daniel with the Greek portions. Chapter 3 uses the Greek numbering (3:1-97, with the Prayer of Azariah and Song of the Three at 3:24-90); chapters 4-6 use English numbering; chapters 13-14 are Susanna and Bel and the Dragon.",
+      "approval": {
+        "by": "David",
+        "date": "2026-11-06",
+        "fingerprint": "41a13009e3063478"
+      },
       "splits": [],
       "segments": [
         {
@@ -95,13 +130,34 @@
         }
       ],
       "checks": [
-        { "ref": "3:91", "mustContain": ["Nebuchadnezzar", "astonished"] },
-        { "ref": "3:98", "mustContain": ["Nebuchadnezzar"] },
-        { "ref": "4:1", "mustContain": ["Nebuchadnezzar"] },
-        { "ref": "6:1", "mustContain": ["Darius"] },
-        { "ref": "6:2", "mustContain": ["Darius"] },
-        { "ref": "13:1", "mustContain": ["Babylon"] },
-        { "ref": "14:1", "mustContain": ["Cyrus"] }
+        {
+          "ref": "3:91",
+          "mustContain": ["Nebuchadnezzar", "astonished"]
+        },
+        {
+          "ref": "3:98",
+          "mustContain": ["Nebuchadnezzar"]
+        },
+        {
+          "ref": "4:1",
+          "mustContain": ["Nebuchadnezzar"]
+        },
+        {
+          "ref": "6:1",
+          "mustContain": ["Darius"]
+        },
+        {
+          "ref": "6:2",
+          "mustContain": ["Darius"]
+        },
+        {
+          "ref": "13:1",
+          "mustContain": ["Babylon"]
+        },
+        {
+          "ref": "14:1",
+          "mustContain": ["Cyrus"]
+        }
       ]
     }
   }
