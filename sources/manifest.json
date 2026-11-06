@@ -1,0 +1,37 @@
+{
+  "note": "Pinned sources for `pnpm content:build`. Raw downloads go to sources/raw/ (gitignored). A checksum mismatch stops the build: re-verify the source and its license, then update the pin deliberately.",
+  "sources": [
+    {
+      "id": "webc",
+      "name": "World English Bible Catholic Edition (WEBC), USFM",
+      "layer": "English (base)",
+      "url": "https://ebible.org/Scriptures/eng-web-c_usfm.zip",
+      "file": "eng-web-c_usfm.zip",
+      "sha256": "85a6599ccd65c8d71a62fb0d7e1739e4c776a970e05f25d5f881684550e7620c",
+      "version": "eBible.org build of 30 Oct 2026 (2020 stable text edition)",
+      "homepage": "https://ebible.org/eng-web-c/",
+      "license": "Public domain",
+      "licenseUrl": "https://ebible.org/find/details.php?id=eng-web-c",
+      "licenseVerified": "2026-11-06",
+      "attribution": "World English Bible Catholic Edition, eBible.org. Public domain. \"World English Bible\" is a trademark of eBible.org; the text is reproduced unchanged.",
+      "usedFor": "All reader text",
+      "phase": 1
+    },
+    {
+      "id": "tvtms",
+      "name": "STEPBible TVTMS (Translators Versification Traditions with Methodology for Standardisation)",
+      "layer": "Versification",
+      "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/5de0a47f35f0fc13dfe1430d104e5db8a4285f9c/Versification/TVTMS%20-%20Translators%20Versification%20Traditions%20with%20Methodology%20for%20Standardisation%20for%20Eng%2BHeb%2BLat%2BGrk%2BOthers%20-%20STEPBible.org%20CC%20BY.txt",
+      "file": "TVTMS.txt",
+      "sha256": "c42cdfec1ae82d3e0c7e2f6a89d73bbed28ede4cf3fe18d5582626881e8d5c78",
+      "version": "STEPBible-Data commit 5de0a47f35f0fc13dfe1430d104e5db8a4285f9c",
+      "homepage": "https://github.com/STEPBible/STEPBible-Data",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseVerified": "2026-11-06",
+      "attribution": "Versification data by Tyndale House, Cambridge and STEPBible.org (CC BY 4.0), https://STEPBible.github.io/STEPBible-Data",
+      "usedFor": "Mapping plan references (Hebrew-based Catholic numbering) onto WEBC",
+      "phase": 1
+    }
+  ]
+}

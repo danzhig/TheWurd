@@ -23,3 +23,18 @@ jobs:
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e
+
+  content:
+    # Rebuilds the content from the pinned sources and fails if committed public/data differs.
+    # Runs once public/data has been committed (after the M1 review).
+    if: ${{ hashFiles('public/data/manifest.json') != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm content:check
