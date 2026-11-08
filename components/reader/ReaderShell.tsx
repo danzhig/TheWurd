@@ -87,6 +87,8 @@ export function ReaderShell({
 }: ReaderShellProps) {
   const router = useRouter();
   const nav = useNav(id, defaults);
+  // Up a level: a section returns to its book's map; a bridge to all books.
+  const upHref = bookId ? `/book/${bookId}/` : '/';
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(0);
   const [done, setDone] = useState<string | null>(null);
@@ -159,17 +161,21 @@ export function ReaderShell({
       if (t && (t.isContentEditable || ['INPUT', 'SELECT', 'TEXTAREA'].includes(t.tagName))) return;
       if (e.key === 'ArrowRight' && nav.next) router.push(nav.next.href);
       else if (e.key === 'ArrowLeft' && nav.prev) router.push(nav.prev.href);
-      else if (e.key === 'Escape') router.push('/');
+      else if (e.key === 'Escape') router.push(upHref);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [nav, router, settingsOpen]);
+  }, [nav, router, settingsOpen, upHref]);
 
   const next = nav.next;
   return (
     <>
       <header className={`${styles.topbar} ${hidden ? styles.topbarHidden : ''}`}>
-        <Link href="/" className={styles.up} aria-label="All books">
+        <Link
+          href={upHref}
+          className={styles.up}
+          aria-label={bookId ? `${bookName ?? 'Book'} map` : 'All books'}
+        >
           <span aria-hidden="true">←</span>
         </Link>
         <p className={styles.topTitle}>{heading}</p>
@@ -246,7 +252,7 @@ export function ReaderShell({
               : ''}
           </Link>
         ) : null}
-        {bookName ? <p className={styles.keys}>Keys: ← previous · → next · Esc all books</p> : null}
+        {bookName ? <p className={styles.keys}>Keys: ← previous · → next · Esc book map</p> : null}
       </nav>
     </>
   );
