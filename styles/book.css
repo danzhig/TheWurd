@@ -1,0 +1,115 @@
+/* The book as an object: a leather cover with a gilt frame, a block of page edges, and a paper
+   reverse. Shared by the book page and the transition layer so the flying book and the book on the
+   page are drawn identically. Sizes follow the cover (container query units), never the viewport. */
+
+.book-shell {
+  position: absolute;
+  container-type: size;
+  transform-style: preserve-3d;
+}
+
+/* Page edges along the fore-edge and foot of a closed book. */
+.book-edge {
+  position: absolute;
+  top: 1.2%;
+  bottom: -0.6%;
+  right: -1.4%;
+  width: 3%;
+  border-radius: 0 3px 3px 0;
+  background: repeating-linear-gradient(90deg, #efe6d2 0 1px, #cdbf9f 1px 2px);
+  box-shadow: 2px 3px 8px rgb(0 0 0 / 0.5);
+}
+
+.book-hinge {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0% 50%; /* the spine */
+  transform-style: preserve-3d;
+}
+
+.book-cover-face,
+.book-cover-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.book-cover-face {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2cqh;
+  padding: 0 10cqw;
+  border-radius: 2px 7px 7px 2px;
+  text-align: center;
+  color: var(--vellum);
+  background:
+    linear-gradient(
+      90deg,
+      rgb(0 0 0 / 0.45) 0,
+      rgb(0 0 0 / 0) 4%,
+      rgb(255 255 255 / 0.05) 5%,
+      rgb(0 0 0 / 0) 7%
+    ),
+    radial-gradient(ellipse at 50% 38%, #4a3622 0%, #2a1f16 58%, #170f09 100%);
+  box-shadow: 0 1.5cqh 4cqh rgb(0 0 0 / 0.55);
+}
+
+/* The gilt frame. */
+.book-cover-face::before {
+  content: '';
+  position: absolute;
+  inset: 5cqw;
+  border: 1px solid color-mix(in srgb, #f0d48a 75%, transparent);
+  box-shadow:
+    inset 0 0 0 0.8cqw #2a1f16,
+    inset 0 0 0 calc(0.8cqw + 1px) color-mix(in srgb, #c9a24a 60%, transparent);
+  border-radius: 2px;
+}
+
+.book-cover-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.08em;
+  font-size: clamp(14px, 11cqw, 64px);
+  line-height: 1.05;
+}
+
+.book-cover-rule {
+  width: 30cqw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a24a, transparent);
+}
+
+.book-cover-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(9px, 4.6cqw, 22px);
+  color: #b9ab97;
+}
+
+/* The inside of the cover: paper, shaded toward the spine. Once open it lies on the left page. */
+.book-cover-back {
+  transform: rotateY(180deg);
+  border-radius: 7px 2px 2px 7px;
+  background: linear-gradient(90deg, #f4ecdc 0%, #f4ecdc 88%, #e2d6bd 100%);
+}
+
+/* The transition layer: above everything, never interactive. */
+#transition-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  perspective: 1800px;
+}
+
+#transition-layer:empty {
+  display: none;
+}
+
+#transition-layer > * {
+  position: fixed;
+  will-change: transform, opacity;
+}

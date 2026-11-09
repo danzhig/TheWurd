@@ -56,23 +56,31 @@ export default async function BookPage({ params }: Params) {
   }));
   return (
     <main className={styles.page}>
-      <BookCover bookId={b.id} name={b.name} tagline={b.tagline} />
       <nav className={styles.nav}>
-        <BackToVault />
+        <BackToVault bookId={b.id} name={b.name} tagline={b.tagline} />
       </nav>
-      <header className={styles.header}>
-        <h1 id="page-heading" tabIndex={-1} className={`book-name ${styles.name}`}>
-          {b.name}
-        </h1>
-        <p className={`tagline ${styles.tagline}`}>{b.tagline}</p>
-        <p className={styles.meta}>
-          {b.setting ? <>{b.setting} · </> : null}
-          about {readingTime(minutes)}
-          {' · '}
-          {sections.length} sections
-        </p>
-      </header>
-      <BookMap bookId={b.id} bookName={b.name} stations={stations} />
+      {/* The open book: its cover (which opens on arrival) over pages carrying the section map. */}
+      <div className={styles.frame} data-book-frame={b.id} data-state="closed">
+        <BookCover bookId={b.id} name={b.name} tagline={b.tagline} />
+        <div className={styles.pages} data-pages data-theme="vellum">
+          <header className={styles.header}>
+            <h1 id="page-heading" tabIndex={-1} className={`book-name ${styles.name}`}>
+              {b.name}
+            </h1>
+            <p className={`tagline ${styles.tagline}`}>{b.tagline}</p>
+            <p className={styles.meta}>
+              {b.setting ? <>{b.setting} · </> : null}
+              about {readingTime(minutes)}
+              {' · '}
+              {sections.length} sections
+            </p>
+          </header>
+          <BookMap bookId={b.id} bookName={b.name} stations={stations} />
+        </div>
+      </div>
+      <noscript>
+        <style>{`[data-book-frame] [data-pages]{opacity:1!important}[data-testid="book-cover"]{display:none}`}</style>
+      </noscript>
     </main>
   );
 }

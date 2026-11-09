@@ -1,8 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { CHANGE_EVENT, readLast, readProgress } from '@/lib/store';
+import { SPREAD_QUERY } from '@/lib/book-geometry';
+import { CHANGE_EVENT, readLast, readProgress, readSettings } from '@/lib/store';
+import { readerBackground } from '@/lib/theme';
+import { animationsOn, paperIn, paperShrinkTo, transition } from '@/lib/transition';
 import type { Status } from '@/lib/types';
 import { layoutStations, type MapLayout } from './layout';
 import styles from './book-map.module.css';
@@ -52,6 +56,7 @@ export function BookMap({
   bookName: string;
   stations: StationData[];
 }) {
+  const router = useRouter();
   const boxRef = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState<MapLayout | null>(null);
   const [held, setHeld] = useState<string | null>(null);
@@ -65,7 +70,12 @@ export function BookMap({
   useEffect(() => {
     const box = boxRef.current;
     if (!box) return;
-    const measure = () => setLayout(layoutStations(stations, box.clientWidth));
+    const measure = () =>
+      setLayout(
+        layoutStations(stations, box.clientWidth, {
+          evenColumns: window.matchMedia(SPREAD_QUERY).matches,
+        }),
+      );
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(box);
@@ -80,6 +90,19 @@ export function BookMap({
     const y = savedScroll.get(bookId);
     if (y !== undefined) window.scrollTo({ top: y, behavior: 'instant' });
     document.documentElement.dataset.bookMap = bookId; // laid out and interactive (used by tests)
+    // Back from a section: the page of verses shrinks into the station it came from.
+    const p = transition.pending;
+    if (p?.kind === 'paper-out') {
+      const mark = document.querySelector<HTMLElement>(
+        `[data-station="${p.sectionId}"] [data-mark]`,
+      );
+      if (!mark) return;
+      const r = mark.getBoundingClientRect();
+      if (y === undefined && (r.top < 80 || r.bottom > window.innerHeight - 40)) {
+        mark.scrollIntoView({ block: 'center', behavior: 'instant' });
+      }
+      void paperShrinkTo(mark.getBoundingClientRect());
+    }
   }, [layout, bookId]);
 
   const startHold = (id: string) => {
@@ -160,13 +183,23 @@ export function BookMap({
                       return;
                     }
                     savedScroll.set(bookId, window.scrollY);
+                    if (!animationsOn()) return;
+                    // Into the verses: the page grows out of this station, then the text appears.
+                    e.preventDefault();
+                    const mark = e.currentTarget.querySelector<HTMLElement>('[data-mark]');
+                    const color = readerBackground(readSettings().theme);
+                    void paperIn(
+                      s.id,
+                      (mark ?? e.currentTarget).getBoundingClientRect(),
+                      color,
+                    ).then(() => router.push(s.href));
                   }}
                   onPointerDown={() => startHold(s.id)}
                   onPointerUp={endHold}
                   onPointerLeave={endHold}
                   onContextMenu={(e) => layout?.mode === 'meander' && e.preventDefault()}
                 >
-                  <span className={styles.mark} aria-hidden="true" />
+                  <span className={styles.mark} aria-hidden="true" data-mark />
                   {/* The visible title and range are the link's name; extra detail is for screen readers. */}
                   <span className={styles.text}>
                     <span className={styles.title}>{s.title}</span>{' '}

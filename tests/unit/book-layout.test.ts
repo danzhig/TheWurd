@@ -54,3 +54,14 @@ describe('layout modes', () => {
     expect(row2[0]!.x).toBeCloseTo(row1.at(-1)!.x);
   });
 });
+
+describe('book map on a two-page spread', () => {
+  it.each([900, 1100, 1180])('keeps every station off the gutter at %ipx', (width) => {
+    for (const book of plan.books) {
+      const l = layoutStations(book.sections, width, { evenColumns: true });
+      for (const s of l.stations) {
+        expect(Math.abs(s.x - width / 2), `${book.id} ${s.id}`).toBeGreaterThan(40);
+      }
+    }
+  });
+});

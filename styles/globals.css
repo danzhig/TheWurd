@@ -7,6 +7,8 @@
 }
 
 html {
+  /* Same content width on every page, scrollbar or not, so transitions hand over exactly. */
+  scrollbar-gutter: stable;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }

@@ -1,13 +1,16 @@
+/* The open book (PLAN §9, Level 1): pages of paper on the dark of the Vault, the section map drawn
+   on them. Frame width mirrors frameWidth() in lib/book-geometry.ts. */
+
 .page {
-  max-width: 76rem;
-  margin: 0 auto;
-  padding: 1rem 1rem 5rem;
+  min-height: 100dvh;
+  padding-bottom: 4rem;
 }
 
 .nav {
-  min-height: 44px;
-  display: flex;
-  align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  z-index: 4;
 }
 
 .back {
@@ -17,19 +20,67 @@
   align-items: center;
 }
 
+.frame {
+  position: relative;
+  width: calc(100% - 16px);
+  margin: 64px auto 0;
+}
+
+@media (min-width: 900px) {
+  .frame {
+    width: min(1180px, calc(100% - 48px));
+  }
+}
+
+/* The pages: paper, with the gutter of a spread on desktop and a fore-edge on every page. */
+.pages {
+  position: relative;
+  min-height: calc(100dvh - 80px);
+  padding: 2.5rem clamp(1rem, 4%, 3rem) 3rem;
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #8a6a24 25%, transparent),
+    4px 4px 0 -1px #e9dfc8,
+    7px 7px 0 -2px #d9cdb1,
+    0 24px 60px rgb(0 0 0 / 0.6);
+}
+
+@media (min-width: 900px) {
+  .pages {
+    background:
+      linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 47%,
+        rgb(90 70 40 / 0.1) 49.4%,
+        rgb(60 45 25 / 0.28) 50%,
+        rgb(90 70 40 / 0.1) 50.6%,
+        transparent 53%
+      ),
+      var(--bg);
+  }
+}
+
+.frame[data-state='closed'] .pages,
+.frame[data-state='closing'] .pages {
+  opacity: 0;
+}
+
 .header {
   text-align: center;
-  margin: 1rem 0 2rem;
+  margin: 0 0 2rem;
 }
 
 .name {
-  font-size: clamp(2.4rem, 8vw, 3.8rem);
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
   margin: 0;
   outline: none;
 }
 
 .tagline {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   margin: 0.25rem 0 0.5rem;
 }
 

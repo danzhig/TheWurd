@@ -148,13 +148,13 @@
     linear-gradient(
       135deg,
       transparent 45%,
-      color-mix(in srgb, var(--cloud) 70%, transparent) 46% 54%,
+      color-mix(in srgb, var(--text-muted) 70%, transparent) 46% 54%,
       transparent 55%
     ),
     linear-gradient(
       45deg,
       transparent 45%,
-      color-mix(in srgb, var(--cloud) 70%, transparent) 46% 54%,
+      color-mix(in srgb, var(--text-muted) 70%, transparent) 46% 54%,
       transparent 55%
     );
   background-color: var(--bg);

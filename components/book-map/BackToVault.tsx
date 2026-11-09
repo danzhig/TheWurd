@@ -2,30 +2,31 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { prefersReducedMotion } from '@/lib/camera';
+import { animationsOn, bookOut } from '@/lib/transition';
+import { bookCover } from './BookCover';
 import styles from './book-page.module.css';
 
-/** "All books": the cover closes over the map, then the Vault pulls the camera back (PLAN §9). */
-export function BackToVault() {
+/** "All books": the cover closes, then the closed book shrinks back into its medallion (PLAN §9). */
+export function BackToVault({
+  bookId,
+  name,
+  tagline,
+}: {
+  bookId: string;
+  name: string;
+  tagline: string;
+}) {
   const router = useRouter();
   return (
     <Link
       href="/"
       className={styles.back}
-      onClick={(e) => {
-        const cover = document.querySelector<HTMLElement>('[data-testid="book-cover"]');
-        if (!cover || prefersReducedMotion()) return;
+      onClick={async (e) => {
+        if (!animationsOn() || !bookCover.close) return;
         e.preventDefault();
-        cover.hidden = false;
-        cover.dataset.closing = '';
-        let done = false;
-        const go = () => {
-          if (done) return;
-          done = true;
-          router.push('/');
-        };
-        cover.addEventListener('animationend', (ev) => ev.target === cover && go());
-        window.setTimeout(go, 700); // in case animations are unavailable
+        const rect = await bookCover.close();
+        void bookOut(bookId, name, tagline, rect); // the closed book now lives on the transition layer
+        router.push('/');
       }}
     >
       ← All books

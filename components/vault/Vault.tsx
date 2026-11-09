@@ -22,6 +22,7 @@ import {
 } from 'react';
 import { SettingsSheet, type JobOption } from '@/components/ui/SettingsSheet';
 import { camera, easeCamera, prefersReducedMotion } from '@/lib/camera';
+import { animationsOn, bookIn, bookOut, END_EVENT, transition } from '@/lib/transition';
 import { CHANGE_EVENT, readLast, readProgress, readSettings } from '@/lib/store';
 import { GROUP_ORDER, vaultData, type VaultData } from './data';
 import { layoutVault, type Medallion } from './layout';
@@ -81,7 +82,14 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
   const [tip, setTip] = useState<{ id: string; x: number; y: number } | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [flying, setFlying] = useState(false);
+  // Book transitions: the ceiling dims behind a flying book; the medallion it left is hidden.
+  // Start dimmed when a book is on its way home (closed on its page, or via the back button).
+  const [dimmed, setDimmed] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      (transition.pending?.kind === 'book-out' || (!!camera.fromBook && animationsOn())),
+  );
+  const [lifted, setLifted] = useState<string | null>(null);
 
   const readerKey = useReaderKey();
   const [jobAfter, lastSection, doneList] = readerKey.split('|');
@@ -180,19 +188,26 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
     sel.call(z);
     baseRef.current = fit();
 
-    // Start: pull back out of the book the reader just left, else resume the last view, else fit.
-    const from = camera.fromBook ? placed.find((m) => m.id === camera.fromBook) : undefined;
+    // Start where the reader last left the ceiling (or fitted to the screen).
     const resume = camera.last
       ? zoomIdentity.translate(camera.last.x, camera.last.y).scale(camera.last.k)
       : baseRef.current;
+    z.transform(sel, resume);
+
+    // Coming back from a book: its closed book shrinks back into this medallion (lib/transition).
+    transition.medallionRect = (bookId) => {
+      const el = sceneRef.current?.querySelector<HTMLElement>(`a[data-book="${bookId}"]`);
+      if (!el) return null;
+      setDimmed(false); // the ceiling brightens as the book flies home
+      return el.getBoundingClientRect();
+    };
+    const back = camera.fromBook;
     camera.fromBook = null;
-    if (from && !prefersReducedMotion()) {
-      z.transform(
-        sel,
-        target(from, (Math.min(view.clientWidth, view.clientHeight) * 1.05) / from.h),
-      );
-      void flyTo(resume);
-    } else z.transform(sel, resume);
+    if (back && transition.pending?.kind !== 'book-out' && animationsOn()) {
+      // Arrived by the browser's back button: the book was not closed on its page, so close it here.
+      const b = byId.get(back);
+      if (b) void bookOut(back, b.name, b.tagline, null);
+    }
     setReady(true);
     document.documentElement.dataset.vault = 'ready';
 
@@ -204,9 +219,10 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
     return () => {
       window.removeEventListener('resize', onResize);
       sel.on('.zoom', null);
+      transition.medallionRect = null;
     };
     // Layout changes (Job moved) re-run this so the camera fits the new spiral.
-  }, [apply, fit, flyTo, layout.radius, placed, target]);
+  }, [apply, byId, fit, flyTo, layout.radius, placed, target]);
 
   // Parallax against the pointer (off under reduced motion).
   useEffect(() => {
@@ -229,6 +245,13 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
       cancelAnimationFrame(frame);
     };
   }, [apply]);
+
+  // Whatever happens to a transition, the ceiling ends up bright.
+  useEffect(() => {
+    const undim = () => setDimmed(false);
+    window.addEventListener(END_EVENT, undim);
+    return () => window.removeEventListener(END_EVENT, undim);
+  }, []);
 
   // The off-path tooltip closes on Escape or a click elsewhere.
   useEffect(() => {
@@ -258,13 +281,24 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
         router.push(`/book/${id}/`);
         return;
       }
-      setFlying(true);
-      // Fly in until the medallion fills the screen, where the book's cover takes over.
-      await flyTo(target(m, (Math.min(view.clientWidth, view.clientHeight) * 1.05) / m.h));
-      camera.last = { x: baseRef.current.x, y: baseRef.current.y, k: baseRef.current.k };
+      // The medallion becomes a closed book that lifts off and flies to the centre, where the
+      // book's page opens it. The ceiling dims and leans in only slightly behind it.
+      const el = sceneRef.current?.querySelector<HTMLElement>(`a[data-book="${id}"]`);
+      const b = byId.get(id);
+      if (!el || !b) return router.push(`/book/${id}/`);
+      const now = zoomTransform(view);
+      const before = { x: now.x, y: now.y, k: now.k };
+      setLifted(id);
+      setDimmed(true);
+      await Promise.all([
+        flyTo(target(m, now.k * 1.12), 700),
+        bookIn(id, b.name, b.tagline, el.getBoundingClientRect()),
+      ]);
+      // The lean-in is only a gesture: coming back, the ceiling returns to where it was.
+      camera.last = before;
       router.push(`/book/${id}/`);
     },
-    [flyTo, mode, placed, router, target],
+    [byId, flyTo, mode, placed, router, target],
   );
 
   const continueReading = useCallback(() => {
@@ -381,7 +415,7 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
       {/* The ceiling: decorative for assistive technology, which gets the list below. */}
       <div
         ref={viewRef}
-        className={`vault-sky ${styles.view} ${ready ? styles.ready : ''}`}
+        className={`vault-sky ${styles.view} ${ready ? styles.ready : ''} ${dimmed ? styles.dimmed : ''}`}
         aria-hidden="true"
         data-testid="vault-view"
       >
@@ -467,6 +501,7 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
                   focused === m.id ? styles.focused : '',
                   m.id === currentBook ? styles.current : '',
                   p >= 1 ? styles.finished : '',
+                  lifted === m.id ? styles.lifted : '',
                 ].join(' ')}
                 style={{
                   left: m.x - m.w / 2,
@@ -491,7 +526,6 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
             style={{ left: sparkAt.x, top: sparkAt.y - sparkAt.h / 2 - 10 }}
           />
         </div>
-        <div className={`${styles.flyCover} ${flying ? styles.flyCoverOn : ''}`} />
       </div>
 
       {mode === 'map' ? (

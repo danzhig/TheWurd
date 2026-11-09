@@ -32,8 +32,17 @@ export const SERPENTINE_MIN_WIDTH = 720;
 /** Vertical space each status takes in the phone meander. */
 const MEANDER_GAP: Record<Status, number> = { read: 104, skim: 88, optional: 92, skip: 66 };
 
-export function layoutStations(stations: StationInput[], width: number): MapLayout {
-  return width >= SERPENTINE_MIN_WIDTH ? serpentine(stations, width) : meander(stations, width);
+/**
+ * `evenColumns`: on a two-page spread the columns must be even so no station sits in the gutter.
+ */
+export function layoutStations(
+  stations: StationInput[],
+  width: number,
+  opts: { evenColumns?: boolean } = {},
+): MapLayout {
+  return width >= SERPENTINE_MIN_WIDTH
+    ? serpentine(stations, width, !!opts.evenColumns)
+    : meander(stations, width);
 }
 
 function meander(stations: StationInput[], width: number): MapLayout {
@@ -65,9 +74,10 @@ function meander(stations: StationInput[], width: number): MapLayout {
   return { mode: 'meander', width, height: y, stations: placed, path: smoothPath(main) };
 }
 
-function serpentine(stations: StationInput[], width: number): MapLayout {
+function serpentine(stations: StationInput[], width: number, even: boolean): MapLayout {
   const margin = 40;
-  const cols = Math.max(3, Math.min(5, Math.floor((width - 2 * margin) / 230)));
+  const fit = Math.max(3, Math.min(5, Math.floor((width - 2 * margin) / 230)));
+  const cols = even ? Math.max(2, fit - (fit % 2)) : fit;
   const colW = (width - 2 * margin) / cols;
   const rowH = 200;
   const top = 50;
@@ -92,7 +102,8 @@ function serpentine(stations: StationInput[], width: number): MapLayout {
     const prev = main.at(-1) ?? pos(0);
     const nextIdx = stations.slice(i + 1).findIndex((t) => t.status !== 'optional');
     const next = nextIdx >= 0 ? pos(n) : prev;
-    const x = next.r === prev.r ? (prev.x + next.x) / 2 : prev.x;
+    let x = next.r === prev.r ? (prev.x + next.x) / 2 : prev.x;
+    if (even && Math.abs(x - width / 2) < colW / 4) x = prev.x; // never on the spread's fold
     placed.push({
       id: s.id,
       x,
