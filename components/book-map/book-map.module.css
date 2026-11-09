@@ -1,0 +1,255 @@
+/* A book's section map (PLAN §9, Level 1). */
+
+.progress {
+  text-align: center;
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-variant-numeric: lining-nums;
+}
+
+.map {
+  position: relative;
+  margin: 0 auto;
+}
+
+.line {
+  position: absolute;
+  inset: 0 auto auto 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.thread {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  opacity: 0.75;
+}
+
+.branch {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 5;
+  opacity: 0.8;
+}
+
+.stations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Before layout (and without JavaScript): a plain list. */
+.list .station {
+  margin: 0 0 0.75rem;
+}
+
+.list .station a {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+/* Positioned stations: the li sits at the disc centre. */
+.meander .station,
+.serpentine .station {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.station a {
+  color: var(--text);
+  text-decoration: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.meander .station a,
+.serpentine .station a {
+  position: absolute;
+  display: block;
+}
+
+/* Hit area: at least 44px around the disc plus the label. */
+.meander .station a {
+  left: -22px;
+  top: -22px;
+  min-height: 44px;
+  padding-left: 52px;
+  width: calc(var(--label-w) + 52px);
+}
+
+.serpentine .station a {
+  left: calc(var(--label-w) / -2);
+  top: -22px;
+  width: var(--label-w);
+  padding-top: 52px;
+  text-align: center;
+}
+
+.serpentine .optional a {
+  left: -22px;
+  padding-top: 0;
+  padding-left: 40px;
+  text-align: left;
+}
+
+/* Marks, by status */
+.mark {
+  position: absolute;
+  left: 22px;
+  top: 22px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.list .mark {
+  position: static;
+  transform: none;
+  display: inline-block;
+  flex: none;
+}
+
+.serpentine .station:not(.optional) .mark {
+  left: 50%;
+}
+
+.read .mark {
+  width: 26px;
+  height: 26px;
+  background: radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 55%, #8a6a24 100%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--gold-light) 50%, transparent),
+    0 0 0 4px var(--bg);
+}
+
+.skim .mark {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--gold);
+  background: var(--bg);
+}
+
+.optional .mark {
+  width: 18px;
+  height: 18px;
+  border: 1.5px dashed var(--gold);
+  background: var(--bg);
+}
+
+/* A faint folded mark on the line. */
+.skip .mark {
+  width: 14px;
+  height: 8px;
+  border-radius: 1px;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 45%,
+      color-mix(in srgb, var(--cloud) 70%, transparent) 46% 54%,
+      transparent 55%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 45%,
+      color-mix(in srgb, var(--cloud) 70%, transparent) 46% 54%,
+      transparent 55%
+    );
+  background-color: var(--bg);
+  opacity: 0.8;
+}
+
+.highlight .mark {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--gold-light) 60%, transparent),
+    0 0 0 4px var(--bg),
+    0 0 22px 8px color-mix(in srgb, var(--gold-light) 35%, transparent);
+}
+
+.done.read .mark::after,
+.done.skim .mark::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--night);
+}
+
+.done.skim .mark {
+  background: var(--gold);
+}
+
+/* The vermilion spark: where the reader last was. */
+.current .mark::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--vermilion);
+}
+
+/* Labels */
+.text {
+  display: block;
+}
+
+.title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  color: var(--text-strong);
+}
+
+.skip .title {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.range {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-variant-numeric: lining-nums;
+  margin-top: 0.15rem;
+}
+
+.meander .station a {
+  padding-top: 10px;
+}
+
+/* Phone: range on tap-and-hold. Hidden visually only, so screen readers still hear it. */
+.meander .range {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.meander .held .range {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+
+.station a:hover .title {
+  color: var(--accent-strong);
+}
+
+.station a:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

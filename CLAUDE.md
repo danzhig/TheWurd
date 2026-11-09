@@ -74,3 +74,12 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 - `components/reader/SectionBody.tsx` renders folds as `<details>` (inner folds and whole-section skim/skip), notes at `start`, `end`, `fold` or before their verse (a paragraph is divided at the verse if needed), and the translator footnotes.
 - Progress: a stop completes when its end scrolls into view or on "Mark as read"; whole-section skims count when opened. `last` records the section and top visible verse for "Continue".
 - e2e: `tests/e2e/reader.spec.ts` walks Next from Genesis 1 to Acts 28 against an order computed independently from `reading-plan.json`. Tests wait for `html[data-reader]` (set after hydration) before using the keyboard.
+
+## Book map notes (M4)
+
+- `/book/[bookId]` for the 24 plan books. The server renders an ordered list of stations (works without JavaScript); `components/book-map/BookMap.tsx` positions them with `layout.ts` once it knows the width: a serpentine (rows alternate direction, half-ellipse turns wide enough to clear labels) from 720 px, a gentle meander below.
+- Marks: read = gilt disc, skim = hollow ring, skip = faint fold on the line, optional = dashed ring on a dashed branch; highlights glow; completed stations show a tick; the last-read section has the vermilion spark.
+- Station links take their visible title and range as their accessible name (axe `label-content-name-mismatch`); extra detail is visually hidden. On phones the range is visually hidden until tap-and-hold.
+- The cover (`BookCover.tsx`) is server-rendered and plays from CSS on a fresh load; returning to a map opened earlier in the session hides it before paint. Reduced motion: a 150 ms fade.
+- Returning from a section (browser back or the reader's up link / Esc) restores the map's scroll position, kept in memory for the session. Tests wait for `html[data-book-map]`.
+- The home page is a temporary list of the plan's books until the Vault (M5).
