@@ -405,6 +405,9 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
             Begin · {sections['gen-01']?.title}
           </Link>
         )}
+        <Link href="/about/" className={styles.about} data-testid="about-link">
+          About this path
+        </Link>
       </header>
       <SettingsSheet
         open={settingsOpen}
@@ -438,6 +441,9 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
           >
             <path d={layout.thread} className={styles.thread} />
             <path d={layout.threadUpTo(sparkAt.along)} className={styles.threadLit} />
+            {layout.detours.map((t) => (
+              <path key={t.id} d={t.d} className={styles.detour} data-detour={t.id} />
+            ))}
           </svg>
           {layout.groups.map((g) => (
             <span key={g.label} className={styles.group} style={{ left: g.x, top: g.y }}>
