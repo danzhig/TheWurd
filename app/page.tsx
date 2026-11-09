@@ -1,21 +1,10 @@
 import { vaultData } from '@/components/vault/data';
 import { Vault, type VaultBook } from '@/components/vault/Vault';
 import { getManifest } from '@/lib/data';
-import { jobOptions } from '@/lib/nav';
 
 /** Level 0: the Vault (PLAN §9). */
 export default function Home() {
   const m = getManifest();
-  // Only what the client needs to re-lay the spiral if the reader moves Job.
-  const manifest = {
-    books: m.books.map((b) => ({ ...b, tagline: '', setting: undefined })),
-    steps: m.steps,
-    sections: m.sections.map(
-      ({ id, bookId, status, minutes }) =>
-        ({ id, bookId, status, minutes }) as (typeof m.sections)[number],
-    ),
-    bridges: m.bridges.map((b) => ({ ...b, text: '' })),
-  };
   const books: VaultBook[] = m.books.map((b) => {
     const own = m.sections.filter((s) => s.bookId === b.id);
     const stops = own.filter((s) => s.status === 'read' || s.status === 'skim');
@@ -35,12 +24,10 @@ export default function Home() {
   );
   return (
     <Vault
-      manifest={manifest}
-      initial={vaultData(manifest)}
+      data={vaultData(m)}
       books={books}
       bridges={m.bridges.map((b) => ({ id: b.id, title: b.title, after: b.after }))}
       sections={sections}
-      jobOptions={jobOptions()}
     />
   );
 }

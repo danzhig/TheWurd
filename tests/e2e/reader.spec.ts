@@ -115,20 +115,19 @@ test.describe('reader', () => {
     }
   });
 
-  test('settings change the path: optional detours and Job placement', async ({ page }) => {
+  test('optional detours are offered beside Next and lead back onto the path', async ({ page }) => {
     await open(page, 'luke-12');
     await expect(page.getByTestId('next-link')).toHaveAttribute('data-next', 'luke-13');
-    await page.getByRole('button', { name: 'Reading settings' }).click();
-    await page.getByLabel(/Include optional detours/).check();
-    await expect(page.getByTestId('next-link')).toHaveAttribute('data-next', 'john-01');
-    await page.getByLabel('Read Job after').selectOption('Ruth');
-    await page.getByRole('button', { name: 'Close settings' }).click();
-    await open(page, 'gen-20');
-    await expect(page.getByTestId('next-link')).toHaveAttribute('data-next', 'exod-01');
-    await open(page, 'ruth-04');
-    await expect(page.getByTestId('next-link')).toHaveAttribute('data-next', 'job-01');
+    await page.getByTestId('detour-link').click();
+    await page.waitForURL(/\/read\/john-01\/$/);
+    await expect(page.locator('html')).toHaveAttribute('data-reader', 'john-01');
+    await expect(page.getByTestId('next-link')).toHaveAttribute('data-next', 'luke-13');
+    await expect(page.getByTestId('prev-link')).toHaveAttribute('href', '/read/luke-12/');
     await open(page, 'deut-01');
-    await expect(page.getByTestId('next-link')).toHaveAttribute('data-next', 'deut-02');
+    await expect(page.getByTestId('detour-link')).toHaveAttribute('href', '/read/deut-02/');
+    await open(page, 'gen-20');
+    await expect(page.getByTestId('next-link')).toHaveAttribute('data-next', 'job-01');
+    await expect(page.getByTestId('detour-link')).toHaveCount(0);
   });
 
   test('keyboard moves along the path', async ({ page }) => {

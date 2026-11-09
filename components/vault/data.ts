@@ -29,20 +29,17 @@ export interface VaultData {
   bridges: { id: string; after: string }[];
 }
 
-export function vaultData(
-  m: { books: Book[]; steps: PlanStep[]; sections: SectionIndexEntry[]; bridges: Bridge[] },
-  jobAfter = 'Gen',
-): VaultData {
+export function vaultData(m: {
+  books: Book[];
+  steps: PlanStep[];
+  sections: SectionIndexEntry[];
+  bridges: Bridge[];
+}): VaultData {
   const minutes = (id: string) =>
     m.sections
       .filter((s) => s.bookId === id && (s.status === 'read' || s.status === 'skim'))
       .reduce((n, s) => n + s.minutes, 0);
-  let steps = m.steps.filter((s) => s.kind === 'book');
-  const job = steps.find((s) => s.movable);
-  if (job && jobAfter !== job.id && steps.some((s) => s.id === jobAfter)) {
-    steps = steps.filter((s) => s !== job);
-    steps.splice(steps.findIndex((s) => s.id === jobAfter) + 1, 0, job);
-  }
+  const steps = m.steps.filter((s) => s.kind === 'book');
   const sectionBook = new Map(m.sections.map((s) => [s.id, s.bookId]));
   const satellites = m.steps
     .filter((s) => s.kind === 'excursion')
@@ -51,7 +48,6 @@ export function vaultData(
       of: sectionBook.get(s.after ?? '')!,
       minutes: m.sections.find((x) => x.id === s.id)?.minutes ?? 10,
     }));
-  // Bridges sit after the book named in the plan; with Job moved they still follow that book.
   return {
     path: steps.map((s) => ({ id: s.id, minutes: Math.max(1, minutes(s.id)) })),
     satellites,

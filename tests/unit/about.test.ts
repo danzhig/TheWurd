@@ -15,9 +15,8 @@ describe('About this path', () => {
     expect(a.last).toBe('Acts');
   });
 
-  it('describes the detour and the movable book from the plan', () => {
+  it('describes the detour from the plan', () => {
     expect(a.detour).toEqual({ bookId: 'John', hostId: 'Luke', afterRange: '19:27' });
-    expect(a.movable).toEqual({ id: 'Job', after: 'Gen' });
   });
 
   it('has a description for every group of books outside the path, and no others', () => {

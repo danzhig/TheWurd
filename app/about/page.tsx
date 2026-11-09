@@ -120,18 +120,9 @@ export default function AboutPage() {
           <p>
             Luke tells most of Jesus&rsquo;s life, but not the raising of Lazarus, which only John
             tells (John 11). It is offered as an optional detour after Luke {a.detour.afterRange}.
-            To take it, switch on &ldquo;Include optional detours&rdquo; in reading settings (Aa).
-            On the map it hangs off {name(a.detour.hostId)} on a dashed line.
-          </p>
-        </section>
-      ) : null}
-
-      {a.movable ? (
-        <section aria-labelledby="job">
-          <h2 id="job">Where {name(a.movable.id)} goes</h2>
-          <p>
-            {name(a.movable.id)} is a story with no fixed place in the history. The path sets it
-            after {name(a.movable.after)}; you can move it after any other book in reading settings.
+            On the map it hangs off {name(a.detour.hostId)} on a dashed line, and at the end of that
+            section it is offered beside Next. Read it or carry on; the path continues either way.
+            Optional sections inside other books work the same way.
           </p>
         </section>
       ) : null}

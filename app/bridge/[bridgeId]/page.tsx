@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ReaderShell } from '@/components/reader/ReaderShell';
 import styles from '@/components/reader/reader.module.css';
 import { getManifest } from '@/lib/data';
-import { defaultNav, jobOptions } from '@/lib/nav';
+import { defaultNav } from '@/lib/nav';
 
 export const dynamicParams = false;
 
@@ -29,14 +29,7 @@ export default async function BridgePage({ params }: Params) {
   const { bridgeId } = await params;
   const b = bridge(bridgeId);
   return (
-    <ReaderShell
-      id={b.id}
-      kind="bridge"
-      heading={b.title}
-      stop={false}
-      defaults={defaultNav(b.id)}
-      jobOptions={jobOptions()}
-    >
+    <ReaderShell id={b.id} kind="bridge" heading={b.title} stop={false} nav={defaultNav(b.id)}>
       <main className={`vault-sky ${styles.bridge}`} data-bridge={b.id}>
         <span className="cloud-layer cloud-far" />
         <span className="cloud-layer cloud-mid" />
