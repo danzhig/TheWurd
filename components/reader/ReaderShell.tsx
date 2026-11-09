@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { SettingsSheet, type JobOption } from '@/components/ui/SettingsSheet';
 import { toTarget, type NavData, type NavTarget } from '@/lib/format';
 import { isDefaultPath, neighbours, type PathInput } from '@/lib/path';
@@ -14,6 +14,7 @@ import {
   readSettings,
   writeLast,
 } from '@/lib/store';
+import { animationsOn, paperCover, reveal, transition } from '@/lib/transition';
 import styles from './reader.module.css';
 
 interface Nav {
@@ -89,6 +90,19 @@ export function ReaderShell({
   const nav = useNav(id, defaults);
   // Up a level: a section returns to its book's map; a bridge to all books.
   const upHref = bookId ? `/book/${bookId}/` : '/';
+  // Up to the book's map: the page shrinks back into its station there (see BookMap).
+  const goUp = useCallback(
+    (e?: { preventDefault: () => void }) => {
+      if (!bookId || !animationsOn()) {
+        if (!e) router.push(upHref);
+        return;
+      }
+      e?.preventDefault();
+      paperCover(id, getComputedStyle(document.body).backgroundColor);
+      router.push(upHref);
+    },
+    [bookId, id, router, upHref],
+  );
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(0);
   const [done, setDone] = useState<string | null>(null);
@@ -100,6 +114,8 @@ export function ReaderShell({
   useEffect(() => {
     document.querySelector<HTMLElement>('#page-heading')?.focus({ preventScroll: true });
     document.documentElement.dataset.reader = id;
+    // Arriving from a book's map: the page that grew out of the station fades to show the verses.
+    if (transition.pending?.kind === 'paper-in') void reveal();
   }, [id]);
 
   // Progress: read state, completion when the end is in view, "Continue" position.
@@ -161,11 +177,11 @@ export function ReaderShell({
       if (t && (t.isContentEditable || ['INPUT', 'SELECT', 'TEXTAREA'].includes(t.tagName))) return;
       if (e.key === 'ArrowRight' && nav.next) router.push(nav.next.href);
       else if (e.key === 'ArrowLeft' && nav.prev) router.push(nav.prev.href);
-      else if (e.key === 'Escape') router.push(upHref);
+      else if (e.key === 'Escape') goUp();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [nav, router, settingsOpen, upHref]);
+  }, [nav, router, settingsOpen, goUp]);
 
   const next = nav.next;
   return (
@@ -173,6 +189,7 @@ export function ReaderShell({
       <header className={`${styles.topbar} ${hidden ? styles.topbarHidden : ''}`}>
         <Link
           href={upHref}
+          onClick={goUp}
           className={styles.up}
           aria-label={bookId ? `${bookName ?? 'Book'} map` : 'All books'}
         >

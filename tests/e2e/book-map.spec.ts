@@ -86,21 +86,32 @@ test.describe('book maps', () => {
     await expect(cover).toBeHidden();
   });
 
-  test('under reduced motion the cover only fades', async ({ browser }) => {
+  test('under reduced motion the pages simply appear, with no overlays', async ({ browser }) => {
     const context = await browser.newContext({ reducedMotion: 'reduce' });
     const page = await context.newPage();
-    await page.goto('/book/Josh/', { waitUntil: 'commit' });
-    const cover = page.getByTestId('book-cover');
-    await expect(cover).toBeAttached();
-    const anim = await cover.evaluate((el) => ({
-      cover: getComputedStyle(el).animationName,
-      half: getComputedStyle(el.firstElementChild!).animationName,
-      dur: getComputedStyle(el).animationDuration,
-    }));
-    expect(anim.cover).toMatch(/fade-out$/); // CSS Modules prefix the keyframe name
-    expect(anim.half).toBe('none');
-    expect(anim.dur).toBe('0.15s');
+    await openMap(page, 'Josh');
+    await expect(page.getByTestId('book-cover')).toBeHidden();
+    await expect(page.locator('[data-book-frame]')).toHaveAttribute('data-state', 'open');
+    await page.locator('[data-station="josh-02"] a').click();
+    await page.waitForURL(/\/read\/josh-02\/$/);
+    await expect(page.locator('#transition-layer > *')).toHaveCount(0);
     await context.close();
+  });
+
+  test('a station grows into the page of verses, and shrinks back into it', async ({ page }) => {
+    await openMap(page, 'Exod');
+    await expect(page.locator('[data-book-frame]')).toHaveAttribute('data-state', 'open', {
+      timeout: 3000,
+    });
+    await page.locator('[data-station="exod-03"] a').click();
+    await expect(page.getByTestId('paper')).toBeAttached();
+    await page.waitForURL(/\/read\/exod-03\/$/);
+    await expect(page.locator('html')).toHaveAttribute('data-reader', 'exod-03');
+    await expect(page.locator('#transition-layer > *')).toHaveCount(0, { timeout: 3000 });
+    await page.keyboard.press('Escape');
+    await page.waitForURL(/\/book\/Exod\/$/);
+    await expect(page.locator('#transition-layer > *')).toHaveCount(0, { timeout: 3000 });
+    await expect(page.locator('[data-station="exod-03"] [data-mark]')).toBeInViewport();
   });
 
   test('station labels: range on tap-and-hold on a phone, always on desktop', async ({

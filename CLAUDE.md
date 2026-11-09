@@ -80,7 +80,7 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 - `/book/[bookId]` for the 24 plan books. The server renders an ordered list of stations (works without JavaScript); `components/book-map/BookMap.tsx` positions them with `layout.ts` once it knows the width: a serpentine (rows alternate direction, half-ellipse turns wide enough to clear labels) from 720 px, a gentle meander below.
 - Marks: read = gilt disc, skim = hollow ring, skip = faint fold on the line, optional = dashed ring on a dashed branch; highlights glow; completed stations show a tick; the last-read section has the vermilion spark.
 - Station links take their visible title and range as their accessible name (axe `label-content-name-mismatch`); extra detail is visually hidden. On phones the range is visually hidden until tap-and-hold.
-- The cover (`BookCover.tsx`) is server-rendered and plays from CSS on a fresh load; returning to a map opened earlier in the session hides it before paint. Reduced motion: a 150 ms fade.
+- The book page is an open book: `.frame` holds the cover (`BookCover.tsx`) and cream `.pages` (a two-page spread from 900 px, where the serpentine uses an even number of columns so nothing sits on the fold; one page below). The cover is a single board hinged at the spine; it swings open on arrival (not again on return within the session) and closes before "All books" leaves. Its size comes from `lib/book-geometry.ts`, shared with the flying book. Reduced motion: the pages simply appear.
 - Returning from a section (browser back or the reader's up link / Esc) restores the map's scroll position, kept in memory for the session. Tests wait for `html[data-book-map]`.
 
 ## Vault notes (M5)
@@ -88,6 +88,13 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 - `/` is the Vault. `components/vault/layout.ts` (pure, unit-tested) places the plan books on an Archimedean spiral by arc length (Genesis on the rim, Acts at the oculus; widths 64–140 by log reading time), John 11 as a satellite inside Luke, bridges as stars in widened gaps, and the 49 off-path books on an outer ring grouped Law…Apocalypse.
 - `components/vault/Vault.tsx`: `d3-zoom` drives one CSS transform on the scene plus parallax on three cloud layers; React re-renders only when zoom crosses a semantic-zoom step (names when a medallion is ≥ 56 px on screen, tagline and progress ring at ≥ 150 px). Keep the interactive layer under 300 nodes (a test checks).
 - Accessibility: the ceiling is `aria-hidden` with `tabIndex=-1` links; the ordered list (`section[aria-label="The path, as a list"]`) is the accessible structure, visually hidden in map mode and shown by "List". Focusing a list link flies the camera there and rings the medallion; arrow keys move along the spiral.
-- Transitions: tapping a medallion flies the camera in (850 ms, plan easing) until it fills the screen, then the book's cover opens. `lib/camera.ts` remembers the view; returning pulls back out of the book. The book's "All books" link closes the cover first. Reduced motion skips camera flights.
+- Transitions: see "Transitions" below. `lib/camera.ts` remembers the view (the lean-in while a book lifts off is not remembered). Reduced motion skips camera flights.
 - Off-path taglines live in `content/plan/offpath-taglines.json` (approved by David on 2026-11-09); the pipeline requires one per off-path book.
 - `tests/e2e/perf.spec.ts` times frames during a camera flight at phone size with the CPU slowed 4×, in its own Playwright project that runs alone after the others. Tests wait for `html[data-vault="ready"]`.
+
+## Transitions
+
+- `lib/transition.ts` drives the moves between levels on `#transition-layer` (root layout), which survives route changes; `transition.pending` tells the arriving page what to pick up. Only transform and opacity animate (Web Animations API), and every element is drawn at its final size and scaled down, never up.
+- Vault → book: a closed book (`styles/book.css`, same markup as the page cover) lifts out of the medallion and lands exactly on the book page's cover, which takes over (`handoff`) and swings open. Book → Vault: the cover closes, the closed book draws back and shrinks into its medallion (the Vault registers `transition.medallionRect`); the browser's back button gets the same pull-back.
+- Book → verses: a disc of the reader's paper colour grows from the tapped station, the reader fades it away (`reveal`). Back (up link or Esc): the paper covers the screen and shrinks into the station on the map.
+- Reduced motion, or no `Element.animate`: plain navigation, nothing on the layer. Tests check the layer is empty after each transition.

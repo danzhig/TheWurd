@@ -64,11 +64,21 @@ test.describe('the Vault', () => {
     await openVault(page);
     const before = await scale(page);
     await page.getByTestId('vault-scene').locator('a[data-book="Exod"]').click();
+    // A closed book lifts out of the medallion and lands exactly on the book page's cover.
+    const flying = page.getByTestId('flying-book');
+    await expect(flying).toBeAttached();
     await page.waitForURL(/\/book\/Exod\/$/);
     await expect(page.locator('html')).toHaveAttribute('data-book-map', 'Exod');
+    await expect(page.locator('#transition-layer > *')).toHaveCount(0, { timeout: 3000 });
+    await expect(page.locator('[data-book-frame]')).toHaveAttribute('data-state', 'open', {
+      timeout: 3000,
+    });
     await page.getByRole('link', { name: '← All books' }).click();
+    // The cover closes, then the closed book shrinks back into its medallion.
+    await expect(flying).toBeAttached({ timeout: 3000 });
     await page.waitForURL(/\/$/);
     await expect(page.locator('html')).toHaveAttribute('data-vault', 'ready');
+    await expect(page.locator('#transition-layer > *')).toHaveCount(0, { timeout: 4000 });
     // The camera ends where it was before flying in.
     await expect.poll(() => scale(page), { timeout: 3000 }).toBeCloseTo(before, 2);
   });

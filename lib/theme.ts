@@ -31,3 +31,11 @@ export function applyDisplaySettings(given?: {
 }
 
 export const THEME_SCRIPT = `(${applyDisplaySettings.toString()})();`;
+
+/** The reader's page colour for the current settings (the paper a station grows into). */
+export function readerBackground(theme: string | undefined): string {
+  const t = theme || 'default';
+  const dark =
+    t === 'vault' || (t === 'auto' && !window.matchMedia('(prefers-color-scheme: light)').matches);
+  return dark ? '#14100C' : '#F4ECDC';
+}

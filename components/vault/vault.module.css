@@ -203,18 +203,17 @@
   pointer-events: none;
 }
 
-/* A flash of the cover's colour as the camera arrives, where the book's own cover takes over. */
-.flyCover {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at 50% 45%, #3a2a1a 0%, var(--umber) 45%, var(--night) 100%);
-  opacity: 0;
+/* Behind a flying book the ceiling dims; the medallion it lifted from is hidden. */
+.view {
+  transition: opacity 500ms ease;
 }
 
-.flyCoverOn {
-  opacity: 1;
-  transition: opacity 260ms ease 600ms;
+.dimmed {
+  opacity: 0.28 !important;
+}
+
+.lifted {
+  opacity: 0;
 }
 
 /* Heads-up display */

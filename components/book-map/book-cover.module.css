@@ -1,132 +1,21 @@
-.cover[hidden] {
-  display: none;
-}
-
-.cover {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-  perspective: 1600px;
-  animation: cover-out var(--dur-cover) var(--ease-camera) 250ms forwards;
-}
-
-.half {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  animation-duration: var(--dur-cover);
-  animation-timing-function: var(--ease-camera);
-  animation-delay: 150ms;
-  animation-fill-mode: forwards;
-}
-
-.left {
-  clip-path: inset(0 50% 0 0);
-  transform-origin: 0% 50%; /* hinged at the outer edge: the halves swing open from the spine */
-  animation-name: open-left;
-}
-
-.right {
-  clip-path: inset(0 0 0 50%);
-  transform-origin: 100% 50%;
-  animation-name: open-right;
-}
-
-.face {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 50% 45%, #3a2a1a 0%, var(--umber) 45%, var(--night) 100%);
-}
-
-/* The spine. */
-.face::after {
-  content: '';
-  position: absolute;
+/* Resting place before JavaScript positions it exactly (lib/book-geometry.ts). */
+.shell {
   top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(transparent, var(--gold) 20%, var(--gold) 80%, transparent);
-  opacity: 0.6;
+  left: 0;
+  width: 100%;
+  height: calc(100dvh - 80px);
+  z-index: 3;
 }
 
-.frame {
-  display: grid;
-  justify-items: center;
-  gap: 0.4rem;
-  padding: 2rem 2.5rem;
-  border-radius: 50%;
-  text-align: center;
-  color: var(--cloud);
-}
-
-.name {
-  font-size: clamp(2rem, 7vw, 3.4rem);
-  color: var(--vellum);
-}
-
-@keyframes open-left {
-  to {
-    transform: rotateY(-100deg);
+@media (min-width: 900px) {
+  .shell {
+    left: 50%;
+    width: 50%;
+    height: min(calc(100dvh - 80px), 68%);
+    transform: translateX(-50%);
   }
 }
 
-@keyframes open-right {
-  to {
-    transform: rotateY(100deg);
-  }
-}
-
-@keyframes cover-out {
-  0%,
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes fade-out {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* Closing: the halves swing shut over the map before the camera pulls back. */
-.cover[data-closing] {
-  animation: cover-in 450ms var(--ease-camera) forwards;
-}
-
-.cover[data-closing] .half {
-  animation-delay: 0ms;
-  animation-duration: 450ms;
-  animation-direction: reverse;
-  animation-fill-mode: both;
-}
-
-@keyframes cover-in {
-  from {
-    opacity: 0;
-  }
-  20%,
-  to {
-    opacity: 1;
-  }
-}
-
-/* Reduced motion: no rotation, a 150 ms crossfade. */
-@media (prefers-reduced-motion: reduce) {
-  .half {
-    animation: none;
-  }
-  .cover {
-    animation: fade-out var(--dur-cover) ease 0ms forwards;
-  }
+.shell[hidden] {
+  display: none;
 }

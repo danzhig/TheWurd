@@ -6,6 +6,7 @@ import '@/styles/fonts.css';
 import '@/styles/globals.css';
 import '@/styles/typography.css';
 import '@/styles/materials.css';
+import '@/styles/book.css';
 
 export const metadata: Metadata = {
   title: 'Scripture as Story',
@@ -35,6 +36,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeController />
         {children}
+        {/* Live transitions between levels run here; it persists across route changes. */}
+        <div id="transition-layer" aria-hidden="true" />
       </body>
     </html>
   );
