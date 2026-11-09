@@ -115,7 +115,9 @@ export interface Book {
   group: BookGroup;
   canonOrder: number; // 1..73, Catholic order
   inPlan: boolean;
-  tagline: string; // empty for books outside the plan until M5 supplies them
+  tagline: string;
+  /** Off-path taglines are drafts until David approves them (content/plan/offpath-taglines.json). */
+  taglineDraft?: boolean;
   setting?: string;
   chapters: number; // in WEBC
   verses: number; // in WEBC

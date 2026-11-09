@@ -27,7 +27,13 @@ import {
   checkNoHandwrittenScripture,
   checkReferences,
 } from './validate';
-import { buildSectionFiles, emit, writeMarkdownCopies, type EmitResult } from './emit';
+import {
+  buildSectionFiles,
+  checkOffpathTaglines,
+  emit,
+  writeMarkdownCopies,
+  type EmitResult,
+} from './emit';
 import { estherDanielMap, pipelineReport, versificationLog } from './reports';
 import { readTvtmsCondensed } from './lib/tvtms';
 import {
@@ -103,6 +109,7 @@ async function main() {
   errors.push(...checkStructureApprovals(maps));
   errors.push(...checkApprovedPlacements(resolution.decisions, DECISIONS_FILE));
   errors.push(...checkChapterEnds(parsed));
+  errors.push(...checkOffpathTaglines(plan));
   writeMarkdownCopies(plan, CONTENT_DIR);
   errors.push(...checkNoHandwrittenScripture(CONTENT_DIR, buildShingles(parsed)));
 

@@ -1,0 +1,374 @@
+/* The Vault (PLAN §9, Level 0). Only transform and opacity animate. */
+
+.vault {
+  position: relative;
+}
+
+.view {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity var(--dur-ui) ease;
+}
+
+.view:active {
+  cursor: grabbing;
+}
+
+.ready {
+  opacity: 1;
+}
+
+[data-mode='list'] .view {
+  visibility: hidden;
+}
+
+.cloud {
+  inset: -12%;
+  will-change: transform;
+}
+
+.scene {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+}
+
+/* Promote while the camera moves; drop afterwards so text re-rasterises crisply. */
+.moving {
+  will-change: transform;
+}
+
+.threadSvg {
+  position: absolute;
+  max-width: none; /* the global svg max-width would collapse it inside the zero-size scene */
+  pointer-events: none;
+}
+
+.thread {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 3;
+  opacity: 0.7;
+}
+
+.threadLit {
+  fill: none;
+  stroke: var(--gold-light);
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: 0.95;
+}
+
+/* Medallions: gilt-framed ovals. */
+.medallion {
+  position: absolute;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.15em;
+  padding: 0 8%;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: var(--vellum);
+  background: radial-gradient(ellipse at 50% 35%, #4a3622 0%, var(--umber) 60%, #1c140d 100%);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--gold-light) 70%, transparent),
+    inset 0 0 0 4px color-mix(in srgb, var(--umber) 100%, transparent),
+    inset 0 0 0 5px color-mix(in srgb, var(--gold) 55%, transparent),
+    0 4px 18px rgb(0 0 0 / 0.45);
+  font-family: var(--font-display);
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+/* Progress ring, seen at closer zoom. */
+.medallion::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(var(--gold-light) calc(var(--p) * 1turn), transparent 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  opacity: 0;
+  transition: opacity var(--dur-ui) ease;
+}
+
+.detailed::after {
+  opacity: 1;
+}
+
+.name {
+  font-size: var(--fs);
+  font-weight: 500;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  transition: opacity var(--dur-ui) ease;
+}
+
+.named .name {
+  opacity: 1;
+}
+
+.tag {
+  font-size: calc(var(--fs) * 0.55);
+  font-style: italic;
+  color: var(--cloud);
+  max-width: 100%;
+}
+
+.finished {
+  box-shadow:
+    inset 0 0 0 1px var(--gold-light),
+    inset 0 0 0 4px var(--umber),
+    inset 0 0 0 5px var(--gold-light),
+    0 0 22px 4px color-mix(in srgb, var(--gold-light) 30%, transparent);
+}
+
+/* The book the reader is in: a vermilion inner ring (the spark sits on the thread above it). */
+.current {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--gold-light) 70%, transparent),
+    inset 0 0 0 4px var(--umber),
+    inset 0 0 0 6px var(--vermilion),
+    0 4px 18px rgb(0 0 0 / 0.45);
+}
+
+.focused {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 6px;
+}
+
+/* The vermilion spark: the reader's place on the thread. */
+.spark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd2b8 0%, var(--vermilion) 55%, transparent 72%);
+  box-shadow: 0 0 12px 4px color-mix(in srgb, var(--vermilion) 60%, transparent);
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--gold-light);
+  text-decoration: none;
+  text-shadow: 0 0 8px var(--gold);
+}
+
+/* Books outside the path: dim, smaller. */
+.offpath {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--cloud) 35%, transparent);
+  background: color-mix(in srgb, var(--night) 70%, transparent);
+  color: var(--text-muted);
+  font: inherit;
+  font-family: var(--font-display);
+  font-size: 8px;
+  line-height: 1.05;
+  padding: 2px;
+  cursor: pointer;
+  opacity: 0.75;
+  overflow: hidden;
+}
+
+.group {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.14em;
+  font-size: 16px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* A flash of the cover's colour as the camera arrives, where the book's own cover takes over. */
+.flyCover {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, #3a2a1a 0%, var(--umber) 45%, var(--night) 100%);
+  opacity: 0;
+}
+
+.flyCoverOn {
+  opacity: 1;
+  transition: opacity 260ms ease 600ms;
+}
+
+/* Heads-up display */
+.hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
+  pointer-events: none;
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+[data-mode='list'] .hud {
+  position: static;
+  background: var(--bg);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.1em;
+  font-size: 1.35rem;
+  color: var(--accent-strong);
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button,
+.iconButton {
+  font: inherit;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  color: var(--text-strong);
+  cursor: pointer;
+}
+
+.iconButton {
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.resume {
+  flex-basis: 100%;
+  color: var(--accent-strong);
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.zoomButtons {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 6;
+  transform: translate(-50%, calc(-100% - 10px));
+  max-width: min(18rem, calc(100vw - 2rem));
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  text-align: center;
+}
+
+.tooltip p {
+  margin: 0;
+}
+
+.tooltip :global(.book-name) {
+  font-size: 1.2rem;
+}
+
+.notOnPath {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.25rem !important;
+}
+
+/* List mode */
+.list {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 4rem;
+}
+
+.pathList {
+  padding-left: 1.75rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.pathList :global(.book-name) {
+  font-size: 1.25rem;
+}
+
+.listMeta {
+  color: var(--text-muted);
+}
+
+.listSat {
+  margin: 0.2rem 0 0;
+  color: var(--text-muted);
+}
+
+.listBridge {
+  list-style: '✦  ';
+  color: var(--accent);
+}
+
+.listHeading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 2.5rem 0 0.5rem;
+}
+
+.offList {
+  padding-left: 1.25rem;
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud {
+    will-change: auto;
+  }
+}

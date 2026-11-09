@@ -9,3 +9,4 @@ export const DATA_DIR = path.join(ROOT, 'public/data');
 export const DOCS_DIR = path.join(ROOT, 'docs');
 export const CONTENT_DIR = path.join(ROOT, 'content');
 export const DECISIONS_FILE = path.join(ROOT, 'content/plan/decisions.json');
+export const OFFPATH_TAGLINES = path.join(ROOT, 'content/plan/offpath-taglines.json');

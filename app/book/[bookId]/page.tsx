@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { BackToVault } from '@/components/book-map/BackToVault';
 import { BookCover } from '@/components/book-map/BookCover';
 import { BookMap, type StationData } from '@/components/book-map/BookMap';
 import styles from '@/components/book-map/book-page.module.css';
@@ -58,9 +58,7 @@ export default async function BookPage({ params }: Params) {
     <main className={styles.page}>
       <BookCover bookId={b.id} name={b.name} tagline={b.tagline} />
       <nav className={styles.nav}>
-        <Link href="/" className={styles.back}>
-          ← All books
-        </Link>
+        <BackToVault />
       </nav>
       <header className={styles.header}>
         <h1 id="page-heading" tabIndex={-1} className={`book-name ${styles.name}`}>

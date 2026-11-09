@@ -136,11 +136,10 @@ test.describe('book maps', () => {
     await expect(page.locator('[data-station="gen-01"]')).toHaveClass(/current/);
   });
 
-  test('home lists every book on the path', async ({ page }) => {
+  test('the Vault list links to every book map', async ({ page }) => {
     await page.goto('/');
-    await expect(
-      page.getByRole('list', { name: 'Books on the path' }).getByRole('link'),
-    ).toHaveCount(plan.books.length);
+    const links = page.locator('section[aria-label="The path, as a list"] a[data-book]');
+    await expect(links).toHaveCount(plan.books.length);
   });
 
   for (const theme of ['vault', 'vellum'] as const) {

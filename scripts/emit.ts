@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { gzipSync } from 'node:zlib';
+import { z } from 'zod';
 import type {
   Book,
   FoldOut,
@@ -17,6 +18,7 @@ import type {
   VerseOut,
 } from '../lib/types';
 import { CANON } from './lib/canon';
+import { OFFPATH_TAGLINES } from './lib/paths';
 import type { BookMapping } from './map-versification';
 import { numberingDiff } from './lib/numbering';
 import type { ParsedBook } from './parse-usfm';
@@ -149,6 +151,7 @@ export function emit(input: EmitInput, sectionFiles: SectionFile[]): EmitResult 
   fs.rmSync(path.join(outDir, 'sections'), { recursive: true, force: true });
   fs.rmSync(path.join(outDir, 'books'), { recursive: true, force: true });
   const planBooks = new Map(plan.books.map((b) => [b.id, b]));
+  const offpath = readOffpathTaglines();
   const books: Book[] = CANON.map((c, i) => {
     const p = parsed.get(c.id)!;
     const pb = planBooks.get(c.id);
@@ -159,11 +162,12 @@ export function emit(input: EmitInput, sectionFiles: SectionFile[]): EmitResult 
       group: c.group,
       canonOrder: i + 1,
       inPlan: !!pb,
-      tagline: pb?.tagline ?? '',
+      tagline: pb?.tagline ?? offpath.taglines[c.id] ?? '',
       chapters: p.chapterLengths.length,
       verses: p.verses.length,
     };
     if (pb?.setting) b.setting = pb.setting;
+    if (!pb && offpath.status === 'draft') b.taglineDraft = true;
     return b;
   });
 
@@ -266,4 +270,26 @@ export function writeMarkdownCopies(plan: ReadingPlan, contentDir: string) {
       `---\nid: ${n.id}\nsection: ${n.section}\nat: ${JSON.stringify(n.at)}\n---\n\n${note}\n\n${n.text}\n`,
     );
   }
+}
+
+const OffpathSchema = z.object({
+  note: z.string(),
+  status: z.enum(['draft', 'approved']),
+  taglines: z.record(z.string(), z.string().min(1)),
+});
+
+/** Taglines for books outside the path; every such book needs exactly one. */
+export function readOffpathTaglines(): z.infer<typeof OffpathSchema> {
+  return OffpathSchema.parse(JSON.parse(fs.readFileSync(OFFPATH_TAGLINES, 'utf8')));
+}
+
+export function checkOffpathTaglines(plan: ReadingPlan): string[] {
+  const t = readOffpathTaglines().taglines;
+  const inPlan = new Set(plan.books.map((b) => b.id));
+  const off = CANON.filter((c) => !inPlan.has(c.id)).map((c) => c.id);
+  const errors: string[] = [];
+  for (const id of off) if (!t[id]) errors.push(`offpath-taglines.json: no tagline for ${id}`);
+  for (const id of Object.keys(t))
+    if (!off.includes(id)) errors.push(`offpath-taglines.json: ${id} is not an off-path book`);
+  return errors;
 }
