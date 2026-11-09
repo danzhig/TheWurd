@@ -1,6 +1,7 @@
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
+import { camera } from '@/lib/camera';
 import { openedBooks } from './BookMap';
 import styles from './book-cover.module.css';
 
@@ -22,6 +23,7 @@ export function BookCover({
   useLayoutEffect(() => {
     if (openedBooks.has(bookId) && ref.current) ref.current.hidden = true;
     openedBooks.add(bookId);
+    camera.fromBook = bookId; // the Vault pulls back out of this book on return
   }, [bookId]);
   const face = (
     <div className={styles.face}>

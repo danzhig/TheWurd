@@ -12,11 +12,20 @@ export default defineConfig({
   projects: [
     {
       name: 'phone',
+      testIgnore: /perf\.spec\.ts/,
       use: { ...devices['Desktop Chrome'], viewport: { width: 390, height: 844 }, isMobile: false },
     },
     {
       name: 'desktop',
+      testIgnore: /perf\.spec\.ts/,
       use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
+    },
+    // Frame timing runs alone, after everything else, at phone size.
+    {
+      name: 'perf',
+      testMatch: /perf\.spec\.ts/,
+      dependencies: ['phone', 'desktop'],
+      use: { ...devices['Desktop Chrome'], viewport: { width: 390, height: 844 }, isMobile: false },
     },
   ],
   webServer: {
