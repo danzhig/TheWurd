@@ -29,6 +29,7 @@ export interface Medallion extends Point {
 export interface VaultLayout {
   medallions: Medallion[]; // plan books in path order
   satellites: (Medallion & { of: string })[]; // excursion books placed beside their host
+  detours: { id: string; d: string }[]; // dashed branch from each host to its excursion
   offpath: (Point & { id: string; size: number; group: string })[];
   groups: (Point & { label: string; angle: number })[];
   bridges: (Point & { id: string })[];
@@ -42,6 +43,7 @@ export interface VaultLayout {
 export const SIZE_MIN = 64;
 export const SIZE_MAX = 140;
 const OVAL = 0.78; // height / width
+const DETOUR_GAP = 30; // room between a host and its excursion for the dashed branch
 const R_OUTER = 440;
 const R_INNER = 92;
 const TURNS = 2.5;
@@ -139,7 +141,7 @@ export function layoutVault(
     if (!host) return [];
     const r = Math.hypot(host.x, host.y);
     const w = SIZE_MIN;
-    const d = r - host.w / 2 - w * OVAL * 0.5 - 6;
+    const d = r - host.w / 2 - w * OVAL * 0.5 - DETOUR_GAP;
     const k = d / r;
     return [
       {
@@ -150,6 +152,24 @@ export function layoutVault(
         w,
         h: Math.round(w * OVAL),
         along: host.along,
+      },
+    ];
+  });
+
+  // A dashed branch from the host's rim to the excursion's rim, along the line between them.
+  const detours = sats.flatMap((s) => {
+    const host = medallions.find((m) => m.id === s.of);
+    if (!host) return [];
+    const len = Math.hypot(s.x - host.x, s.y - host.y);
+    const ux = (s.x - host.x) / len;
+    const uy = (s.y - host.y) / len;
+    const a = ovalRadius(host, ux, uy) + 3;
+    const b = len - ovalRadius(s, ux, uy) - 3;
+    const f = (n: number) => n.toFixed(1);
+    return [
+      {
+        id: s.id,
+        d: `M ${f(host.x + ux * a)} ${f(host.y + uy * a)} L ${f(host.x + ux * b)} ${f(host.y + uy * b)}`,
       },
     ];
   });
@@ -190,6 +210,7 @@ export function layoutVault(
   return {
     medallions,
     satellites: sats,
+    detours,
     offpath: off,
     groups,
     bridges: bridgePts,
@@ -199,4 +220,11 @@ export function layoutVault(
     radius: OFFPATH_RADIUS + 90,
     spiralRadius: R_OUTER + SIZE_MAX / 2,
   };
+}
+
+/** Distance from an oval's centre to its rim in the direction (ux, uy). */
+function ovalRadius(m: { w: number; h: number }, ux: number, uy: number): number {
+  const a = m.w / 2;
+  const b = m.h / 2;
+  return (a * b) / Math.hypot(b * ux, a * uy);
 }

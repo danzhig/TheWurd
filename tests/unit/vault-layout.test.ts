@@ -56,4 +56,10 @@ describe.each([['Gen'], ['Ruth'], ['Acts']])('vault layout (Job after %s)', (job
     for (const o of l.offpath) expect(r(o)).toBeGreaterThan(l.spiralRadius);
     expect(l.groups.map((g) => g.label)).toEqual(GROUP_ORDER);
   });
+
+  it('draws a visible dashed branch from Luke to John 11', () => {
+    expect(l.detours.map((t) => t.id)).toEqual(['John']);
+    const [x1, y1, x2, y2] = l.detours[0]!.d.match(/-?[\d.]+/g)!.map(Number);
+    expect(Math.hypot(x2! - x1!, y2! - y1!)).toBeGreaterThan(15);
+  });
 });
