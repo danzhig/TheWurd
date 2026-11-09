@@ -157,16 +157,6 @@ test.describe('the Vault', () => {
     await expect(tip).toHaveCount(0);
   });
 
-  test('moving Job re-orders the spiral', async ({ page }) => {
-    await page.addInitScript(() =>
-      localStorage.setItem('sas:v1:settings', JSON.stringify({ jobAfter: 'Ruth' })),
-    );
-    await openVault(page);
-    const books = (await listLinks(page)).filter((h) => h!.startsWith('/book/'));
-    expect(books.indexOf('/book/Job/')).toBe(books.indexOf('/book/Ruth/') + 1);
-    expect(books.indexOf('/book/Exod/')).toBe(books.indexOf('/book/Gen/') + 1);
-  });
-
   test('stays under 300 interactive nodes at any zoom', async ({ page }) => {
     await openVault(page);
     const count = () => page.locator('[data-testid="vault-view"] *').count();

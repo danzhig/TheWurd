@@ -1,24 +1,26 @@
-/** Build-time navigation helpers for pages (server side, default path settings). */
-import type { JobOption } from '@/components/ui/SettingsSheet';
+/** Build-time navigation helpers for pages (server side). */
 import { getManifest } from './data';
 import { toTarget, type NavTarget } from './format';
-import { neighbours, stops } from './path';
+import { neighbours, buildSequence } from './path';
 
-export function defaultNav(id: string): { prev: NavTarget | null; next: NavTarget | null } {
+export interface PageNav {
+  prev: NavTarget | null;
+  next: NavTarget | null;
+  /** Optional detours that branch off right after this page (offered beside Next). */
+  detours: NavTarget[];
+}
+
+export function defaultNav(id: string): PageNav {
   const m = getManifest();
   const n = neighbours(m, id);
-  return { prev: toTarget(n.prev, m), next: toTarget(n.next, m) };
+  return {
+    prev: toTarget(n.prev, m),
+    next: toTarget(n.next, m),
+    detours: n.detours.map((d) => toTarget(d, m)!),
+  };
 }
 
-/** Books Job can follow: every book step on the path except Job itself. */
-export function jobOptions(): JobOption[] {
-  const m = getManifest();
-  return m.steps
-    .filter((s) => s.kind === 'book' && !s.movable)
-    .map((s) => ({ id: s.id, name: m.books.find((b) => b.id === s.id)?.name ?? s.id }));
-}
-
-/** Can this section be a stop on the path (with optional sections switched on)? */
+/** Does this page count toward progress (a stop on the path, or an optional detour)? */
 export function canBeStop(id: string): boolean {
-  return stops(getManifest(), { jobAfter: 'Gen', optionalSections: true }).some((s) => s.id === id);
+  return buildSequence(getManifest()).some((s) => s.id === id && (s.stop || s.detour));
 }

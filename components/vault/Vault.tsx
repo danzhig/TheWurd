@@ -20,11 +20,11 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
-import { SettingsSheet, type JobOption } from '@/components/ui/SettingsSheet';
+import { SettingsSheet } from '@/components/ui/SettingsSheet';
 import { camera, easeCamera, prefersReducedMotion } from '@/lib/camera';
 import { animationsOn, bookIn, bookOut, END_EVENT, transition } from '@/lib/transition';
-import { CHANGE_EVENT, readLast, readProgress, readSettings } from '@/lib/store';
-import { GROUP_ORDER, vaultData, type VaultData } from './data';
+import { CHANGE_EVENT, readLast, readProgress } from '@/lib/store';
+import { GROUP_ORDER, type VaultData } from './data';
 import { layoutVault, type Medallion } from './layout';
 import styles from './vault.module.css';
 
@@ -40,13 +40,10 @@ export interface VaultBook {
 }
 
 export interface VaultProps {
-  /** Manifest subset, so the client can re-lay the spiral when Job is moved. */
-  manifest: Parameters<typeof vaultData>[0];
-  initial: VaultData;
+  data: VaultData;
   books: VaultBook[];
   bridges: { id: string; title: string; after: string }[];
   sections: Record<string, { title: string; bookId: string }>;
-  jobOptions: JobOption[];
 }
 
 const subscribe = (cb: () => void) => {
@@ -54,20 +51,19 @@ const subscribe = (cb: () => void) => {
   return () => window.removeEventListener(CHANGE_EVENT, cb);
 };
 
-/** Reader state as a stable string: jobAfter | last section | completed ids. */
+/** Reader state as a stable string: last section | completed ids. */
 function useReaderKey(): string {
   return useSyncExternalStore(
     subscribe,
-    () =>
-      `${readSettings().jobAfter}|${readLast()?.sectionId ?? ''}|${Object.keys(readProgress()).sort().join(',')}`,
-    () => 'Gen||',
+    () => `${readLast()?.sectionId ?? ''}|${Object.keys(readProgress()).sort().join(',')}`,
+    () => '|',
   );
 }
 
 const FLY_MS = 850;
 const K_MAX = 2.6; // medallion detail
 
-export function Vault({ manifest, initial, books, bridges, sections, jobOptions }: VaultProps) {
+export function Vault({ data, books, bridges, sections }: VaultProps) {
   const router = useRouter();
   const viewRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -92,13 +88,9 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
   const [lifted, setLifted] = useState<string | null>(null);
 
   const readerKey = useReaderKey();
-  const [jobAfter, lastSection, doneList] = readerKey.split('|');
+  const [lastSection, doneList] = readerKey.split('|');
   const done = useMemo(() => new Set((doneList ?? '').split(',').filter(Boolean)), [doneList]);
 
-  const data = useMemo(
-    () => (jobAfter && jobAfter !== 'Gen' ? vaultData(manifest, jobAfter) : initial),
-    [jobAfter, manifest, initial],
-  );
   const layout = useMemo(
     () => layoutVault(data.path, data.bridges, data.satellites, data.offpath, GROUP_ORDER),
     [data],
@@ -409,11 +401,7 @@ export function Vault({ manifest, initial, books, bridges, sections, jobOptions 
           About this path
         </Link>
       </header>
-      <SettingsSheet
-        open={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-        jobOptions={jobOptions}
-      />
+      <SettingsSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
       {/* The ceiling: decorative for assistive technology, which gets the list below. */}
       <div

@@ -3,61 +3,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { SettingsSheet, type JobOption } from '@/components/ui/SettingsSheet';
-import { toTarget, type NavData, type NavTarget } from '@/lib/format';
-import { isDefaultPath, neighbours, type PathInput } from '@/lib/path';
-import {
-  CHANGE_EVENT,
-  markRead,
-  markUnread,
-  readProgress,
-  readSettings,
-  writeLast,
-} from '@/lib/store';
+import { SettingsSheet } from '@/components/ui/SettingsSheet';
+import { CHANGE_EVENT, markRead, markUnread, readProgress, writeLast } from '@/lib/store';
 import { animationsOn, paperCover, reveal, transition } from '@/lib/transition';
+import type { PageNav } from '@/lib/nav';
 import styles from './reader.module.css';
-
-interface Nav {
-  prev: NavTarget | null;
-  next: NavTarget | null;
-}
-
-let manifestPromise: Promise<PathInput & NavData> | null = null;
-function loadManifest() {
-  manifestPromise ??= fetch('/data/manifest.json').then(
-    (r) => r.json() as Promise<PathInput & NavData>,
-  );
-  return manifestPromise;
-}
-
-/** Previous/next with the reader's own path settings (Job's place, optional detours). */
-function useNav(id: string, defaults: Nav): Nav {
-  const [nav, setNav] = useState(defaults);
-  useEffect(() => {
-    let alive = true;
-    const update = async () => {
-      const s = readSettings();
-      if (isDefaultPath(s)) {
-        setNav(defaults);
-        return;
-      }
-      try {
-        const m = await loadManifest();
-        const n = neighbours(m, id, { jobAfter: s.jobAfter, optionalSections: s.optionalSections });
-        if (alive) setNav({ prev: toTarget(n.prev, m), next: toTarget(n.next, m) });
-      } catch {
-        /* offline or blocked: keep the default path */
-      }
-    };
-    void update();
-    window.addEventListener(CHANGE_EVENT, update);
-    return () => {
-      alive = false;
-      window.removeEventListener(CHANGE_EVENT, update);
-    };
-  }, [id, defaults]);
-  return nav;
-}
 
 export interface ReaderShellProps {
   id: string;
@@ -69,8 +19,7 @@ export interface ReaderShellProps {
   stop: boolean;
   /** Mark as read as soon as the page is seen (whole-section skims). */
   readOnOpen?: boolean;
-  defaults: Nav;
-  jobOptions: JobOption[];
+  nav: PageNav;
   children: ReactNode;
 }
 
@@ -82,12 +31,10 @@ export function ReaderShell({
   bookName,
   stop,
   readOnOpen,
-  defaults,
-  jobOptions,
+  nav,
   children,
 }: ReaderShellProps) {
   const router = useRouter();
-  const nav = useNav(id, defaults);
   // Up a level: a section returns to its book's map; a bridge to all books.
   const upHref = bookId ? `/book/${bookId}/` : '/';
   // Up to the book's map: the page shrinks back into its station there (see BookMap).
@@ -210,11 +157,7 @@ export function ReaderShell({
           aria-hidden="true"
         />
       </header>
-      <SettingsSheet
-        open={settingsOpen}
-        onClose={() => setSettingsOpen(false)}
-        jobOptions={jobOptions}
-      />
+      <SettingsSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
       {children}
 
@@ -261,6 +204,16 @@ export function ReaderShell({
             <Link href="/">Back to all books</Link>
           </div>
         )}
+        {nav.detours.map((d) => (
+          <Link key={d.id} href={d.href} className={styles.detour} data-testid="detour-link">
+            <span className="label">Optional detour</span>
+            <span className={styles.detourTitle}>
+              {d.bookId !== bookId ? `${d.bookName?.replace(/\s*\(excursion\)$/, '')} · ` : ''}
+              {d.title}
+            </span>
+            {d.minutes ? <span className={styles.nextMeta}>{d.minutes} min</span> : null}
+          </Link>
+        ))}
         {nav.prev ? (
           <Link href={nav.prev.href} className={styles.prev} data-testid="prev-link">
             ← {nav.prev.title}

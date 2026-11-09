@@ -5,7 +5,7 @@ import { SectionBody } from '@/components/reader/SectionBody';
 import styles from '@/components/reader/reader.module.css';
 import { getManifest, getSection } from '@/lib/data';
 import { prettyRange } from '@/lib/format';
-import { canBeStop, defaultNav, jobOptions } from '@/lib/nav';
+import { canBeStop, defaultNav } from '@/lib/nav';
 
 export const dynamicParams = false;
 
@@ -75,8 +75,7 @@ export default async function ReadPage({ params }: Params) {
       bookName={s.bookName}
       stop={canBeStop(s.id)}
       readOnOpen={s.status === 'skim'}
-      defaults={defaultNav(s.id)}
-      jobOptions={jobOptions()}
+      nav={defaultNav(s.id)}
     >
       {article}
     </ReaderShell>

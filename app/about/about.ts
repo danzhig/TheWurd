@@ -26,7 +26,6 @@ export interface AboutData {
   last: string;
   bridges: { id: string; title: string; after: string }[];
   detour: { bookId: string; hostId: string; afterRange: string } | null;
-  movable: { id: string; after: string } | null;
   offpath: Book[];
   offpathCount: number;
 }
@@ -54,9 +53,6 @@ export function aboutData(m: {
         }
       : null;
 
-  const mov = bookSteps.findIndex((s) => s.movable);
-  const movable = mov > 0 ? { id: bookSteps[mov]!.id, after: bookSteps[mov - 1]!.id } : null;
-
   const offpath = m.books.filter((b) => !b.inPlan);
   return {
     pathBooks,
@@ -68,7 +64,6 @@ export function aboutData(m: {
     last: pathBooks.at(-1)!,
     bridges: m.bridges.map(({ id, title, after }) => ({ id, title, after })),
     detour,
-    movable,
     offpath,
     offpathCount: offpath.length,
   };

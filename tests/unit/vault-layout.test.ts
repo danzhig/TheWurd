@@ -5,8 +5,8 @@ import { layoutVault, SIZE_MAX, SIZE_MIN } from '@/components/vault/layout';
 
 const manifest = JSON.parse(fs.readFileSync('public/data/manifest.json', 'utf8'));
 
-describe.each([['Gen'], ['Ruth'], ['Acts']])('vault layout (Job after %s)', (jobAfter) => {
-  const d = vaultData(manifest, jobAfter);
+describe('vault layout', () => {
+  const d = vaultData(manifest);
   const l = layoutVault(d.path, d.bridges, d.satellites, d.offpath, GROUP_ORDER);
   const r = (p: { x: number; y: number }) => Math.hypot(p.x, p.y);
 

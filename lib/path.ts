@@ -1,68 +1,57 @@
 /**
  * The reading path (PLAN §6, §10): the ordered stops a reader walks with "Next".
- * Shared by the static pages (default settings), the client (the reader's own settings) and tests.
+ * Shared by the static pages and tests.
  *
- * - Book steps expand into their sections in book order. `read` and `skim` sections are stops;
- *   `optional` sections are stops only when optional sections are on; `skip` sections never are.
+ * - Book steps expand into their sections in book order, in the plan's order (Job after Genesis).
+ *   `read` and `skim` sections are stops; `skip` sections never are.
  * - Bridges are stops in their own right.
- * - Excursions (John 11) are inserted after the section named in `after`, only when optional
- *   sections are on.
- * - Job (movable) follows the book chosen in settings; the plan's default is Genesis.
+ * - Optional sections and the John 11 excursion are detours: always on the maps, never a stop for
+ *   "Next". The page just before a detour offers it as a link, and the detour's own Previous and
+ *   Next lead back onto the path.
  * Every section is still placed in the full sequence, so a page that is not a stop (a skipped
- * section) still has a sensible Previous and Next.
+ * section or a detour) still has a sensible Previous and Next.
  */
 import type { PlanStep, SectionIndexEntry } from './types';
 
-export interface PathSettings {
-  jobAfter: string;
-  optionalSections: boolean;
-}
-
-export const DEFAULT_PATH_SETTINGS: PathSettings = { jobAfter: 'Gen', optionalSections: false };
-
 export type PathItem =
-  | { kind: 'section'; id: string; bookId: string; stop: boolean }
-  | { kind: 'bridge'; id: string; stop: true };
+  | { kind: 'section'; id: string; bookId: string; stop: boolean; detour: boolean }
+  | { kind: 'bridge'; id: string; stop: true; detour: false };
 
 export interface PathInput {
   steps: PlanStep[];
   sections: Pick<SectionIndexEntry, 'id' | 'bookId' | 'status'>[];
 }
 
-export function buildSequence(
-  input: PathInput,
-  settings: PathSettings = DEFAULT_PATH_SETTINGS,
-): PathItem[] {
+export function buildSequence(input: PathInput): PathItem[] {
   const byBook = new Map<string, PathInput['sections']>();
   for (const s of input.sections) byBook.set(s.bookId, [...(byBook.get(s.bookId) ?? []), s]);
   const bookOf = new Map(input.sections.map((s) => [s.id, s.bookId]));
-
-  // Order of book and bridge steps, with Job moved if the reader chose another place.
-  let steps = input.steps.filter((s) => s.kind !== 'excursion');
-  const job = steps.find((s) => s.kind === 'book' && s.movable);
-  if (job && settings.jobAfter !== job.id) {
-    const without = steps.filter((s) => s !== job);
-    const at = without.findIndex((s) => s.kind === 'book' && s.id === settings.jobAfter);
-    if (at >= 0) steps = [...without.slice(0, at + 1), job, ...without.slice(at + 1)];
-  }
+  const steps = input.steps.filter((s) => s.kind !== 'excursion');
   const excursions = input.steps.filter((s) => s.kind === 'excursion');
-
-  const isStop = (status: string) =>
-    status === 'read' || status === 'skim' || (status === 'optional' && settings.optionalSections);
 
   const out: PathItem[] = [];
   for (const step of steps) {
     if (step.kind === 'bridge') {
-      out.push({ kind: 'bridge', id: step.id, stop: true });
+      out.push({ kind: 'bridge', id: step.id, stop: true, detour: false });
       continue;
     }
     for (const s of byBook.get(step.id) ?? []) {
-      out.push({ kind: 'section', id: s.id, bookId: s.bookId, stop: isStop(s.status) });
+      out.push({
+        kind: 'section',
+        id: s.id,
+        bookId: s.bookId,
+        stop: s.status === 'read' || s.status === 'skim',
+        detour: s.status === 'optional',
+      });
       for (const ex of excursions.filter((e) => e.after === s.id)) {
-        const exBook = bookOf.get(ex.id);
-        const on = !ex.optional || settings.optionalSections;
-        for (const es of byBook.get(exBook ?? '') ?? []) {
-          out.push({ kind: 'section', id: es.id, bookId: es.bookId, stop: on && es.id === ex.id });
+        for (const es of byBook.get(bookOf.get(ex.id) ?? '') ?? []) {
+          out.push({
+            kind: 'section',
+            id: es.id,
+            bookId: es.bookId,
+            stop: false,
+            detour: es.id === ex.id,
+          });
         }
       }
     }
@@ -71,26 +60,23 @@ export function buildSequence(
 }
 
 /** Only the stops, in order. */
-export function stops(input: PathInput, settings?: PathSettings): PathItem[] {
-  return buildSequence(input, settings).filter((i) => i.stop);
+export function stops(input: PathInput): PathItem[] {
+  return buildSequence(input).filter((i) => i.stop);
 }
 
 export function neighbours(
   input: PathInput,
   id: string,
-  settings?: PathSettings,
-): { prev: PathItem | null; next: PathItem | null } {
-  const seq = buildSequence(input, settings);
+): { prev: PathItem | null; next: PathItem | null; detours: PathItem[] } {
+  const seq = buildSequence(input);
   const i = seq.findIndex((x) => x.id === id);
-  if (i < 0) return { prev: null, next: null };
+  if (i < 0) return { prev: null, next: null, detours: [] };
   const prev = [...seq.slice(0, i)].reverse().find((x) => x.stop) ?? null;
-  const next = seq.slice(i + 1).find((x) => x.stop) ?? null;
-  return { prev, next };
-}
-
-export function isDefaultPath(s: PathSettings): boolean {
-  return (
-    s.jobAfter === DEFAULT_PATH_SETTINGS.jobAfter &&
-    s.optionalSections === DEFAULT_PATH_SETTINGS.optionalSections
-  );
+  const n = seq.findIndex((x, j) => j > i && x.stop);
+  const next = n >= 0 ? seq[n]! : null;
+  // Detours that branch off between this stop and the next one.
+  const detours = seq[i]!.stop
+    ? seq.slice(i + 1, n >= 0 ? n : undefined).filter((x) => x.detour)
+    : [];
+  return { prev, next, detours };
 }

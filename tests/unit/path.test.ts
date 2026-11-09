@@ -21,7 +21,7 @@ describe('reading path', () => {
     expect(s.at(-1)).toBe('acts-14');
   });
 
-  it('never stops at skipped sections, and leaves optional ones out by default', () => {
+  it('never stops at skipped sections, and leaves optional ones out', () => {
     const s = ids();
     for (const sec of manifest.sections) {
       if (sec.status === 'skip' || sec.status === 'optional')
@@ -36,17 +36,16 @@ describe('reading path', () => {
     expect(s.indexOf('luke-01')).toBe(s.indexOf('br-rome') + 1);
   });
 
-  it('adds Deuteronomy 28 and John 11 when optional sections are on', () => {
-    const s = ids(stops(manifest, { jobAfter: 'Gen', optionalSections: true }));
-    expect(s.indexOf('deut-02')).toBe(s.indexOf('deut-01') + 1);
-    expect(s.indexOf('john-01')).toBe(s.indexOf('luke-12') + 1);
-    expect(s.indexOf('luke-13')).toBe(s.indexOf('john-01') + 1);
-  });
-
-  it('moves Job when the reader chooses', () => {
-    const s = ids(stops(manifest, { jobAfter: 'Ruth', optionalSections: false }));
-    expect(s.indexOf('job-01')).toBe(s.indexOf('ruth-04') + 1);
-    expect(s.indexOf('exod-01')).toBe(s.indexOf('gen-20') + 1);
+  it('offers Deuteronomy 28 and John 11 as detours beside Next, and leads back onto the path', () => {
+    const d = neighbours(manifest, 'deut-01');
+    expect(d.next?.id).not.toBe('deut-02');
+    expect(d.detours.map((x) => x.id)).toEqual(['deut-02']);
+    const l = neighbours(manifest, 'luke-12');
+    expect(l.next?.id).toBe('luke-13');
+    expect(l.detours.map((x) => x.id)).toEqual(['john-01']);
+    const j = neighbours(manifest, 'john-01');
+    expect([j.prev?.id, j.next?.id, j.detours]).toEqual(['luke-12', 'luke-13', []]);
+    expect(neighbours(manifest, 'gen-01').detours).toEqual([]);
   });
 
   it('gives skipped pages a Previous and Next on the path', () => {
