@@ -42,7 +42,7 @@ import {
   CONTENT_DIR,
   DATA_DIR,
   DECISIONS_FILE,
-  DOCS_DIR,
+  DOCS_DIR as COMMITTED_DOCS,
   PLAN_FILE,
   STRUCTURE_MAPS,
 } from './lib/paths';
@@ -178,6 +178,8 @@ async function main() {
         `public/data is out of date (${diff.length} files differ, e.g. ${diff.slice(0, 5).join(', ')}). Run pnpm content:build.`,
       );
   } else {
+    // An inspection run (--out) keeps its reports beside its data, never over the committed ones.
+    const DOCS_DIR = OUT ? path.join(target, 'docs') : COMMITTED_DOCS;
     fs.mkdirSync(DOCS_DIR, { recursive: true });
     fs.writeFileSync(
       path.join(DOCS_DIR, 'versification-log.md'),
