@@ -11,6 +11,7 @@ import type {
   Book,
   FoldOut,
   NoteOut,
+  PlanBook,
   ReadingPlan,
   SectionFile,
   SectionIndexEntry,
@@ -58,6 +59,8 @@ export interface EmitInput {
   sources: Source[];
   outDir: string;
   contentDir: string | null; // where to write bridge/note Markdown; null to skip
+  /** Library books (Phase 5), resolved like the plan's but never on the path. */
+  library?: PlanBook[];
 }
 
 export interface EmitResult {
@@ -79,7 +82,7 @@ export function buildSectionFiles(input: EmitInput): SectionFile[] {
     const m = mappings.get(rs.bookId)!;
     const byRef = new Map(m.units.map((u) => [u.ref, u]));
     const verses: Verse[] = rs.units.map((r) => byRef.get(r)!);
-    const book = plan.books.find((b) => b.id === rs.bookId)!;
+    const book = [...plan.books, ...(input.library ?? [])].find((b) => b.id === rs.bookId)!;
     const folds: FoldOut[] = rs.folds
       .filter((f) => f.units.length)
       .map((f) => ({
@@ -151,6 +154,7 @@ export function emit(input: EmitInput, sectionFiles: SectionFile[]): EmitResult 
   fs.rmSync(path.join(outDir, 'sections'), { recursive: true, force: true });
   fs.rmSync(path.join(outDir, 'books'), { recursive: true, force: true });
   const planBooks = new Map(plan.books.map((b) => [b.id, b]));
+  const libraryIds = new Set((input.library ?? []).map((b) => b.id));
   const offpath = readOffpathTaglines();
   const books: Book[] = CANON.map((c, i) => {
     const p = parsed.get(c.id)!;
@@ -167,6 +171,7 @@ export function emit(input: EmitInput, sectionFiles: SectionFile[]): EmitResult 
       verses: p.verses.length,
     };
     if (pb?.setting) b.setting = pb.setting;
+    if (libraryIds.has(c.id)) b.library = true;
     if (!pb && offpath.status === 'draft') b.taglineDraft = true;
     return b;
   });
@@ -201,9 +206,10 @@ export function emit(input: EmitInput, sectionFiles: SectionFile[]): EmitResult 
     if (sf.highlight) e.highlight = true;
     if (sf.contentNote) e.contentNote = sf.contentNote;
     if (sf.webcDiffers) e.webcDiffers = true;
+    if (libraryIds.has(sf.bookId)) e.library = true;
     return e;
   });
-  for (const pb of plan.books) {
+  for (const pb of [...plan.books, ...(input.library ?? [])]) {
     const m = mappings.get(pb.id)!;
     writeJson(path.join(outDir, 'books', `${pb.id}.json`), {
       ...books.find((b) => b.id === pb.id),
@@ -240,7 +246,8 @@ export function emit(input: EmitInput, sectionFiles: SectionFile[]): EmitResult 
   });
   files++;
   const checksums: Record<string, string> = {};
-  for (const pb of plan.books) checksums[pb.id] = bookChecksum(mappings.get(pb.id)!.units);
+  for (const pb of [...plan.books, ...(input.library ?? [])])
+    checksums[pb.id] = bookChecksum(mappings.get(pb.id)!.units);
   writeJson(path.join(outDir, 'checksums.json'), checksums);
   files++;
 
