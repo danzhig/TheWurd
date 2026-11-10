@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import { expect, test } from '@playwright/test';
 
 /**
@@ -69,4 +71,17 @@ test.describe('performance', () => {
       expect(lcp).toBeLessThan(2500);
     });
   }
+
+  // PLAN §12: initial JavaScript on `/` (the scripts its HTML loads) under 150 KB gzipped.
+  test('initial JavaScript on / is under 150 KB gzipped', () => {
+    const html = fs.readFileSync('out/index.html', 'utf8');
+    const srcs = [
+      ...new Set(
+        [...html.matchAll(/<script(?![^>]*noModule)[^>]+src="([^"]+)"/g)].map((m) => m[1]!),
+      ),
+    ];
+    const kb = srcs.reduce((n, src) => n + gzipSync(fs.readFileSync(`out${src}`)).length, 0) / 1024;
+    console.log(`initial JS on /: ${kb.toFixed(1)} KB gzipped`);
+    expect(kb).toBeLessThan(150);
+  });
 });

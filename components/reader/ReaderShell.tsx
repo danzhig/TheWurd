@@ -9,6 +9,16 @@ import { animationsOn, paperCover, reveal, transition } from '@/lib/transition';
 import type { PageNav } from '@/lib/nav';
 import styles from './reader.module.css';
 
+/** One brief haptic tick where the device supports it (Android; iOS Safari has no vibration). */
+function tick() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  try {
+    navigator.vibrate?.(12);
+  } catch {
+    /* not allowed here */
+  }
+}
+
 export interface ReaderShellProps {
   id: string;
   kind: 'section' | 'bridge';
@@ -67,7 +77,14 @@ export function ReaderShell({
 
   // Progress: read state, completion when the end is in view, "Continue" position.
   useEffect(() => {
-    const sync = () => setDone(readProgress()[id] ?? null);
+    let was = readProgress()[id] ?? null;
+    const sync = () => {
+      const now = readProgress()[id] ?? null;
+      // A short tick on phones when a stop completes during this visit (off under reduced motion).
+      if (!was && now && stop) tick();
+      was = now;
+      setDone(now);
+    };
     sync();
     window.addEventListener(CHANGE_EVENT, sync);
     if (stop && readOnOpen) markRead(id);

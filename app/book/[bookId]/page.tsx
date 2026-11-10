@@ -62,6 +62,8 @@ export default async function BookPage({ params }: Params) {
       {/* The open book: its cover (which opens on arrival) over pages carrying the section map. */}
       <div className={styles.frame} data-book-frame={b.id} data-state="open">
         <BookCover bookId={b.id} name={b.name} tagline={b.tagline} />
+        {/* The cover's shadow on the pages while it swings (BookCover animates it). */}
+        <div className="book-cover-cast" data-cover-shadow="" aria-hidden="true" />
         <div className={styles.pages} data-pages data-theme="vellum">
           <header className={styles.header}>
             <h1 id="page-heading" tabIndex={-1} className={`book-name ${styles.name}`}>

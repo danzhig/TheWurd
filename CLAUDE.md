@@ -121,3 +121,10 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 
 - Verse numbers are `a.verse-link` to `#v-<c>-<v>` (WEBC numbering). `ReaderShell` turns a tap into "copy link" (clipboard, `replaceState` to the hash, a `role="status"` note); without JavaScript they are plain links. `[id^='v-']` has `scroll-margin-top` and a brief gold `:target` highlight.
 - `app/read/[sectionId]/opengraph-image.tsx` renders one 1200×630 PNG per section at build time with `next/og`, using `content/og/cormorant-garamond-500.ttf` (a static Latin instance made by `pnpm fonts`; the renderer cannot read WOFF2 or variable fonts). The files have no extension, so `vercel.json` and `scripts/serve-static.mjs` serve them as `image/png`. `metadataBase` in `app/layout.tsx` comes from Vercel's URL variables.
+
+## Polish and budget notes (P2.5)
+
+- The zoom library (`d3-zoom`, `d3-selection`, `d3-transition`) is in `components/vault/d3.ts`, imported dynamically after first paint. The Vault places the camera itself (`Cam` = `{x, y, k}`, `camRef`) before it arrives, then hands over; `data-vault="ready"` is set once it has. Until then flights jump. Initial JS on `/` is checked under 150 KB gzipped in the perf project.
+- Light rays (`.rays` in `vault.module.css`) sit in the scene at the spiral's centre and rotate once every 240 s; still under reduced motion.
+- The cover swings with `HINGE_EASE`; `.book-cover-shade` darkens the face mid-turn and `.book-cover-cast` (`[data-cover-shadow]`, on the book page) lifts its shadow off the pages. Opacity only.
+- A 12 ms `navigator.vibrate` tick when a stop completes during a visit (`ReaderShell`); none under reduced motion, and iOS Safari has no vibration.

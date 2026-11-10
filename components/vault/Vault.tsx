@@ -1,14 +1,7 @@
 'use client';
 
-import { select, type Selection } from 'd3-selection';
-import 'd3-transition';
-import {
-  zoom as d3zoom,
-  zoomIdentity,
-  zoomTransform,
-  type ZoomBehavior,
-  type ZoomTransform,
-} from 'd3-zoom';
+import type { Selection } from 'd3-selection';
+import type { ZoomBehavior, ZoomTransform } from 'd3-zoom';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -60,6 +53,9 @@ function useReaderKey(): string {
   );
 }
 
+/** A camera position: translate (x, y), then scale k. */
+type Cam = { x: number; y: number; k: number };
+
 const FLY_MS = 850;
 const K_MAX = 2.6; // medallion detail
 
@@ -70,7 +66,9 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
   const cloudRefs = useRef<(HTMLDivElement | null)[]>([]);
   const zoomRef = useRef<ZoomBehavior<HTMLDivElement, unknown> | null>(null);
   const selRef = useRef<Selection<HTMLDivElement, unknown, null, undefined> | null>(null);
-  const baseRef = useRef<ZoomTransform>(zoomIdentity);
+  const baseRef = useRef<Cam>({ x: 0, y: 0, k: 1 });
+  const camRef = useRef<Cam>({ x: 0, y: 0, k: 1 }); // where the camera is now
+  const d3Ref = useRef<typeof import('./d3') | null>(null);
   const pointer = useRef({ x: 0, y: 0 });
   const [kq, setKq] = useState(0); // zoom, quantised: labels update only when it crosses a step
   const [ready, setReady] = useState(false);
@@ -109,10 +107,11 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
   // Camera
   // ---------------------------------------------------------------------------------------------
 
-  const apply = useCallback((t: ZoomTransform) => {
+  const apply = useCallback((t: Cam) => {
     const scene = sceneRef.current;
     const view = viewRef.current;
     if (!scene || !view) return;
+    camRef.current = { x: t.x, y: t.y, k: t.k };
     scene.style.transform = `translate(${t.x}px, ${t.y}px) scale(${t.k})`;
     const cx = view.clientWidth / 2;
     const cy = view.clientHeight / 2;
@@ -127,64 +126,59 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
     setKq((prev) => (prev === q ? prev : q));
   }, []);
 
-  const fit = useCallback((): ZoomTransform => {
+  const fit = useCallback((): Cam => {
     const view = viewRef.current!;
     const w = view.clientWidth;
     const h = view.clientHeight;
     const k = Math.min(w, h) / (2 * layout.spiralRadius + 24);
-    return zoomIdentity.translate(w / 2, h / 2).scale(k);
+    return { x: w / 2, y: h / 2, k };
   }, [layout.spiralRadius]);
 
-  const target = useCallback((p: { x: number; y: number }, k: number): ZoomTransform => {
+  const target = useCallback((p: { x: number; y: number }, k: number): Cam => {
     const view = viewRef.current!;
-    return zoomIdentity
-      .translate(view.clientWidth / 2 - p.x * k, view.clientHeight / 2 - p.y * k)
-      .scale(k);
+    return { x: view.clientWidth / 2 - p.x * k, y: view.clientHeight / 2 - p.y * k, k };
   }, []);
 
+  /** A camera position as the zoom library's transform. */
+  const toD3 = (t: Cam): ZoomTransform =>
+    d3Ref.current!.zoomIdentity.translate(t.x, t.y).scale(t.k);
+
   /** Animate the camera; resolves when it lands (immediately under reduced motion). */
-  const flyTo = useCallback((t: ZoomTransform, ms = FLY_MS): Promise<void> => {
-    const sel = selRef.current;
-    const z = zoomRef.current;
-    if (!sel || !z) return Promise.resolve();
-    if (prefersReducedMotion() || ms === 0) {
-      z.transform(sel, t);
-      return Promise.resolve();
-    }
-    return new Promise((resolve) => {
-      sel
-        .transition()
-        .duration(ms)
-        .ease(easeCamera)
-        .call(z.transform, t)
-        .on('end interrupt', () => resolve());
-    });
-  }, []);
+  const flyTo = useCallback(
+    (cam: Cam, ms = FLY_MS): Promise<void> => {
+      const sel = selRef.current;
+      const z = zoomRef.current;
+      if (!sel || !z) {
+        apply(cam); // the zoom library is still loading: jump
+        return Promise.resolve();
+      }
+      const t = toD3(cam);
+      if (prefersReducedMotion() || ms === 0) {
+        z.transform(sel, t);
+        return Promise.resolve();
+      }
+      return new Promise((resolve) => {
+        sel
+          .transition()
+          .duration(ms)
+          .ease(easeCamera)
+          .call(z.transform, t)
+          .on('end interrupt', () => resolve());
+      });
+    },
+    [apply],
+  );
 
   useLayoutEffect(() => {
     const view = viewRef.current;
     if (!view) return;
-    const sel = select(view);
     const minK = () => Math.min(view.clientWidth, view.clientHeight) / (2 * layout.radius);
-    const z = d3zoom<HTMLDivElement, unknown>()
-      .scaleExtent([minK(), K_MAX])
-      .filter((e: Event) => !(e.type === 'dblclick') && !(e as MouseEvent).button)
-      .on('start', () => sceneRef.current?.classList.add(styles.moving!))
-      .on('zoom', (e: { transform: ZoomTransform }) => apply(e.transform))
-      .on('end', (e: { transform: ZoomTransform }) => {
-        sceneRef.current?.classList.remove(styles.moving!);
-        camera.last = { x: e.transform.x, y: e.transform.y, k: e.transform.k };
-      });
-    zoomRef.current = z;
-    selRef.current = sel;
-    sel.call(z);
     baseRef.current = fit();
 
-    // Start where the reader last left the ceiling (or fitted to the screen).
-    const resume = camera.last
-      ? zoomIdentity.translate(camera.last.x, camera.last.y).scale(camera.last.k)
-      : baseRef.current;
-    z.transform(sel, resume);
+    // Start where the reader last left the ceiling (or fitted to the screen), placed at once,
+    // before the zoom library arrives, so the first paint is already right.
+    const resume = camera.last ?? baseRef.current;
+    apply(resume);
 
     // Coming back from a book: its closed book shrinks back into this medallion (lib/transition).
     transition.medallionRect = (bookId) => {
@@ -200,20 +194,46 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
       const b = byId.get(back);
       if (b) void bookOut(back, b.name, b.tagline, null);
     }
-    setReady(true);
-    document.documentElement.dataset.vault = 'ready';
+
+    // Then the zoom library takes over the camera: pinch, wheel, drag and flights.
+    let alive = true;
+    let sel: Selection<HTMLDivElement, unknown, null, undefined> | null = null;
+    let z: ZoomBehavior<HTMLDivElement, unknown> | null = null;
+    void import('./d3').then((d3) => {
+      if (!alive) return;
+      d3Ref.current = d3;
+      sel = d3.select(view);
+      z = d3
+        .zoom<HTMLDivElement, unknown>()
+        .scaleExtent([minK(), K_MAX])
+        .filter((e: Event) => !(e.type === 'dblclick') && !(e as MouseEvent).button)
+        .on('start', () => sceneRef.current?.classList.add(styles.moving!))
+        .on('zoom', (e: { transform: ZoomTransform }) => apply(e.transform))
+        .on('end', (e: { transform: ZoomTransform }) => {
+          sceneRef.current?.classList.remove(styles.moving!);
+          camera.last = { x: e.transform.x, y: e.transform.y, k: e.transform.k };
+        });
+      zoomRef.current = z;
+      selRef.current = sel;
+      sel.call(z);
+      z.transform(sel, toD3(camRef.current));
+      setReady(true);
+      document.documentElement.dataset.vault = 'ready';
+    });
 
     const onResize = () => {
       baseRef.current = fit();
-      z.scaleExtent([minK(), K_MAX]);
+      z?.scaleExtent([minK(), K_MAX]);
     };
     window.addEventListener('resize', onResize);
     return () => {
+      alive = false;
       window.removeEventListener('resize', onResize);
-      sel.on('.zoom', null);
+      sel?.on('.zoom', null);
+      zoomRef.current = null;
+      selRef.current = null;
       transition.medallionRect = null;
     };
-    // Layout changes (Job moved) re-run this so the camera fits the new spiral.
   }, [apply, byId, fit, flyTo, layout.radius, placed, target]);
 
   // Parallax against the pointer (off under reduced motion).
@@ -228,7 +248,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
       };
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        apply(zoomTransform(view));
+        apply(camRef.current);
       });
     };
     view.addEventListener('pointermove', onMove);
@@ -278,7 +298,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
       const el = sceneRef.current?.querySelector<HTMLElement>(`a[data-book="${id}"]`);
       const b = byId.get(id);
       if (!el || !b) return router.push(`/book/${id}/`);
-      const now = zoomTransform(view);
+      const now = camRef.current;
       const before = { x: now.x, y: now.y, k: now.k };
       setLifted(id);
       setDimmed(true);
@@ -308,7 +328,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
     const view = viewRef.current;
     if (!sel || !z || !view) return;
     const [lo, hi] = z.scaleExtent();
-    const k = Math.min(hi, Math.max(lo, (pendingK.current ?? zoomTransform(view).k) * f));
+    const k = Math.min(hi, Math.max(lo, (pendingK.current ?? camRef.current.k) * f));
     pendingK.current = k;
     sel
       .transition()
@@ -343,8 +363,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
     if (!id || mode !== 'map') return;
     const p = placed.find((m) => m.id === id) ?? layout.bridges.find((b) => b.id === id);
     const view = viewRef.current;
-    if (p && view)
-      void flyTo(target(p, Math.max(zoomTransform(view).k, baseRef.current.k * 1.6)), 450);
+    if (p && view) void flyTo(target(p, Math.max(camRef.current.k, baseRef.current.k * 1.6)), 450);
   };
 
   // ---------------------------------------------------------------------------------------------
@@ -431,6 +450,8 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
           />
         ))}
         <div ref={sceneRef} className={styles.scene} data-testid="vault-scene">
+          {/* Light falling through the oculus, turning very slowly (still under reduced motion). */}
+          <div className={styles.rays} aria-hidden="true" />
           <svg
             className={styles.threadSvg}
             width={layout.radius * 2}

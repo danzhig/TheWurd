@@ -89,6 +89,36 @@
   color: #b9ab97;
 }
 
+/* Shading on the turning cover (animated by BookCover; invisible at rest). */
+.book-cover-shade {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.75), rgb(0 0 0 / 0.35));
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The shadow a lifting cover casts on the pages, strongest at the spine. */
+.book-cover-cast {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, rgb(20 12 6 / 0.45), rgb(20 12 6 / 0) 70%);
+}
+
+@media (max-width: 899px) {
+  .book-cover-cast {
+    left: 0;
+    width: 100%;
+  }
+}
+
 /* The inside of the cover: paper, shaded toward the spine. Once open it lies on the left page. */
 .book-cover-back {
   transform: rotateY(180deg);

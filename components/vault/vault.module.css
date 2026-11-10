@@ -395,3 +395,39 @@
     will-change: auto;
   }
 }
+
+/* Light rays from the oculus (P2.5): soft beams centred on the spiral's centre, fading outward,
+   turning once every four minutes. Only transform animates. */
+.rays {
+  position: absolute;
+  left: -320px;
+  top: -320px;
+  width: 640px;
+  height: 640px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--gold-light) 34%, transparent) 0deg 3deg,
+    transparent 7deg 21deg,
+    color-mix(in srgb, var(--gold-light) 20%, transparent) 24deg 26deg,
+    transparent 30deg 40deg
+  );
+  -webkit-mask: radial-gradient(circle, #000 0%, rgb(0 0 0 / 0.55) 28%, transparent 70%);
+  mask: radial-gradient(circle, #000 0%, rgb(0 0 0 / 0.55) 28%, transparent 70%);
+  opacity: 0.32;
+  will-change: transform;
+  animation: rays-drift 240s linear infinite;
+}
+
+@keyframes rays-drift {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rays {
+    animation: none;
+  }
+}
