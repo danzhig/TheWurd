@@ -183,7 +183,13 @@ async function main() {
     fs.mkdirSync(DOCS_DIR, { recursive: true });
     fs.writeFileSync(
       path.join(DOCS_DIR, 'versification-log.md'),
-      versificationLog(plan, mappings, resolution, sectionFiles),
+      // Library books (Phase 5) are logged too: every renumbering, path or library.
+      versificationLog(
+        { ...plan, books: [...plan.books, ...library] },
+        mappings,
+        resolution,
+        sectionFiles,
+      ),
     );
     fs.writeFileSync(
       path.join(DOCS_DIR, 'esther-daniel-map.md'),
