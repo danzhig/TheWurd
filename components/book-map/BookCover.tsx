@@ -7,6 +7,7 @@ import { EASE, handoff, transition } from '@/lib/transition';
 import styles from './book-cover.module.css';
 
 export const OPEN_MS = 900;
+const HINGE_EASE = 'cubic-bezier(0.55, 0.05, 0.25, 1)';
 
 /** The open book page's cover, so "All books" can close it before leaving. */
 export const bookCover: { close: (() => Promise<DOMRect | null>) | null } = { close: null };
@@ -60,6 +61,17 @@ export function BookCover({
       shell.style.transform = `translateX(${g.shift}px)`;
       frame.dataset.state = 'closed';
     };
+    const shade = shell.querySelector<HTMLElement>('.book-cover-shade');
+    const cast = frame.querySelector<HTMLElement>('[data-cover-shadow]');
+    /** Light on the moving cover: opacity only, so it stays on the compositor. */
+    const shading = (dir: 'open' | 'close'): Animation[] => {
+      const out: Animation[] = [];
+      const face = [{ opacity: 0 }, { opacity: 0.55, offset: 0.5 }, { opacity: 0 }];
+      if (shade) out.push(shade.animate(face, { ...timing, easing: HINGE_EASE }));
+      const lift = [{ opacity: 0.7 }, { opacity: 0 }];
+      if (cast) out.push(cast.animate(dir === 'open' ? lift : [...lift].reverse(), timing));
+      return out;
+    };
     const open = async () => {
       frame.dataset.state = 'opening';
       const anims = [
@@ -67,8 +79,14 @@ export function BookCover({
           [{ transform: `translateX(${g.shift}px)` }, { transform: 'translateX(0)' }],
           timing,
         ),
-        hinge.animate([{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(-180deg)' }], timing),
+        // A board swings with weight: slow to start, quick through the middle, settling flat.
+        hinge.animate([{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(-180deg)' }], {
+          ...timing,
+          easing: HINGE_EASE,
+        }),
         pages.animate([{ opacity: 0 }, { opacity: 0, offset: 0.3 }, { opacity: 1 }], timing),
+        // The face darkens as it turns away from the light, and lifts its shadow off the pages.
+        ...shading('open'),
       ];
       // The cover fades as it goes: on a phone it swings off the single page; on a spread its inside
       // would otherwise lie over the left page's content.
@@ -91,7 +109,11 @@ export function BookCover({
       frame.dataset.state = 'closing';
       const anims = [
         pages.animate([{ opacity: 1 }, { opacity: 0, offset: 0.7 }, { opacity: 0 }], timing),
-        hinge.animate([{ transform: 'rotateY(-180deg)' }, { transform: 'rotateY(0deg)' }], timing),
+        hinge.animate([{ transform: 'rotateY(-180deg)' }, { transform: 'rotateY(0deg)' }], {
+          ...timing,
+          easing: HINGE_EASE,
+        }),
+        ...shading('close'),
         shell.animate(
           [{ transform: 'translateX(0)' }, { transform: `translateX(${g.shift}px)` }],
           timing,
@@ -145,6 +167,7 @@ export function BookCover({
           <div className="book-cover-title">{name}</div>
           <div className="book-cover-rule" />
           <div className="book-cover-tagline">{tagline}</div>
+          <div className="book-cover-shade" />
         </div>
         <div className="book-cover-back" />
       </div>
