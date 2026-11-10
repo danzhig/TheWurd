@@ -31,26 +31,30 @@ export default function SourcesPage() {
       {layers.map((layer) => (
         <section key={layer} aria-labelledby={`layer-${slug(layer)}`}>
           <h2 id={`layer-${slug(layer)}`}>{layer}</h2>
-          {m.sources
-            .filter((s) => s.layer === layer)
-            .map((s) => (
-              <article key={s.id} className={styles.source} data-source={s.id}>
-                <h3>
-                  <a href={s.homepage}>{s.name}</a>
-                </h3>
-                <p>{s.attribution}</p>
-                <dl className={styles.facts}>
-                  <dt>License</dt>
-                  <dd>
-                    <a href={s.licenseUrl}>{s.license}</a>
-                  </dd>
-                  <dt>Used for</dt>
-                  <dd>{s.usedFor}</dd>
-                  <dt>Version</dt>
-                  <dd>{s.version}</dd>
-                </dl>
-              </article>
-            ))}
+          {credits(m.sources.filter((s) => s.layer === layer)).map((c) => (
+            <article key={c.ids[0]} className={styles.source} data-source={c.ids.join(' ')}>
+              <h3>
+                <a href={c.homepage}>{c.name}</a>
+              </h3>
+              <p>{c.attribution}</p>
+              <dl className={styles.facts}>
+                <dt>License</dt>
+                <dd>
+                  <a href={c.licenseUrl}>{c.license}</a>
+                </dd>
+                <dt>Used for</dt>
+                <dd>{c.usedFor}</dd>
+                <dt>Version</dt>
+                <dd>{c.version}</dd>
+                {c.files.length > 1 ? (
+                  <>
+                    <dt>Files</dt>
+                    <dd>{c.files.join(', ')}</dd>
+                  </>
+                ) : null}
+              </dl>
+            </article>
+          ))}
         </section>
       ))}
 
@@ -68,6 +72,41 @@ export default function SourcesPage() {
       </p>
     </main>
   );
+}
+
+type Source = ReturnType<typeof getManifest>['sources'][number];
+
+/**
+ * One credit per source: files pinned separately from the same work (a font's styles, the
+ * Septuagint's books) share an attribution and license, and are listed together.
+ */
+function credits(list: Source[]) {
+  const groups = new Map<string, Source[]>();
+  for (const s of list) {
+    const k = `${s.attribution}|${s.license}|${s.usedFor}`;
+    groups.set(k, [...(groups.get(k) ?? []), s]);
+  }
+  return [...groups.values()].map((g) => ({
+    ...g[0]!,
+    name: g.length > 1 ? commonName(g.map((s) => s.name)) : g[0]!.name,
+    ids: g.map((s) => s.id),
+    files: g.map((s) => s.name),
+  }));
+}
+
+/**
+ * A title for several files of one work: the words their names share, plus a shared description in
+ * brackets ("STEPBible TAHOT Gen-Deu (…)", "… Jos-Est (…)" → "STEPBible TAHOT (…)").
+ */
+function commonName(names: string[]): string {
+  const base = names.map((n) => n.replace(/\s*\([^)]*\)\s*$/, '').replace(/:.*$/, ''));
+  const words = base.map((n) => n.split(' '));
+  const shared: string[] = [];
+  for (let i = 0; words.every((w) => w[i] !== undefined && w[i] === words[0]![i]); i++)
+    shared.push(words[0]![i]!);
+  const brackets = names.map((n) => /\(([^)]*)\)\s*$/.exec(n)?.[1]);
+  const tail = brackets[0] && brackets.every((x) => x === brackets[0]) ? ` (${brackets[0]})` : '';
+  return (shared.join(' ') || base[0]!) + tail;
 }
 
 function slug(s: string): string {

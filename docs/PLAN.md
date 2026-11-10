@@ -30,17 +30,18 @@ This is the complete spec for **Scripture as Story** (working title): a static, 
 | # | Decision | Reason |
 | --- | --- | --- |
 | D1 | Base English text: WEBC ([eBible.org/eng-web-c](https://ebible.org/eng-web-c/)) | Public domain; 73-book Catholic canon in Catholic order; uses "LORD" for the divine name per Catholic practice ([WEB FAQ](https://ebible.org/web/webfaq.htm)). |
-| D2 | Second English text: Douay-Rheims (Challoner), as a reader toggle and a flashcard source | Public domain; the historic Catholic English Bible, translated from the Latin Vulgate. |
+| D2 | Second English text: Douay-Rheims (Challoner), as a flashcard source (the reader toggle was dropped by the owner on 2026-11-10) | Public domain; the historic Catholic English Bible, translated from the Latin Vulgate. |
 | D3 | Esther and Daniel follow WEBC's Greek (Septuagint) form | WEBC uses only the longer Greek versions of both books. The pipeline must map section 6's Esther and Daniel sections onto WEBC's actual chapter and verse structure, verified by content anchors. |
 | D4 | Plan references use standard Catholic versification (Hebrew-based numbering for protocanonical books, as in NABRE) | Whole-chapter ranges were chosen wherever English and Hebrew numbering diverge. The pipeline maps every reference to WEBC with the TVTMS dataset and checks each partial-range boundary against its anchor. |
 | D5 | The map shows all 73 books; the plan uses 23, plus one optional chapter of John | Skipped books stay visible but dimmed, giving orientation and room for later phases. |
 | D6 | Full text of every plan book is built in; skipped ranges render collapsed and expandable | Nothing is hidden, only folded. Books outside the plan carry no text in Phase 1. |
 | D7 | Static export on Vercel; no database; reading progress in `localStorage` | Matches the brief; bookmarks and highlights come later (section 17). |
-| D8 | Job sits after Genesis by default; a setting moves it elsewhere in the sequence | Job's setting is undated and patriarchal. |
+| D8 | Job sits after Genesis (the setting to move it was removed by the owner on 2026-11-10) | Job's setting is undated and patriarchal. |
 | D9 | Lists inside read ranges are marked **skim** (shown collapsed, one line of summary) | Applies the plan's own rule to Genesis 36 and 46:8–27, Exodus 6:14–27, Numbers 15, 18–19, the roster passages of 2 Samuel, 1 Kings, Ezra and Nehemiah. Reverting any one is a one-word change in the JSON. |
 | D10 | Verse numbers printed beside the text are WEBC's; the page header shows the plan's (Catholic/NABRE) reference, with a short note where the two differ | The numbers must match the text actually shown. Approved by David, Nov 6, 2026. |
+| D11 | Phase 3 may use two CC BY-SA 4.0 sources: Swete's Septuagint (First1KGreek transcription, with Morpheus lemmas from QuantForgeSoftware/lxx) and Lewis & Short (Perseus). Approved by the owner on 2026-11-10. | No openly licensed tagged Septuagint or digital Lewis & Short exists under CC BY or public domain. The Greek and Latin word data derived from them is published under CC BY-SA 4.0 and credited on `/sources`. |
 
-**Status values used throughout:** `read` (main path), `skim` (on the path, collapsed with a summary), `optional` (offered as a detour, off by default), `skip` (folded away, expandable), plus a `highlight` flag for passages the reader should slow down for.
+**Status values used throughout:** `read` (main path), `skim` (on the path, collapsed with a summary), `optional` (a detour: always on the maps, offered beside Next, never a stop for Next), `skip` (folded away, expandable), plus a `highlight` flag for passages the reader should slow down for.
 
 ## 3. Source texts and data
 
@@ -49,13 +50,13 @@ This is the complete spec for **Scripture as Story** (working title): a static, 
 | Layer | Source | License | Used for | Phase |
 | --- | --- | --- | --- | --- |
 | English (base) | [World English Bible Catholic Edition](https://ebible.org/eng-web-c/), USFM download | Public domain | All reader text | 1 |
-| English (historic Catholic) | Douay-Rheims, Challoner revision (e.g. CrossWire SWORD module `DRC`) | Public domain | Reader toggle; flashcards | 2–3 |
-| English (comparison) | King James Version; Brenton's English Septuagint | Public domain in the US (KJV is under Crown copyright in the UK) | Flashcards only | 3 |
+| English (historic Catholic) | Douay-Rheims, Challoner revision (eBible.org USFM `engDRA`) | Public domain | Reader toggle; flashcards | 2–3 |
+| English (comparison) | King James Version; Brenton's English Septuagint (eBible.org USFM: `eng-kjv2006`, `eng-Brenton`) | Public domain in the US (KJV is under Crown copyright in the UK) | Flashcards only | 3 |
 | Hebrew and Aramaic | [STEPBible TAHOT](https://github.com/STEPBible/STEPBible-Data) (Leningrad Codex, word-tagged with extended Strong's numbers and morphology) | CC BY 4.0 | Word layer for protocanonical OT books | 3 |
 | Greek New Testament | STEPBible TAGNT (word-tagged, notes which editions contain each word) | CC BY 4.0 | Word layer for Luke, Acts, John 11 | 3 |
-| Greek Old Testament | Swete's Cambridge Septuagint text, with Open Scriptures LXX lemma data; or STEPBible's tagged Greek OT if released | Public domain; CC BY 4.0 | Septuagint card; the only original-language layer for Tobit, Judith, 1 Maccabees, and the Greek parts of Esther and Daniel | 3 |
-| Latin | Clementine Vulgate (1592), from the Clementine Vulgate Project | Public domain | Latin card. Do **not** use the Stuttgart Vulgate or Nova Vulgata: both are copyrighted. | 3 |
-| Lexicons | STEPBible brief lexicons (TBESH, TBESG) and full BDB and LSJ editions; Lewis & Short (Latin) | CC BY 4.0; public domain (check the license of whichever digital copy of Lewis & Short is used) | Glosses and semantic ranges on flashcards | 3 |
+| Greek Old Testament | Swete's *The Old Testament in Greek*, First1KGreek TEI transcription, with Morpheus lemmas from [QuantForgeSoftware/lxx](https://github.com/QuantForgeSoftware/lxx) where a form matches (D11) | CC BY-SA 4.0 | Septuagint card; the only original-language layer for Tobit, Judith, 1 Maccabees, and the Greek parts of Esther and Daniel. The analysed files drop words after marginal notes, so the text is read from the transcription; its OCR slips mean every Greek form is checked against the printed Swete. | 3 |
+| Latin | Clementine Vulgate (1592/1598), eBible.org USFM `latVUC` (its Glossa Ordinaria notes are dropped) | Public domain | Latin card. Do **not** use the Stuttgart Vulgate or Nova Vulgata: both are copyrighted. | 3 |
+| Lexicons | STEPBible brief lexicons (TBESH, TBESG) and the formatted full LSJ (TFLSJ); Lewis & Short from the Perseus Digital Library (D11) | CC BY 4.0; CC BY-SA 4.0 (Lewis & Short) | Glosses and semantic ranges on flashcards; Latin senses cited by Perseus sense id | 3 |
 | Versification | STEPBible TVTMS (versification traditions across Hebrew, Greek, Latin and English) | CC BY 4.0 | Mapping plan references onto WEBC; aligning verses across languages | 1 and 3 |
 | Proper names | STEPBible TIPNR (every person and place, with all references) | CC BY 4.0 | Name pop-ups (later) | 4+ |
 | Cross-references | OpenBible.info cross-references (derived from the Treasury of Scripture Knowledge) | CC BY 4.0 | Candidate pool for connections | 4 |
@@ -751,6 +752,14 @@ Two themes: **Vault** (dark; default for the maps) and **Vellum** (light; defaul
 
 **Phase 3 marks the words whose meaning is genuinely contested and lets the reader swipe through how each language and tradition rendered them; every original-language form comes from tagged data, and every interpretive claim carries a source.** Target: 0–3 terms per section, roughly 300–500 in total, curated rather than exhaustive.
 
+**Milestones** (one PR each)
+
+| # | Milestone | Done when |
+| --- | --- | --- |
+| P3.1 | Data: every Phase 3 source pinned (`pnpm terms:fetch`, pipeline `terms`), parsed and credited; `pnpm terms:lookup <ref>` prints every layer for a verse | Parser tests pass on excerpts of each source; every source appears on `/sources` |
+| P3.2 | The Depth toggle and the card deck, built with the Genesis seed terms (drafts, shown on preview deployments and `/review` only) | The deck works by touch, keys and dots on both viewports; drafts never appear in production |
+| P3.3+ | Book by book, in path order: candidates, approval, drafting, verification | Each book's `verified` terms pass the checks in section 18 |
+
 **In the reader**
 
 - A "Depth" toggle in the top bar. When on, key terms carry a faint dotted gold underline.
@@ -788,7 +797,7 @@ interface KeyTerm {
 1. **Propose.** The agent lists candidates per section with the reason each qualifies: major translations diverge; a textual variant changes the sense; the Vulgate rendering shaped doctrine or art; a word carries a theme across the path. Output: `docs/terms/<bookId>-candidates.md`.
 2. **Approve.** David marks which candidates to keep.
 3. **Draft.** Cards are assembled from data: tokens from TAHOT or TAGNT, aligned LXX and Vulgate verses via TVTMS, glosses from the lexicons. Interpretive text is drafted with citations.
-4. **Verify.** The checks in section 18 run; anything failing stays `draft` and hidden.
+4. **Verify.** The checks in section 18 run; anything failing stays `draft` and hidden. Septuagint forms are also checked by eye against the printed Swete (the transcription has OCR slips).
 5. **Publish.** `verified` terms appear in the reader.
 
 **Seed candidates** (a starting list only; every detail below must be confirmed against the data in step 3)

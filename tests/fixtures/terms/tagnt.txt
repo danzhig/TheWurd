@@ -1,0 +1,18 @@
+Word & Type	Greek	English translation	dStrongs = Grammar	Dictionary form =  Gloss	editions	Meaning variants	Spelling variants	Spanish translation	Sub-meaning	Conjoin word	sStrong+Instance	Alt Strongs				
+Luk.1.28#01=NKO	Καὶ (Kai)	And	G2532=CONJ	καί=and	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			Y	and	#01	G2532					
+Luk.1.28#02=NKO	εἰσελθὼν (eiselthōn)	having come	G1525=V-2AAP-NSM	εἰσέρχομαι=to enter	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			habiendo venido hacia dentro	to enter	#02	G1525					
+Luk.1.28#03=ko	ὁ (ho)	<the>	G3588=T-NSM	ὁ=the/this/who	Treg+TR+Byz			el	the	#03»04:G0032	G3588_a					
+Luk.1.28#04=KO	ἄγγελος (angelos)	angel	G0032G=N-NSM	ἄγγελος=angel	Treg+TR+Byz			mensajero	: angel»angel|2_angel	#04	G0032		^ ἄγγελος  (<i>angelos</i>) 'angel' is only in traditional manuscripts (Treg+TR+Byz)			
+Luk.1.28#05=NKO	πρὸς (pros)	to	G4314=PREP	πρός=to/with	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			hacia	to	#05	G4314					
+Luk.1.28#06=NKO	αὐτὴν (autēn)	her	G0846=P-ASF	αὐτός=he/she/it/self	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			a ella	her	#06«05:G4314	G0846	G3778				
+Luk.1.28#07=NKO	εἶπεν· (eipen)	he said;	G2036=V-2AAI-3S	ἔπω, ἐρῶ, εἶπον=to say	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			dijo	to say	#07	G2036					
+Luk.1.28#08=NKO	χαῖρε, (chaire)	Greetings!	G5463=V-PAM-2S	χαίρω=to rejoice	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			Estés regocijando	to rejoice	#08	G5463					
+Luk.1.28#09=NKO	κεχαριτωμένη· (kecharitōmenē)	you graciously favored;	G5487=V-RPP-VSF	χαριτόω=to favor	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			has sido muy favorecida	favored	#09	G5487					
+Luk.1.28#10=NKO	ὁ (ho)	The	G3588=T-NSM	ὁ=the/this/who	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			el	the	#10»11:G2962	G3588_B					
+Luk.1.28#11=NKO	κύριος (kurios)	Lord [is]	G2962G=N-NSM-T	κύριος=lord	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			Señor	: God»lord|1_God	#11	G2962					
+Luk.1.28#12=NKO	μετὰ (meta)	with	G3326=PREP	μετά=with/after	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			con	with	#12	G3326					
+Luk.1.28#13=NKO	σοῦ (sou)	you.	G4771=P-2GS	σύ=you	NA28+NA27+Tyn+SBL+WH+Treg+TR+Byz			de ti	of you	#13«12:G3326	G4771_A	G4675				
+Luk.1.28#14=KO	εὐλογημένη (eulogēmenē)	blessed [are]	G2127=V-RPP-NSF	εὐλογέω=to praise/bless	Treg+TR+Byz			ha sido bendecida	to bless	#14	G2127		^ 			
+Luk.1.28#15=KO	σὺ (su)	you yourself	G4771=P-2NS	σύ=you	Treg+TR+Byz			tú	you	#15«14:G2127	G4771_b		^ 			
+Luk.1.28#16=KO	ἐν (en)	among	G1722=PREP	ἐν=in/on/among	Treg+TR+Byz			en	in	#16	G1722		^ 			
+Luk.1.28#17=KO	γυναιξίν. (gunaixin)	women.	G1135G=N-DPF	γυνή=woman	Treg+TR+Byz			mujeres	: woman»woman|1_woman	#17	G1135		^ εὐλογημένη   σὺ    ἐν    γυναιξίν.   (<i>eulogēmenē su en gunaixin</i>) 'blessed [are] you yourself among women.' is only in traditional manuscripts (Treg+TR+Byz)			

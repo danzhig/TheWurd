@@ -36,9 +36,10 @@ test.describe('the path and sources pages', () => {
   test('every pinned source appears on /sources with its license', async ({ page }) => {
     await page.goto('/sources/');
     for (const s of pinned) {
-      const card = page.locator(`[data-source="${s.id}"]`);
+      // Files from one work share a credit: data-source lists every id it covers.
+      const card = page.locator(`[data-source~="${s.id}"]`);
       await expect(card, s.id).toHaveCount(1);
-      await expect(card.locator('dd a'), s.id).toHaveAttribute('href', /^https?:\/\//);
+      await expect(card.locator('dd a').first(), s.id).toHaveAttribute('href', /^https?:\/\//);
     }
   });
 
