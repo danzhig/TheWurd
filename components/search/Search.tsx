@@ -26,14 +26,17 @@ interface Row extends ResultData {
 
 const PAGE = 20;
 let pagefind: Promise<Pagefind> | null = null;
+let attempt = 0;
 function loadPagefind(): Promise<Pagefind> {
-  // Built by `pagefind` after `next build` (see package.json); loaded only on this page.
-  pagefind ??= import(
-    /* webpackIgnore: true */ /* turbopackIgnore: true */ '/pagefind/pagefind.js' as string
-  ).then(async (pf: Pagefind) => {
-    await pf.options({ excerptLength: 22 });
-    return pf;
-  });
+  // Built by `pagefind` after `next build` (see package.json); loaded only on this page. A failed
+  // module import is remembered by the browser, so a retry asks for it under a fresh address.
+  const url = attempt ? `/pagefind/pagefind.js?retry=${attempt}` : '/pagefind/pagefind.js';
+  pagefind ??= import(/* webpackIgnore: true */ /* turbopackIgnore: true */ url).then(
+    async (pf: Pagefind) => {
+      await pf.options({ excerptLength: 22 });
+      return pf;
+    },
+  );
   return pagefind;
 }
 
@@ -104,8 +107,12 @@ export function Search() {
           all.current = res.results;
           setTotal(res.results.length);
           await loadMore(q, 0, token);
-        } catch {
+        } catch (err) {
+          // Keep the cause visible in the console; the page says what the reader can do.
+          console.error('Search failed to load', err);
           if (token === run.current) setTotal(-1);
+          pagefind = null; // let the next attempt load it afresh
+          attempt++;
         }
       },
       q ? 180 : 0,
@@ -140,13 +147,25 @@ export function Search() {
       </label>
       <p className={styles.count} role="status" aria-live="polite" data-testid="search-count">
         {total === -1
-          ? 'Search is unavailable offline.'
+          ? typeof navigator !== 'undefined' && !navigator.onLine
+            ? 'You are offline. Search needs a connection.'
+            : 'Search could not load. Please try again.'
           : total === null
             ? ''
             : total === 0
               ? 'No sections match.'
               : `${total} ${total === 1 ? 'section' : 'sections'}, in path order`}
       </p>
+      {total === -1 ? (
+        <button
+          type="button"
+          className={styles.more}
+          onClick={() => schedule(input.current?.value ?? '')}
+          data-testid="search-retry"
+        >
+          Try again
+        </button>
+      ) : null}
       <ol className={styles.results} data-testid="search-results">
         {rows.map((r) => (
           <li key={r.id}>

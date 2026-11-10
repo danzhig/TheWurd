@@ -50,4 +50,21 @@ test.describe('search', () => {
       serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).join(' | ')}`),
     ).toEqual([]);
   });
+
+  test('if the index cannot load, it says so (not "offline") and can try again', async ({
+    page,
+  }) => {
+    let fail = true;
+    await page.route('**/pagefind/pagefind.js', (route) =>
+      fail ? route.abort() : route.continue(),
+    );
+    await page.goto('/search/');
+    await page.getByTestId('search-input').fill('Ruth');
+    await expect(page.getByTestId('search-count')).toHaveText(
+      'Search could not load. Please try again.',
+    );
+    fail = false;
+    await page.getByTestId('search-retry').click();
+    await expect(page.locator('[data-result]').first()).toBeVisible();
+  });
 });
