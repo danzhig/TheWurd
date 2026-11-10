@@ -10,7 +10,10 @@ describe('reading path', () => {
   it('places every section and bridge exactly once', () => {
     const seq = buildSequence(manifest);
     expect(new Set(seq.map((x) => x.id)).size).toBe(seq.length);
-    expect(seq.filter((x) => x.kind === 'section')).toHaveLength(manifest.sections.length);
+    // Library sections (Phase 5) are never on the path.
+    const onPath = manifest.sections.filter((s) => !(s as { library?: boolean }).library);
+    expect(seq.filter((x) => x.kind === 'section')).toHaveLength(onPath.length);
+    expect(seq.some((x) => x.id.startsWith('lev-'))).toBe(false);
     expect(seq.filter((x) => x.kind === 'bridge')).toHaveLength(4);
   });
 

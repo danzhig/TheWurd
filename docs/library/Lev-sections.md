@@ -1,6 +1,6 @@
 # Leviticus: proposed library sections
 
-**Status: proposed, awaiting the owner's approval.** Group: Law (the only Law book off the path).
+**Status: approved by the owner on 2026-11-10** (fingerprint `a5ecd637db3c6316`). Group: Law (the only Law book off the path).
 
 Titles are written for this site (they describe each part; they never quote scripture). Ranges use the plan's Hebrew-based numbering; the WEBC column shows where each section falls in the text the site prints. Every verse of the book is covered exactly once (checked by a trial build), and reading times use the site's 230 words per minute.
 
@@ -38,6 +38,6 @@ Titles are written for this site (they describe each part; they never quote scri
 
 Each chapter's subject was checked against the WEBC text by counting its key words (for example _atonement_ in 16, _jubilee_ and _redeem_ in 25, _redeem_ and _tithe_ in 27); see `Lev-outline.md` for the chapter outline and the verses the plan numbers differently.
 
-## To approve
+## Approval
 
-Reply with approval (or changes). On approval these sections go into `content/plan/library.json` with fingerprint `a5ecd637db3c6316`, and Leviticus becomes readable in the library.
+Approved on 2026-11-10; the sections are in `content/plan/library.json` with fingerprint `a5ecd637db3c6316`. Any change to them stops the build until it is approved again.
