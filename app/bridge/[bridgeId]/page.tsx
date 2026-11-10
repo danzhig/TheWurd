@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ReaderShell } from '@/components/reader/ReaderShell';
 import styles from '@/components/reader/reader.module.css';
 import { getManifest } from '@/lib/data';
-import { defaultNav } from '@/lib/nav';
+import { defaultNav, pathPosition } from '@/lib/nav';
 
 export const dynamicParams = false;
 
@@ -33,7 +33,12 @@ export default async function BridgePage({ params }: Params) {
       <main className={`vault-sky ${styles.bridge}`} data-bridge={b.id}>
         <span className="cloud-layer cloud-far" />
         <span className="cloud-layer cloud-mid" />
-        <div className={styles.bridgeCard}>
+        <div
+          className={styles.bridgeCard}
+          data-pagefind-body=""
+          data-pagefind-sort={`order:${pathPosition(b.id)}`}
+          data-pagefind-meta="book:Bridge, status:bridge"
+        >
           <p className="label">Between the books</p>
           <h1 id="page-heading" tabIndex={-1} className="display">
             {b.title}

@@ -40,7 +40,9 @@ http
       return;
     }
     const ext = path.extname(file);
-    const headers = { 'content-type': types[ext] ?? 'application/octet-stream' };
+    // Link-preview images are written without an extension (see vercel.json).
+    const type = path.basename(file) === 'opengraph-image' ? 'image/png' : types[ext];
+    const headers = { 'content-type': type ?? 'application/octet-stream' };
     // Compress text like the production host does, so local performance checks are realistic.
     const text = ['.html', '.js', '.css', '.json', '.svg', '.txt'].includes(ext);
     if (text && /\bgzip\b/.test(req.headers['accept-encoding'] ?? '')) {

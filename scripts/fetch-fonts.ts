@@ -83,10 +83,41 @@ async function main() {
         ]);
       }
     }
+    if (family === 'cormorant-garamond')
+      ogFont(fonts.find((s) => s.id === `font-${upstream}-roman`)!.file);
     const licence = fonts.find((s) => s.id === `font-${upstream}-licence`)!;
     fs.copyFileSync(path.join(RAW_DIR, licence.file), path.join(dest, 'OFL.txt'));
     console.log(`ok  ${family}: ${fs.readdirSync(dest).join(', ')}`);
   }
+}
+
+/**
+ * A static Cormorant Garamond (weight 500, Latin) as TTF for the build-time Open Graph images
+ * (app/read/[sectionId]/opengraph-image.tsx): the image renderer cannot read WOFF2 or variable fonts.
+ */
+function ogFont(file: string) {
+  const dir = path.join(ROOT, 'content/og');
+  fs.mkdirSync(dir, { recursive: true });
+  const instance = path.join(RAW_DIR, 'cormorant-500.ttf');
+  execFileSync('python3', [
+    '-I',
+    '-m',
+    'fontTools.varLib.instancer',
+    path.join(RAW_DIR, file),
+    'wght=500',
+    '--static',
+    `--output=${instance}`,
+  ]);
+  execFileSync('python3', [
+    '-I',
+    '-m',
+    'fontTools.subset',
+    instance,
+    `--unicodes=${SUBSETS.latin}`,
+    '--layout-features=kern,liga,smcp,c2sc,onum',
+    '--no-hinting',
+    `--output-file=${path.join(dir, 'cormorant-garamond-500.ttf')}`,
+  ]);
 }
 
 main().catch((err) => {

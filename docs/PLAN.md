@@ -4,7 +4,7 @@ Nov 6, 2026 · David
 
 ## 1. Handoff
 
-This is the complete spec for **Scripture as Story** (working title): a static, phone-and-desktop Catholic Bible reader that walks a curated narrative path through 23 books, navigated by zooming from a map of the whole canon into a book's sections and then into the text. It ships in six phases: the reader (1), polish and installable app (2), word-depth flashcards (3), passage connections (4), the whole Bible as a library beside the path (5), and a themes view that arranges passages into constellations by meaning (6).
+This is the complete spec for **Scripture as Story** (working title): a static, phone-and-desktop Catholic Bible reader that walks a curated narrative path through 23 books, navigated by zooming from a map of the whole canon into a book's sections and then into the text. It ships in six phases: the reader (1), search, verse links and polish (2), word-depth flashcards (3), passage connections (4), the whole Bible as a library beside the path (5), and a themes view that arranges passages into constellations by meaning (6).
 
 **Before the first coding session**
 
@@ -732,18 +732,18 @@ Two themes: **Vault** (dark; default for the maps) and **Vellum** (light; defaul
 
 **Order of work inside a milestone:** write or extend tests first, then the code, then run the full suite, then open the PR with a short summary and the preview URL. Stop and ask David whenever the plan file and the source text disagree.
 
-## 12. Phase 2: polish and installable app
+## 12. Phase 2: search, verse links and polish
 
-**Phase 2 makes the site feel like an app: installable, readable offline, searchable, with a second Catholic text alongside.**
+**Phase 2 makes the site feel finished: searchable, with links to any verse, and a last layer of polish.** On 2026-11-10 the owner dropped the installable app (P2.1), the second text (P2.2) and printing (P2.6); they are kept below, struck through, for the record. Douay-Rheims may still be used for Phase 3 flashcards.
 
 | # | Milestone | Done when |
 | --- | --- | --- |
-| P2.1 | Installable and offline: web app manifest, icons, service worker caching the shell, fonts, textures and every visited section; "Download the whole path" in settings | Installs to the home screen on iOS and Android; a section visited once opens in airplane mode |
-| P2.2 | Douay-Rheims as a second text: parallel columns on desktop, a tap-to-swap per paragraph on phone; versification aligned with TVTMS | Ten spot-checked verses across Genesis, Daniel 3, Esther and Luke show the matching Douay-Rheims verse |
+| P2.1 | ~~Installable and offline: web app manifest, icons, service worker caching the shell, fonts, textures and every visited section; "Download the whole path" in settings~~ (dropped 2026-11-10) | Installs to the home screen on iOS and Android; a section visited once opens in airplane mode |
+| P2.2 | ~~Douay-Rheims as a second text: parallel columns on desktop, a tap-to-swap per paragraph on phone; versification aligned with TVTMS~~ (dropped 2026-11-10) | Ten spot-checked verses across Genesis, Daniel 3, Esther and Luke show the matching Douay-Rheims verse |
 | P2.3 | Search with Pagefind over the built pages, scoped to the path, with results that open the section at the verse | A search for a name returns its sections in path order |
 | P2.4 | Verse links: tap a verse number to copy a link to `/read/[sectionId]#v-12-3`; static Open Graph images per section | Shared links open at the verse; previews show the section title |
 | P2.5 | Ambient polish: subtle light-ray drift in the oculus, cover-opening refinements, haptic tick on phone when a section completes | No frame drops in the performance trace; all effects off under reduced motion |
-| P2.6 | Print stylesheet for a section | Prints as clean single-column text with references |
+| P2.6 | ~~Print stylesheet for a section~~ (dropped 2026-11-10) | Prints as clean single-column text with references |
 
 **Budgets.** Initial JavaScript on `/` under 150 KB gzipped; a section page's text arrives as its own JSON file under 60 KB gzipped; Largest Contentful Paint under 2.5 s on a throttled mobile profile.
 
@@ -1004,8 +1004,7 @@ Open one PR per milestone with its Vercel preview URL and what to check on my ph
 **Phase 2**
 
 ```
-Read docs/PLAN.md sections 10, 12 and 18. Build Phase 2, milestones P2.1 to P2.6, in order, one PR each.
-Align Douay-Rheims to WEBC with TVTMS, never by guessing verse numbers, and list any verse that fails to align.
+Read docs/PLAN.md sections 10, 12 and 18. Build Phase 2 milestones P2.3, P2.4 and P2.5, in order, one PR each (P2.1, P2.2 and P2.6 were dropped).
 Keep every Phase 1 test green and stay inside the budgets in section 12.
 ```
 

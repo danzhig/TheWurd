@@ -5,7 +5,7 @@ import { SectionBody } from '@/components/reader/SectionBody';
 import styles from '@/components/reader/reader.module.css';
 import { getManifest, getSection } from '@/lib/data';
 import { prettyRange } from '@/lib/format';
-import { canBeStop, defaultNav } from '@/lib/nav';
+import { canBeStop, defaultNav, pathPosition } from '@/lib/nav';
 
 export const dynamicParams = false;
 
@@ -32,13 +32,27 @@ export default async function ReadPage({ params }: Params) {
   const s = getSection(sectionId);
   const statusLabel = STATUS_LABEL[s.status];
   const article = (
-    <article className={styles.page} data-section={s.id} data-status={s.status}>
+    <article
+      className={styles.page}
+      data-section={s.id}
+      data-status={s.status}
+      // Search index (Pagefind): this article is the page's content, sorted by path position.
+      data-pagefind-body=""
+      data-pagefind-sort={`order:${pathPosition(s.id)}`}
+      data-pagefind-meta={`status:${s.status}`}
+    >
       <header className={styles.header}>
-        <p className="label">{s.bookName}</p>
+        <p className="label" data-pagefind-meta="book" data-pagefind-ignore="index">
+          {s.bookName}
+        </p>
         <h1 id="page-heading" tabIndex={-1} className="display">
           {s.title}
         </h1>
-        <p className={styles.ref}>
+        <p
+          className={styles.ref}
+          data-pagefind-meta={`range:${prettyRange(s.range).replace(/,/g, ';')}`}
+          data-pagefind-ignore="index"
+        >
           {s.bookName} {prettyRange(s.range)}
           {s.webcDiffers ? <> · WEBC numbers this passage {s.webcRange}</> : null}
           {' · '}
@@ -56,8 +70,8 @@ export default async function ReadPage({ params }: Params) {
       {s.status === 'optional' ? (
         <div className={styles.detour}>
           <p>
-            An optional detour, off the main path. Turn optional detours on in reading settings to
-            include it.
+            An optional detour, off the main path. Read it or carry on: Next leads back onto the
+            path.
           </p>
         </div>
       ) : null}

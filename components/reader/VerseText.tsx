@@ -75,7 +75,7 @@ function withCallers(part: Part, numberOf: (ref: string, i: number) => number): 
     out.push(part.text.slice(pos, local));
     const num = numberOf(part.verse.ref, n.i);
     out.push(
-      <sup key={`f${n.i}`} className="footnote-call">
+      <sup key={`f${n.i}`} className="footnote-call" data-pagefind-ignore="">
         <a
           href={`#${footnoteId(part.verse.ref, n.i)}`}
           id={`${footnoteId(part.verse.ref, n.i)}-call`}
@@ -143,7 +143,12 @@ export function VerseText({
         data-verse={p.first ? p.verse.ref : undefined}
       >
         {p.first && !(i === 0 && j === 0 && useDropCap) ? (
-          <sup className="verse-num">{p.verse.v}</sup>
+          <sup className="verse-num" data-pagefind-ignore="">
+            {/* Tapping copies a link to this verse (ReaderShell); without JS it is a plain link. */}
+            <a href={`#${verseAnchor(p.verse)}`} className="verse-link">
+              {p.verse.v}
+            </a>
+          </sup>
         ) : null}
         {withCallers(p, numberOf)}{' '}
       </span>
