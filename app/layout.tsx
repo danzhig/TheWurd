@@ -8,7 +8,16 @@ import '@/styles/typography.css';
 import '@/styles/materials.css';
 import '@/styles/book.css';
 
+/** Absolute base for link previews: the production URL on Vercel, the preview URL on previews. */
+const SITE =
+  process.env.VERCEL_ENV === 'production' && process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'http://localhost:4173';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE),
   title: 'Scripture as Story',
   description: 'A guided narrative path through the Catholic Bible.',
 };

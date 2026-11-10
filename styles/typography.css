@@ -87,6 +87,38 @@
   user-select: none;
 }
 
+.verse-link {
+  color: inherit;
+  text-decoration: none;
+  /* A comfortable target around a small number. */
+  padding: 0.6em 0.25em;
+  margin: -0.6em -0.25em;
+}
+
+.verse-link:hover,
+.verse-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* A linked verse: clear of the top bar, and briefly marked in gold. */
+[id^='v-'] {
+  scroll-margin-top: 5rem;
+}
+
+[id^='v-']:target {
+  animation: verse-target 2.4s ease-out;
+  border-radius: 2px;
+}
+
+@keyframes verse-target {
+  from {
+    background: color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  to {
+    background: transparent;
+  }
+}
+
 :root[data-verse-numbers='off'] .verse-num {
   display: none;
 }

@@ -116,6 +116,38 @@ export function ReaderShell({
     };
   }, [id, kind]);
 
+  // Verse links (P2.4): tapping a verse number copies a link to that verse.
+  const [copied, setCopied] = useState<string | null>(null);
+  useEffect(() => {
+    let hide = 0;
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement | null)?.closest<HTMLAnchorElement>('a.verse-link');
+      if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      const hash = a.getAttribute('href')!;
+      const [, c, v] = hash.match(/^#v-(\d+)-(\d+)/) ?? [];
+      const url = `${window.location.origin}${window.location.pathname}${hash}`;
+      window.history.replaceState(window.history.state, '', hash);
+      const say = (msg: string) => {
+        setCopied(msg);
+        window.clearTimeout(hide);
+        hide = window.setTimeout(() => setCopied(null), 2200);
+      };
+      const label = c ? `${c}:${v}` : 'this verse';
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard
+          .writeText(url)
+          .then(() => say(`Link to ${label} copied`))
+          .catch(() => say(`Link to ${label} is in the address bar`));
+      } else say(`Link to ${label} is in the address bar`);
+    };
+    document.addEventListener('click', onClick);
+    return () => {
+      document.removeEventListener('click', onClick);
+      window.clearTimeout(hide);
+    };
+  }, []);
+
   // Keyboard: ← previous, → next, Esc up a level.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -158,6 +190,9 @@ export function ReaderShell({
         />
       </header>
       <SettingsSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <p className={styles.toast} role="status" aria-live="polite" data-testid="copied">
+        {copied}
+      </p>
 
       {children}
 

@@ -438,3 +438,24 @@ a.detour:hover {
 .bridgeNav {
   text-align: left;
 }
+
+/* "Link copied": a quiet note above the bottom edge. */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  z-index: 20;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-strong);
+  border: 1px solid var(--rule);
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
+.toast:empty {
+  display: none;
+}

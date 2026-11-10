@@ -144,7 +144,10 @@ export function VerseText({
       >
         {p.first && !(i === 0 && j === 0 && useDropCap) ? (
           <sup className="verse-num" data-pagefind-ignore="">
-            {p.verse.v}
+            {/* Tapping copies a link to this verse (ReaderShell); without JS it is a plain link. */}
+            <a href={`#${verseAnchor(p.verse)}`} className="verse-link">
+              {p.verse.v}
+            </a>
           </sup>
         ) : null}
         {withCallers(p, numberOf)}{' '}

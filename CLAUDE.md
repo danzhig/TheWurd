@@ -116,3 +116,8 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 
 - `pnpm build` runs Pagefind over `out/`. Only elements with `data-pagefind-body` are indexed: the section `<article>` and the bridge card. Each carries `data-pagefind-sort="order:NNNN"` (its position in `buildSequence`, from `pathPosition` in `lib/nav.ts`) so results come back in path order; book and range are `data-pagefind-meta` on their own elements (book names can contain commas). Verse numbers, footnote callers, the footnote list and the reference line are ignored.
 - `/search` (linked from the Vault) loads `/pagefind/pagefind.js` only on that page. Each result opens at the first verse that matches (`components/search/match.ts`, unit-tested), found in the section's JSON.
+
+## Verse links and previews (P2.4)
+
+- Verse numbers are `a.verse-link` to `#v-<c>-<v>` (WEBC numbering). `ReaderShell` turns a tap into "copy link" (clipboard, `replaceState` to the hash, a `role="status"` note); without JavaScript they are plain links. `[id^='v-']` has `scroll-margin-top` and a brief gold `:target` highlight.
+- `app/read/[sectionId]/opengraph-image.tsx` renders one 1200×630 PNG per section at build time with `next/og`, using `content/og/cormorant-garamond-500.ttf` (a static Latin instance made by `pnpm fonts`; the renderer cannot read WOFF2 or variable fonts). The files have no extension, so `vercel.json` and `scripts/serve-static.mjs` serve them as `image/png`. `metadataBase` in `app/layout.tsx` comes from Vercel's URL variables.
