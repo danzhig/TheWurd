@@ -298,13 +298,18 @@
   align-items: center;
 }
 
-/* Sits on the line under the title, after Resume (which takes the full width before it). */
-.about {
+/* The path, About, Sources: a quiet row under Resume. */
+.links {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: -0.25rem;
+}
+
+.links a {
   color: var(--text);
   min-height: 32px;
   display: inline-flex;
   align-items: center;
-  margin-top: -0.25rem;
 }
 
 .zoomButtons {

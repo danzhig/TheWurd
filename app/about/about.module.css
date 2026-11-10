@@ -104,3 +104,40 @@
   border-top: 1px solid var(--rule-soft);
   padding-top: 1.5rem;
 }
+
+/* Sources */
+.source {
+  margin: 1.25rem 0;
+}
+
+.source h3 {
+  font-family: var(--font-display);
+  font-size: 1.15em;
+  font-weight: 500;
+  font-variant-caps: normal;
+  letter-spacing: 0;
+  margin: 0 0 0.25rem;
+}
+
+.source p {
+  margin: 0.25rem 0;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.1rem 1rem;
+  margin: 0.4rem 0 0;
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+.facts dt {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+}
+
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}

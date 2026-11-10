@@ -397,9 +397,17 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
             Begin · {sections['gen-01']?.title}
           </Link>
         )}
-        <Link href="/about/" className={styles.about} data-testid="about-link">
-          About this path
-        </Link>
+        <nav className={styles.links} aria-label="More">
+          <Link href="/path/" data-testid="path-link">
+            The path
+          </Link>
+          <Link href="/about/" data-testid="about-link">
+            About
+          </Link>
+          <Link href="/sources/" data-testid="sources-link">
+            Sources
+          </Link>
+        </nav>
       </header>
       <SettingsSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 

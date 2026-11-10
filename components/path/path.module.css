@@ -1,0 +1,112 @@
+/* The path as a timeline: a gold line down the left, a mark per section, books as headings. */
+
+.timeline,
+.timeline ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline {
+  border-left: 2px solid color-mix(in srgb, var(--rule) 60%, transparent);
+  margin-left: 0.5rem;
+}
+
+.book h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.06em;
+  font-size: 1.4em;
+  margin: 2rem 0 0.5rem 1.25rem;
+}
+
+.book h2 a {
+  color: var(--text-strong);
+  text-decoration: none;
+}
+
+.book h2 a:hover {
+  text-decoration: underline;
+}
+
+.row a,
+.bridge a {
+  display: block;
+  position: relative;
+  min-height: 44px;
+  padding: 0.45rem 0 0.45rem 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.row a:hover .title,
+.bridge a:hover {
+  text-decoration: underline;
+}
+
+/* Marks match the book maps: read = gilt disc, skim = hollow ring, optional = dashed ring. */
+.mark {
+  position: absolute;
+  left: -7px;
+  top: 0.85rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+
+.skim .mark {
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+.optional .mark,
+.detour .mark {
+  background: var(--bg);
+  border: 2px dashed var(--accent);
+}
+
+.detour a {
+  padding-left: 2.25rem;
+}
+
+.title {
+  color: var(--text-strong);
+}
+
+.meta {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.85em;
+  font-variant-numeric: lining-nums;
+}
+
+.done .title::after {
+  content: ' ✓';
+  color: var(--accent);
+}
+
+.current .mark {
+  background: var(--alert);
+  border-color: var(--alert);
+}
+
+.bridge {
+  margin: 1.5rem 0;
+}
+
+.bridge a {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-strong);
+}
+
+.bridge a::before {
+  content: '✦';
+  position: absolute;
+  left: -0.55rem;
+  color: var(--accent-strong);
+  font-style: normal;
+}

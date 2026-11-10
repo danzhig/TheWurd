@@ -90,7 +90,10 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 - Accessibility: the ceiling is `aria-hidden` with `tabIndex=-1` links; the ordered list (`section[aria-label="The path, as a list"]`) is the accessible structure, visually hidden in map mode and shown by "List". Focusing a list link flies the camera there and rings the medallion; arrow keys move along the spiral.
 - Transitions: see "Transitions" below. `lib/camera.ts` remembers the view (the lean-in while a book lifts off is not remembered). Reduced motion skips camera flights.
 - John 11 hangs off Luke on a dashed branch (`layout.detours`), with a gap between the two medallions so the line shows.
-- "About this path" (`/about`, linked under Resume) explains the shape of the path. Every list, count and name comes from the manifest (`app/about/about.ts`, unit-tested); the prose never quotes scripture, and `ABOUT_GROUPS` needs a line for each off-path group (a test checks). This is M6's `/about`; `/path` and `/sources` remain for M6.
+- M6 pages, linked under Resume ("The path · About · Sources") and from each other's footers:
+  - `/path`: every stop and detour as a timeline grouped by book (`components/path/timeline.ts`, unit-tested against `buildSequence`), with the map's marks and progress ticks from the store.
+  - `/sources`: every source in the manifest with its license, attribution, use and version (an e2e test checks every id in `sources/manifest.json`).
+- "About this path" (`/about`) explains the shape of the path. Every list, count and name comes from the manifest (`app/about/about.ts`, unit-tested); the prose never quotes scripture, and `ABOUT_GROUPS` needs a line for each off-path group (a test checks).
 - Off-path taglines live in `content/plan/offpath-taglines.json` (approved by David on 2026-11-09); the pipeline requires one per off-path book.
 - `tests/e2e/perf.spec.ts` times frames during a camera flight at phone size with the CPU slowed 4×, in its own Playwright project that runs alone after the others. Tests wait for `html[data-vault="ready"]`.
 
