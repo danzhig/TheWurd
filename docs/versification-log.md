@@ -29,6 +29,7 @@ If you looked up each plan range in a WEBC (English-numbered) Bible, these are t
 | neh-04 | Building Under Threat | Neh 3:33-4:end (verse 3:33 does not exist in WEBC) | Neh 4:1–23 | 4:1–23 | — |
 | jonah-01 | Flight and Storm | Jonah 1 | Jonah 1:1–16 | — | 1:17 |
 | jonah-02 | In the Belly of the Fish | Jonah 2 | Jonah 1:17–2:10 | 1:17 | — |
+| mal-01 | Malachi | Mal 1-3 | Mal 1:1–4:6 | 4:1–6 | — |
 
 ## Every renumbered plan reference
 

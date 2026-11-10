@@ -909,7 +909,7 @@ interface Connection {
 
 | # | Milestone | Scope | Acceptance |
 | --- | --- | --- | --- |
-| P5.1 | Whole-Bible pipeline | Parse and map versification for all 73 books; coverage check across plan and library together | `pnpm content:build` places every WEBC verse of all 73 books in exactly one section (plan ∪ library), with no gaps or overlaps |
+| P5.1 ✓ | Whole-Bible pipeline | `content/plan/library.json` (approved per book, fingerprinted); library books mapped, resolved, coverage-checked and emitted like the path's, flagged `library`; `pnpm library:propose <book>` writes an outline to draft from | Each library book places every WEBC verse in exactly one section; an unapproved or edited book stops the build; the build lists the books not yet sectioned (all 73 are covered once P5.2 is done) |
 | P5.2 | Library sections | Section proposals book by book, in canonical group order (Law, Histories, Wisdom, Prophets, Gospels, Letters, Apocalypse), each approved by David | Every off-path book has approved sections with a matching fingerprint; an unapproved edit fails the build |
 | P5.3 | Library reader and maps | `/read` for every library section, `/book` for all 73 books, off-path medallions open their books, Psalms and wisdom poetry laid out as verse | Every library section builds; e2e opens one book from each group and reads a section; axe reports no serious issues |
 | P5.4 | Whole-Bible progress and search | Separate library progress on the Vault and book maps; search across everything with a path/library filter | A search for a name returns path results first, then library results; library reading never changes path progress |

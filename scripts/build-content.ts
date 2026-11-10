@@ -19,7 +19,8 @@ import {
   readStructureMaps,
   type BookMapping,
 } from './map-versification';
-import { resolvePlan, type Resolution } from './resolve-plan';
+import { resolveBook, resolvePlan, type Resolution } from './resolve-plan';
+import { checkLibrary, libraryBooks, readLibrary, unsectioned } from './library';
 import {
   checkApprovedPlacements,
   buildShingles,
@@ -30,6 +31,7 @@ import {
 import {
   buildSectionFiles,
   checkOffpathTaglines,
+  readOffpathTaglines,
   emit,
   writeMarkdownCopies,
   type EmitResult,
@@ -76,6 +78,9 @@ async function main() {
   );
 
   const plan = ReadingPlanSchema.parse(JSON.parse(fs.readFileSync(PLAN_FILE, 'utf8')));
+  // The library (Phase 5): approved sections for books off the path, checked like the path's.
+  const lib = readLibrary();
+  const library = libraryBooks(lib, readOffpathTaglines().taglines);
 
   step(3, 'map-versification');
   const records = readTvtmsCondensed(paths.tvtms!);
@@ -84,7 +89,7 @@ async function main() {
   try {
     mappings = buildMappings(
       parsed,
-      plan.books.map((b) => b.id),
+      [...plan.books, ...library].map((b) => b.id),
       records,
       maps,
     );
@@ -99,6 +104,17 @@ async function main() {
 
   step(4, 'resolve-plan');
   const resolution: Resolution = resolvePlan(plan, mappings);
+  for (const book of library) {
+    const r = resolveBook(book, mappings.get(book.id)!);
+    resolution.sections.push(...r.sections);
+    resolution.anchors.push(...r.anchors);
+    resolution.decisions.push(...r.decisions);
+    resolution.errors.push(...r.errors);
+  }
+  const notYet = unsectioned(lib, plan);
+  console.log(
+    `library: ${library.length} books sectioned, ${notYet.length} not yet (${notYet.join(', ') || 'none'})`,
+  );
   errors.push(...resolution.errors);
   console.log(
     `${resolution.sections.length} sections, ${resolution.anchors.length} anchors, ${resolution.decisions.length} placement decisions`,
@@ -110,6 +126,7 @@ async function main() {
   errors.push(...checkApprovedPlacements(resolution.decisions, DECISIONS_FILE));
   errors.push(...checkChapterEnds(parsed));
   errors.push(...checkOffpathTaglines(plan));
+  errors.push(...checkLibrary(lib, plan));
   writeMarkdownCopies(plan, CONTENT_DIR);
   errors.push(...checkNoHandwrittenScripture(CONTENT_DIR, buildShingles(parsed)));
 
@@ -124,6 +141,7 @@ async function main() {
       sources: [],
       outDir: '',
       contentDir: null,
+      library,
     });
   } catch (err) {
     errors.push((err as Error).message);
@@ -136,7 +154,7 @@ async function main() {
   let result: EmitResult = { sectionSizes: [], files: 0 };
   if (sectionFiles.length) {
     result = emit(
-      { plan, parsed, mappings, resolution, sources, outDir: target, contentDir: null },
+      { plan, parsed, mappings, resolution, sources, outDir: target, contentDir: null, library },
       sectionFiles,
     );
     console.log(`wrote ${result.files} files to ${path.relative(process.cwd(), target) || target}`);

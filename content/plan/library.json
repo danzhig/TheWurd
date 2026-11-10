@@ -1,0 +1,4 @@
+{
+  "$comment": "Sections for the books outside the path (PLAN §15, Phase 5). Proposed in docs/library/<bookId>-sections.md, added here once approved; each book's approval carries a fingerprint of its sections (pnpm content:build prints it).",
+  "books": []
+}

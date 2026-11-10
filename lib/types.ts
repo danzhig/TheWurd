@@ -93,6 +93,29 @@ export const ReadingPlanSchema = z
   .strict();
 export type ReadingPlan = z.infer<typeof ReadingPlanSchema>;
 
+/**
+ * The library (PLAN §15, Phase 5): sections for the books outside the path. Each book's sections
+ * are approved by the owner; the approval carries a fingerprint of the sections, so any edit stops
+ * the build until it is approved again.
+ */
+export const LibrarySchema = z
+  .object({
+    $comment: z.string().optional(),
+    books: z.array(
+      z
+        .object({
+          id: z.string(),
+          sections: z.array(PlanSectionSchema).min(1),
+          approval: z
+            .object({ by: z.string(), date: z.string(), fingerprint: z.string() })
+            .optional(),
+        })
+        .strict(),
+    ),
+  })
+  .strict();
+export type Library = z.infer<typeof LibrarySchema>;
+
 // ---------------------------------------------------------------------------
 // Generated data (public/data). Produced by `pnpm content:build`.
 // ---------------------------------------------------------------------------
@@ -115,6 +138,8 @@ export interface Book {
   group: BookGroup;
   canonOrder: number; // 1..73, Catholic order
   inPlan: boolean;
+  /** Off the path, with approved library sections (Phase 5): readable, never on the thread. */
+  library?: boolean;
   tagline: string;
   /** Off-path taglines are drafts until David approves them (content/plan/offpath-taglines.json). */
   taglineDraft?: boolean;
@@ -182,6 +207,8 @@ export interface SectionIndexEntry {
   range: string; // plan notation (Catholic numbering)
   webcRange: string; // the same passage in WEBC numbering
   status: Status;
+  /** A library section (Phase 5): readable, never a stop on the path. */
+  library?: boolean;
   summary?: string;
   highlight?: boolean;
   contentNote?: string;
