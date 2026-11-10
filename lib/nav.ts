@@ -20,6 +20,12 @@ export function defaultNav(id: string): PageNav {
   };
 }
 
+/** Position in the whole path sequence (search results sort by it), zero-padded for sorting. */
+export function pathPosition(id: string): string {
+  const i = buildSequence(getManifest()).findIndex((s) => s.id === id);
+  return String(Math.max(0, i)).padStart(4, '0');
+}
+
 /** Does this page count toward progress (a stop on the path, or an optional detour)? */
 export function canBeStop(id: string): boolean {
   return buildSequence(getManifest()).some((s) => s.id === id && (s.stop || s.detour));

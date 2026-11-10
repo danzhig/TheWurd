@@ -45,7 +45,11 @@ function FootnoteList({
   const items = verses.flatMap((v) => (v.footnotes ?? []).map((f, i) => ({ v, f, i })));
   if (!items.length) return null;
   return (
-    <section className={styles.footnotes} aria-label="Translator's footnotes">
+    <section
+      className={styles.footnotes}
+      aria-label="Translator's footnotes"
+      data-pagefind-ignore=""
+    >
       <p className="label">Footnotes</p>
       <ol>
         {items.map(({ v, f, i }) => (

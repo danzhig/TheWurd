@@ -398,6 +398,9 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
           </Link>
         )}
         <nav className={styles.links} aria-label="More">
+          <Link href="/search/" data-testid="search-link">
+            Search
+          </Link>
           <Link href="/path/" data-testid="path-link">
             The path
           </Link>

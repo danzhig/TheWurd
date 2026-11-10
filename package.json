@@ -9,7 +9,7 @@
   "packageManager": "pnpm@10.28.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && pagefind --site out --output-subdir pagefind --silent",
     "start": "node scripts/serve-static.mjs out 4173",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -46,6 +46,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.5",
     "lighthouse": "13.5.0",
+    "pagefind": "1.5.2",
     "prettier": "3.9.10",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
