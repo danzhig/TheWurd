@@ -4,14 +4,14 @@ Nov 6, 2026 · David
 
 ## 1. Handoff
 
-This is the complete spec for **Scripture as Story** (working title): a static, phone-and-desktop Catholic Bible reader that walks a curated narrative path through 23 books, navigated by zooming from a map of the whole canon into a book's sections and then into the text. It ships in four phases: the reader (1), polish and installable app (2), word-depth flashcards (3), and passage connections (4).
+This is the complete spec for **Scripture as Story** (working title): a static, phone-and-desktop Catholic Bible reader that walks a curated narrative path through 23 books, navigated by zooming from a map of the whole canon into a book's sections and then into the text. It ships in six phases: the reader (1), polish and installable app (2), word-depth flashcards (3), passage connections (4), the whole Bible as a library beside the path (5), and a themes view that arranges passages into constellations by meaning (6).
 
 **Before the first coding session**
 
 1. Create an empty GitHub repo and connect it to Vercel (Import Project → framework preset Next.js). Production deploys from `main`; every pull request gets a preview URL.
 2. Export this doc to Markdown and commit it as `docs/PLAN.md`.
 3. Commit the companion file `reading-plan.json` (delivered with this doc) to `content/plan/reading-plan.json`. It is the machine-readable form of section 6.
-4. Start the coding agent with the Phase 1 kickoff prompt in section 17.
+4. Start the coding agent with the Phase 1 kickoff prompt in section 19.
 
 **Ground rules for the coding agent** (also copied into `CLAUDE.md` by the first prompt)
 
@@ -35,7 +35,7 @@ This is the complete spec for **Scripture as Story** (working title): a static, 
 | D4 | Plan references use standard Catholic versification (Hebrew-based numbering for protocanonical books, as in NABRE) | Whole-chapter ranges were chosen wherever English and Hebrew numbering diverge. The pipeline maps every reference to WEBC with the TVTMS dataset and checks each partial-range boundary against its anchor. |
 | D5 | The map shows all 73 books; the plan uses 23, plus one optional chapter of John | Skipped books stay visible but dimmed, giving orientation and room for later phases. |
 | D6 | Full text of every plan book is built in; skipped ranges render collapsed and expandable | Nothing is hidden, only folded. Books outside the plan carry no text in Phase 1. |
-| D7 | Static export on Vercel; no database; reading progress in `localStorage` | Matches the brief; bookmarks and highlights come later (section 15). |
+| D7 | Static export on Vercel; no database; reading progress in `localStorage` | Matches the brief; bookmarks and highlights come later (section 17). |
 | D8 | Job sits after Genesis by default; a setting moves it elsewhere in the sequence | Job's setting is undated and patriarchal. |
 | D9 | Lists inside read ranges are marked **skim** (shown collapsed, one line of summary) | Applies the plan's own rule to Genesis 36 and 46:8–27, Exodus 6:14–27, Numbers 15, 18–19, the roster passages of 2 Samuel, 1 Kings, Ezra and Nehemiah. Reverting any one is a one-word change in the JSON. |
 | D10 | Verse numbers printed beside the text are WEBC's; the page header shows the plan's (Catholic/NABRE) reference, with a short note where the two differ | The numbers must match the text actually shown. Approved by David, Nov 6, 2026. |
@@ -59,6 +59,8 @@ This is the complete spec for **Scripture as Story** (working title): a static, 
 | Versification | STEPBible TVTMS (versification traditions across Hebrew, Greek, Latin and English) | CC BY 4.0 | Mapping plan references onto WEBC; aligning verses across languages | 1 and 3 |
 | Proper names | STEPBible TIPNR (every person and place, with all references) | CC BY 4.0 | Name pop-ups (later) | 4+ |
 | Cross-references | OpenBible.info cross-references (derived from the Treasury of Scripture Knowledge) | CC BY 4.0 | Candidate pool for connections | 4 |
+| Topics (public domain) | Nave's Topical Bible (1896) | Public domain | Candidate passages for themes | 6 |
+| Topics (crowd-ranked) | OpenBible.info topical data | Verify before use (credit required) | Candidate passages for themes | 6 |
 | Fonts | Cormorant Garamond, EB Garamond, Gentium Plus (polytonic Greek), Ezra SIL or Taamey Frank CLM (pointed Hebrew with cantillation) | SIL Open Font License or similarly open | All typography, self-hosted | 1 |
 
 **Which languages matter, by book.** The original language differs across the plan, so the word layer must show the right cards per passage:
@@ -786,7 +788,7 @@ interface KeyTerm {
 1. **Propose.** The agent lists candidates per section with the reason each qualifies: major translations diverge; a textual variant changes the sense; the Vulgate rendering shaped doctrine or art; a word carries a theme across the path. Output: `docs/terms/<bookId>-candidates.md`.
 2. **Approve.** David marks which candidates to keep.
 3. **Draft.** Cards are assembled from data: tokens from TAHOT or TAGNT, aligned LXX and Vulgate verses via TVTMS, glosses from the lexicons. Interpretive text is drafted with citations.
-4. **Verify.** The checks in section 16 run; anything failing stays `draft` and hidden.
+4. **Verify.** The checks in section 18 run; anything failing stays `draft` and hidden.
 5. **Publish.** `verified` terms appear in the reader.
 
 **Seed candidates** (a starting list only; every detail below must be confirmed against the data in step 3)
@@ -880,15 +882,71 @@ interface Connection {
 | Dan 7:13 (off path) | Luke 21:27; 22:69 | Quotation | The Son of Man on the clouds |
 | Genesis–Kings | Acts 7 | Parallel | Stephen retells the whole story you have read |
 
-## 15. Later: bookmarks, highlights and accounts
+## 15. Phase 5: the whole Bible
 
-**Accounts and saved annotations come only after Phases 1–4, and the earlier phases are built so they slot in without rework.**
+**Phase 5 makes every book readable, not only the path: the 49 books in the outer ring and the parts of path books the plan skips become a library beside the story, built and checked the same way.** Added on 2026-11-10 at the owner's request. The path does not change: `reading-plan.json` stays canonical, and library books never join the gold thread.
+
+**Data.** A second canonical file, `content/plan/library.json`, holds sections for each off-path book in the same shape as the plan's sections (id, title, range, status `read`). Sections already in the plan (including `skip` sections such as John 1–10) are reused, not duplicated. Like the Esther and Daniel structure maps, each book's sections are approved by David and carry a fingerprint; any edit fails the build until approved again.
+
+**Drafting sections.** The agent proposes each book's sections in `docs/library/<bookId>-sections.md`: titles and ranges only, derived from the book's chapter and paragraph structure in WEBC, never from scripture typed from memory. Psalms are one section per psalm, showing both the Hebrew and the Greek/Vulgate numbering (from TVTMS). Proverbs, Sirach and Wisdom are grouped by their collections; letters by their arguments; prophets by their oracles.
+
+**On the site.** Off-path medallions open into their own book maps (same open-book transition) with every section a gilt disc. The reader shows a quiet "Library · not on the path" label and a link back to the path. Progress for the library is kept separately from path progress. Search (P2.3) widens to the whole Bible with a path/library filter.
+
+| # | Milestone | Scope | Acceptance |
+| --- | --- | --- | --- |
+| P5.1 | Whole-Bible pipeline | Parse and map versification for all 73 books; coverage check across plan and library together | `pnpm content:build` places every WEBC verse of all 73 books in exactly one section (plan ∪ library), with no gaps or overlaps |
+| P5.2 | Library sections | Section proposals book by book, in canonical group order (Law, Histories, Wisdom, Prophets, Gospels, Letters, Apocalypse), each approved by David | Every off-path book has approved sections with a matching fingerprint; an unapproved edit fails the build |
+| P5.3 | Library reader and maps | `/read` for every library section, `/book` for all 73 books, off-path medallions open their books, Psalms and wisdom poetry laid out as verse | Every library section builds; e2e opens one book from each group and reads a section; axe reports no serious issues |
+| P5.4 | Whole-Bible progress and search | Separate library progress on the Vault and book maps; search across everything with a path/library filter | A search for a name returns path results first, then library results; library reading never changes path progress |
+
+## 16. Phase 6: themes, the constellation view
+
+**Phase 6 adds a second way through the same Bible: the Spiral shows the story in order; Themes rearranges passages into constellations by meaning, so the reader can explore what the Bible says about mercy, suffering, prayer or family, wherever it says it.** Added on 2026-11-10 at the owner's request; it depends on Phase 5, since most thematic passages lie outside the path.
+
+**Interaction.** A Spiral / Themes switch on the Vault. Switching morphs the scene: passages, drawn as stars, fly out of their books and settle into 8–10 constellations around the oculus, one per top-level theme, joined by gilt hairlines. Zooming into a constellation shows its sub-themes as smaller star groups, then the passages themselves, each labelled with its reference and a short title. Tapping a star opens the passage in the reader, with a breadcrumb back to the theme. Passages on the path glow gold; library passages are paler. Switching back flies every star home to its book. The reader gains a margin line, "Themes: …", linking each passage to its constellations.
+
+**Accessibility and phones.** The constellations are decorative for assistive technology; the accessible structure is a tree (theme → sub-theme → passage), shown by the List toggle and as the default on narrow phones. Keyboard arrows move between stars in a constellation. The interactive layer stays under 300 nodes: only the focused constellation renders its passages. Reduced motion replaces the morph with a cross-fade.
+
+**Sources and approval.** Which passage belongs to which theme is interpretation, so nothing is classified from memory:
+
+- **Candidates** come from public datasets: Nave's Topical Bible (1896, public domain; a hierarchy of topics with verse references) and OpenBible.info topical data (license to be verified before use), both pinned in `sources/manifest.json` and credited on `/sources`.
+- **The taxonomy** (top-level themes and sub-themes, with a one-line description each) is proposed in `docs/themes/taxonomy.md` and approved by David before any passages are assigned.
+- **Passages** are proposed per theme in `docs/themes/<themeId>-candidates.md`, each citing its dataset row; David approves them. Unapproved items are `draft` and hidden.
+- **Text** shown on a star or card is an excerpt from the built text by reference, never typed. Theme descriptions are original prose; any interpretive claim cites its source (section 18, check 12).
+
+**Data model** (`content/themes/themes.json`)
+
+```ts
+interface Theme {
+  id: string;            // "mercy"
+  title: string;         // "Mercy and forgiveness"
+  description: string;   // one line, original prose
+  parent?: string;       // sub-themes name their theme
+  passages: {
+    ref: string;         // plan-style reference, e.g. "Luke 15:11-32"
+    sectionId?: string;  // the plan or library section that holds it
+    source: { dataset: 'naves' | 'openbible'; row: string };
+    status: 'draft' | 'approved';
+  }[];
+}
+```
+
+| # | Milestone | Scope | Acceptance |
+| --- | --- | --- | --- |
+| P6.1 | Taxonomy | Import Nave's and OpenBible topics; propose 8–10 themes with sub-themes for approval | `docs/themes/taxonomy.md` approved; every theme and sub-theme has a description |
+| P6.2 | Passages | Candidates per theme from the datasets, each citing its row; approval per theme | Every approved passage resolves to built sections; every one cites a dataset row; drafts are hidden in production |
+| P6.3 | Constellation scene | Spiral / Themes switch, the morph, constellations, semantic zoom into sub-themes and passages | The morph runs at 60 fps in the throttled phone trace; under 300 interactive nodes at any zoom; reduced motion cross-fades |
+| P6.4 | Tree, reader links and tests | The theme tree (List and phone default), "Themes" margin links in the reader, breadcrumbs back | Every star has a matching tree link; e2e walks theme → passage → back on both viewports; axe reports no serious issues |
+
+## 17. Later: bookmarks, highlights and accounts
+
+**Accounts and saved annotations come only after Phases 1–6, and the earlier phases are built so they slot in without rework.**
 
 - **Features:** bookmarks, verse-range highlights in three or four muted colours, personal notes, reading progress synced across devices, export to Markdown.
 - **Backend:** a hosted Postgres with built-in auth (for example Supabase, or a Postgres from the Vercel Marketplace). This ends the pure static export: the site moves to Vercel's normal Next.js deployment with a small API layer.
 - **Keep ready now:** every verse has a stable id (`Gen.12.1` in WEBC numbering, plus its TVTMS standard reference), and all client state goes through one `store` module, so `localStorage` can later be swapped for a synced store. On first sign-in, local progress migrates to the account.
 
-## 16. Accuracy and verification
+## 18. Accuracy and verification
 
 **Accuracy is enforced by tests, not by care: the build fails if a verse is missing, a boundary is wrong, scripture text was written by hand, or an original-language word does not match its source row.** All checks run in CI on every pull request.
 
@@ -924,7 +982,7 @@ interface Connection {
 16. Storage blocked: every page still renders and navigates.
 17. Accessibility: axe reports no serious or critical issues on `/`, one book map, and five pages.
 
-## 17. Kickoff prompts
+## 19. Kickoff prompts
 
 **Paste one prompt per phase into Claude Code, in the repo root, after `docs/PLAN.md` and `content/plan/reading-plan.json` are committed.** Each prompt starts the agent on its phase; it should then work milestone by milestone and stop for review at each PR.
 
@@ -946,7 +1004,7 @@ Open one PR per milestone with its Vercel preview URL and what to check on my ph
 **Phase 2**
 
 ```
-Read docs/PLAN.md sections 10, 12 and 16. Build Phase 2, milestones P2.1 to P2.6, in order, one PR each.
+Read docs/PLAN.md sections 10, 12 and 18. Build Phase 2, milestones P2.1 to P2.6, in order, one PR each.
 Align Douay-Rheims to WEBC with TVTMS, never by guessing verse numbers, and list any verse that fails to align.
 Keep every Phase 1 test green and stay inside the budgets in section 12.
 ```
@@ -954,7 +1012,7 @@ Keep every Phase 1 test green and stay inside the budgets in section 12.
 **Phase 3**
 
 ```
-Read docs/PLAN.md sections 3, 13 and 16. Set up the Phase 3 data: TAHOT, TAGNT, the Septuagint text and lemmas, the Clementine Vulgate, the lexicons and TVTMS, each pinned in sources/manifest.json with its license on /sources.
+Read docs/PLAN.md sections 3, 13 and 18. Set up the Phase 3 data: TAHOT, TAGNT, the Septuagint text and lemmas, the Clementine Vulgate, the lexicons and TVTMS, each pinned in sources/manifest.json with its license on /sources.
 Build the Depth toggle and the card deck UI first, using the seed candidates from Genesis only.
 Then, book by book in path order, write docs/terms/<bookId>-candidates.md and stop for my approval before drafting cards.
 Never type a Hebrew, Aramaic, Greek or Latin word: every form comes from a dataset row you cite. Every interpretive claim cites a source. Unverified terms stay draft and hidden.
@@ -963,7 +1021,23 @@ Never type a Hebrew, Aramaic, Greek or Latin word: every form comes from a datas
 **Phase 4**
 
 ```
-Read docs/PLAN.md sections 14 and 16. Import the OpenBible.info cross-references and filter them to pairs touching the path.
+Read docs/PLAN.md sections 14 and 18. Import the OpenBible.info cross-references and filter them to pairs touching the path.
 Build the margin threads and the Vault's Threads mode using the seed connections first.
 Then propose connections book by book in docs/connections/<bookId>-candidates.md for my approval. Explanations are original prose with sources; quote scripture only by reference to the built text.
+```
+
+**Phase 5**
+
+```
+Read docs/PLAN.md sections 5, 15 and 18. Extend the pipeline to all 73 books (P5.1) and keep reading-plan.json untouched.
+Then propose library sections book by book in docs/library/<bookId>-sections.md, in canonical group order, and stop for my approval on each group before building it.
+Section titles and ranges only; never type scripture.
+```
+
+**Phase 6**
+
+```
+Read docs/PLAN.md sections 9, 16 and 18. Import Nave's Topical Bible and (once its license is confirmed) OpenBible.info topics, pinned in sources/manifest.json.
+Propose the taxonomy in docs/themes/taxonomy.md and stop for my approval. Then propose passages theme by theme, each citing its dataset row.
+Build the Spiral / Themes switch and the constellation scene with approved themes only; drafts stay hidden.
 ```
