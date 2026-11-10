@@ -29,6 +29,8 @@ If you looked up each plan range in a WEBC (English-numbered) Bible, these are t
 | neh-04 | Building Under Threat | Neh 3:33-4:end (verse 3:33 does not exist in WEBC) | Neh 4:1–23 | 4:1–23 | — |
 | jonah-01 | Flight and Storm | Jonah 1 | Jonah 1:1–16 | — | 1:17 |
 | jonah-02 | In the Belly of the Fish | Jonah 2 | Jonah 1:17–2:10 | 1:17 | — |
+| lev-02 | Sin and Guilt Offerings | Lev 4:1-5:26 (verse 5:26 does not exist in WEBC) | Lev 4:1–6:7 | 4:1–6:7 | — |
+| lev-03 | The Priests’ Instructions for Each Offering | Lev 6-7 | Lev 6:8–7:38 | — | 6:1–7 |
 
 ## Every renumbered plan reference
 
