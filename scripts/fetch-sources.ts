@@ -24,8 +24,8 @@ export const SourceSchema = z.object({
   attribution: z.string(),
   usedFor: z.string(),
   phase: z.number(),
-  /** Which script downloads it: the content pipeline (default) or `pnpm fonts`. */
-  pipeline: z.enum(['content', 'fonts']).optional(),
+  /** Which script downloads it: the content pipeline (default), `pnpm fonts` or `pnpm terms:fetch`. */
+  pipeline: z.enum(['content', 'fonts', 'terms']).optional(),
 });
 export type Source = z.infer<typeof SourceSchema>;
 

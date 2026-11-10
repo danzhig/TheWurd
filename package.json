@@ -22,6 +22,8 @@
     "content:fetch": "tsx scripts/fetch-sources.ts",
     "content:build": "tsx scripts/build-content.ts",
     "content:check": "tsx scripts/build-content.ts --check",
+    "terms:fetch": "tsx scripts/fetch-terms.ts",
+    "terms:lookup": "tsx scripts/terms-lookup.ts",
     "tokens": "tsx scripts/gen-tokens.ts",
     "fonts": "tsx scripts/fetch-fonts.ts",
     "textures": "tsx scripts/render-textures.ts"

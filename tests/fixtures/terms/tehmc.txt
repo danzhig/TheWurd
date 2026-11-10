@@ -1,0 +1,2 @@
+HNcmpa	Function=Noun ; Form=Common ; Gender=Masculine; Number=Plural; State=Absolute
+HVqp3ms	Function=Verb ; Stem=Qal (hence Action=Simple; Voice=Active); Form=Perfect (hence Tense=Past/present; Mood=Indicative); Person=Third; Gender=Masculine; Number=Singular
