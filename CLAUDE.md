@@ -134,6 +134,8 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 
 ## Phase 3 data notes (P3.1)
 
+- Build order after Phase 2 (owner, 2026-11-10): Phase 5 (whole Bible), Phase 6 (themes), Phase 4 (connections), then Phase 3 (word depth) last. Its data step is on `main`; the reader work (P3.2: Depth toggle, card deck, `pnpm terms:build`) is saved in closed PR #15.
+
 - Readers live in `scripts/terms/`: `stepbible.ts` (TAHOT/TAGNT tokens with verse, word index, Strong's, grammar, lemma and source line; TBESH/TBESG keyed by the extended number in column 2; TEHMC/TEGMC), `usfm-verses.ts` (eBible texts with notes and word markup removed), `lxx.ts`, `lewis-short.ts`; `sources.ts` loads them all.
 - TAHOT refs are English numbering with the Hebrew in brackets (`Gen.31.55(32.1)`), so tokens line up with WEBC; `sourceRef` keeps the Hebrew. The Septuagint, Vulgate and Douay-Rheims follow their own numbering: `terms:lookup` also tries the Hebrew one, but check TVTMS before citing a parallel.
 - Septuagint: text from the Swete TEI transcription (the Morpheus-analysed files drop words after marginal notes: 4–31% per book); lemmas only where a form matches. OCR slips exist, so Greek forms are checked against the printed Swete. CC BY-SA 4.0, as is Lewis & Short (D11): derived Greek and Latin word data is credited as CC BY-SA on `/sources`.
