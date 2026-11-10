@@ -23,6 +23,24 @@ jobs:
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e
+      - run: pnpm lighthouse
+
+  browsers:
+    # M7: the QA sweep on Firefox, desktop Safari (WebKit) and an iPhone profile.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm exec playwright install --with-deps firefox webkit
+      - run: pnpm exec playwright test --project=firefox --project=safari --project=iphone
+        env:
+          ALL_BROWSERS: '1'
 
   content:
     # Rebuilds the content from the pinned sources and fails if committed public/data differs.

@@ -12,6 +12,11 @@
   margin: 0 auto;
 }
 
+/* Until the map knows its width, the stations wait unseen rather than jump into place. */
+.pending {
+  visibility: hidden;
+}
+
 .line {
   position: absolute;
   inset: 0 auto auto 0;

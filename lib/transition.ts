@@ -111,14 +111,16 @@ export async function bookIn(
   el.replaceChildren(book);
   transition.pending = { kind: 'book-in', bookId };
   guard();
-  await book.animate(
-    [
-      { transform: fitTransform(toRect(from), to), opacity: 0 },
-      { opacity: 1, offset: 0.18 },
-      { transform: 'none', opacity: 1 },
-    ],
-    { duration: FLIGHT_MS, easing: EASE, fill: 'forwards' },
-  ).finished;
+  await settle(
+    book.animate(
+      [
+        { transform: fitTransform(toRect(from), to), opacity: 0 },
+        { opacity: 1, offset: 0.18 },
+        { transform: 'none', opacity: 1 },
+      ],
+      { duration: FLIGHT_MS, easing: EASE, fill: 'forwards' },
+    ),
+  );
   return g;
 }
 
@@ -162,14 +164,16 @@ export async function bookOut(
   target = transition.medallionRect?.(bookId) ?? target;
   const now = getComputedStyle(book).transform;
   drift.cancel();
-  await book.animate(
-    [
-      { transform: now === 'none' ? 'none' : now, opacity: 1 },
-      { opacity: 1, offset: 0.75 },
-      { transform: fitTransform(toRect(target), start), opacity: 0 },
-    ],
-    { duration: FLIGHT_MS, easing: EASE, fill: 'forwards' },
-  ).finished;
+  await settle(
+    book.animate(
+      [
+        { transform: now === 'none' ? 'none' : now, opacity: 1 },
+        { opacity: 1, offset: 0.75 },
+        { transform: fitTransform(toRect(target), start), opacity: 0 },
+      ],
+      { duration: FLIGHT_MS, easing: EASE, fill: 'forwards' },
+    ),
+  );
   finish();
 }
 
@@ -204,11 +208,13 @@ export async function paperIn(sectionId: string, at: DOMRect, color: string): Pr
   transition.pending = { kind: 'paper-in', sectionId };
   guard();
   const start = Math.max(at.width, 8) / disc.offsetWidth;
-  await disc.animate([{ transform: `scale(${start})` }, { transform: 'scale(1)' }], {
-    duration: PAPER_MS,
-    easing: EASE,
-    fill: 'forwards',
-  }).finished;
+  await settle(
+    disc.animate([{ transform: `scale(${start})` }, { transform: 'scale(1)' }], {
+      duration: PAPER_MS,
+      easing: EASE,
+      fill: 'forwards',
+    }),
+  );
 }
 
 /** The arriving page is ready under the paper: fade the paper away. */
@@ -216,11 +222,13 @@ export async function reveal(): Promise<void> {
   const el = layer();
   const child = el?.firstElementChild as HTMLElement | null;
   if (!child) return finish();
-  await child.animate([{ opacity: 1 }, { opacity: 0 }], {
-    duration: 220,
-    easing: 'ease',
-    fill: 'forwards',
-  }).finished;
+  await settle(
+    child.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 220,
+      easing: 'ease',
+      fill: 'forwards',
+    }),
+  );
   finish();
 }
 
@@ -243,14 +251,16 @@ export async function paperShrinkTo(at: DOMRect): Promise<void> {
   const disc = paperDisc(cx, cy, old.style.background);
   el.replaceChildren(disc);
   const end = Math.max(at.width, 8) / disc.offsetWidth;
-  await disc.animate(
-    [
-      { transform: 'scale(1)', opacity: 1 },
-      { opacity: 1, offset: 0.7 },
-      { transform: `scale(${end})`, opacity: 0 },
-    ],
-    { duration: PAPER_MS, easing: EASE, fill: 'forwards' },
-  ).finished;
+  await settle(
+    disc.animate(
+      [
+        { transform: 'scale(1)', opacity: 1 },
+        { opacity: 1, offset: 0.7 },
+        { transform: `scale(${end})`, opacity: 0 },
+      ],
+      { duration: PAPER_MS, easing: EASE, fill: 'forwards' },
+    ),
+  );
   finish();
 }
 
@@ -263,6 +273,21 @@ function nextFrames(n: number): Promise<void> {
   return new Promise((resolve) => {
     const step = () => (--n <= 0 ? resolve() : requestAnimationFrame(step));
     requestAnimationFrame(step);
+  });
+}
+
+/**
+ * Resolve when an animation ends, is cancelled, or overruns its duration by a margin. Navigation
+ * waits on this, so it must never hang (a paused background tab, a cancelled animation).
+ */
+function settle(a: Animation): Promise<void> {
+  const ms = Number(a.effect?.getComputedTiming().endTime ?? 0) + 300;
+  return new Promise((resolve) => {
+    const t = window.setTimeout(resolve, ms);
+    a.finished.then(
+      () => (window.clearTimeout(t), resolve()),
+      () => (window.clearTimeout(t), resolve()),
+    );
   });
 }
 

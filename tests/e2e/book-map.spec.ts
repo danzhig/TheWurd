@@ -139,7 +139,10 @@ test.describe('book maps', () => {
   test('the map shows progress and where the reader last was', async ({ page }) => {
     await page.goto('/read/gen-01/');
     await expect(page.locator('html')).toHaveAttribute('data-reader', 'gen-01');
-    await page.getByRole('button', { name: 'Mark as read' }).click();
+    // Without scrolling: reaching the end marks the section read and replaces the button.
+    await page
+      .getByRole('button', { name: 'Mark as read' })
+      .evaluate((b) => (b as HTMLElement).click());
     await page.keyboard.press('Escape'); // up a level, to the book map
     await page.waitForURL(/\/book\/Gen\/$/);
     await expect(page.getByTestId('book-progress')).toHaveText('1 of 20 sections read');

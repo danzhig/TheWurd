@@ -60,7 +60,7 @@ export default async function BookPage({ params }: Params) {
         <BackToVault bookId={b.id} name={b.name} tagline={b.tagline} />
       </nav>
       {/* The open book: its cover (which opens on arrival) over pages carrying the section map. */}
-      <div className={styles.frame} data-book-frame={b.id} data-state="closed">
+      <div className={styles.frame} data-book-frame={b.id} data-state="open">
         <BookCover bookId={b.id} name={b.name} tagline={b.tagline} />
         <div className={styles.pages} data-pages data-theme="vellum">
           <header className={styles.header}>
@@ -79,7 +79,7 @@ export default async function BookPage({ params }: Params) {
         </div>
       </div>
       <noscript>
-        <style>{`[data-book-frame] [data-pages]{opacity:1!important}[data-testid="book-cover"]{display:none}`}</style>
+        <style>{`[data-map-pending]{visibility:visible!important}`}</style>
       </noscript>
     </main>
   );

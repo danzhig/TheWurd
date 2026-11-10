@@ -39,37 +39,48 @@
 
 .vault-sky .cloud-layer {
   position: absolute;
+  transition: opacity 600ms ease;
   inset: -6%;
   background-size: cover;
   background-position: center;
   pointer-events: none;
   z-index: -1;
+  opacity: 0;
 }
 
-.vault-sky .cloud-far {
+:root[data-textures] .vault-sky .cloud-far {
   background-image: url('/textures/clouds-far.webp');
   background-image: image-set(
     url('/textures/clouds-far.avif') type('image/avif'),
     url('/textures/clouds-far.webp') type('image/webp')
   );
+}
+
+:root[data-textures='on'] .vault-sky .cloud-far {
   opacity: 0.55;
 }
 
-.vault-sky .cloud-mid {
+:root[data-textures] .vault-sky .cloud-mid {
   background-image: url('/textures/clouds-mid.webp');
   background-image: image-set(
     url('/textures/clouds-mid.avif') type('image/avif'),
     url('/textures/clouds-mid.webp') type('image/webp')
   );
+}
+
+:root[data-textures='on'] .vault-sky .cloud-mid {
   opacity: 0.7;
 }
 
-.vault-sky .cloud-near {
+:root[data-textures] .vault-sky .cloud-near {
   background-image: url('/textures/clouds-near.webp');
   background-image: image-set(
     url('/textures/clouds-near.avif') type('image/avif'),
     url('/textures/clouds-near.webp') type('image/webp')
   );
+}
+
+:root[data-textures='on'] .vault-sky .cloud-near {
   opacity: 0.8;
 }
 
@@ -83,10 +94,18 @@
 }
 
 .vault-sky::before {
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+:root[data-textures] .vault-sky::before {
   background: url('/textures/grain.webp');
   background-size: 256px 256px;
-  opacity: 0.18;
   mix-blend-mode: soft-light;
+}
+
+:root[data-textures='on'] .vault-sky::before {
+  opacity: 0.18;
 }
 
 .vault-sky::after {
