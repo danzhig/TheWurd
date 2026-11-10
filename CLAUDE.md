@@ -117,6 +117,7 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 ## Search notes (P2.3)
 
 - `pnpm build` runs Pagefind over `out/`. Only elements with `data-pagefind-body` are indexed: the section `<article>` and the bridge card. Each carries `data-pagefind-sort="order:NNNN"` (its position in `buildSequence`, from `pathPosition` in `lib/nav.ts`) so results come back in path order; book and range are `data-pagefind-meta` on their own elements (book names can contain commas). Verse numbers, footnote callers, the footnote list and the reference line are ignored.
+- Vercel deploys the whole `out/` folder as a static site (`vercel.json`: `framework: null`, `outputDirectory: out`). With the Next.js preset it published only Next's own output, so the Pagefind index (written to `out/pagefind/` after `next build`) was missing in production.
 - `/search` (linked from the Vault) loads `/pagefind/pagefind.js` only on that page. Each result opens at the first verse that matches (`components/search/match.ts`, unit-tested), found in the section's JSON.
 
 ## Verse links and previews (P2.4)
