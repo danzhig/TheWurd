@@ -1,0 +1,232 @@
+{
+ "sectionId": "gen-01",
+ "terms": [
+  {
+   "id": "gen-1-2-ruach",
+   "sectionId": "gen-01",
+   "ref": "Gen.1.2",
+   "status": "draft",
+   "span": {
+    "verse": "Gen.1.2",
+    "start": 84,
+    "end": 90,
+    "text": "Spirit"
+   },
+   "title": "ruaḥ",
+   "cards": [
+    {
+     "kind": "original",
+     "lang": "hbo",
+     "words": [
+      {
+       "form": "וְר֣וּחַ",
+       "translit": "veruaḥ",
+       "lemma": "רוּחַ",
+       "strongs": "H7307G",
+       "grammar": "HC/Ncfsc",
+       "grammarText": "Noun, common, feminine, singular, construct",
+       "gloss": "spirit",
+       "meaning": [
+        ": spirit",
+        "1) wind, breath, mind, spirit",
+        "1a) breath",
+        "1b) wind",
+        "1b1) of heaven",
+        "1b2) quarter (of wind), side",
+        "1b3) breath of air",
+        "1b4) air, gas"
+       ],
+       "cite": "TAHOT Gen-Deu, line 109 (Gen.1.2 word 9)"
+      }
+     ]
+    },
+    {
+     "kind": "septuagint",
+     "words": [
+      {
+       "form": "πνεῦμα",
+       "translit": "pneuma",
+       "lemma": "πνεῦμα",
+       "cite": "Swete, LXX 001-Gen (Gen.1.2 word 14)"
+      }
+     ],
+     "printCheck": true
+    },
+    {
+     "kind": "vulgate",
+     "words": "spiritus",
+     "ref": "GEN.1.2",
+     "sense": {
+      "headword": "spīrĭtus",
+      "text": "a breathing or gentle blowing of air, a breath, breeze",
+      "cite": "Lewis & Short, Perseus n45053.0"
+     }
+    },
+    {
+     "kind": "english",
+     "renderings": [
+      {
+       "version": "webc",
+       "ref": "Gen.1.2",
+       "words": "Spirit"
+      },
+      {
+       "version": "drc",
+       "ref": "GEN.1.2",
+       "words": "spirit of God"
+      },
+      {
+       "version": "kjv",
+       "ref": "GEN.1.2",
+       "words": "Spirit of God"
+      },
+      {
+       "version": "brenton",
+       "ref": "GEN.1.2",
+       "words": "Spirit of God"
+      }
+     ]
+    },
+    {
+     "kind": "debate",
+     "text": "The Hebrew word וְר֣וּחַ covers wind, breath and spirit (see its lexicon range). The Septuagint has πνεῦμα and the Vulgate spiritus, both able to mean breath or spirit; WEBC capitalises it as \"Spirit\". Whether the verse speaks of a wind from God or of God's Spirit is a matter of reading.",
+     "sources": []
+    }
+   ],
+   "citations": [
+    "TAHOT Gen-Deu, line 109 (Gen.1.2 word 9)",
+    "TBESH H7307G, line 9898",
+    "Swete, LXX 001-Gen (Gen.1.2 word 14)",
+    "Clementine Vulgate GEN.1.2",
+    "Lewis & Short, spīrĭtus, Perseus n45053.0",
+    "Douay-Rheims GEN.1.2",
+    "King James GEN.1.2",
+    "Brenton (Septuagint) GEN.1.2"
+   ]
+  },
+  {
+   "id": "gen-1-26-image-likeness",
+   "sectionId": "gen-01",
+   "ref": "Gen.1.26",
+   "status": "draft",
+   "span": {
+    "verse": "Gen.1.26",
+    "start": 33,
+    "end": 58,
+    "text": "image, after our likeness"
+   },
+   "title": "tselem demut",
+   "cards": [
+    {
+     "kind": "original",
+     "lang": "hbo",
+     "words": [
+      {
+       "form": "בְּצַלְמֵ֖נוּ",
+       "translit": "betsalmenu",
+       "lemma": "צֶ֫לֶם",
+       "strongs": "H6754",
+       "grammar": "HR/Ncmsc/Sp1bp",
+       "grammarText": "Noun, common, masculine, singular, construct",
+       "gloss": "image",
+       "meaning": [
+        "1) image",
+        "1a) images (of tumours, mice, heathen gods)",
+        "1b) image, likeness (of resemblance)",
+        "1c) mere, empty, image, semblance (fig.)",
+        "Aramaic equivalent: tse.lem (צְלֵם \"image\" H6755)"
+       ],
+       "cite": "TAHOT Gen-Deu, line 655 (Gen.1.26 word 5)"
+      },
+      {
+       "form": "כִּדְמוּתֵ֑נוּ",
+       "translit": "kidmutenu",
+       "lemma": "דְּמוּת",
+       "strongs": "H1823",
+       "grammar": "HR/Ncfsc/Sp1bp",
+       "grammarText": "Noun, common, feminine, singular, construct",
+       "gloss": "likeness",
+       "meaning": [
+        "1) likeness, similitude",
+        "adv",
+        "2) in the likeness of, like as"
+       ],
+       "cite": "TAHOT Gen-Deu, line 656 (Gen.1.26 word 6)"
+      }
+     ]
+    },
+    {
+     "kind": "septuagint",
+     "words": [
+      {
+       "form": "εἰκόνα",
+       "translit": "eikona",
+       "lemma": "εἰκών",
+       "cite": "Swete, LXX 001-Gen (Gen.1.26 word 9)"
+      },
+      {
+       "form": "ὁμοίωσιν",
+       "translit": "homoiōsin",
+       "lemma": "ὁμοίωσις",
+       "cite": "Swete, LXX 001-Gen (Gen.1.26 word 13)"
+      }
+     ],
+     "printCheck": true
+    },
+    {
+     "kind": "vulgate",
+     "words": "imaginem et similitudinem",
+     "ref": "GEN.1.26",
+     "sense": {
+      "headword": "sĭmĭlĭtūdo",
+      "text": "likeness, resemblance, similitude",
+      "cite": "Lewis & Short, Perseus n44306.0"
+     }
+    },
+    {
+     "kind": "english",
+     "renderings": [
+      {
+       "version": "webc",
+       "ref": "Gen.1.26",
+       "words": "image, after our likeness"
+      },
+      {
+       "version": "drc",
+       "ref": "GEN.1.26",
+       "words": "to our image and likeness"
+      },
+      {
+       "version": "kjv",
+       "ref": "GEN.1.26",
+       "words": "in our image, after our likeness"
+      },
+      {
+       "version": "brenton",
+       "ref": "GEN.1.26",
+       "words": "according to our image and likeness"
+      }
+     ]
+    },
+    {
+     "kind": "debate",
+     "text": "Two nouns stand side by side: בְּצַלְמֵ֖נוּ כִּדְמוּתֵ֑נוּ. The Septuagint renders them εἰκόνα ὁμοίωσιν and the Vulgate imaginem et similitudinem. Whether \"image\" and \"likeness\" name one idea twice or two distinct things has been read both ways.",
+     "sources": []
+    }
+   ],
+   "citations": [
+    "TAHOT Gen-Deu, line 655 (Gen.1.26 word 5)",
+    "TBESH H6754, line 9191",
+    "TAHOT Gen-Deu, line 656 (Gen.1.26 word 6)",
+    "TBESH H1823, line 2487",
+    "Swete, LXX 001-Gen (Gen.1.26 word 9)",
+    "Swete, LXX 001-Gen (Gen.1.26 word 13)",
+    "Clementine Vulgate GEN.1.26",
+    "Lewis & Short, sĭmĭlĭtūdo, Perseus n44306.0",
+    "Douay-Rheims GEN.1.26",
+    "King James GEN.1.26",
+    "Brenton (Septuagint) GEN.1.26"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+  "terms": [
+    {
+      "id": "gen-1-2-ruach",
+      "ref": "Gen.1.2",
+      "english": { "text": "Spirit", "occurrence": 1 },
+      "lang": "hbo",
+      "original": [{ "dataset": "TAHOT", "ref": "Gen.1.2", "wordIndex": 9, "strongs": "H7307G" }],
+      "lxx": [{ "ref": "Gen.1.2", "wordIndex": 14 }],
+      "vulgate": {
+        "ref": "GEN.1.2",
+        "words": "spiritus",
+        "lewisShort": {
+          "key": "spiritus",
+          "sense": "n45053.0",
+          "quote": "a breathing or gentle blowing of air, a breath, breeze"
+        }
+      },
+      "renderings": [
+        { "version": "drc", "ref": "GEN.1.2", "words": "spirit of God" },
+        { "version": "kjv", "ref": "GEN.1.2", "words": "Spirit of God" },
+        { "version": "brenton", "ref": "GEN.1.2", "words": "Spirit of God" }
+      ],
+      "debate": {
+        "text": "The Hebrew word {original} covers wind, breath and spirit (see its lexicon range). The Septuagint has {lxx} and the Vulgate {vulgate}, both able to mean breath or spirit; WEBC capitalises it as \"{webc}\". Whether the verse speaks of a wind from God or of God's Spirit is a matter of reading.",
+        "sources": []
+      },
+      "status": "draft"
+    },
+    {
+      "id": "gen-1-26-image-likeness",
+      "ref": "Gen.1.26",
+      "english": { "text": "image, after our likeness", "occurrence": 1 },
+      "lang": "hbo",
+      "original": [
+        { "dataset": "TAHOT", "ref": "Gen.1.26", "wordIndex": 5, "strongs": "H6754" },
+        { "dataset": "TAHOT", "ref": "Gen.1.26", "wordIndex": 6, "strongs": "H1823" }
+      ],
+      "lxx": [
+        { "ref": "Gen.1.26", "wordIndex": 9 },
+        { "ref": "Gen.1.26", "wordIndex": 13 }
+      ],
+      "vulgate": {
+        "ref": "GEN.1.26",
+        "words": "imaginem et similitudinem",
+        "lewisShort": {
+          "key": "similitudo",
+          "sense": "n44306.0",
+          "quote": "likeness, resemblance, similitude"
+        }
+      },
+      "renderings": [
+        { "version": "drc", "ref": "GEN.1.26", "words": "to our image and likeness" },
+        { "version": "kjv", "ref": "GEN.1.26", "words": "in our image, after our likeness" },
+        { "version": "brenton", "ref": "GEN.1.26", "words": "according to our image and likeness" }
+      ],
+      "debate": {
+        "text": "Two nouns stand side by side: {original}. The Septuagint renders them {lxx} and the Vulgate {vulgate}. Whether \"image\" and \"likeness\" name one idea twice or two distinct things has been read both ways.",
+        "sources": []
+      },
+      "status": "draft"
+    }
+  ]
+}

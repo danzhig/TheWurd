@@ -1,0 +1,235 @@
+{
+ "sectionId": "gen-02",
+ "terms": [
+  {
+   "id": "gen-2-18-ezer-kenegdo",
+   "sectionId": "gen-02",
+   "ref": "Gen.2.18",
+   "status": "draft",
+   "span": {
+    "verse": "Gen.2.18",
+    "start": 78,
+    "end": 102,
+    "text": "helper comparable to him"
+   },
+   "title": "ʿezer neged",
+   "cards": [
+    {
+     "kind": "original",
+     "lang": "hbo",
+     "words": [
+      {
+       "form": "עֵ֖זֶר",
+       "translit": "ʿezer",
+       "lemma": "עֵ֫זֶר",
+       "strongs": "H5828",
+       "grammar": "HNcmsa",
+       "grammarText": "Noun, common, masculine, singular, absolute",
+       "gloss": "helper",
+       "meaning": [
+        "1) help, succour",
+        "1a) help, succour",
+        "1b) one who helps"
+       ],
+       "cite": "TAHOT Gen-Deu, line 1239 (Gen.2.18 word 11)"
+      },
+      {
+       "form": "כְּנֶגְדּֽוֹ",
+       "translit": "kenegdo",
+       "lemma": "נֶ֫גֶד",
+       "strongs": "H5048",
+       "grammar": "HR/Acmsc/Sp3ms",
+       "grammarText": "Adjective, numerical, masculine, singular, construct",
+       "gloss": "before",
+       "meaning": [
+        "subst",
+        "1) what is conspicuous, what is in front of",
+        "adv",
+        "2) in front of, straight forward, before, in sight of",
+        "3) in front of oneself, straightforward",
+        "4) before your face, in your view or purpose",
+        "with prep",
+        "5) what is in front of, corresponding to"
+       ],
+       "cite": "TAHOT Gen-Deu, line 1240 (Gen.2.18 word 12)"
+      }
+     ]
+    },
+    {
+     "kind": "septuagint",
+     "words": [
+      {
+       "form": "βοηθὸν",
+       "translit": "boēthon",
+       "lemma": "βοηθός",
+       "cite": "Swete, LXX 001-Gen (Gen.2.18 word 14)"
+      },
+      {
+       "form": "κατ’",
+       "translit": "kat",
+       "cite": "Swete, LXX 001-Gen (Gen.2.18 word 15)"
+      },
+      {
+       "form": "αὐτόν",
+       "translit": "auton",
+       "lemma": "αὐτός",
+       "cite": "Swete, LXX 001-Gen (Gen.2.18 word 16)"
+      }
+     ],
+     "printCheck": true
+    },
+    {
+     "kind": "vulgate",
+     "words": "adjutorium simile sibi",
+     "ref": "GEN.2.18",
+     "sense": {
+      "headword": "adjūtōrĭum",
+      "text": "help, aid, assistance, support",
+      "cite": "Lewis & Short, Perseus n858.0"
+     }
+    },
+    {
+     "kind": "english",
+     "renderings": [
+      {
+       "version": "webc",
+       "ref": "Gen.2.18",
+       "words": "helper comparable to him"
+      },
+      {
+       "version": "drc",
+       "ref": "GEN.2.18",
+       "words": "a help like unto himself"
+      },
+      {
+       "version": "kjv",
+       "ref": "GEN.2.18",
+       "words": "an help meet for him"
+      },
+      {
+       "version": "brenton",
+       "ref": "GEN.2.18",
+       "words": "a help suitable to him"
+      }
+     ]
+    },
+    {
+     "kind": "debate",
+     "text": "The phrase is עֵ֖זֶר כְּנֶגְדּֽוֹ. English versions differ: \"helper comparable to him\", \"a help like unto himself\", \"an help meet for him\", \"a help suitable to him\". The Septuagint has βοηθὸν κατ’ αὐτόν; the Vulgate adjutorium simile sibi. How much the word for \"helper\" implies rank, and in which direction, is debated.",
+     "sources": []
+    }
+   ],
+   "citations": [
+    "TAHOT Gen-Deu, line 1239 (Gen.2.18 word 11)",
+    "TBESH H5828, line 7914",
+    "TAHOT Gen-Deu, line 1240 (Gen.2.18 word 12)",
+    "TBESH H5048, line 6824",
+    "Swete, LXX 001-Gen (Gen.2.18 word 14)",
+    "Swete, LXX 001-Gen (Gen.2.18 word 15)",
+    "Swete, LXX 001-Gen (Gen.2.18 word 16)",
+    "Clementine Vulgate GEN.2.18",
+    "Lewis & Short, adjūtōrĭum, Perseus n858.0",
+    "Douay-Rheims GEN.2.18",
+    "King James GEN.2.18",
+    "Brenton (Septuagint) GEN.2.18"
+   ]
+  },
+  {
+   "id": "gen-3-15-pronoun",
+   "sectionId": "gen-02",
+   "ref": "Gen.3.15",
+   "status": "draft",
+   "span": {
+    "verse": "Gen.3.15",
+    "start": 94,
+    "end": 96,
+    "text": "He"
+   },
+   "title": "huʾ",
+   "cards": [
+    {
+     "kind": "original",
+     "lang": "hbo",
+     "words": [
+      {
+       "form": "ה֚וּא",
+       "translit": "huʾ",
+       "lemma": "הוּא",
+       "strongs": "H1931",
+       "grammar": "HPp3ms",
+       "grammarText": "Pronoun, personal, third person, masculine, singular",
+       "gloss": "he/she/it",
+       "meaning": [
+        "pron 3p s",
+        "1) he, she, it",
+        "1a) himself (with emphasis)",
+        "1b) resuming subj with emphasis",
+        "1c) (with minimum emphasis following predicate)",
+        "1d) (anticipating subj)",
+        "1e) (emphasising predicate)",
+        "1f) that, it (neuter) demons pron"
+       ],
+       "cite": "TAHOT Gen-Deu, line 1790 (Gen.3.15 word 10)"
+      }
+     ]
+    },
+    {
+     "kind": "septuagint",
+     "words": [
+      {
+       "form": "αὐτός",
+       "translit": "autos",
+       "lemma": "αὐτός",
+       "cite": "Swete, LXX 001-Gen (Gen.3.15 word 22)"
+      }
+     ],
+     "printCheck": true
+    },
+    {
+     "kind": "vulgate",
+     "words": "ipsa",
+     "ref": "GEN.3.15"
+    },
+    {
+     "kind": "english",
+     "renderings": [
+      {
+       "version": "webc",
+       "ref": "Gen.3.15",
+       "words": "He"
+      },
+      {
+       "version": "drc",
+       "ref": "GEN.3.15",
+       "words": "she shall crush thy head"
+      },
+      {
+       "version": "kjv",
+       "ref": "GEN.3.15",
+       "words": "it shall bruise thy head"
+      },
+      {
+       "version": "brenton",
+       "ref": "GEN.3.15",
+       "words": "he shall watch against thy head"
+      }
+     ]
+    },
+    {
+     "kind": "debate",
+     "text": "Who crushes the serpent's head? The Hebrew pronoun ה֚וּא is pronoun, personal, third person, masculine, singular, agreeing with \"offspring\". The Septuagint has the masculine αὐτός. The Clementine Vulgate reads the feminine ipsa, and the Douay-Rheims follows it: \"she shall crush thy head\". The King James has \"it shall bruise thy head\". Each reading points to a different subject: the offspring, a descendant, or the woman.",
+     "sources": []
+    }
+   ],
+   "citations": [
+    "TAHOT Gen-Deu, line 1790 (Gen.3.15 word 10)",
+    "TBESH H1931, line 2616",
+    "Swete, LXX 001-Gen (Gen.3.15 word 22)",
+    "Clementine Vulgate GEN.3.15",
+    "Douay-Rheims GEN.3.15",
+    "King James GEN.3.15",
+    "Brenton (Septuagint) GEN.3.15"
+   ]
+  }
+ ]
+}

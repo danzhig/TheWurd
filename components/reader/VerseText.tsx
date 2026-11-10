@@ -62,8 +62,48 @@ export function verseAnchor(v: Pick<VerseOut, 'c' | 'v' | 'part'>): string {
   return `v-${v.c}-${v.v}${v.part ?? ''}`;
 }
 
+/** A key term's place in a verse's plain text (PLAN §13), keyed by verse ref. */
+export type TermMarks = Record<string, { id: string; start: number; end: number }[]>;
+
+/**
+ * Text from a block between two offsets, with key terms wrapped in `span[data-term]` (inert until
+ * the reader turns Depth on; ReaderShell makes them buttons). A term that crosses a footnote caller
+ * or a block edge is left unmarked.
+ */
+function withTerms(
+  part: Part,
+  from: number,
+  to: number,
+  marks: TermMarks | undefined,
+): ReactNode[] {
+  const text = part.text.slice(from, to);
+  const here = (marks?.[part.verse.ref] ?? [])
+    .map((m) => ({ ...m, s: m.start - part.start - from, e: m.end - part.start - from }))
+    .filter((m) => m.s >= 0 && m.e <= text.length)
+    .sort((a, b) => a.s - b.s);
+  if (!here.length) return [text];
+  const out: ReactNode[] = [];
+  let pos = 0;
+  for (const m of here) {
+    if (m.s < pos) continue;
+    out.push(text.slice(pos, m.s));
+    out.push(
+      <span key={`t${m.id}`} className="term" data-term={m.id}>
+        {text.slice(m.s, m.e)}
+      </span>,
+    );
+    pos = m.e;
+  }
+  out.push(text.slice(pos));
+  return out;
+}
+
 /** Render one block's text with footnote callers at their offsets. */
-function withCallers(part: Part, numberOf: (ref: string, i: number) => number): ReactNode[] {
+function withCallers(
+  part: Part,
+  numberOf: (ref: string, i: number) => number,
+  marks?: TermMarks,
+): ReactNode[] {
   const notes = (part.verse.footnotes ?? [])
     .map((n, i) => ({ ...n, i }))
     // A note belongs to the block it falls in; one at a block's end stays with that block.
@@ -72,7 +112,7 @@ function withCallers(part: Part, numberOf: (ref: string, i: number) => number): 
   let pos = 0;
   for (const n of notes) {
     const local = Math.min(Math.max(n.at - part.start, 0), part.text.length);
-    out.push(part.text.slice(pos, local));
+    out.push(...withTerms(part, pos, local, marks));
     const num = numberOf(part.verse.ref, n.i);
     out.push(
       <sup key={`f${n.i}`} className="footnote-call" data-pagefind-ignore="">
@@ -87,7 +127,7 @@ function withCallers(part: Part, numberOf: (ref: string, i: number) => number): 
     );
     pos = local;
   }
-  out.push(part.text.slice(pos));
+  out.push(...withTerms(part, pos, part.text.length, marks));
   return out;
 }
 
@@ -98,6 +138,8 @@ export interface VerseTextProps {
   before?: Record<string, ReactNode>;
   /** Running footnote numbering shared across the section (default: per verse). */
   numberOf?: (ref: string, i: number) => number;
+  /** Key terms to mark in the text. */
+  marks?: TermMarks;
 }
 
 /**
@@ -109,6 +151,7 @@ export function VerseText({
   dropCap = false,
   before = {},
   numberOf = (_r, i) => i + 1,
+  marks,
 }: VerseTextProps) {
   const lines = toLines(verses, new Set(Object.keys(before)));
   const useDropCap =
@@ -150,7 +193,7 @@ export function VerseText({
             </a>
           </sup>
         ) : null}
-        {withCallers(p, numberOf)}{' '}
+        {withCallers(p, numberOf, marks)}{' '}
       </span>
     ));
     nodes.push(

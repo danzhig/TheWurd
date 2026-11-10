@@ -1,0 +1,53 @@
+{
+  "terms": [
+    {
+      "id": "gen-32-28-israel",
+      "ref": "Gen.32.28",
+      "english": {
+        "text": "Israel",
+        "occurrence": 1
+      },
+      "lang": "hbo",
+      "original": [
+        {
+          "dataset": "TAHOT",
+          "ref": "Gen.32.28",
+          "wordIndex": 9,
+          "strongs": "H3478"
+        }
+      ],
+      "lxx": [
+        {
+          "ref": "Gen.32.28",
+          "wordIndex": 12
+        }
+      ],
+      "vulgate": {
+        "ref": "GEN.32.28",
+        "words": "Israël"
+      },
+      "renderings": [
+        {
+          "version": "drc",
+          "ref": "GEN.32.28",
+          "words": "Israel"
+        },
+        {
+          "version": "kjv",
+          "ref": "GEN.32.28",
+          "words": "Israel"
+        },
+        {
+          "version": "brenton",
+          "ref": "GEN.32.29",
+          "words": "Israel"
+        }
+      ],
+      "debate": {
+        "text": "Jacob is renamed {original}. The verse explains the name with the verb for striving that comes next in the Hebrew, which the versions render differently. The Hebrew numbers this verse one later than the English, the Septuagint and the Vulgate.",
+        "sources": []
+      },
+      "status": "draft"
+    }
+  ]
+}

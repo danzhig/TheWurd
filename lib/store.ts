@@ -12,12 +12,15 @@ export interface Settings {
   theme: ThemeSetting; // 'default' = Vault on the maps, Vellum in the reader
   textSize: 1 | 2 | 3 | 4;
   verseNumbers: boolean;
+  /** Depth (PLAN §13): key terms marked in the text, opening their word cards. */
+  depth: boolean;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   theme: 'default',
   textSize: 2,
   verseNumbers: true,
+  depth: false,
 };
 
 const memory = new Map<string, string>();
@@ -62,6 +65,7 @@ export function readSettings(): Settings {
       theme: parsed.theme ?? DEFAULT_SETTINGS.theme,
       textSize: parsed.textSize ?? DEFAULT_SETTINGS.textSize,
       verseNumbers: parsed.verseNumbers ?? DEFAULT_SETTINGS.verseNumbers,
+      depth: parsed.depth ?? DEFAULT_SETTINGS.depth,
     };
     if (!['default', 'vault', 'vellum', 'auto'].includes(s.theme)) s.theme = 'default';
     if (![1, 2, 3, 4].includes(s.textSize)) s.textSize = DEFAULT_SETTINGS.textSize;

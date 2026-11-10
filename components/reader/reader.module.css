@@ -459,3 +459,16 @@ a.detour:hover {
 .toast:empty {
   display: none;
 }
+
+/* The Depth toggle: a word, not an icon; gold when on. */
+.depth {
+  width: auto;
+  padding: 0 0.75rem;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+}
+
+.depth[aria-pressed='true'] {
+  border-color: var(--accent);
+  color: var(--accent);
+}

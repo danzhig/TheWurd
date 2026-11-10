@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { prettyRange } from '@/lib/format';
 import type { FoldOut, NoteOut, SectionFile, VerseOut } from '@/lib/types';
-import { footnoteId, VerseText, verseAnchor } from './VerseText';
+import { footnoteId, VerseText, verseAnchor, type TermMarks } from './VerseText';
 import styles from './reader.module.css';
 
 type Segment =
@@ -66,7 +66,7 @@ function FootnoteList({
 }
 
 /** The text of a section with its folds and notes; whole-section skim and skip wrap it in a card. */
-export function SectionBody({ section }: { section: SectionFile }) {
+export function SectionBody({ section, marks }: { section: SectionFile; marks?: TermMarks }) {
   const numbers = new Map<string, number>();
   let n = 0;
   for (const v of section.verses)
@@ -93,6 +93,7 @@ export function SectionBody({ section }: { section: SectionFile }) {
           dropCap={si === 0 && section.status !== 'skip'}
           before={before}
           numberOf={numberOf}
+          marks={marks}
         />,
       );
     } else {
@@ -106,7 +107,7 @@ export function SectionBody({ section }: { section: SectionFile }) {
               Read it anyway
             </span>
           </summary>
-          <VerseText verses={seg.verses} before={before} numberOf={numberOf} />
+          <VerseText verses={seg.verses} before={before} numberOf={numberOf} marks={marks} />
         </details>,
       );
     }

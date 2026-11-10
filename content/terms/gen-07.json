@@ -1,0 +1,43 @@
+{
+  "terms": [
+    {
+      "id": "gen-12-3-nivrekhu",
+      "ref": "Gen.12.3",
+      "english": { "text": "will be blessed", "occurrence": 1 },
+      "lang": "hbo",
+      "original": [{ "dataset": "TAHOT", "ref": "Gen.12.3", "wordIndex": 5, "strongs": "H1288" }],
+      "lxx": [{ "ref": "Gen.12.3", "wordIndex": 12 }],
+      "vulgate": {
+        "ref": "GEN.12.3",
+        "words": "benedicentur",
+        "lewisShort": {
+          "key": "benedico",
+          "sense": "n5170.0",
+          "quote": "to speak well of any one, to commend, praise"
+        }
+      },
+      "renderings": [
+        {
+          "version": "drc",
+          "ref": "GEN.12.3",
+          "words": "shall all the kindred of the earth be blessed"
+        },
+        {
+          "version": "kjv",
+          "ref": "GEN.12.3",
+          "words": "shall all families of the earth be blessed"
+        },
+        {
+          "version": "brenton",
+          "ref": "GEN.12.3",
+          "words": "shall all the tribes of the earth be blessed"
+        }
+      ],
+      "debate": {
+        "text": "The verb {original} is {grammar}. This stem can be passive (\"will be blessed\") or reflexive (\"will bless themselves\", that is, use Abram's name in blessing). The Septuagint {lxx} and the Vulgate {vulgate} are both passive, as are the English versions here.",
+        "sources": []
+      },
+      "status": "draft"
+    }
+  ]
+}

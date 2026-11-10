@@ -57,10 +57,13 @@ function step(n: number, name: string) {
 
 function listJson(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
-  return fs
-    .readdirSync(dir, { recursive: true, encoding: 'utf8' })
-    .filter((f) => f.endsWith('.json'))
-    .sort();
+  return (
+    fs
+      .readdirSync(dir, { recursive: true, encoding: 'utf8' })
+      // terms/ is built by `pnpm terms:build` from the Phase 3 sources, not by this pipeline.
+      .filter((f) => f.endsWith('.json') && !f.startsWith('terms'))
+      .sort()
+  );
 }
 
 async function main() {

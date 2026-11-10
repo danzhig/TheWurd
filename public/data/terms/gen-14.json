@@ -1,0 +1,101 @@
+{
+ "sectionId": "gen-14",
+ "terms": [
+  {
+   "id": "gen-32-28-israel",
+   "sectionId": "gen-14",
+   "ref": "Gen.32.28",
+   "status": "draft",
+   "span": {
+    "verse": "Gen.32.28",
+    "start": 56,
+    "end": 62,
+    "text": "Israel"
+   },
+   "title": "yisraʾel",
+   "cards": [
+    {
+     "kind": "original",
+     "lang": "hbo",
+     "words": [
+      {
+       "form": "יִשְׂרָאֵ֑ל",
+       "translit": "yisraʾel",
+       "lemma": "יִשְׂרָאֵל",
+       "strongs": "H3478",
+       "grammar": "HNpm",
+       "grammarText": "Noun, proper, masculine",
+       "gloss": "Israel",
+       "meaning": [
+        "A man living at the time of the Patriarchs, first mentioned at Gen.25.26;",
+        "son of: Isaac (H3327) and Rebekah (H7259);",
+        "brother of: Esau (H6215); married to Rachel (H7354), Leah (H3812), Zilpah (H2153) and Bilhah (H1090A);",
+        "father of: Reuben (H7205), Simeon (H8095), Levi (H3878), Judah (H3063), Dan (H1835H), Naphtali (H5321), Gad (H1410), Asher (H0836), Issachar (H3485), Zebulun (H2074), Dinah (H1783), Joseph (H3130) and Benjamin (H1144); also called Jacob frequently",
+        "§ Israel = \"God prevails\"",
+        "1) the second name for Jacob given to him by God after his wrestling with the angel at Peniel",
+        "2) the name of the descendants and the nation of the descendants of Jacob",
+        "2a) the name of the nation until the death of Solomon and the split"
+       ],
+       "cite": "TAHOT Gen-Deu, line 22544 (Gen.32.28 word 9)"
+      }
+     ]
+    },
+    {
+     "kind": "septuagint",
+     "words": [
+      {
+       "form": "Ἰσραὴλ",
+       "translit": "israēl",
+       "cite": "Swete, LXX 001-Gen (Gen.32.28 word 12)"
+      }
+     ],
+     "printCheck": true
+    },
+    {
+     "kind": "vulgate",
+     "words": "Israël",
+     "ref": "GEN.32.28"
+    },
+    {
+     "kind": "english",
+     "renderings": [
+      {
+       "version": "webc",
+       "ref": "Gen.32.28",
+       "words": "Israel"
+      },
+      {
+       "version": "drc",
+       "ref": "GEN.32.28",
+       "words": "Israel"
+      },
+      {
+       "version": "kjv",
+       "ref": "GEN.32.28",
+       "words": "Israel"
+      },
+      {
+       "version": "brenton",
+       "ref": "GEN.32.29",
+       "words": "Israel"
+      }
+     ]
+    },
+    {
+     "kind": "debate",
+     "text": "Jacob is renamed יִשְׂרָאֵ֑ל. The verse explains the name with the verb for striving that comes next in the Hebrew, which the versions render differently. The Hebrew numbers this verse one later than the English, the Septuagint and the Vulgate.",
+     "sources": []
+    }
+   ],
+   "citations": [
+    "TAHOT Gen-Deu, line 22544 (Gen.32.28 word 9)",
+    "TBESH H3478, line 4865",
+    "Swete, LXX 001-Gen (Gen.32.28 word 12)",
+    "Clementine Vulgate GEN.32.28",
+    "Douay-Rheims GEN.32.28",
+    "King James GEN.32.28",
+    "Brenton (Septuagint) GEN.32.29"
+   ]
+  }
+ ]
+}

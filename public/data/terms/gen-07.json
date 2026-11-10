@@ -1,0 +1,108 @@
+{
+ "sectionId": "gen-07",
+ "terms": [
+  {
+   "id": "gen-12-3-nivrekhu",
+   "sectionId": "gen-07",
+   "ref": "Gen.12.3",
+   "status": "draft",
+   "span": {
+    "verse": "Gen.12.3",
+    "start": 115,
+    "end": 130,
+    "text": "will be blessed"
+   },
+   "title": "nivrekhu",
+   "cards": [
+    {
+     "kind": "original",
+     "lang": "hbo",
+     "words": [
+      {
+       "form": "וְנִבְרְכ֣וּ",
+       "translit": "venivrekhu",
+       "lemma": "בָּרַךְ",
+       "strongs": "H1288",
+       "grammar": "Hc/VNq3cp",
+       "grammarText": "Verb, niphal (hence simple, passive), consecutive perfect (hence future/present, indicative), third person, either gender, plural",
+       "gloss": "to bless",
+       "meaning": [
+        "1) to bless, kneel",
+        "1a) (Qal)",
+        "1a1) to kneel",
+        "1a2) to bless",
+        "1b) (Niphal) to be blessed, bless oneself",
+        "1c) (Piel) to bless",
+        "1d) (Pual) to be blessed, be adored",
+        "1e) (Hiphil) to cause to kneel"
+       ],
+       "cite": "TAHOT Gen-Deu, line 6874 (Gen.12.3 word 5)"
+      }
+     ]
+    },
+    {
+     "kind": "septuagint",
+     "words": [
+      {
+       "form": "εὐλογηθήσονται",
+       "translit": "eulogēthēsontai",
+       "lemma": "εὐλογέω",
+       "cite": "Swete, LXX 001-Gen (Gen.12.3 word 12)"
+      }
+     ],
+     "printCheck": true
+    },
+    {
+     "kind": "vulgate",
+     "words": "benedicentur",
+     "ref": "GEN.12.3",
+     "sense": {
+      "headword": "bĕnĕdīco",
+      "text": "to speak well of any one, to commend, praise",
+      "cite": "Lewis & Short, Perseus n5170.0"
+     }
+    },
+    {
+     "kind": "english",
+     "renderings": [
+      {
+       "version": "webc",
+       "ref": "Gen.12.3",
+       "words": "will be blessed"
+      },
+      {
+       "version": "drc",
+       "ref": "GEN.12.3",
+       "words": "shall all the kindred of the earth be blessed"
+      },
+      {
+       "version": "kjv",
+       "ref": "GEN.12.3",
+       "words": "shall all families of the earth be blessed"
+      },
+      {
+       "version": "brenton",
+       "ref": "GEN.12.3",
+       "words": "shall all the tribes of the earth be blessed"
+      }
+     ]
+    },
+    {
+     "kind": "debate",
+     "text": "The verb וְנִבְרְכ֣וּ is verb, niphal (hence simple, passive), consecutive perfect (hence future/present, indicative), third person, either gender, plural. This stem can be passive (\"will be blessed\") or reflexive (\"will bless themselves\", that is, use Abram's name in blessing). The Septuagint εὐλογηθήσονται and the Vulgate benedicentur are both passive, as are the English versions here.",
+     "sources": []
+    }
+   ],
+   "citations": [
+    "TAHOT Gen-Deu, line 6874 (Gen.12.3 word 5)",
+    "TBESH H1288, line 1818",
+    "Swete, LXX 001-Gen (Gen.12.3 word 12)",
+    "Clementine Vulgate GEN.12.3",
+    "Lewis & Short, bĕnĕdīco, Perseus n5170.0",
+    "Douay-Rheims GEN.12.3",
+    "King James GEN.12.3",
+    "Brenton (Septuagint) GEN.12.3"
+   ]
+  }
+ ]
+}

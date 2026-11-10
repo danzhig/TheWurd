@@ -4,9 +4,19 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { SettingsSheet } from '@/components/ui/SettingsSheet';
-import { CHANGE_EVENT, markRead, markUnread, readProgress, writeLast } from '@/lib/store';
+import {
+  CHANGE_EVENT,
+  markRead,
+  markUnread,
+  readProgress,
+  readSettings,
+  writeLast,
+  writeSettings,
+} from '@/lib/store';
 import { animationsOn, paperCover, reveal, transition } from '@/lib/transition';
 import type { PageNav } from '@/lib/nav';
+import type { BuiltTerm } from '@/lib/terms';
+import { TermDeck } from './TermDeck';
 import styles from './reader.module.css';
 
 /** One brief haptic tick where the device supports it (Android; iOS Safari has no vibration). */
@@ -30,6 +40,8 @@ export interface ReaderShellProps {
   /** Mark as read as soon as the page is seen (whole-section skims). */
   readOnOpen?: boolean;
   nav: PageNav;
+  /** Key terms on this page (PLAN §13), opened from the text when Depth is on. */
+  terms?: BuiltTerm[];
   children: ReactNode;
 }
 
@@ -42,6 +54,7 @@ export function ReaderShell({
   stop,
   readOnOpen,
   nav,
+  terms = [],
   children,
 }: ReaderShellProps) {
   const router = useRouter();
@@ -64,6 +77,48 @@ export function ReaderShell({
   const [scrolled, setScrolled] = useState(0);
   const [done, setDone] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [depth, setDepth] = useState(false);
+  const [openTerm, setOpenTerm] = useState<BuiltTerm | null>(null);
+
+  // Depth (PLAN §13): a remembered setting. When on, the marked terms become buttons that open
+  // their word cards; when off they are plain text.
+  useEffect(() => {
+    const sync = () => setDepth(readSettings().depth);
+    sync();
+    window.addEventListener(CHANGE_EVENT, sync);
+    return () => window.removeEventListener(CHANGE_EVENT, sync);
+  }, []);
+  useEffect(() => {
+    const on = depth && terms.length > 0;
+    document.documentElement.dataset.depth = on ? 'on' : 'off';
+    const spans = document.querySelectorAll<HTMLElement>('[data-term]');
+    spans.forEach((el) => {
+      if (on) {
+        el.setAttribute('role', 'button');
+        el.tabIndex = 0;
+        el.setAttribute('aria-haspopup', 'dialog');
+      } else {
+        el.removeAttribute('role');
+        el.removeAttribute('tabindex');
+        el.removeAttribute('aria-haspopup');
+      }
+    });
+    if (!on) return;
+    const open = (e: Event) => {
+      const el = (e.target as HTMLElement | null)?.closest<HTMLElement>('[data-term]');
+      if (!el) return;
+      if (e instanceof KeyboardEvent && e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      setOpenTerm(terms.find((t) => t.id === el.dataset.term) ?? null);
+    };
+    document.addEventListener('click', open);
+    document.addEventListener('keydown', open);
+    return () => {
+      document.removeEventListener('click', open);
+      document.removeEventListener('keydown', open);
+      delete document.documentElement.dataset.depth;
+    };
+  }, [depth, terms]);
   const endRef = useRef<HTMLDivElement>(null);
 
   // Focus the page heading after every navigation (PLAN §10 accessibility), and mark the page as
@@ -168,7 +223,7 @@ export function ReaderShell({
   // Keyboard: ← previous, → next, Esc up a level.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || settingsOpen) return;
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || settingsOpen || openTerm) return;
       const t = e.target as HTMLElement | null;
       if (t && (t.isContentEditable || ['INPUT', 'SELECT', 'TEXTAREA'].includes(t.tagName))) return;
       if (e.key === 'ArrowRight' && nav.next) router.push(nav.next.href);
@@ -177,7 +232,7 @@ export function ReaderShell({
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [nav, router, settingsOpen, goUp]);
+  }, [nav, router, settingsOpen, openTerm, goUp]);
 
   const next = nav.next;
   return (
@@ -192,6 +247,17 @@ export function ReaderShell({
           <span aria-hidden="true">←</span>
         </Link>
         <p className={styles.topTitle}>{heading}</p>
+        {terms.length ? (
+          <button
+            type="button"
+            className={`${styles.iconButton} ${styles.depth}`}
+            aria-pressed={depth}
+            onClick={() => writeSettings({ depth: !depth })}
+            data-testid="depth-toggle"
+          >
+            Depth
+          </button>
+        ) : null}
         <button
           type="button"
           className={styles.iconButton}
@@ -207,6 +273,7 @@ export function ReaderShell({
         />
       </header>
       <SettingsSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+      <TermDeck term={openTerm} onClose={() => setOpenTerm(null)} />
       <p className={styles.toast} role="status" aria-live="polite" data-testid="copied">
         {copied}
       </p>

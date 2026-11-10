@@ -139,3 +139,18 @@
   color: var(--text-muted);
   margin: 1.25rem 0 0.4rem;
 }
+
+/* Key terms (PLAN §13): plain text until Depth is on, then a faint dotted gold underline. */
+:root[data-depth='on'] .term {
+  text-decoration: underline dotted var(--accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+:root[data-depth='on'] .term:hover,
+:root[data-depth='on'] .term:focus-visible {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  outline: none;
+}

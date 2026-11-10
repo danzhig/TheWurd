@@ -1,0 +1,121 @@
+{
+  "terms": [
+    {
+      "id": "gen-2-18-ezer-kenegdo",
+      "ref": "Gen.2.18",
+      "english": {
+        "text": "helper comparable to him",
+        "occurrence": 1
+      },
+      "lang": "hbo",
+      "original": [
+        {
+          "dataset": "TAHOT",
+          "ref": "Gen.2.18",
+          "wordIndex": 11,
+          "strongs": "H5828"
+        },
+        {
+          "dataset": "TAHOT",
+          "ref": "Gen.2.18",
+          "wordIndex": 12,
+          "strongs": "H5048"
+        }
+      ],
+      "lxx": [
+        {
+          "ref": "Gen.2.18",
+          "wordIndex": 14
+        },
+        {
+          "ref": "Gen.2.18",
+          "wordIndex": 15
+        },
+        {
+          "ref": "Gen.2.18",
+          "wordIndex": 16
+        }
+      ],
+      "vulgate": {
+        "ref": "GEN.2.18",
+        "words": "adjutorium simile sibi",
+        "lewisShort": {
+          "key": "adjutorium",
+          "sense": "n858.0",
+          "quote": "help, aid, assistance, support"
+        }
+      },
+      "renderings": [
+        {
+          "version": "drc",
+          "ref": "GEN.2.18",
+          "words": "a help like unto himself"
+        },
+        {
+          "version": "kjv",
+          "ref": "GEN.2.18",
+          "words": "an help meet for him"
+        },
+        {
+          "version": "brenton",
+          "ref": "GEN.2.18",
+          "words": "a help suitable to him"
+        }
+      ],
+      "debate": {
+        "text": "The phrase is {original}. English versions differ: \"{webc}\", \"{drc}\", \"{kjv}\", \"{brenton}\". The Septuagint has {lxx}; the Vulgate {vulgate}. How much the word for \"helper\" implies rank, and in which direction, is debated.",
+        "sources": []
+      },
+      "status": "draft"
+    },
+    {
+      "id": "gen-3-15-pronoun",
+      "ref": "Gen.3.15",
+      "english": {
+        "text": "He",
+        "occurrence": 1
+      },
+      "lang": "hbo",
+      "original": [
+        {
+          "dataset": "TAHOT",
+          "ref": "Gen.3.15",
+          "wordIndex": 10,
+          "strongs": "H1931"
+        }
+      ],
+      "lxx": [
+        {
+          "ref": "Gen.3.15",
+          "wordIndex": 22
+        }
+      ],
+      "vulgate": {
+        "ref": "GEN.3.15",
+        "words": "ipsa"
+      },
+      "renderings": [
+        {
+          "version": "drc",
+          "ref": "GEN.3.15",
+          "words": "she shall crush thy head"
+        },
+        {
+          "version": "kjv",
+          "ref": "GEN.3.15",
+          "words": "it shall bruise thy head"
+        },
+        {
+          "version": "brenton",
+          "ref": "GEN.3.15",
+          "words": "he shall watch against thy head"
+        }
+      ],
+      "debate": {
+        "text": "Who crushes the serpent's head? The Hebrew pronoun {original} is {grammar}, agreeing with \"offspring\". The Septuagint has the masculine {lxx}. The Clementine Vulgate reads the feminine {vulgate}, and the Douay-Rheims follows it: \"{drc}\". The King James has \"{kjv}\". Each reading points to a different subject: the offspring, a descendant, or the woman.",
+        "sources": []
+      },
+      "status": "draft"
+    }
+  ]
+}

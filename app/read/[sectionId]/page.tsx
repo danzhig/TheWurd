@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import { ContentNote } from '@/components/reader/ContentNote';
 import { ReaderShell } from '@/components/reader/ReaderShell';
 import { SectionBody } from '@/components/reader/SectionBody';
+import type { TermMarks } from '@/components/reader/VerseText';
 import styles from '@/components/reader/reader.module.css';
-import { getManifest, getSection } from '@/lib/data';
+import { getManifest, getSection, getTerms } from '@/lib/data';
 import { prettyRange } from '@/lib/format';
 import { canBeStop, defaultNav, pathPosition } from '@/lib/nav';
 
@@ -31,6 +32,10 @@ export default async function ReadPage({ params }: Params) {
   const { sectionId } = await params;
   const s = getSection(sectionId);
   const statusLabel = STATUS_LABEL[s.status];
+  const terms = getTerms(s.id);
+  const marks: TermMarks = {};
+  for (const t of terms)
+    (marks[t.span.verse] ??= []).push({ id: t.id, start: t.span.start, end: t.span.end });
   const article = (
     <article
       className={styles.page}
@@ -76,7 +81,7 @@ export default async function ReadPage({ params }: Params) {
         </div>
       ) : null}
       <div className={s.highlight ? styles.highlight : undefined}>
-        <SectionBody section={s} />
+        <SectionBody section={s} marks={marks} />
       </div>
     </article>
   );
@@ -90,6 +95,7 @@ export default async function ReadPage({ params }: Params) {
       stop={canBeStop(s.id)}
       readOnOpen={s.status === 'skim'}
       nav={defaultNav(s.id)}
+      terms={terms}
     >
       {article}
     </ReaderShell>
