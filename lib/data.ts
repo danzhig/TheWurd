@@ -11,6 +11,20 @@ export interface Manifest {
   steps: PlanStep[];
   sections: SectionIndexEntry[];
   bridges: Bridge[];
+  sources: PublicSource[];
+}
+
+/** A pinned source as published in the manifest (credited on /sources). */
+export interface PublicSource {
+  id: string;
+  name: string;
+  layer: string;
+  homepage: string;
+  license: string;
+  licenseUrl: string;
+  attribution: string;
+  usedFor: string;
+  version: string;
 }
 
 let manifest: Manifest | null = null;

@@ -155,7 +155,8 @@ export default function AboutPage() {
       </section>
 
       <p className={styles.footer}>
-        <Link href="/">Back to all books</Link>
+        <Link href="/">Back to all books</Link> · <Link href="/path/">The path</Link> ·{' '}
+        <Link href="/sources/">Sources</Link>
       </p>
     </main>
   );
