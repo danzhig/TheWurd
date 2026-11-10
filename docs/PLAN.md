@@ -6,7 +6,7 @@ Nov 6, 2026 · David
 
 This is the complete spec for **Scripture as Story** (working title): a static, phone-and-desktop Catholic Bible reader that walks a curated narrative path through 23 books, navigated by zooming from a map of the whole canon into a book's sections and then into the text. It ships in six phases: the reader (1), search, verse links and polish (2), word-depth flashcards (3), passage connections (4), the whole Bible as a library beside the path (5), and a themes view that arranges passages into constellations by meaning (6).
 
-**Build order** (owner, 2026-11-10): phases 1 and 2 are done; next come 4, 5 and 6, and Phase 3 (word depth) is built **last**. Its data step (P3.1) is already done; the reader work (P3.2) is saved, unmerged, in pull request #15.
+**Build order** (owner, 2026-11-10): phases 1 and 2 are done; next come **5** (the whole Bible), then **6** (themes), then **4** (connections, the gold threads), and Phase 3 (word depth) is built **last**. Its data step (P3.1) is already done; the reader work (P3.2) is saved, unmerged, in pull request #15.
 
 **Before the first coding session**
 
@@ -752,7 +752,7 @@ Two themes: **Vault** (dark; default for the maps) and **Vellum** (light; defaul
 
 ## 13. Phase 3: word depth and language flashcards (built last)
 
-**Deferred** (owner, 2026-11-10): this phase is a large curation effort, so it is built after Phases 4–6. P3.1 (sources pinned, parsed and credited; `pnpm terms:fetch`, `pnpm terms:lookup`) is on `main`. P3.2 (the Depth toggle, the card deck, `pnpm terms:build`, generated transliteration and six Genesis seed drafts) is complete and tested, saved in closed pull request #15 to be reopened or cherry-picked when this phase resumes.
+**Deferred** (owner, 2026-11-10): this phase is a large curation effort, so it is built last, after Phases 5, 6 and 4. P3.1 (sources pinned, parsed and credited; `pnpm terms:fetch`, `pnpm terms:lookup`) is on `main`. P3.2 (the Depth toggle, the card deck, `pnpm terms:build`, generated transliteration and six Genesis seed drafts) is complete and tested, saved in closed pull request #15 to be reopened or cherry-picked when this phase resumes.
 
 **Phase 3 marks the words whose meaning is genuinely contested and lets the reader swipe through how each language and tradition rendered them; every original-language form comes from tagged data, and every interpretive claim carries a source.** Target: 0–3 terms per section, roughly 300–500 in total, curated rather than exhaustive.
 
@@ -844,6 +844,8 @@ interface KeyTerm {
 | Global | *Yehoshua* | Joshua and Jesus share one name (*Iesous* in the Septuagint) |
 
 ## 14. Phase 4: connections between passages
+
+_Built after Phases 5 and 6 (owner, 2026-11-10), so its candidate pool can include the whole Bible._
 
 **Phase 4 adds "Threads": explained links between passages, readable from the margin of the page and visible as gold arcs across the Vault, so the reader can explore the Bible by its echoes as well as in sequence.**
 
@@ -1021,7 +1023,7 @@ Read docs/PLAN.md sections 10, 12 and 18. Build Phase 2 milestones P2.3, P2.4 an
 Keep every Phase 1 test green and stay inside the budgets in section 12.
 ```
 
-**Phase 3** (run last, after Phase 6; start by restoring P3.2 from pull request #15)
+**Phase 3** (run last, after Phase 4; start by restoring P3.2 from pull request #15)
 
 ```
 Read docs/PLAN.md sections 3, 13 and 18. Set up the Phase 3 data: TAHOT, TAGNT, the Septuagint text and lemmas, the Clementine Vulgate, the lexicons and TVTMS, each pinned in sources/manifest.json with its license on /sources.
