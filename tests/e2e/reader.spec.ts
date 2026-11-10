@@ -144,7 +144,10 @@ test.describe('reader', () => {
     page,
   }) => {
     await open(page, 'gen-01');
-    await page.getByRole('button', { name: 'Mark as read' }).click();
+    // Without scrolling: reaching the end marks the section read and replaces the button.
+    await page
+      .getByRole('button', { name: 'Mark as read' })
+      .evaluate((b) => (b as HTMLElement).click());
     await expect(page.getByText('Read', { exact: true })).toBeVisible();
     await open(page, 'gen-15');
     await expect(page.getByRole('button', { name: 'Mark as unread' })).toBeVisible();
@@ -181,7 +184,12 @@ test.describe('reader', () => {
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
     await open(page, 'gen-01');
-    await page.getByRole('button', { name: 'Mark as read' }).click();
+    // Press without scrolling: scrolling to the end marks the section read by itself, which would
+    // replace the button mid-click on a phone.
+    await page
+      .getByRole('button', { name: 'Mark as read' })
+      .evaluate((b) => (b as HTMLElement).click());
+    await expect(page.getByText('Read', { exact: true })).toBeVisible();
     await page.getByTestId('next-link').click();
     await page.waitForURL(/\/read\/gen-02\/$/);
     expect(errors).toEqual([]);

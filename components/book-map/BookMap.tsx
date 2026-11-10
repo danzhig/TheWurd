@@ -126,7 +126,8 @@ export function BookMap({
       </p>
       <div
         ref={boxRef}
-        className={`${styles.map} ${layout ? styles[layout.mode] : styles.list}`}
+        className={`${styles.map} ${layout ? styles[layout.mode] : `${styles.list} ${styles.pending}`}`}
+        data-map-pending={layout ? undefined : ''}
         style={layout ? { height: layout.height } : undefined}
       >
         {layout ? (

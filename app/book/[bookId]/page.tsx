@@ -78,6 +78,9 @@ export default async function BookPage({ params }: Params) {
           <BookMap bookId={b.id} bookName={b.name} stations={stations} />
         </div>
       </div>
+      <noscript>
+        <style>{`[data-map-pending]{visibility:visible!important}`}</style>
+      </noscript>
     </main>
   );
 }

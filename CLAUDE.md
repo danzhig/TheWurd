@@ -37,6 +37,7 @@ The full spec is `docs/PLAN.md`. The canonical reading plan is `content/plan/rea
 | `pnpm lint` / `pnpm typecheck` / `pnpm format:check` | ESLint, `tsc --noEmit`, Prettier                                                                                                                                                                                                |
 | `pnpm test`                                          | Vitest: pipeline unit tests and plan integrity checks against committed `public/data`                                                                                                                                           |
 | `pnpm e2e`                                           | Playwright against the built `out/` (run `pnpm build` first)                                                                                                                                                                    |
+| `pnpm lighthouse`                                    | Lighthouse (mobile) on `/`, a book map, a section and `/path` against built `out/`; fails below performance 90 or accessibility 95 (runs in CI)                                                                                 |
 | `pnpm content:fetch`                                 | Download pinned sources into `sources/raw/` and verify checksums from `sources/manifest.json`                                                                                                                                   |
 | `pnpm content:build`                                 | Full pipeline: fetch → parse USFM → map versification → resolve plan → validate → emit `public/data/` and the review docs. Fails loudly on any coverage gap, overlap or anchor failure, and then leaves `public/data` untouched |
 | `pnpm content:build --out <dir>`                     | Same, but writes the data to `<dir>` even when checks fail (for inspection only)                                                                                                                                                |
@@ -103,3 +104,10 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 - Vault → book: a closed book (`styles/book.css`, same markup as the page cover) lifts out of the medallion and lands exactly on the book page's cover, which takes over (`handoff`) and swings open. Book → Vault: the cover closes, the closed book draws back and shrinks into its medallion (the Vault registers `transition.medallionRect`); the browser's back button gets the same pull-back.
 - Book → verses: a disc of the reader's paper colour grows from the tapped station, the reader fades it away (`reveal`). Back (up link or Esc): the paper covers the screen and shrinks into the station on the map.
 - Reduced motion, or no `Element.animate`: plain navigation, nothing on the layer. Tests check the layer is empty after each transition.
+
+## Phase 1 QA notes (M7)
+
+- `tests/e2e/qa.spec.ts` sweeps every page type (storage blocked, axe, reduced motion, the journey there and back). It also runs as `android` (Pixel 7) locally, and in CI's `browsers` job on Firefox, desktop Safari (WebKit) and an iPhone profile (`ALL_BROWSERS=1`). Real-device steps are in `docs/qa-checklist.md`.
+- Decorative textures (clouds, grain) load only once `html[data-textures]` is set after the `load` event (`ThemeController`), at opacity 0; when decoded it becomes `data-textures="on"` and they fade in. They never delay first paint or become the LCP element.
+- Book map stations stay `visibility: hidden` until laid out (no layout shift); `<noscript>` shows them.
+- Navigation never waits on an animation that may not finish: `settle()` in `lib/transition.ts` ends each wait at the animation's end plus 300 ms.
