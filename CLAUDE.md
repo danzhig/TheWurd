@@ -80,7 +80,7 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
 - `/book/[bookId]` for the 24 plan books. The server renders an ordered list of stations (works without JavaScript); `components/book-map/BookMap.tsx` positions them with `layout.ts` once it knows the width: a serpentine (rows alternate direction, half-ellipse turns wide enough to clear labels) from 720 px, a gentle meander below.
 - Marks: read = gilt disc, skim = hollow ring, skip = faint fold on the line, optional = dashed ring on a dashed branch; highlights glow; completed stations show a tick; the last-read section has the vermilion spark.
 - Station links take their visible title and range as their accessible name (axe `label-content-name-mismatch`); extra detail is visually hidden. On phones the range is visually hidden until tap-and-hold.
-- The book page is an open book: `.frame` holds the cover (`BookCover.tsx`) and cream `.pages` (a two-page spread from 900 px, where the serpentine uses an even number of columns so nothing sits on the fold; one page below). The cover is a single board hinged at the spine; it swings open on arrival (not again on return within the session) and closes before "All books" leaves. Its size comes from `lib/book-geometry.ts`, shared with the flying book. Reduced motion: the pages simply appear.
+- The book page is an open book: `.frame` holds the cover (`BookCover.tsx`) and cream `.pages` (a two-page spread from 900 px, where the serpentine uses an even number of columns so nothing sits on the fold; one page below). The cover is a single board hinged at the spine; it swings open only when the book arrives from the Vault (a direct visit or a return from a section shows the pages at once, as server-rendered, for a fast first paint) and closes before "All books" leaves. Its size comes from `lib/book-geometry.ts`, shared with the flying book. Reduced motion: the pages simply appear.
 - Returning from a section (browser back or the reader's up link / Esc) restores the map's scroll position, kept in memory for the session. Tests wait for `html[data-book-map]`.
 
 ## Vault notes (M5)
@@ -95,7 +95,7 @@ Behind an HTTPS proxy (e.g. Claude Code cloud sessions), prefix network commands
   - `/sources`: every source in the manifest with its license, attribution, use and version (an e2e test checks every id in `sources/manifest.json`).
 - "About this path" (`/about`) explains the shape of the path. Every list, count and name comes from the manifest (`app/about/about.ts`, unit-tested); the prose never quotes scripture, and `ABOUT_GROUPS` needs a line for each off-path group (a test checks).
 - Off-path taglines live in `content/plan/offpath-taglines.json` (approved by David on 2026-11-09); the pipeline requires one per off-path book.
-- `tests/e2e/perf.spec.ts` times frames during a camera flight at phone size with the CPU slowed 4×, in its own Playwright project that runs alone after the others. Tests wait for `html[data-vault="ready"]`.
+- `tests/e2e/perf.spec.ts` times frames during a camera flight at phone size with the CPU slowed 4×, and checks LCP under 2.5 s on `/`, a book map and a section on a throttled phone (CPU 4×, slow 4G), serially, in its own Playwright project that runs alone after the others. Tests wait for `html[data-vault="ready"]`.
 
 ## Transitions
 

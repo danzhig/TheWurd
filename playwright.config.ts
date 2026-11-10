@@ -20,11 +20,37 @@ export default defineConfig({
       testIgnore: /perf\.spec\.ts/,
       use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } },
     },
+    // Cross-browser QA (M7): the QA sweep on real-device profiles and the other engines.
+    // Firefox and WebKit run in CI's "browsers" job (ALL_BROWSERS=1), where they are installed.
+    {
+      name: 'android',
+      testMatch: /(qa|smoke)\.spec\.ts/,
+      use: { ...devices['Pixel 7'] },
+    },
+    ...(process.env.ALL_BROWSERS
+      ? [
+          {
+            name: 'iphone',
+            testMatch: /(qa|smoke)\.spec\.ts/,
+            use: { ...devices['iPhone 14'] },
+          },
+          {
+            name: 'safari',
+            testMatch: /(qa|smoke)\.spec\.ts/,
+            use: { ...devices['Desktop Safari'], viewport: { width: 1440, height: 900 } },
+          },
+          {
+            name: 'firefox',
+            testMatch: /(qa|smoke)\.spec\.ts/,
+            use: { ...devices['Desktop Firefox'], viewport: { width: 1440, height: 900 } },
+          },
+        ]
+      : []),
     // Frame timing runs alone, after everything else, at phone size.
     {
       name: 'perf',
       testMatch: /perf\.spec\.ts/,
-      dependencies: ['phone', 'desktop'],
+      dependencies: ['phone', 'desktop', 'android'],
       use: { ...devices['Desktop Chrome'], viewport: { width: 390, height: 844 }, isMobile: false },
     },
   ],

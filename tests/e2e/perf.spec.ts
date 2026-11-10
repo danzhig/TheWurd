@@ -6,6 +6,9 @@ import { expect, test } from '@playwright/test';
  * tests, so no other browser competes for the CPU while frames are timed.
  */
 test.describe('performance', () => {
+  // One at a time: frame timing and paint timing must not compete for the CPU.
+  test.describe.configure({ mode: 'serial' });
+
   test('camera moves hold 60 fps on a throttled mobile profile', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('html')).toHaveAttribute('data-vault', 'ready');
@@ -36,4 +39,34 @@ test.describe('performance', () => {
     expect(median).toBeLessThan(17.5); // 60 fps
     expect(long / frames.length).toBeLessThan(0.05);
   });
+
+  // PLAN §12: Largest Contentful Paint under 2.5 s on a throttled mobile profile.
+  for (const path of ['/', '/book/Gen/', '/read/gen-01/']) {
+    test(`LCP on ${path} is under 2.5 s on a throttled phone`, async ({ page }) => {
+      const cdp = await page.context().newCDPSession(page);
+      await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+      await cdp.send('Network.enable');
+      // Slow 4G, as Lighthouse's mobile profile: 150 ms round trip, 1.6 Mbps down.
+      await cdp.send('Network.emulateNetworkConditions', {
+        offline: false,
+        latency: 150,
+        downloadThroughput: (1.6 * 1024 * 1024) / 8,
+        uploadThroughput: (750 * 1024) / 8,
+      });
+      await page.goto(path, { waitUntil: 'load' });
+      const lcp = await page.evaluate(
+        () =>
+          new Promise<number>((resolve) => {
+            let last = 0;
+            new PerformanceObserver((list) => {
+              for (const e of list.getEntries()) last = e.startTime;
+            }).observe({ type: 'largest-contentful-paint', buffered: true });
+            setTimeout(() => resolve(last), 1500);
+          }),
+      );
+      console.log(`LCP ${path}: ${Math.round(lcp)} ms`);
+      expect(lcp).toBeGreaterThan(0);
+      expect(lcp).toBeLessThan(2500);
+    });
+  }
 });

@@ -4,7 +4,6 @@ import { useLayoutEffect, useRef } from 'react';
 import { coverGeometry, SPREAD_QUERY, type CoverGeometry } from '@/lib/book-geometry';
 import { camera, prefersReducedMotion } from '@/lib/camera';
 import { EASE, handoff, transition } from '@/lib/transition';
-import { openedBooks } from './BookMap';
 import styles from './book-cover.module.css';
 
 export const OPEN_MS = 900;
@@ -77,7 +76,10 @@ export function BookCover({
       anims.push(
         shell.animate([{ opacity: 1 }, { opacity: 1, offset: fadeAt }, { opacity: 0 }], timing),
       );
-      await Promise.all(anims.map((a) => a.finished)).catch(() => {});
+      await Promise.race([
+        Promise.all(anims.map((a) => a.finished)).catch(() => {}),
+        new Promise((r) => window.setTimeout(r, OPEN_MS + 300)),
+      ]);
       setOpen();
     };
     bookCover.close = async () => {
@@ -101,18 +103,22 @@ export function BookCover({
           timing,
         ),
       );
-      await Promise.all(anims.map((a) => a.finished)).catch(() => {});
+      await Promise.race([
+        Promise.all(anims.map((a) => a.finished)).catch(() => {}),
+        new Promise((r) => window.setTimeout(r, OPEN_MS + 300)),
+      ]);
       return shell.getBoundingClientRect();
     };
 
     const arriving = transition.pending?.kind === 'book-in' && transition.pending.bookId === bookId;
-    if (prefersReducedMotion() || (openedBooks.has(bookId) && !arriving)) setOpen();
+    // The cover plays only when the book arrives from the Vault. A direct visit (a link, a reload)
+    // shows the pages at once, as the server rendered them, so the map is the first thing painted.
+    if (prefersReducedMotion() || !arriving) setOpen();
     else {
       setClosed();
       if (arriving) handoff(); // the flying book landed on exactly this spot
       requestAnimationFrame(() => void open());
     }
-    openedBooks.add(bookId);
 
     const onResize = () => {
       place();
@@ -131,6 +137,7 @@ export function BookCover({
       className={`book-shell ${styles.shell}`}
       aria-hidden="true"
       data-testid="book-cover"
+      hidden
     >
       <div className="book-edge" />
       <div className="book-hinge">

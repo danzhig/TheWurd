@@ -23,8 +23,6 @@ export interface StationData {
 
 /** Map positions kept for this browsing session, so returning from a section lands where you left. */
 const savedScroll = new Map<string, number>();
-/** Books whose cover has already opened in this session (it does not replay on return). */
-export const openedBooks = new Set<string>();
 
 const STATUS_WORD: Record<Status, string> = {
   read: 'read',
