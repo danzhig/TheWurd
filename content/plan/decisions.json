@@ -21,6 +21,13 @@
       "section": "neh-07",
       "approved": "2026-11-06",
       "why": "WEBC Neh 7:68 has no Hebrew counterpart; it goes with the verse before it."
+    },
+    {
+      "unit": "Isa.64.1",
+      "kind": "orphan-verse",
+      "section": "isa-20",
+      "approved": "2026-11-12",
+      "why": "WEBC Isa 64:1 has no Hebrew counterpart (Hebrew 63:19 holds it); it goes with the verse before it, in the same section."
     }
   ]
 }

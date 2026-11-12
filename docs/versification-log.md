@@ -13,6 +13,7 @@ WEBC cannot divide these verses, so each is placed by the rule shown. Every plac
 | Num.26.1 | split-verse | num-11 (plan 25:19); num-x2 (plan 26:1) | **num-11** | WEBC Num.26.1 contains plan verses 25:19 + 26:1; WEBC cannot divide it, so it stays with the section holding its first part. | 2026-11-06 |
 | 1Sam.20.42 | split-verse | 1sam-09 (plan 20:42); 1sam-10 (plan 21:1) | **1sam-09** | WEBC 1Sam.20.42 contains plan verses 20:42 + 21:1; WEBC cannot divide it, so it stays with the section holding its first part. | 2026-11-06 |
 | Neh.7.68 | orphan-verse | neh-07 | **neh-07** | WEBC Neh.7.68 has no counterpart in Hebrew numbering (TVTMS Neh.7:68-7:73 (line 749, MergedFollVerse)); it goes with the verse before it. | 2026-11-06 |
+| Isa.64.1 | orphan-verse | isa-20 | **isa-20** | WEBC Isa.64.1 has no counterpart in Hebrew numbering (TVTMS Isa.63:19--64:12 (line 2540, MergedPrevVerse)); it goes with the verse before it. | 2026-11-12 |
 
 ## Sections whose text differs from reading the plan numbers directly in WEBC
 
@@ -31,6 +32,13 @@ If you looked up each plan range in a WEBC (English-numbered) Bible, these are t
 | jonah-02 | In the Belly of the Fish | Jonah 2 | Jonah 1:17–2:10 | 1:17 | — |
 | lev-02 | Sin and Guilt Offerings | Lev 4:1-5:26 (verse 5:26 does not exist in WEBC) | Lev 4:1–6:7 | 4:1–6:7 | — |
 | lev-03 | The Priests’ Instructions for Each Offering | Lev 6-7 | Lev 6:8–7:38 | — | 6:1–7 |
+| eccl-02 | A Time for Everything; Oppression and Toil | Eccl 3-4 | Eccl 3:1–5:1 | 5:1 | — |
+| eccl-03 | Vows, Wealth and What Is Good | Eccl 5-6 | Eccl 5:2–6:12 | — | 5:1 |
+| ezek-08 | Laments; Israel’s History of Rebellion | Ezek 19-20 | Ezek 19:1–20:44 | — | 20:45–49 |
+| ezek-09 | The Sword; the Guilty City; Two Sisters | Ezek 21-23 | Ezek 20:45–23:49 | 20:45–49 | — |
+| joel-02 | Restoration and the Lord’s Spirit | Joel 2:18-3:5 | Joel 2:18–32 | — | 3:1–5 |
+| joel-03 | Judgment in the Valley of Jehoshaphat | Joel 4 (chapter 4 does not exist in WEBC) | Joel 3:1–21 | 3:1–21 | — |
+| mal-03 | The Day Is Coming | Mal 3:13-24 (verse 3:24 does not exist in WEBC) | Mal 3:13–4:6 | 3:13–4:6 | — |
 
 ## Every renumbered plan reference
 
@@ -188,6 +196,90 @@ Plan verse (Hebrew numbering) → WEBC verse, with the TVTMS record that defines
 | 13:23 | 14:1 | TVTMS 2Ch.14:1-14:15 (line 722, OneToOne) |
 | 14:1–14 | 14:2–15 | TVTMS 2Ch.14:1-14:15 (line 723, OneToOne) |
 
+### Ecclesiastes
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 4:17 | 5:1 | TVTMS Ecc.5:1-5:20 (line 2494, OneToOne) |
+| 5:1–19 | 5:2–20 | TVTMS Ecc.5:1-5:20 (line 2495, OneToOne) |
+
+### Song of Songs
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 7:1 | 6:13 | TVTMS Sng.6:1--7:13 (line 2512, OneToOne) |
+| 7:2–14 | 7:1–13 | TVTMS Sng.6:1--7:13 (line 2513, OneToOne) |
+
+### Isaiah
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 8:23 | 9:1 | TVTMS Isa.9:1-9:21 (line 2521, OneToOne) |
+| 9:1–20 | 9:2–21 | TVTMS Isa.9:1-9:21 (line 2522, OneToOne) |
+| 64:1–11 | 64:2–12 | TVTMS Isa.63:19--64:12 (line 2541, OneToOne) |
+| (none) | 64:1 | TVTMS Isa.63:19--64:12 (line 2540, MergedPrevVerse): no Hebrew counterpart |
+
+### Ezekiel
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 21:1–5 | 20:45–49 | TVTMS Ezk.20:45--21:32 (line 2698, OneToOne) |
+| 21:6–37 | 21:1–32 | TVTMS Ezk.20:45--21:32 (line 2699, OneToOne) |
+
+### Hosea
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 2:1 | 1:10 | TVTMS Hos.1:10--2:23 (line 2752, OneToOne) |
+| 2:2 | 1:11 | TVTMS Hos.1:10--2:23 (line 2753, OneToOne) |
+| 2:3–24 | 2:1–22 | TVTMS Hos.1:10--2:23 (line 2754, OneToOne) |
+| 2:25 | 2:23 | TVTMS Hos.1:10--2:23 (line 2755, SubdividedVerse) |
+| 12:1 | 11:12 | TVTMS Hos.11:12--12:14 (line 2764, OneToOne) |
+| 12:2–15 | 12:1–14 | TVTMS Hos.11:12--12:14 (line 2765, OneToOne) |
+| 14:1 | 13:16 | TVTMS Hos.13:16--14:9 (line 2769, OneToOne) |
+| 14:2–10 | 14:1–9 | TVTMS Hos.13:16--14:9 (line 2770, OneToOne) |
+
+### Joel
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 3:1–5 | 2:28–32 | TVTMS Jol.2:28--3:21 (line 2774, OneToOne) |
+| 4:1–21 | 3:1–21 | TVTMS Jol.2:28--3:21 (line 2775, OneToOne) |
+
+### Micah
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 4:14 | 5:1 | TVTMS Mic.5:1-5:15 (line 2790, OneToOne) |
+| 5:1–9 | 5:2–10 | TVTMS Mic.5:1-5:15 (line 2791, OneToOne) |
+| 5:10 | 5:11 | TVTMS Mic.5:1-5:15 (line 2792, OneToOne) |
+| 5:11 | 5:12 | TVTMS Mic.5:1-5:15 (line 2793, MergedPrevVerse) |
+| 5:12–14 | 5:13–15 | TVTMS Mic.5:1-5:15 (line 2794, OneToOne) |
+
+### Nahum
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 2:1 | 1:15 | TVTMS Nam.1:15--2:13 (line 2799, OneToOne) |
+| 2:2 | 2:1 | TVTMS Nam.1:15--2:13 (line 2800, SubdividedVerse) |
+| 2:3–14 | 2:2–13 | TVTMS Nam.1:15--2:13 (line 2801, OneToOne) |
+
+### Zechariah
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 2:1–4 | 1:18–21 | TVTMS Zec.1:18--2:13 (line 2823, OneToOne) |
+| 2:5–17 | 2:1–13 | TVTMS Zec.1:18--2:13 (line 2824, OneToOne) |
+
+### Malachi
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 3:19–21 | 4:1–3 | TVTMS Mal.4:1-4:6 (line 2840, OneToOne) |
+| 3:22 | 4:4 | TVTMS Mal.4:1-4:6 (line 2842, OneToOne) |
+| 3:23 | 4:5 | TVTMS Mal.4:1-4:6 (line 2843, OneToOne) |
+| 3:24 | 4:6 | TVTMS Mal.4:1-4:6 (line 2844, OneToOne) |
+
 ## TVTMS records checked against WEBC
 
 `applied` = WEBC passed the English column's tests and failed the Hebrew column's, so the mapping was used. `same-tests` = the columns differ only in subverses WEBC does not have. Records where both columns agree are omitted.
@@ -224,3 +316,16 @@ Plan verse (Hebrew numbering) → WEBC verse, with the TVTMS record that defines
 | 2Chr | 2Ch.2:1-2:18 (line 715) | applied | pass | fail |
 | 2Chr | 2Ch.14:1-14:15 (line 720) | applied | pass | fail |
 | 2Chr | 2Ch.37:1-38 (line 725) | not-applicable | unknown, pass, pass, unknown | unknown, pass, pass, unknown |
+| Eccl | Ecc.5:1-5:20 (line 2492) | applied | pass | fail |
+| Song | Sng.6:1--7:13 (line 2507) | applied | pass, pass | fail, fail |
+| Isa | Isa.9:1-9:21 (line 2519) | applied | pass | fail |
+| Isa | Isa.63:19--64:12 (line 2535) | applied | pass, pass | fail, pass |
+| Ezek | Ezk.20:45--21:32 (line 2696) | applied | pass | fail |
+| Hos | Hos.1:10--2:23 (line 2750) | applied | pass | fail |
+| Hos | Hos.11:12--12:14 (line 2762) | applied | pass | fail |
+| Hos | Hos.13:16--14:9 (line 2767) | applied | pass | fail |
+| Joel | Jol.2:28--3:21 (line 2772) | applied | pass | fail |
+| Mic | Mic.5:1-5:15 (line 2787) | applied | pass, pass | fail, fail |
+| Nah | Nam.1:15--2:13 (line 2796) | applied | pass, pass | fail, fail |
+| Zech | Zec.1:18--2:13 (line 2821) | applied | pass | fail |
+| Mal | Mal.4:1-4:6 (line 2836) | applied | pass, unknown, unknown | fail, unknown, unknown |

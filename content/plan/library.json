@@ -406,6 +406,2670 @@
         "date": "2026-11-12",
         "fingerprint": "bcfdcf0ea93125e4"
       }
+    },
+    {
+      "id": "Ps",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "d720aec92d695c80"
+      },
+      "sections": [
+        {
+          "id": "ps-001",
+          "title": "Psalm 1",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "ps-002",
+          "title": "Psalm 2",
+          "range": "2",
+          "status": "read"
+        },
+        {
+          "id": "ps-003",
+          "title": "Psalm 3",
+          "range": "3",
+          "status": "read"
+        },
+        {
+          "id": "ps-004",
+          "title": "Psalm 4",
+          "range": "4",
+          "status": "read"
+        },
+        {
+          "id": "ps-005",
+          "title": "Psalm 5",
+          "range": "5",
+          "status": "read"
+        },
+        {
+          "id": "ps-006",
+          "title": "Psalm 6",
+          "range": "6",
+          "status": "read"
+        },
+        {
+          "id": "ps-007",
+          "title": "Psalm 7",
+          "range": "7",
+          "status": "read"
+        },
+        {
+          "id": "ps-008",
+          "title": "Psalm 8",
+          "range": "8",
+          "status": "read"
+        },
+        {
+          "id": "ps-009",
+          "title": "Psalm 9",
+          "range": "9",
+          "status": "read"
+        },
+        {
+          "id": "ps-010",
+          "title": "Psalm 10 (9)",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "ps-011",
+          "title": "Psalm 11 (10)",
+          "range": "11",
+          "status": "read"
+        },
+        {
+          "id": "ps-012",
+          "title": "Psalm 12 (11)",
+          "range": "12",
+          "status": "read"
+        },
+        {
+          "id": "ps-013",
+          "title": "Psalm 13 (12)",
+          "range": "13",
+          "status": "read"
+        },
+        {
+          "id": "ps-014",
+          "title": "Psalm 14 (13)",
+          "range": "14",
+          "status": "read"
+        },
+        {
+          "id": "ps-015",
+          "title": "Psalm 15 (14)",
+          "range": "15",
+          "status": "read"
+        },
+        {
+          "id": "ps-016",
+          "title": "Psalm 16 (15)",
+          "range": "16",
+          "status": "read"
+        },
+        {
+          "id": "ps-017",
+          "title": "Psalm 17 (16)",
+          "range": "17",
+          "status": "read"
+        },
+        {
+          "id": "ps-018",
+          "title": "Psalm 18 (17)",
+          "range": "18",
+          "status": "read"
+        },
+        {
+          "id": "ps-019",
+          "title": "Psalm 19 (18)",
+          "range": "19",
+          "status": "read"
+        },
+        {
+          "id": "ps-020",
+          "title": "Psalm 20 (19)",
+          "range": "20",
+          "status": "read"
+        },
+        {
+          "id": "ps-021",
+          "title": "Psalm 21 (20)",
+          "range": "21",
+          "status": "read"
+        },
+        {
+          "id": "ps-022",
+          "title": "Psalm 22 (21)",
+          "range": "22",
+          "status": "read"
+        },
+        {
+          "id": "ps-023",
+          "title": "Psalm 23 (22)",
+          "range": "23",
+          "status": "read"
+        },
+        {
+          "id": "ps-024",
+          "title": "Psalm 24 (23)",
+          "range": "24",
+          "status": "read"
+        },
+        {
+          "id": "ps-025",
+          "title": "Psalm 25 (24)",
+          "range": "25",
+          "status": "read"
+        },
+        {
+          "id": "ps-026",
+          "title": "Psalm 26 (25)",
+          "range": "26",
+          "status": "read"
+        },
+        {
+          "id": "ps-027",
+          "title": "Psalm 27 (26)",
+          "range": "27",
+          "status": "read"
+        },
+        {
+          "id": "ps-028",
+          "title": "Psalm 28 (27)",
+          "range": "28",
+          "status": "read"
+        },
+        {
+          "id": "ps-029",
+          "title": "Psalm 29 (28)",
+          "range": "29",
+          "status": "read"
+        },
+        {
+          "id": "ps-030",
+          "title": "Psalm 30 (29)",
+          "range": "30",
+          "status": "read"
+        },
+        {
+          "id": "ps-031",
+          "title": "Psalm 31 (30)",
+          "range": "31",
+          "status": "read"
+        },
+        {
+          "id": "ps-032",
+          "title": "Psalm 32 (31)",
+          "range": "32",
+          "status": "read"
+        },
+        {
+          "id": "ps-033",
+          "title": "Psalm 33 (32)",
+          "range": "33",
+          "status": "read"
+        },
+        {
+          "id": "ps-034",
+          "title": "Psalm 34 (33)",
+          "range": "34",
+          "status": "read"
+        },
+        {
+          "id": "ps-035",
+          "title": "Psalm 35 (34)",
+          "range": "35",
+          "status": "read"
+        },
+        {
+          "id": "ps-036",
+          "title": "Psalm 36 (35)",
+          "range": "36",
+          "status": "read"
+        },
+        {
+          "id": "ps-037",
+          "title": "Psalm 37 (36)",
+          "range": "37",
+          "status": "read"
+        },
+        {
+          "id": "ps-038",
+          "title": "Psalm 38 (37)",
+          "range": "38",
+          "status": "read"
+        },
+        {
+          "id": "ps-039",
+          "title": "Psalm 39 (38)",
+          "range": "39",
+          "status": "read"
+        },
+        {
+          "id": "ps-040",
+          "title": "Psalm 40 (39)",
+          "range": "40",
+          "status": "read"
+        },
+        {
+          "id": "ps-041",
+          "title": "Psalm 41 (40)",
+          "range": "41",
+          "status": "read"
+        },
+        {
+          "id": "ps-042",
+          "title": "Psalm 42 (41)",
+          "range": "42",
+          "status": "read"
+        },
+        {
+          "id": "ps-043",
+          "title": "Psalm 43 (42)",
+          "range": "43",
+          "status": "read"
+        },
+        {
+          "id": "ps-044",
+          "title": "Psalm 44 (43)",
+          "range": "44",
+          "status": "read"
+        },
+        {
+          "id": "ps-045",
+          "title": "Psalm 45 (44)",
+          "range": "45",
+          "status": "read"
+        },
+        {
+          "id": "ps-046",
+          "title": "Psalm 46 (45)",
+          "range": "46",
+          "status": "read"
+        },
+        {
+          "id": "ps-047",
+          "title": "Psalm 47 (46)",
+          "range": "47",
+          "status": "read"
+        },
+        {
+          "id": "ps-048",
+          "title": "Psalm 48 (47)",
+          "range": "48",
+          "status": "read"
+        },
+        {
+          "id": "ps-049",
+          "title": "Psalm 49 (48)",
+          "range": "49",
+          "status": "read"
+        },
+        {
+          "id": "ps-050",
+          "title": "Psalm 50 (49)",
+          "range": "50",
+          "status": "read"
+        },
+        {
+          "id": "ps-051",
+          "title": "Psalm 51 (50)",
+          "range": "51",
+          "status": "read"
+        },
+        {
+          "id": "ps-052",
+          "title": "Psalm 52 (51)",
+          "range": "52",
+          "status": "read"
+        },
+        {
+          "id": "ps-053",
+          "title": "Psalm 53 (52)",
+          "range": "53",
+          "status": "read"
+        },
+        {
+          "id": "ps-054",
+          "title": "Psalm 54 (53)",
+          "range": "54",
+          "status": "read"
+        },
+        {
+          "id": "ps-055",
+          "title": "Psalm 55 (54)",
+          "range": "55",
+          "status": "read"
+        },
+        {
+          "id": "ps-056",
+          "title": "Psalm 56 (55)",
+          "range": "56",
+          "status": "read"
+        },
+        {
+          "id": "ps-057",
+          "title": "Psalm 57 (56)",
+          "range": "57",
+          "status": "read"
+        },
+        {
+          "id": "ps-058",
+          "title": "Psalm 58 (57)",
+          "range": "58",
+          "status": "read"
+        },
+        {
+          "id": "ps-059",
+          "title": "Psalm 59 (58)",
+          "range": "59",
+          "status": "read"
+        },
+        {
+          "id": "ps-060",
+          "title": "Psalm 60 (59)",
+          "range": "60",
+          "status": "read"
+        },
+        {
+          "id": "ps-061",
+          "title": "Psalm 61 (60)",
+          "range": "61",
+          "status": "read"
+        },
+        {
+          "id": "ps-062",
+          "title": "Psalm 62 (61)",
+          "range": "62",
+          "status": "read"
+        },
+        {
+          "id": "ps-063",
+          "title": "Psalm 63 (62)",
+          "range": "63",
+          "status": "read"
+        },
+        {
+          "id": "ps-064",
+          "title": "Psalm 64 (63)",
+          "range": "64",
+          "status": "read"
+        },
+        {
+          "id": "ps-065",
+          "title": "Psalm 65 (64)",
+          "range": "65",
+          "status": "read"
+        },
+        {
+          "id": "ps-066",
+          "title": "Psalm 66 (65)",
+          "range": "66",
+          "status": "read"
+        },
+        {
+          "id": "ps-067",
+          "title": "Psalm 67 (66)",
+          "range": "67",
+          "status": "read"
+        },
+        {
+          "id": "ps-068",
+          "title": "Psalm 68 (67)",
+          "range": "68",
+          "status": "read"
+        },
+        {
+          "id": "ps-069",
+          "title": "Psalm 69 (68)",
+          "range": "69",
+          "status": "read"
+        },
+        {
+          "id": "ps-070",
+          "title": "Psalm 70 (69)",
+          "range": "70",
+          "status": "read"
+        },
+        {
+          "id": "ps-071",
+          "title": "Psalm 71 (70)",
+          "range": "71",
+          "status": "read"
+        },
+        {
+          "id": "ps-072",
+          "title": "Psalm 72 (71)",
+          "range": "72",
+          "status": "read"
+        },
+        {
+          "id": "ps-073",
+          "title": "Psalm 73 (72)",
+          "range": "73",
+          "status": "read"
+        },
+        {
+          "id": "ps-074",
+          "title": "Psalm 74 (73)",
+          "range": "74",
+          "status": "read"
+        },
+        {
+          "id": "ps-075",
+          "title": "Psalm 75 (74)",
+          "range": "75",
+          "status": "read"
+        },
+        {
+          "id": "ps-076",
+          "title": "Psalm 76 (75)",
+          "range": "76",
+          "status": "read"
+        },
+        {
+          "id": "ps-077",
+          "title": "Psalm 77 (76)",
+          "range": "77",
+          "status": "read"
+        },
+        {
+          "id": "ps-078",
+          "title": "Psalm 78 (77)",
+          "range": "78",
+          "status": "read"
+        },
+        {
+          "id": "ps-079",
+          "title": "Psalm 79 (78)",
+          "range": "79",
+          "status": "read"
+        },
+        {
+          "id": "ps-080",
+          "title": "Psalm 80 (79)",
+          "range": "80",
+          "status": "read"
+        },
+        {
+          "id": "ps-081",
+          "title": "Psalm 81 (80)",
+          "range": "81",
+          "status": "read"
+        },
+        {
+          "id": "ps-082",
+          "title": "Psalm 82 (81)",
+          "range": "82",
+          "status": "read"
+        },
+        {
+          "id": "ps-083",
+          "title": "Psalm 83 (82)",
+          "range": "83",
+          "status": "read"
+        },
+        {
+          "id": "ps-084",
+          "title": "Psalm 84 (83)",
+          "range": "84",
+          "status": "read"
+        },
+        {
+          "id": "ps-085",
+          "title": "Psalm 85 (84)",
+          "range": "85",
+          "status": "read"
+        },
+        {
+          "id": "ps-086",
+          "title": "Psalm 86 (85)",
+          "range": "86",
+          "status": "read"
+        },
+        {
+          "id": "ps-087",
+          "title": "Psalm 87 (86)",
+          "range": "87",
+          "status": "read"
+        },
+        {
+          "id": "ps-088",
+          "title": "Psalm 88 (87)",
+          "range": "88",
+          "status": "read"
+        },
+        {
+          "id": "ps-089",
+          "title": "Psalm 89 (88)",
+          "range": "89",
+          "status": "read"
+        },
+        {
+          "id": "ps-090",
+          "title": "Psalm 90 (89)",
+          "range": "90",
+          "status": "read"
+        },
+        {
+          "id": "ps-091",
+          "title": "Psalm 91 (90)",
+          "range": "91",
+          "status": "read"
+        },
+        {
+          "id": "ps-092",
+          "title": "Psalm 92 (91)",
+          "range": "92",
+          "status": "read"
+        },
+        {
+          "id": "ps-093",
+          "title": "Psalm 93 (92)",
+          "range": "93",
+          "status": "read"
+        },
+        {
+          "id": "ps-094",
+          "title": "Psalm 94 (93)",
+          "range": "94",
+          "status": "read"
+        },
+        {
+          "id": "ps-095",
+          "title": "Psalm 95 (94)",
+          "range": "95",
+          "status": "read"
+        },
+        {
+          "id": "ps-096",
+          "title": "Psalm 96 (95)",
+          "range": "96",
+          "status": "read"
+        },
+        {
+          "id": "ps-097",
+          "title": "Psalm 97 (96)",
+          "range": "97",
+          "status": "read"
+        },
+        {
+          "id": "ps-098",
+          "title": "Psalm 98 (97–98)",
+          "range": "98",
+          "status": "read"
+        },
+        {
+          "id": "ps-099",
+          "title": "Psalm 99 (98)",
+          "range": "99",
+          "status": "read"
+        },
+        {
+          "id": "ps-100",
+          "title": "Psalm 100 (99)",
+          "range": "100",
+          "status": "read"
+        },
+        {
+          "id": "ps-101",
+          "title": "Psalm 101 (100)",
+          "range": "101",
+          "status": "read"
+        },
+        {
+          "id": "ps-102",
+          "title": "Psalm 102 (101)",
+          "range": "102",
+          "status": "read"
+        },
+        {
+          "id": "ps-103",
+          "title": "Psalm 103 (102)",
+          "range": "103",
+          "status": "read"
+        },
+        {
+          "id": "ps-104",
+          "title": "Psalm 104 (103)",
+          "range": "104",
+          "status": "read"
+        },
+        {
+          "id": "ps-105",
+          "title": "Psalm 105 (104)",
+          "range": "105",
+          "status": "read"
+        },
+        {
+          "id": "ps-106",
+          "title": "Psalm 106 (105)",
+          "range": "106",
+          "status": "read"
+        },
+        {
+          "id": "ps-107",
+          "title": "Psalm 107 (106)",
+          "range": "107",
+          "status": "read"
+        },
+        {
+          "id": "ps-108",
+          "title": "Psalm 108 (107)",
+          "range": "108",
+          "status": "read"
+        },
+        {
+          "id": "ps-109",
+          "title": "Psalm 109 (108)",
+          "range": "109",
+          "status": "read"
+        },
+        {
+          "id": "ps-110",
+          "title": "Psalm 110 (109)",
+          "range": "110",
+          "status": "read"
+        },
+        {
+          "id": "ps-111",
+          "title": "Psalm 111 (110)",
+          "range": "111",
+          "status": "read"
+        },
+        {
+          "id": "ps-112",
+          "title": "Psalm 112 (111)",
+          "range": "112",
+          "status": "read"
+        },
+        {
+          "id": "ps-113",
+          "title": "Psalm 113 (112)",
+          "range": "113",
+          "status": "read"
+        },
+        {
+          "id": "ps-114",
+          "title": "Psalm 114 (113)",
+          "range": "114",
+          "status": "read"
+        },
+        {
+          "id": "ps-115",
+          "title": "Psalm 115 (113)",
+          "range": "115",
+          "status": "read"
+        },
+        {
+          "id": "ps-116",
+          "title": "Psalm 116 (114–115)",
+          "range": "116",
+          "status": "read"
+        },
+        {
+          "id": "ps-117",
+          "title": "Psalm 117 (116)",
+          "range": "117",
+          "status": "read"
+        },
+        {
+          "id": "ps-118",
+          "title": "Psalm 118 (117)",
+          "range": "118",
+          "status": "read"
+        },
+        {
+          "id": "ps-119",
+          "title": "Psalm 119 (118)",
+          "range": "119",
+          "status": "read"
+        },
+        {
+          "id": "ps-120",
+          "title": "Psalm 120 (119)",
+          "range": "120",
+          "status": "read"
+        },
+        {
+          "id": "ps-121",
+          "title": "Psalm 121 (120)",
+          "range": "121",
+          "status": "read"
+        },
+        {
+          "id": "ps-122",
+          "title": "Psalm 122 (121)",
+          "range": "122",
+          "status": "read"
+        },
+        {
+          "id": "ps-123",
+          "title": "Psalm 123 (122)",
+          "range": "123",
+          "status": "read"
+        },
+        {
+          "id": "ps-124",
+          "title": "Psalm 124 (123)",
+          "range": "124",
+          "status": "read"
+        },
+        {
+          "id": "ps-125",
+          "title": "Psalm 125 (124)",
+          "range": "125",
+          "status": "read"
+        },
+        {
+          "id": "ps-126",
+          "title": "Psalm 126 (125)",
+          "range": "126",
+          "status": "read"
+        },
+        {
+          "id": "ps-127",
+          "title": "Psalm 127 (126)",
+          "range": "127",
+          "status": "read"
+        },
+        {
+          "id": "ps-128",
+          "title": "Psalm 128 (127)",
+          "range": "128",
+          "status": "read"
+        },
+        {
+          "id": "ps-129",
+          "title": "Psalm 129 (128)",
+          "range": "129",
+          "status": "read"
+        },
+        {
+          "id": "ps-130",
+          "title": "Psalm 130 (129)",
+          "range": "130",
+          "status": "read"
+        },
+        {
+          "id": "ps-131",
+          "title": "Psalm 131 (130)",
+          "range": "131",
+          "status": "read"
+        },
+        {
+          "id": "ps-132",
+          "title": "Psalm 132 (131)",
+          "range": "132",
+          "status": "read"
+        },
+        {
+          "id": "ps-133",
+          "title": "Psalm 133 (132)",
+          "range": "133",
+          "status": "read"
+        },
+        {
+          "id": "ps-134",
+          "title": "Psalm 134 (133)",
+          "range": "134",
+          "status": "read"
+        },
+        {
+          "id": "ps-135",
+          "title": "Psalm 135 (134)",
+          "range": "135",
+          "status": "read"
+        },
+        {
+          "id": "ps-136",
+          "title": "Psalm 136 (135)",
+          "range": "136",
+          "status": "read"
+        },
+        {
+          "id": "ps-137",
+          "title": "Psalm 137 (136)",
+          "range": "137",
+          "status": "read"
+        },
+        {
+          "id": "ps-138",
+          "title": "Psalm 138 (137)",
+          "range": "138",
+          "status": "read"
+        },
+        {
+          "id": "ps-139",
+          "title": "Psalm 139 (138)",
+          "range": "139",
+          "status": "read"
+        },
+        {
+          "id": "ps-140",
+          "title": "Psalm 140 (139)",
+          "range": "140",
+          "status": "read"
+        },
+        {
+          "id": "ps-141",
+          "title": "Psalm 141 (140)",
+          "range": "141",
+          "status": "read"
+        },
+        {
+          "id": "ps-142",
+          "title": "Psalm 142 (141)",
+          "range": "142",
+          "status": "read"
+        },
+        {
+          "id": "ps-143",
+          "title": "Psalm 143 (142)",
+          "range": "143",
+          "status": "read"
+        },
+        {
+          "id": "ps-144",
+          "title": "Psalm 144 (143)",
+          "range": "144",
+          "status": "read"
+        },
+        {
+          "id": "ps-145",
+          "title": "Psalm 145 (144)",
+          "range": "145",
+          "status": "read"
+        },
+        {
+          "id": "ps-146",
+          "title": "Psalm 146 (145)",
+          "range": "146",
+          "status": "read"
+        },
+        {
+          "id": "ps-147",
+          "title": "Psalm 147 (146–147)",
+          "range": "147",
+          "status": "read"
+        },
+        {
+          "id": "ps-148",
+          "title": "Psalm 148",
+          "range": "148",
+          "status": "read"
+        },
+        {
+          "id": "ps-149",
+          "title": "Psalm 149",
+          "range": "149",
+          "status": "read"
+        },
+        {
+          "id": "ps-150",
+          "title": "Psalm 150",
+          "range": "150",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Prov",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "a37db8007ed44744"
+      },
+      "sections": [
+        {
+          "id": "prov-01",
+          "title": "Wisdom’s Call and a Father’s Warnings",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "prov-02",
+          "title": "Trust, Discipline and the Path of Life",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "prov-03",
+          "title": "Warnings against Folly and Adultery",
+          "range": "5-7",
+          "status": "read"
+        },
+        {
+          "id": "prov-04",
+          "title": "Wisdom at Creation; Wisdom’s Feast",
+          "range": "8-9",
+          "status": "read"
+        },
+        {
+          "id": "prov-05",
+          "title": "Solomon’s Proverbs: the Righteous and the Wicked",
+          "range": "10-12",
+          "status": "read"
+        },
+        {
+          "id": "prov-06",
+          "title": "Solomon’s Proverbs: Speech, Work and Wealth",
+          "range": "13-15",
+          "status": "read"
+        },
+        {
+          "id": "prov-07",
+          "title": "Solomon’s Proverbs: Plans, Pride and Friendship",
+          "range": "16-18",
+          "status": "read"
+        },
+        {
+          "id": "prov-08",
+          "title": "Solomon’s Proverbs: the Poor, the King and Wine",
+          "range": "19:1-22:16",
+          "status": "read"
+        },
+        {
+          "id": "prov-09",
+          "title": "Sayings of the Wise",
+          "range": "22:17-24:34",
+          "status": "read"
+        },
+        {
+          "id": "prov-10",
+          "title": "Proverbs Copied by Hezekiah’s Men",
+          "range": "25-27",
+          "status": "read"
+        },
+        {
+          "id": "prov-11",
+          "title": "Hezekiah’s Collection, Continued",
+          "range": "28-29",
+          "status": "read"
+        },
+        {
+          "id": "prov-12",
+          "title": "The Words of Agur",
+          "range": "30",
+          "status": "read"
+        },
+        {
+          "id": "prov-13",
+          "title": "King Lemuel’s Mother; the Ideal Wife",
+          "range": "31",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Eccl",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "6686ebc98a125681"
+      },
+      "sections": [
+        {
+          "id": "eccl-01",
+          "title": "The Preacher’s Search: Everything Passes",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "eccl-02",
+          "title": "A Time for Everything; Oppression and Toil",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "eccl-03",
+          "title": "Vows, Wealth and What Is Good",
+          "range": "5-6",
+          "status": "read"
+        },
+        {
+          "id": "eccl-04",
+          "title": "Wisdom and Its Limits",
+          "range": "7-8",
+          "status": "read"
+        },
+        {
+          "id": "eccl-05",
+          "title": "One Fate for All; Wisdom and Folly",
+          "range": "9-10",
+          "status": "read"
+        },
+        {
+          "id": "eccl-06",
+          "title": "Youth, Old Age and the End of the Matter",
+          "range": "11-12",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Song",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "ca616de5bdee0fc5"
+      },
+      "sections": [
+        {
+          "id": "song-01",
+          "title": "The Bride and the Beloved",
+          "range": "1:1-2:7",
+          "status": "read"
+        },
+        {
+          "id": "song-02",
+          "title": "Springtime; a Search by Night",
+          "range": "2:8-3:11",
+          "status": "read"
+        },
+        {
+          "id": "song-03",
+          "title": "The Garden",
+          "range": "4:1-5:1",
+          "status": "read"
+        },
+        {
+          "id": "song-04",
+          "title": "Lost and Found",
+          "range": "5:2-6:3",
+          "status": "read"
+        },
+        {
+          "id": "song-05",
+          "title": "The Beauty of the Shulammite",
+          "range": "6:4-8:4",
+          "status": "read"
+        },
+        {
+          "id": "song-06",
+          "title": "The Last Song",
+          "range": "8:5-14",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Wis",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "78087010efb9fb70"
+      },
+      "sections": [
+        {
+          "id": "wis-01",
+          "title": "Love Justice; the Reasoning of the Ungodly",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "wis-02",
+          "title": "The Hope of the Righteous",
+          "range": "3-5",
+          "status": "read"
+        },
+        {
+          "id": "wis-03",
+          "title": "Solomon Seeks Wisdom",
+          "range": "6-9",
+          "status": "read"
+        },
+        {
+          "id": "wis-04",
+          "title": "Wisdom in History: Adam to the Exodus",
+          "range": "10-12",
+          "status": "read"
+        },
+        {
+          "id": "wis-05",
+          "title": "The Folly of Idols",
+          "range": "13-15",
+          "status": "read"
+        },
+        {
+          "id": "wis-06",
+          "title": "Egypt and Israel Contrasted",
+          "range": "16-19",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Sir",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "4dde3a32be98e453"
+      },
+      "sections": [
+        {
+          "id": "sir-01",
+          "title": "Wisdom and the Fear of the Lord",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "sir-02",
+          "title": "Parents, Humility and the Poor",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "sir-03",
+          "title": "Speech and Friendship",
+          "range": "5-6",
+          "status": "read"
+        },
+        {
+          "id": "sir-04",
+          "title": "Duties at Home and in the World",
+          "range": "7-9",
+          "status": "read"
+        },
+        {
+          "id": "sir-05",
+          "title": "Pride, Humility and Riches",
+          "range": "10-11",
+          "status": "read"
+        },
+        {
+          "id": "sir-06",
+          "title": "Choosing Companions; Rich and Poor",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "sir-07",
+          "title": "Free Will and the Lord’s Mercy",
+          "range": "15-18",
+          "status": "read"
+        },
+        {
+          "id": "sir-08",
+          "title": "Speech, Silence and Folly",
+          "range": "19-22",
+          "status": "read"
+        },
+        {
+          "id": "sir-09",
+          "title": "A Prayer for Self-Control; Wisdom Praises Herself",
+          "range": "23-24",
+          "status": "read"
+        },
+        {
+          "id": "sir-10",
+          "title": "Wives, Friends and Hidden Sins",
+          "range": "25-27",
+          "status": "read"
+        },
+        {
+          "id": "sir-11",
+          "title": "Anger, Lending and Hospitality",
+          "range": "28-29",
+          "status": "read"
+        },
+        {
+          "id": "sir-12",
+          "title": "Children, Health and Banquets",
+          "range": "30-32",
+          "status": "read"
+        },
+        {
+          "id": "sir-13",
+          "title": "Servants, Dreams and True Worship",
+          "range": "33-35",
+          "status": "read"
+        },
+        {
+          "id": "sir-14",
+          "title": "A Prayer for Israel; Counsel, Physicians and Trades",
+          "range": "36-38",
+          "status": "read"
+        },
+        {
+          "id": "sir-15",
+          "title": "The Scholar’s Calling; Good and Evil; Death",
+          "range": "39-41",
+          "status": "read"
+        },
+        {
+          "id": "sir-16",
+          "title": "Shame, Daughters and the Glory of Creation",
+          "range": "42-43",
+          "status": "read"
+        },
+        {
+          "id": "sir-17",
+          "title": "Praise of the Ancestors: Enoch to Aaron",
+          "range": "44-45",
+          "status": "read"
+        },
+        {
+          "id": "sir-18",
+          "title": "Praise of the Ancestors: Joshua to Nehemiah",
+          "range": "46-49",
+          "status": "read"
+        },
+        {
+          "id": "sir-19",
+          "title": "Simon the High Priest; Ben Sira’s Prayer",
+          "range": "50-51",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Isa",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "7993eec1e7e6b7d8"
+      },
+      "sections": [
+        {
+          "id": "isa-01",
+          "title": "Judgment and Hope for Zion",
+          "range": "1-4",
+          "status": "read"
+        },
+        {
+          "id": "isa-02",
+          "title": "The Song of the Vineyard; Isaiah’s Call",
+          "range": "5-6",
+          "status": "read"
+        },
+        {
+          "id": "isa-03",
+          "title": "Ahaz, Assyria and the Promised Child",
+          "range": "7-9",
+          "status": "read"
+        },
+        {
+          "id": "isa-04",
+          "title": "Assyria Judged; the Shoot from Jesse",
+          "range": "10-12",
+          "status": "read"
+        },
+        {
+          "id": "isa-05",
+          "title": "Against Babylon, Philistia and Moab",
+          "range": "13-16",
+          "status": "read"
+        },
+        {
+          "id": "isa-06",
+          "title": "Against Damascus, Cush and Egypt",
+          "range": "17-20",
+          "status": "read"
+        },
+        {
+          "id": "isa-07",
+          "title": "Against Babylon, Edom, Arabia, Jerusalem and Tyre",
+          "range": "21-23",
+          "status": "read"
+        },
+        {
+          "id": "isa-08",
+          "title": "The Earth Judged; a Feast on the Mountain",
+          "range": "24-27",
+          "status": "read"
+        },
+        {
+          "id": "isa-09",
+          "title": "Woes on Ephraim and Jerusalem",
+          "range": "28-31",
+          "status": "read"
+        },
+        {
+          "id": "isa-10",
+          "title": "A Righteous King; Edom’s Ruin; the Desert Blooms",
+          "range": "32-35",
+          "status": "read"
+        },
+        {
+          "id": "isa-11",
+          "title": "Hezekiah, Sennacherib and Isaiah",
+          "range": "36-39",
+          "status": "read"
+        },
+        {
+          "id": "isa-12",
+          "title": "Comfort for the Exiles; the Servant",
+          "range": "40-42",
+          "status": "read"
+        },
+        {
+          "id": "isa-13",
+          "title": "Israel the Witness; Idols Mocked; Cyrus",
+          "range": "43-45",
+          "status": "read"
+        },
+        {
+          "id": "isa-14",
+          "title": "The Fall of Babylon; Israel Called Back",
+          "range": "46-48",
+          "status": "read"
+        },
+        {
+          "id": "isa-15",
+          "title": "The Servant and Zion’s Children",
+          "range": "49-51",
+          "status": "read"
+        },
+        {
+          "id": "isa-16",
+          "title": "Zion Awakes; the Suffering Servant",
+          "range": "52-53",
+          "status": "read"
+        },
+        {
+          "id": "isa-17",
+          "title": "Zion Renewed; an Everlasting Covenant",
+          "range": "54-55",
+          "status": "read"
+        },
+        {
+          "id": "isa-18",
+          "title": "True Fasting; Sin and Justice",
+          "range": "56-59",
+          "status": "read"
+        },
+        {
+          "id": "isa-19",
+          "title": "The Glory of Zion",
+          "range": "60-62",
+          "status": "read"
+        },
+        {
+          "id": "isa-20",
+          "title": "Lament and the New Creation",
+          "range": "63-66",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Lam",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "da357675962f431f"
+      },
+      "sections": [
+        {
+          "id": "lam-01",
+          "title": "The City Weeps",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "lam-02",
+          "title": "The Lord’s Anger against Zion",
+          "range": "2",
+          "status": "read"
+        },
+        {
+          "id": "lam-03",
+          "title": "Waiting for the Lord",
+          "range": "3",
+          "status": "read"
+        },
+        {
+          "id": "lam-04",
+          "title": "The Siege Remembered",
+          "range": "4",
+          "status": "read"
+        },
+        {
+          "id": "lam-05",
+          "title": "A Prayer for Restoration",
+          "range": "5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Bar",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "e3013558a1cc64e2"
+      },
+      "sections": [
+        {
+          "id": "bar-01",
+          "title": "The Exiles’ Confession",
+          "range": "1:1-3:8",
+          "status": "read"
+        },
+        {
+          "id": "bar-02",
+          "title": "Wisdom Given to Israel",
+          "range": "3:9-4:4",
+          "status": "read"
+        },
+        {
+          "id": "bar-03",
+          "title": "Take Courage, Jerusalem",
+          "range": "4:5-5:9",
+          "status": "read"
+        },
+        {
+          "id": "bar-04",
+          "title": "The Letter of Jeremiah",
+          "range": "6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Ezek",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "f39c2f4933e1b052"
+      },
+      "sections": [
+        {
+          "id": "ezek-01",
+          "title": "The Vision of God’s Glory; the Prophet’s Call",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "ezek-02",
+          "title": "Acted Signs of the Siege",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "ezek-03",
+          "title": "Against the Mountains; the End Comes",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "ezek-04",
+          "title": "Idolatry in the Temple; the Glory Departs",
+          "range": "8-11",
+          "status": "read"
+        },
+        {
+          "id": "ezek-05",
+          "title": "The Exile Acted Out; False Prophets",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "ezek-06",
+          "title": "The Vine and the Unfaithful City",
+          "range": "15-16",
+          "status": "read"
+        },
+        {
+          "id": "ezek-07",
+          "title": "The Eagles and the Cedar; Each Answers for His Own Sin",
+          "range": "17-18",
+          "status": "read"
+        },
+        {
+          "id": "ezek-08",
+          "title": "Laments; Israel’s History of Rebellion",
+          "range": "19-20",
+          "status": "read"
+        },
+        {
+          "id": "ezek-09",
+          "title": "The Sword; the Guilty City; Two Sisters",
+          "range": "21-23",
+          "status": "read"
+        },
+        {
+          "id": "ezek-10",
+          "title": "The Boiling Pot; a Sign in Mourning",
+          "range": "24",
+          "status": "read"
+        },
+        {
+          "id": "ezek-11",
+          "title": "Against the Nations and Tyre",
+          "range": "25-26",
+          "status": "read"
+        },
+        {
+          "id": "ezek-12",
+          "title": "Lament for Tyre; the Prince of Tyre; Sidon",
+          "range": "27-28",
+          "status": "read"
+        },
+        {
+          "id": "ezek-13",
+          "title": "Against Egypt",
+          "range": "29-30",
+          "status": "read"
+        },
+        {
+          "id": "ezek-14",
+          "title": "Pharaoh the Cedar; a Lament for Egypt",
+          "range": "31-32",
+          "status": "read"
+        },
+        {
+          "id": "ezek-15",
+          "title": "The Watchman; the Shepherds of Israel",
+          "range": "33-34",
+          "status": "read"
+        },
+        {
+          "id": "ezek-16",
+          "title": "Edom; the Mountains of Israel Renewed",
+          "range": "35-36",
+          "status": "read"
+        },
+        {
+          "id": "ezek-17",
+          "title": "The Valley of Dry Bones; Two Sticks",
+          "range": "37",
+          "status": "read"
+        },
+        {
+          "id": "ezek-18",
+          "title": "Gog of Magog",
+          "range": "38-39",
+          "status": "read"
+        },
+        {
+          "id": "ezek-19",
+          "title": "The New Temple Measured",
+          "range": "40-42",
+          "status": "read"
+        },
+        {
+          "id": "ezek-20",
+          "title": "The Glory Returns; the Altar",
+          "range": "43",
+          "status": "read"
+        },
+        {
+          "id": "ezek-21",
+          "title": "Priests, Offerings and Feasts",
+          "range": "44-46",
+          "status": "read"
+        },
+        {
+          "id": "ezek-22",
+          "title": "The River from the Temple; the Land Divided",
+          "range": "47-48",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Hos",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "1b5c6517f0fa6248"
+      },
+      "sections": [
+        {
+          "id": "hos-01",
+          "title": "Hosea’s Marriage",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "hos-02",
+          "title": "No Knowledge of God",
+          "range": "4-6",
+          "status": "read"
+        },
+        {
+          "id": "hos-03",
+          "title": "Ephraim’s Sin",
+          "range": "7-10",
+          "status": "read"
+        },
+        {
+          "id": "hos-04",
+          "title": "The Lord’s Love; Return, Israel",
+          "range": "11-14",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Joel",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "290c146f8a5bdb18"
+      },
+      "sections": [
+        {
+          "id": "joel-01",
+          "title": "The Locusts and a Call to Mourn",
+          "range": "1:1-2:17",
+          "status": "read"
+        },
+        {
+          "id": "joel-02",
+          "title": "Restoration and the Lord’s Spirit",
+          "range": "2:18-3:5",
+          "status": "read"
+        },
+        {
+          "id": "joel-03",
+          "title": "Judgment in the Valley of Jehoshaphat",
+          "range": "4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Amos",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "75dde47567491b08"
+      },
+      "sections": [
+        {
+          "id": "amos-01",
+          "title": "Oracles against the Nations",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "amos-02",
+          "title": "Words against Israel",
+          "range": "3-6",
+          "status": "read"
+        },
+        {
+          "id": "amos-03",
+          "title": "Five Visions; Amos and Amaziah",
+          "range": "7-9",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Obad",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "17349da31c9292c7"
+      },
+      "sections": [
+        {
+          "id": "obad-01",
+          "title": "Against Edom",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Mic",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "176ff972e0932deb"
+      },
+      "sections": [
+        {
+          "id": "mic-01",
+          "title": "Judgment on Samaria and Judah",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "mic-02",
+          "title": "The Mountain of the Lord; a Ruler from Bethlehem",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "mic-03",
+          "title": "The Lord’s Case; Hope after Judgment",
+          "range": "6-7",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Nah",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "2d76389e88588367"
+      },
+      "sections": [
+        {
+          "id": "nah-01",
+          "title": "The Fall of Nineveh",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Hab",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "d5e02fea3b577464"
+      },
+      "sections": [
+        {
+          "id": "hab-01",
+          "title": "The Prophet’s Complaint and the Answer",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "hab-02",
+          "title": "Habakkuk’s Prayer",
+          "range": "3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Zeph",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "fc3a3bcb0e8765f7"
+      },
+      "sections": [
+        {
+          "id": "zeph-01",
+          "title": "The Day of the Lord and the Joy of Zion",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Hag",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "3624bef62a9e5dcc"
+      },
+      "sections": [
+        {
+          "id": "hag-01",
+          "title": "Rebuild the Temple",
+          "range": "1-2",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Zech",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "aabca30986c2ca49"
+      },
+      "sections": [
+        {
+          "id": "zech-01",
+          "title": "Night Visions",
+          "range": "1-6",
+          "status": "read"
+        },
+        {
+          "id": "zech-02",
+          "title": "Fasting and the Promised Peace",
+          "range": "7-8",
+          "status": "read"
+        },
+        {
+          "id": "zech-03",
+          "title": "The Coming King; the Shepherds",
+          "range": "9-11",
+          "status": "read"
+        },
+        {
+          "id": "zech-04",
+          "title": "Jerusalem Mourns and Is Cleansed; the Day of the Lord",
+          "range": "12-14",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Mal",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "64c1148823b3b717"
+      },
+      "sections": [
+        {
+          "id": "mal-01",
+          "title": "A Polluted Table; Faithless Priests",
+          "range": "1:1-2:9",
+          "status": "read"
+        },
+        {
+          "id": "mal-02",
+          "title": "Broken Faith; the Messenger",
+          "range": "2:10-3:12",
+          "status": "read"
+        },
+        {
+          "id": "mal-03",
+          "title": "The Day Is Coming",
+          "range": "3:13-24",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Matt",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "475176b660f24e8d"
+      },
+      "sections": [
+        {
+          "id": "matt-01",
+          "title": "The Genealogy and Birth of Jesus",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "matt-02",
+          "title": "John the Baptist; the Temptation; the First Disciples",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "matt-03",
+          "title": "The Sermon on the Mount: the Beatitudes and the Law",
+          "range": "5",
+          "status": "read"
+        },
+        {
+          "id": "matt-04",
+          "title": "The Sermon on the Mount: Prayer and Trust",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "matt-05",
+          "title": "Healings and the Cost of Following",
+          "range": "8-9",
+          "status": "read"
+        },
+        {
+          "id": "matt-06",
+          "title": "The Twelve Sent Out",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "matt-07",
+          "title": "John’s Question; Sabbath Controversies",
+          "range": "11-12",
+          "status": "read"
+        },
+        {
+          "id": "matt-08",
+          "title": "Parables of the Kingdom",
+          "range": "13",
+          "status": "read"
+        },
+        {
+          "id": "matt-09",
+          "title": "Feeding the Crowds; Walking on the Water",
+          "range": "14-15",
+          "status": "read"
+        },
+        {
+          "id": "matt-10",
+          "title": "Peter’s Confession; the Transfiguration",
+          "range": "16-17",
+          "status": "read"
+        },
+        {
+          "id": "matt-11",
+          "title": "Life in the Community",
+          "range": "18",
+          "status": "read"
+        },
+        {
+          "id": "matt-12",
+          "title": "On the Road to Jerusalem",
+          "range": "19-20",
+          "status": "read"
+        },
+        {
+          "id": "matt-13",
+          "title": "Entry into Jerusalem; Controversies in the Temple",
+          "range": "21-22",
+          "status": "read"
+        },
+        {
+          "id": "matt-14",
+          "title": "Woes on the Scribes and Pharisees",
+          "range": "23",
+          "status": "read"
+        },
+        {
+          "id": "matt-15",
+          "title": "The End of the Age",
+          "range": "24-25",
+          "status": "read"
+        },
+        {
+          "id": "matt-16",
+          "title": "The Last Supper and the Arrest",
+          "range": "26",
+          "status": "read"
+        },
+        {
+          "id": "matt-17",
+          "title": "The Trial and the Crucifixion",
+          "range": "27",
+          "status": "read"
+        },
+        {
+          "id": "matt-18",
+          "title": "The Resurrection and the Great Commission",
+          "range": "28",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Mark",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "e9c50f8e63068974"
+      },
+      "sections": [
+        {
+          "id": "mark-01",
+          "title": "John, the Baptism and the First Days in Galilee",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "mark-02",
+          "title": "Controversies; the Twelve Chosen",
+          "range": "2-3",
+          "status": "read"
+        },
+        {
+          "id": "mark-03",
+          "title": "Parables; the Storm Calmed",
+          "range": "4",
+          "status": "read"
+        },
+        {
+          "id": "mark-04",
+          "title": "The Gerasene Demoniac; Jairus’s Daughter",
+          "range": "5",
+          "status": "read"
+        },
+        {
+          "id": "mark-05",
+          "title": "Rejected at Nazareth; the Twelve Sent; Five Thousand Fed",
+          "range": "6",
+          "status": "read"
+        },
+        {
+          "id": "mark-06",
+          "title": "Clean and Unclean; Four Thousand Fed",
+          "range": "7:1-8:21",
+          "status": "read"
+        },
+        {
+          "id": "mark-07",
+          "title": "Peter’s Confession; the Transfiguration",
+          "range": "8:22-9:50",
+          "status": "read"
+        },
+        {
+          "id": "mark-08",
+          "title": "On the Way to Jerusalem",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "mark-09",
+          "title": "Entry into Jerusalem; Questions in the Temple",
+          "range": "11-12",
+          "status": "read"
+        },
+        {
+          "id": "mark-10",
+          "title": "The End of the Age",
+          "range": "13",
+          "status": "read"
+        },
+        {
+          "id": "mark-11",
+          "title": "The Anointing, the Supper and the Arrest",
+          "range": "14",
+          "status": "read"
+        },
+        {
+          "id": "mark-12",
+          "title": "The Trial and the Crucifixion",
+          "range": "15",
+          "status": "read"
+        },
+        {
+          "id": "mark-13",
+          "title": "The Resurrection",
+          "range": "16",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Rom",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "45b8e6cc267a02ca"
+      },
+      "sections": [
+        {
+          "id": "rom-01",
+          "title": "The Gospel; All under Sin; Righteousness through Faith",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "rom-02",
+          "title": "Abraham’s Faith; Peace with God; Adam and Christ",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "rom-03",
+          "title": "Dead to Sin; the Law and the Divided Self",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "rom-04",
+          "title": "Life in the Spirit",
+          "range": "8",
+          "status": "read"
+        },
+        {
+          "id": "rom-05",
+          "title": "Israel and the Nations in God’s Plan",
+          "range": "9-11",
+          "status": "read"
+        },
+        {
+          "id": "rom-06",
+          "title": "Life in the Body; Love and the Authorities",
+          "range": "12-13",
+          "status": "read"
+        },
+        {
+          "id": "rom-07",
+          "title": "The Weak and the Strong; Paul’s Plans and Greetings",
+          "range": "14-16",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Cor",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "cace072466d0c8ef"
+      },
+      "sections": [
+        {
+          "id": "1cor-01",
+          "title": "Divisions and the Wisdom of the Cross",
+          "range": "1-4",
+          "status": "read"
+        },
+        {
+          "id": "1cor-02",
+          "title": "Immorality, Lawsuits and Marriage",
+          "range": "5-7",
+          "status": "read"
+        },
+        {
+          "id": "1cor-03",
+          "title": "Food Offered to Idols; Paul’s Freedom",
+          "range": "8-10",
+          "status": "read"
+        },
+        {
+          "id": "1cor-04",
+          "title": "Order in Worship; the Lord’s Supper",
+          "range": "11",
+          "status": "read"
+        },
+        {
+          "id": "1cor-05",
+          "title": "Gifts of the Spirit and the Way of Love",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "1cor-06",
+          "title": "The Resurrection of the Dead",
+          "range": "15",
+          "status": "read"
+        },
+        {
+          "id": "1cor-07",
+          "title": "The Collection and Farewell",
+          "range": "16",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Cor",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "fc896b657ee33c64"
+      },
+      "sections": [
+        {
+          "id": "2cor-01",
+          "title": "Paul’s Change of Plans; Forgiveness",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "2cor-02",
+          "title": "Ministers of the New Covenant; Reconciliation",
+          "range": "3-5",
+          "status": "read"
+        },
+        {
+          "id": "2cor-03",
+          "title": "Hardships and Joy at Corinth’s Repentance",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "2cor-04",
+          "title": "The Collection for Jerusalem",
+          "range": "8-9",
+          "status": "read"
+        },
+        {
+          "id": "2cor-05",
+          "title": "Paul Defends His Apostleship",
+          "range": "10-13",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Gal",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "5d8db89ad6bd9fe9"
+      },
+      "sections": [
+        {
+          "id": "gal-01",
+          "title": "Paul’s Gospel and His Call",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "gal-02",
+          "title": "Faith, the Law and Sonship",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "gal-03",
+          "title": "Freedom and Life in the Spirit",
+          "range": "5-6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Eph",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "5fb97fa1ca24d29f"
+      },
+      "sections": [
+        {
+          "id": "eph-01",
+          "title": "God’s Plan and the One New People",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "eph-02",
+          "title": "Unity and the New Life; the Household; the Armour of God",
+          "range": "4-6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Phil",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "da2958d0f778683a"
+      },
+      "sections": [
+        {
+          "id": "phil-01",
+          "title": "Joy in Prison; Christ’s Humility",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "phil-02",
+          "title": "Paul’s Goal; Peace and Thanks",
+          "range": "3-4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Col",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "aa45c98de1c52854"
+      },
+      "sections": [
+        {
+          "id": "col-01",
+          "title": "The Supremacy of Christ; Warnings against False Teaching",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "col-02",
+          "title": "The New Life; the Household; Greetings",
+          "range": "3-4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Thess",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "f99d123aec7727ce"
+      },
+      "sections": [
+        {
+          "id": "1thess-01",
+          "title": "Paul’s Thanks and His Work in Thessalonica",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "1thess-02",
+          "title": "Holy Living; the Lord’s Coming",
+          "range": "4-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Thess",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "61e9fa0f6372d2ab"
+      },
+      "sections": [
+        {
+          "id": "2thess-01",
+          "title": "Endurance; the Day of the Lord; Idleness",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Tim",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "c59aa7ce17170613"
+      },
+      "sections": [
+        {
+          "id": "1tim-01",
+          "title": "Sound Teaching; Prayer; Overseers and Deacons",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "1tim-02",
+          "title": "A Good Minister; Widows, Elders and Wealth",
+          "range": "4-6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Tim",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "68b28de562d4dbb2"
+      },
+      "sections": [
+        {
+          "id": "2tim-01",
+          "title": "Guard the Gospel; Paul’s Last Charge",
+          "range": "1-4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Titus",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "c23609ae7e114fff"
+      },
+      "sections": [
+        {
+          "id": "titus-01",
+          "title": "Elders and Good Works",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Phlm",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "01fa6ef99269546c"
+      },
+      "sections": [
+        {
+          "id": "phlm-01",
+          "title": "Paul’s Appeal for Onesimus",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Heb",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "3329617dd4e08be3"
+      },
+      "sections": [
+        {
+          "id": "heb-01",
+          "title": "The Son above the Angels and Moses; the Promised Rest",
+          "range": "1-4",
+          "status": "read"
+        },
+        {
+          "id": "heb-02",
+          "title": "Christ the High Priest; Melchizedek",
+          "range": "5-7",
+          "status": "read"
+        },
+        {
+          "id": "heb-03",
+          "title": "The New Covenant and the Once-for-All Sacrifice",
+          "range": "8-10",
+          "status": "read"
+        },
+        {
+          "id": "heb-04",
+          "title": "The Witnesses of Faith",
+          "range": "11",
+          "status": "read"
+        },
+        {
+          "id": "heb-05",
+          "title": "Endurance and Discipline; Final Exhortations",
+          "range": "12-13",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Jas",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "b6070cf52d5d3a97"
+      },
+      "sections": [
+        {
+          "id": "jas-01",
+          "title": "Trials; Hearing and Doing; Faith and Works",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "jas-02",
+          "title": "The Tongue, Humility, the Rich, Patience and Prayer",
+          "range": "3-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Pet",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "12216cd4fe9d9d82"
+      },
+      "sections": [
+        {
+          "id": "1pet-01",
+          "title": "New Birth and Hope; a Holy People",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "1pet-02",
+          "title": "Suffering for Doing Good; Shepherds of the Flock",
+          "range": "3-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Pet",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "5f1dab4937e51a84"
+      },
+      "sections": [
+        {
+          "id": "2pet-01",
+          "title": "Growing in Grace; False Teachers; the Day of the Lord",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1John",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "dc6415e6aea1830a"
+      },
+      "sections": [
+        {
+          "id": "1john-01",
+          "title": "Light, Sin and the Commandment",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "1john-02",
+          "title": "Children of God; Love and Faith",
+          "range": "3-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2John",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "0ad61a8dfd5137f5"
+      },
+      "sections": [
+        {
+          "id": "2john-01",
+          "title": "A Letter to a Church: Truth and Love",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "3John",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "38126ff2959e1d6d"
+      },
+      "sections": [
+        {
+          "id": "3john-01",
+          "title": "A Letter to Gaius",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Jude",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "c4f86e276271eb04"
+      },
+      "sections": [
+        {
+          "id": "jude-01",
+          "title": "Against the Intruders",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Rev",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "7feb29e028496fd1"
+      },
+      "sections": [
+        {
+          "id": "rev-01",
+          "title": "The Vision on Patmos",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "rev-02",
+          "title": "Letters to the Seven Churches",
+          "range": "2-3",
+          "status": "read"
+        },
+        {
+          "id": "rev-03",
+          "title": "The Throne and the Lamb",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "rev-04",
+          "title": "The Seven Seals",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "rev-05",
+          "title": "The Seven Trumpets",
+          "range": "8-11",
+          "status": "read"
+        },
+        {
+          "id": "rev-06",
+          "title": "The Woman, the Dragon and the Beasts",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "rev-07",
+          "title": "The Seven Bowls",
+          "range": "15-16",
+          "status": "read"
+        },
+        {
+          "id": "rev-08",
+          "title": "The Fall of Babylon",
+          "range": "17-18",
+          "status": "read"
+        },
+        {
+          "id": "rev-09",
+          "title": "The Rider on the White Horse; the Thousand Years",
+          "range": "19-20",
+          "status": "read"
+        },
+        {
+          "id": "rev-10",
+          "title": "The New Jerusalem",
+          "range": "21-22",
+          "status": "read"
+        }
+      ]
     }
   ]
 }
