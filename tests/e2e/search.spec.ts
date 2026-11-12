@@ -32,8 +32,11 @@ test.describe('search', () => {
   test('the query is kept in the address, and an unknown word says so', async ({ page }) => {
     await page.goto('/search/?q=Zacchaeus');
     await expect(page.getByTestId('search-input')).toHaveValue('Zacchaeus');
-    await expect(page.locator('[data-result]')).toHaveCount(1);
-    await expect(page.locator('[data-result]')).toHaveAttribute('href', /^\/read\/luke-12\/#v-19-/);
+    // Path results come first, then the library (Phase 5): Luke 19, then 2 Maccabees 10.
+    const results = page.locator('[data-result]');
+    await expect(results).toHaveCount(2);
+    await expect(results.first()).toHaveAttribute('href', /^\/read\/luke-12\/#v-19-/);
+    await expect(results.nth(1)).toHaveAttribute('href', /^\/read\/2macc-\d+\/#v-10-/);
     await page.getByTestId('search-input').fill('zzqxv');
     await expect(page.getByTestId('search-count')).toHaveText('No sections match.');
     await expect(page).toHaveURL(/\?q=zzqxv$/);
