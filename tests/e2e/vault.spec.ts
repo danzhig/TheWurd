@@ -18,7 +18,7 @@ const scale = (page: Page) =>
 const listLinks = (page: Page) =>
   page
     .locator(
-      'section[aria-label="The path, as a list"] a[data-book], section[aria-label="The path, as a list"] a[data-bridge]',
+      'section[aria-label="The path, as a list"] ol a[data-book], section[aria-label="The path, as a list"] ol a[data-bridge]',
     )
     .evaluateAll((els) => els.map((e) => e.getAttribute('href')));
 
@@ -27,15 +27,17 @@ test.describe('the Vault', () => {
     await openVault(page);
     const scene = await page
       .getByTestId('vault-scene')
-      .locator('a[data-book], a[data-bridge]')
+      .locator('a[data-book]:not([data-offpath]), a[data-bridge]')
       .evaluateAll((els) => els.map((e) => e.getAttribute('href')));
     const list = await listLinks(page);
     expect([...list].sort()).toEqual([...scene].sort());
     expect(list).toHaveLength(plan.books.length + plan.bridges.length);
-    // The books outside the path appear in both, as names (they have no pages).
-    const off = await page.getByTestId('vault-scene').locator('[data-offpath]').count();
-    expect(await page.locator('[data-offpath-item]').count()).toBe(off);
-    expect(off).toBe(49);
+    // The books outside the path (the library) appear in both, linking to their books.
+    const offHrefs = (sel: string) =>
+      page.locator(sel).evaluateAll((els) => els.map((e) => e.getAttribute('href')).sort());
+    const off = await offHrefs('[data-testid="vault-scene"] a[data-offpath]');
+    expect(off).toHaveLength(49);
+    expect(await offHrefs('[data-offpath-item] a')).toEqual(off);
     // List mode shows it.
     await page.getByRole('button', { name: 'List' }).click();
     await expect(page.getByRole('region', { name: 'The path, as a list' })).toBeVisible();
@@ -147,14 +149,13 @@ test.describe('the Vault', () => {
     await expect.poll(() => scale(page)).toBeLessThan(before);
   });
 
-  test('books outside the path show a tooltip', async ({ page }) => {
+  test('books outside the path open their library book', async ({ page }) => {
     await openVault(page);
     await page.getByTestId('vault-scene').locator('[data-offpath="Rev"]').click({ force: true });
-    const tip = page.getByTestId('offpath-tip');
-    await expect(tip).toContainText('Revelation');
-    await expect(tip).toContainText('Not on this path.');
-    await page.keyboard.press('Escape');
-    await expect(tip).toHaveCount(0);
+    await page.waitForURL(/\/book\/Rev\/$/);
+    await expect(page.locator('html')).toHaveAttribute('data-book-map', /.+/);
+    await expect(page.getByTestId('library-label')).toBeVisible();
+    await expect(page.locator('#transition-layer > *')).toHaveCount(0, { timeout: 3000 });
   });
 
   test('stays under 300 interactive nodes at any zoom', async ({ page }) => {

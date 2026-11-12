@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
 import { prettyRange } from '@/lib/format';
-import { getManifest, getSection } from '@/lib/data';
+import { getFullManifest, getSection } from '@/lib/data';
 
 /** Link previews (PLAN P2.4): one static image per section, rendered at build time. */
 export const size = { width: 1200, height: 630 };
@@ -11,7 +11,7 @@ export const alt = 'A section of Scripture as Story';
 export const dynamic = 'force-static';
 
 export function generateStaticParams() {
-  return getManifest().sections.map((s) => ({ sectionId: s.id }));
+  return getFullManifest().sections.map((s) => ({ sectionId: s.id }));
 }
 
 // A static Cormorant Garamond made by `pnpm fonts` (the renderer cannot read WOFF2).

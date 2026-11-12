@@ -10,6 +10,8 @@ const PAGES = [
   { path: '/book/Gen/', ready: 'data-book-map' },
   { path: '/read/gen-01/', ready: 'data-reader' },
   { path: '/bridge/br-rome/', ready: 'data-reader' },
+  { path: '/book/Ps/', ready: 'data-book-map' },
+  { path: '/read/ps-023/', ready: 'data-reader' },
   { path: '/path/', ready: null },
   { path: '/about/', ready: null },
   { path: '/sources/', ready: null },

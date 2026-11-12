@@ -3,14 +3,15 @@ import { BackToVault } from '@/components/book-map/BackToVault';
 import { BookCover } from '@/components/book-map/BookCover';
 import { BookMap, type StationData } from '@/components/book-map/BookMap';
 import styles from '@/components/book-map/book-page.module.css';
-import { getManifest } from '@/lib/data';
+import { getFullManifest } from '@/lib/data';
 import { prettyRange } from '@/lib/format';
 
 export const dynamicParams = false;
 
+// Every book with sections: the path's and the library's (Phase 5).
 export function generateStaticParams() {
-  return getManifest()
-    .books.filter((b) => b.inPlan)
+  return getFullManifest()
+    .books.filter((b) => b.inPlan || b.library)
     .map((b) => ({ bookId: b.id }));
 }
 
@@ -23,9 +24,9 @@ function readingTime(minutes: number): string {
 }
 
 function book(id: string) {
-  const m = getManifest();
-  const b = m.books.find((x) => x.id === id && x.inPlan);
-  if (!b) throw new Error(`Unknown plan book ${id}`);
+  const m = getFullManifest();
+  const b = m.books.find((x) => x.id === id && (x.inPlan || x.library));
+  if (!b) throw new Error(`Unknown book ${id}`);
   return { book: b, sections: m.sections.filter((s) => s.bookId === id) };
 }
 
@@ -70,6 +71,11 @@ export default async function BookPage({ params }: Params) {
               {b.name}
             </h1>
             <p className={`tagline ${styles.tagline}`}>{b.tagline}</p>
+            {b.library ? (
+              <p className={`label ${styles.library}`} data-testid="library-label">
+                Library · not on the path
+              </p>
+            ) : null}
             <p className={styles.meta}>
               {b.setting ? <>{b.setting} · </> : null}
               about {readingTime(minutes)}
@@ -77,7 +83,7 @@ export default async function BookPage({ params }: Params) {
               {sections.length} sections
             </p>
           </header>
-          <BookMap bookId={b.id} bookName={b.name} stations={stations} />
+          <BookMap bookId={b.id} bookName={b.name} stations={stations} library={!!b.library} />
         </div>
       </div>
       <noscript>

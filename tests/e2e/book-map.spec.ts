@@ -150,10 +150,12 @@ test.describe('book maps', () => {
     await expect(page.locator('[data-station="gen-01"]')).toHaveClass(/current/);
   });
 
-  test('the Vault list links to every book map', async ({ page }) => {
+  test('the Vault list links to every book map, path and library', async ({ page }) => {
     await page.goto('/');
-    const links = page.locator('section[aria-label="The path, as a list"] a[data-book]');
-    await expect(links).toHaveCount(plan.books.length);
+    const list = 'section[aria-label="The path, as a list"]';
+    await expect(page.locator(`${list} ol a[data-book]`)).toHaveCount(plan.books.length);
+    // The 49 books off the path open their library book maps (Phase 5).
+    await expect(page.locator(`${list} [data-offpath-item] a[data-book]`)).toHaveCount(49);
   });
 
   for (const theme of ['vault', 'vellum'] as const) {
