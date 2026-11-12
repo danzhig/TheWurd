@@ -31,6 +31,8 @@ If you looked up each plan range in a WEBC (English-numbered) Bible, these are t
 | jonah-02 | In the Belly of the Fish | Jonah 2 | Jonah 1:17–2:10 | 1:17 | — |
 | lev-02 | Sin and Guilt Offerings | Lev 4:1-5:26 (verse 5:26 does not exist in WEBC) | Lev 4:1–6:7 | 4:1–6:7 | — |
 | lev-03 | The Priests’ Instructions for Each Offering | Lev 6-7 | Lev 6:8–7:38 | — | 6:1–7 |
+| eccl-02 | A Time for Everything; Oppression and Toil | Eccl 3-4 | Eccl 3:1–5:1 | 5:1 | — |
+| eccl-03 | Vows, Wealth and What Is Good | Eccl 5-6 | Eccl 5:2–6:12 | — | 5:1 |
 
 ## Every renumbered plan reference
 
@@ -188,6 +190,20 @@ Plan verse (Hebrew numbering) → WEBC verse, with the TVTMS record that defines
 | 13:23 | 14:1 | TVTMS 2Ch.14:1-14:15 (line 722, OneToOne) |
 | 14:1–14 | 14:2–15 | TVTMS 2Ch.14:1-14:15 (line 723, OneToOne) |
 
+### Ecclesiastes
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 4:17 | 5:1 | TVTMS Ecc.5:1-5:20 (line 2494, OneToOne) |
+| 5:1–19 | 5:2–20 | TVTMS Ecc.5:1-5:20 (line 2495, OneToOne) |
+
+### Song of Songs
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 7:1 | 6:13 | TVTMS Sng.6:1--7:13 (line 2512, OneToOne) |
+| 7:2–14 | 7:1–13 | TVTMS Sng.6:1--7:13 (line 2513, OneToOne) |
+
 ## TVTMS records checked against WEBC
 
 `applied` = WEBC passed the English column's tests and failed the Hebrew column's, so the mapping was used. `same-tests` = the columns differ only in subverses WEBC does not have. Records where both columns agree are omitted.
@@ -224,3 +240,5 @@ Plan verse (Hebrew numbering) → WEBC verse, with the TVTMS record that defines
 | 2Chr | 2Ch.2:1-2:18 (line 715) | applied | pass | fail |
 | 2Chr | 2Ch.14:1-14:15 (line 720) | applied | pass | fail |
 | 2Chr | 2Ch.37:1-38 (line 725) | not-applicable | unknown, pass, pass, unknown | unknown, pass, pass, unknown |
+| Eccl | Ecc.5:1-5:20 (line 2492) | applied | pass | fail |
+| Song | Sng.6:1--7:13 (line 2507) | applied | pass, pass | fail, fail |

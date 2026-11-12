@@ -406,6 +406,1266 @@
         "date": "2026-11-12",
         "fingerprint": "bcfdcf0ea93125e4"
       }
+    },
+    {
+      "id": "Ps",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "d720aec92d695c80"
+      },
+      "sections": [
+        {
+          "id": "ps-001",
+          "title": "Psalm 1",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "ps-002",
+          "title": "Psalm 2",
+          "range": "2",
+          "status": "read"
+        },
+        {
+          "id": "ps-003",
+          "title": "Psalm 3",
+          "range": "3",
+          "status": "read"
+        },
+        {
+          "id": "ps-004",
+          "title": "Psalm 4",
+          "range": "4",
+          "status": "read"
+        },
+        {
+          "id": "ps-005",
+          "title": "Psalm 5",
+          "range": "5",
+          "status": "read"
+        },
+        {
+          "id": "ps-006",
+          "title": "Psalm 6",
+          "range": "6",
+          "status": "read"
+        },
+        {
+          "id": "ps-007",
+          "title": "Psalm 7",
+          "range": "7",
+          "status": "read"
+        },
+        {
+          "id": "ps-008",
+          "title": "Psalm 8",
+          "range": "8",
+          "status": "read"
+        },
+        {
+          "id": "ps-009",
+          "title": "Psalm 9",
+          "range": "9",
+          "status": "read"
+        },
+        {
+          "id": "ps-010",
+          "title": "Psalm 10 (9)",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "ps-011",
+          "title": "Psalm 11 (10)",
+          "range": "11",
+          "status": "read"
+        },
+        {
+          "id": "ps-012",
+          "title": "Psalm 12 (11)",
+          "range": "12",
+          "status": "read"
+        },
+        {
+          "id": "ps-013",
+          "title": "Psalm 13 (12)",
+          "range": "13",
+          "status": "read"
+        },
+        {
+          "id": "ps-014",
+          "title": "Psalm 14 (13)",
+          "range": "14",
+          "status": "read"
+        },
+        {
+          "id": "ps-015",
+          "title": "Psalm 15 (14)",
+          "range": "15",
+          "status": "read"
+        },
+        {
+          "id": "ps-016",
+          "title": "Psalm 16 (15)",
+          "range": "16",
+          "status": "read"
+        },
+        {
+          "id": "ps-017",
+          "title": "Psalm 17 (16)",
+          "range": "17",
+          "status": "read"
+        },
+        {
+          "id": "ps-018",
+          "title": "Psalm 18 (17)",
+          "range": "18",
+          "status": "read"
+        },
+        {
+          "id": "ps-019",
+          "title": "Psalm 19 (18)",
+          "range": "19",
+          "status": "read"
+        },
+        {
+          "id": "ps-020",
+          "title": "Psalm 20 (19)",
+          "range": "20",
+          "status": "read"
+        },
+        {
+          "id": "ps-021",
+          "title": "Psalm 21 (20)",
+          "range": "21",
+          "status": "read"
+        },
+        {
+          "id": "ps-022",
+          "title": "Psalm 22 (21)",
+          "range": "22",
+          "status": "read"
+        },
+        {
+          "id": "ps-023",
+          "title": "Psalm 23 (22)",
+          "range": "23",
+          "status": "read"
+        },
+        {
+          "id": "ps-024",
+          "title": "Psalm 24 (23)",
+          "range": "24",
+          "status": "read"
+        },
+        {
+          "id": "ps-025",
+          "title": "Psalm 25 (24)",
+          "range": "25",
+          "status": "read"
+        },
+        {
+          "id": "ps-026",
+          "title": "Psalm 26 (25)",
+          "range": "26",
+          "status": "read"
+        },
+        {
+          "id": "ps-027",
+          "title": "Psalm 27 (26)",
+          "range": "27",
+          "status": "read"
+        },
+        {
+          "id": "ps-028",
+          "title": "Psalm 28 (27)",
+          "range": "28",
+          "status": "read"
+        },
+        {
+          "id": "ps-029",
+          "title": "Psalm 29 (28)",
+          "range": "29",
+          "status": "read"
+        },
+        {
+          "id": "ps-030",
+          "title": "Psalm 30 (29)",
+          "range": "30",
+          "status": "read"
+        },
+        {
+          "id": "ps-031",
+          "title": "Psalm 31 (30)",
+          "range": "31",
+          "status": "read"
+        },
+        {
+          "id": "ps-032",
+          "title": "Psalm 32 (31)",
+          "range": "32",
+          "status": "read"
+        },
+        {
+          "id": "ps-033",
+          "title": "Psalm 33 (32)",
+          "range": "33",
+          "status": "read"
+        },
+        {
+          "id": "ps-034",
+          "title": "Psalm 34 (33)",
+          "range": "34",
+          "status": "read"
+        },
+        {
+          "id": "ps-035",
+          "title": "Psalm 35 (34)",
+          "range": "35",
+          "status": "read"
+        },
+        {
+          "id": "ps-036",
+          "title": "Psalm 36 (35)",
+          "range": "36",
+          "status": "read"
+        },
+        {
+          "id": "ps-037",
+          "title": "Psalm 37 (36)",
+          "range": "37",
+          "status": "read"
+        },
+        {
+          "id": "ps-038",
+          "title": "Psalm 38 (37)",
+          "range": "38",
+          "status": "read"
+        },
+        {
+          "id": "ps-039",
+          "title": "Psalm 39 (38)",
+          "range": "39",
+          "status": "read"
+        },
+        {
+          "id": "ps-040",
+          "title": "Psalm 40 (39)",
+          "range": "40",
+          "status": "read"
+        },
+        {
+          "id": "ps-041",
+          "title": "Psalm 41 (40)",
+          "range": "41",
+          "status": "read"
+        },
+        {
+          "id": "ps-042",
+          "title": "Psalm 42 (41)",
+          "range": "42",
+          "status": "read"
+        },
+        {
+          "id": "ps-043",
+          "title": "Psalm 43 (42)",
+          "range": "43",
+          "status": "read"
+        },
+        {
+          "id": "ps-044",
+          "title": "Psalm 44 (43)",
+          "range": "44",
+          "status": "read"
+        },
+        {
+          "id": "ps-045",
+          "title": "Psalm 45 (44)",
+          "range": "45",
+          "status": "read"
+        },
+        {
+          "id": "ps-046",
+          "title": "Psalm 46 (45)",
+          "range": "46",
+          "status": "read"
+        },
+        {
+          "id": "ps-047",
+          "title": "Psalm 47 (46)",
+          "range": "47",
+          "status": "read"
+        },
+        {
+          "id": "ps-048",
+          "title": "Psalm 48 (47)",
+          "range": "48",
+          "status": "read"
+        },
+        {
+          "id": "ps-049",
+          "title": "Psalm 49 (48)",
+          "range": "49",
+          "status": "read"
+        },
+        {
+          "id": "ps-050",
+          "title": "Psalm 50 (49)",
+          "range": "50",
+          "status": "read"
+        },
+        {
+          "id": "ps-051",
+          "title": "Psalm 51 (50)",
+          "range": "51",
+          "status": "read"
+        },
+        {
+          "id": "ps-052",
+          "title": "Psalm 52 (51)",
+          "range": "52",
+          "status": "read"
+        },
+        {
+          "id": "ps-053",
+          "title": "Psalm 53 (52)",
+          "range": "53",
+          "status": "read"
+        },
+        {
+          "id": "ps-054",
+          "title": "Psalm 54 (53)",
+          "range": "54",
+          "status": "read"
+        },
+        {
+          "id": "ps-055",
+          "title": "Psalm 55 (54)",
+          "range": "55",
+          "status": "read"
+        },
+        {
+          "id": "ps-056",
+          "title": "Psalm 56 (55)",
+          "range": "56",
+          "status": "read"
+        },
+        {
+          "id": "ps-057",
+          "title": "Psalm 57 (56)",
+          "range": "57",
+          "status": "read"
+        },
+        {
+          "id": "ps-058",
+          "title": "Psalm 58 (57)",
+          "range": "58",
+          "status": "read"
+        },
+        {
+          "id": "ps-059",
+          "title": "Psalm 59 (58)",
+          "range": "59",
+          "status": "read"
+        },
+        {
+          "id": "ps-060",
+          "title": "Psalm 60 (59)",
+          "range": "60",
+          "status": "read"
+        },
+        {
+          "id": "ps-061",
+          "title": "Psalm 61 (60)",
+          "range": "61",
+          "status": "read"
+        },
+        {
+          "id": "ps-062",
+          "title": "Psalm 62 (61)",
+          "range": "62",
+          "status": "read"
+        },
+        {
+          "id": "ps-063",
+          "title": "Psalm 63 (62)",
+          "range": "63",
+          "status": "read"
+        },
+        {
+          "id": "ps-064",
+          "title": "Psalm 64 (63)",
+          "range": "64",
+          "status": "read"
+        },
+        {
+          "id": "ps-065",
+          "title": "Psalm 65 (64)",
+          "range": "65",
+          "status": "read"
+        },
+        {
+          "id": "ps-066",
+          "title": "Psalm 66 (65)",
+          "range": "66",
+          "status": "read"
+        },
+        {
+          "id": "ps-067",
+          "title": "Psalm 67 (66)",
+          "range": "67",
+          "status": "read"
+        },
+        {
+          "id": "ps-068",
+          "title": "Psalm 68 (67)",
+          "range": "68",
+          "status": "read"
+        },
+        {
+          "id": "ps-069",
+          "title": "Psalm 69 (68)",
+          "range": "69",
+          "status": "read"
+        },
+        {
+          "id": "ps-070",
+          "title": "Psalm 70 (69)",
+          "range": "70",
+          "status": "read"
+        },
+        {
+          "id": "ps-071",
+          "title": "Psalm 71 (70)",
+          "range": "71",
+          "status": "read"
+        },
+        {
+          "id": "ps-072",
+          "title": "Psalm 72 (71)",
+          "range": "72",
+          "status": "read"
+        },
+        {
+          "id": "ps-073",
+          "title": "Psalm 73 (72)",
+          "range": "73",
+          "status": "read"
+        },
+        {
+          "id": "ps-074",
+          "title": "Psalm 74 (73)",
+          "range": "74",
+          "status": "read"
+        },
+        {
+          "id": "ps-075",
+          "title": "Psalm 75 (74)",
+          "range": "75",
+          "status": "read"
+        },
+        {
+          "id": "ps-076",
+          "title": "Psalm 76 (75)",
+          "range": "76",
+          "status": "read"
+        },
+        {
+          "id": "ps-077",
+          "title": "Psalm 77 (76)",
+          "range": "77",
+          "status": "read"
+        },
+        {
+          "id": "ps-078",
+          "title": "Psalm 78 (77)",
+          "range": "78",
+          "status": "read"
+        },
+        {
+          "id": "ps-079",
+          "title": "Psalm 79 (78)",
+          "range": "79",
+          "status": "read"
+        },
+        {
+          "id": "ps-080",
+          "title": "Psalm 80 (79)",
+          "range": "80",
+          "status": "read"
+        },
+        {
+          "id": "ps-081",
+          "title": "Psalm 81 (80)",
+          "range": "81",
+          "status": "read"
+        },
+        {
+          "id": "ps-082",
+          "title": "Psalm 82 (81)",
+          "range": "82",
+          "status": "read"
+        },
+        {
+          "id": "ps-083",
+          "title": "Psalm 83 (82)",
+          "range": "83",
+          "status": "read"
+        },
+        {
+          "id": "ps-084",
+          "title": "Psalm 84 (83)",
+          "range": "84",
+          "status": "read"
+        },
+        {
+          "id": "ps-085",
+          "title": "Psalm 85 (84)",
+          "range": "85",
+          "status": "read"
+        },
+        {
+          "id": "ps-086",
+          "title": "Psalm 86 (85)",
+          "range": "86",
+          "status": "read"
+        },
+        {
+          "id": "ps-087",
+          "title": "Psalm 87 (86)",
+          "range": "87",
+          "status": "read"
+        },
+        {
+          "id": "ps-088",
+          "title": "Psalm 88 (87)",
+          "range": "88",
+          "status": "read"
+        },
+        {
+          "id": "ps-089",
+          "title": "Psalm 89 (88)",
+          "range": "89",
+          "status": "read"
+        },
+        {
+          "id": "ps-090",
+          "title": "Psalm 90 (89)",
+          "range": "90",
+          "status": "read"
+        },
+        {
+          "id": "ps-091",
+          "title": "Psalm 91 (90)",
+          "range": "91",
+          "status": "read"
+        },
+        {
+          "id": "ps-092",
+          "title": "Psalm 92 (91)",
+          "range": "92",
+          "status": "read"
+        },
+        {
+          "id": "ps-093",
+          "title": "Psalm 93 (92)",
+          "range": "93",
+          "status": "read"
+        },
+        {
+          "id": "ps-094",
+          "title": "Psalm 94 (93)",
+          "range": "94",
+          "status": "read"
+        },
+        {
+          "id": "ps-095",
+          "title": "Psalm 95 (94)",
+          "range": "95",
+          "status": "read"
+        },
+        {
+          "id": "ps-096",
+          "title": "Psalm 96 (95)",
+          "range": "96",
+          "status": "read"
+        },
+        {
+          "id": "ps-097",
+          "title": "Psalm 97 (96)",
+          "range": "97",
+          "status": "read"
+        },
+        {
+          "id": "ps-098",
+          "title": "Psalm 98 (97–98)",
+          "range": "98",
+          "status": "read"
+        },
+        {
+          "id": "ps-099",
+          "title": "Psalm 99 (98)",
+          "range": "99",
+          "status": "read"
+        },
+        {
+          "id": "ps-100",
+          "title": "Psalm 100 (99)",
+          "range": "100",
+          "status": "read"
+        },
+        {
+          "id": "ps-101",
+          "title": "Psalm 101 (100)",
+          "range": "101",
+          "status": "read"
+        },
+        {
+          "id": "ps-102",
+          "title": "Psalm 102 (101)",
+          "range": "102",
+          "status": "read"
+        },
+        {
+          "id": "ps-103",
+          "title": "Psalm 103 (102)",
+          "range": "103",
+          "status": "read"
+        },
+        {
+          "id": "ps-104",
+          "title": "Psalm 104 (103)",
+          "range": "104",
+          "status": "read"
+        },
+        {
+          "id": "ps-105",
+          "title": "Psalm 105 (104)",
+          "range": "105",
+          "status": "read"
+        },
+        {
+          "id": "ps-106",
+          "title": "Psalm 106 (105)",
+          "range": "106",
+          "status": "read"
+        },
+        {
+          "id": "ps-107",
+          "title": "Psalm 107 (106)",
+          "range": "107",
+          "status": "read"
+        },
+        {
+          "id": "ps-108",
+          "title": "Psalm 108 (107)",
+          "range": "108",
+          "status": "read"
+        },
+        {
+          "id": "ps-109",
+          "title": "Psalm 109 (108)",
+          "range": "109",
+          "status": "read"
+        },
+        {
+          "id": "ps-110",
+          "title": "Psalm 110 (109)",
+          "range": "110",
+          "status": "read"
+        },
+        {
+          "id": "ps-111",
+          "title": "Psalm 111 (110)",
+          "range": "111",
+          "status": "read"
+        },
+        {
+          "id": "ps-112",
+          "title": "Psalm 112 (111)",
+          "range": "112",
+          "status": "read"
+        },
+        {
+          "id": "ps-113",
+          "title": "Psalm 113 (112)",
+          "range": "113",
+          "status": "read"
+        },
+        {
+          "id": "ps-114",
+          "title": "Psalm 114 (113)",
+          "range": "114",
+          "status": "read"
+        },
+        {
+          "id": "ps-115",
+          "title": "Psalm 115 (113)",
+          "range": "115",
+          "status": "read"
+        },
+        {
+          "id": "ps-116",
+          "title": "Psalm 116 (114–115)",
+          "range": "116",
+          "status": "read"
+        },
+        {
+          "id": "ps-117",
+          "title": "Psalm 117 (116)",
+          "range": "117",
+          "status": "read"
+        },
+        {
+          "id": "ps-118",
+          "title": "Psalm 118 (117)",
+          "range": "118",
+          "status": "read"
+        },
+        {
+          "id": "ps-119",
+          "title": "Psalm 119 (118)",
+          "range": "119",
+          "status": "read"
+        },
+        {
+          "id": "ps-120",
+          "title": "Psalm 120 (119)",
+          "range": "120",
+          "status": "read"
+        },
+        {
+          "id": "ps-121",
+          "title": "Psalm 121 (120)",
+          "range": "121",
+          "status": "read"
+        },
+        {
+          "id": "ps-122",
+          "title": "Psalm 122 (121)",
+          "range": "122",
+          "status": "read"
+        },
+        {
+          "id": "ps-123",
+          "title": "Psalm 123 (122)",
+          "range": "123",
+          "status": "read"
+        },
+        {
+          "id": "ps-124",
+          "title": "Psalm 124 (123)",
+          "range": "124",
+          "status": "read"
+        },
+        {
+          "id": "ps-125",
+          "title": "Psalm 125 (124)",
+          "range": "125",
+          "status": "read"
+        },
+        {
+          "id": "ps-126",
+          "title": "Psalm 126 (125)",
+          "range": "126",
+          "status": "read"
+        },
+        {
+          "id": "ps-127",
+          "title": "Psalm 127 (126)",
+          "range": "127",
+          "status": "read"
+        },
+        {
+          "id": "ps-128",
+          "title": "Psalm 128 (127)",
+          "range": "128",
+          "status": "read"
+        },
+        {
+          "id": "ps-129",
+          "title": "Psalm 129 (128)",
+          "range": "129",
+          "status": "read"
+        },
+        {
+          "id": "ps-130",
+          "title": "Psalm 130 (129)",
+          "range": "130",
+          "status": "read"
+        },
+        {
+          "id": "ps-131",
+          "title": "Psalm 131 (130)",
+          "range": "131",
+          "status": "read"
+        },
+        {
+          "id": "ps-132",
+          "title": "Psalm 132 (131)",
+          "range": "132",
+          "status": "read"
+        },
+        {
+          "id": "ps-133",
+          "title": "Psalm 133 (132)",
+          "range": "133",
+          "status": "read"
+        },
+        {
+          "id": "ps-134",
+          "title": "Psalm 134 (133)",
+          "range": "134",
+          "status": "read"
+        },
+        {
+          "id": "ps-135",
+          "title": "Psalm 135 (134)",
+          "range": "135",
+          "status": "read"
+        },
+        {
+          "id": "ps-136",
+          "title": "Psalm 136 (135)",
+          "range": "136",
+          "status": "read"
+        },
+        {
+          "id": "ps-137",
+          "title": "Psalm 137 (136)",
+          "range": "137",
+          "status": "read"
+        },
+        {
+          "id": "ps-138",
+          "title": "Psalm 138 (137)",
+          "range": "138",
+          "status": "read"
+        },
+        {
+          "id": "ps-139",
+          "title": "Psalm 139 (138)",
+          "range": "139",
+          "status": "read"
+        },
+        {
+          "id": "ps-140",
+          "title": "Psalm 140 (139)",
+          "range": "140",
+          "status": "read"
+        },
+        {
+          "id": "ps-141",
+          "title": "Psalm 141 (140)",
+          "range": "141",
+          "status": "read"
+        },
+        {
+          "id": "ps-142",
+          "title": "Psalm 142 (141)",
+          "range": "142",
+          "status": "read"
+        },
+        {
+          "id": "ps-143",
+          "title": "Psalm 143 (142)",
+          "range": "143",
+          "status": "read"
+        },
+        {
+          "id": "ps-144",
+          "title": "Psalm 144 (143)",
+          "range": "144",
+          "status": "read"
+        },
+        {
+          "id": "ps-145",
+          "title": "Psalm 145 (144)",
+          "range": "145",
+          "status": "read"
+        },
+        {
+          "id": "ps-146",
+          "title": "Psalm 146 (145)",
+          "range": "146",
+          "status": "read"
+        },
+        {
+          "id": "ps-147",
+          "title": "Psalm 147 (146–147)",
+          "range": "147",
+          "status": "read"
+        },
+        {
+          "id": "ps-148",
+          "title": "Psalm 148",
+          "range": "148",
+          "status": "read"
+        },
+        {
+          "id": "ps-149",
+          "title": "Psalm 149",
+          "range": "149",
+          "status": "read"
+        },
+        {
+          "id": "ps-150",
+          "title": "Psalm 150",
+          "range": "150",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Prov",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "a37db8007ed44744"
+      },
+      "sections": [
+        {
+          "id": "prov-01",
+          "title": "Wisdom’s Call and a Father’s Warnings",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "prov-02",
+          "title": "Trust, Discipline and the Path of Life",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "prov-03",
+          "title": "Warnings against Folly and Adultery",
+          "range": "5-7",
+          "status": "read"
+        },
+        {
+          "id": "prov-04",
+          "title": "Wisdom at Creation; Wisdom’s Feast",
+          "range": "8-9",
+          "status": "read"
+        },
+        {
+          "id": "prov-05",
+          "title": "Solomon’s Proverbs: the Righteous and the Wicked",
+          "range": "10-12",
+          "status": "read"
+        },
+        {
+          "id": "prov-06",
+          "title": "Solomon’s Proverbs: Speech, Work and Wealth",
+          "range": "13-15",
+          "status": "read"
+        },
+        {
+          "id": "prov-07",
+          "title": "Solomon’s Proverbs: Plans, Pride and Friendship",
+          "range": "16-18",
+          "status": "read"
+        },
+        {
+          "id": "prov-08",
+          "title": "Solomon’s Proverbs: the Poor, the King and Wine",
+          "range": "19:1-22:16",
+          "status": "read"
+        },
+        {
+          "id": "prov-09",
+          "title": "Sayings of the Wise",
+          "range": "22:17-24:34",
+          "status": "read"
+        },
+        {
+          "id": "prov-10",
+          "title": "Proverbs Copied by Hezekiah’s Men",
+          "range": "25-27",
+          "status": "read"
+        },
+        {
+          "id": "prov-11",
+          "title": "Hezekiah’s Collection, Continued",
+          "range": "28-29",
+          "status": "read"
+        },
+        {
+          "id": "prov-12",
+          "title": "The Words of Agur",
+          "range": "30",
+          "status": "read"
+        },
+        {
+          "id": "prov-13",
+          "title": "King Lemuel’s Mother; the Ideal Wife",
+          "range": "31",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Eccl",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "6686ebc98a125681"
+      },
+      "sections": [
+        {
+          "id": "eccl-01",
+          "title": "The Preacher’s Search: Everything Passes",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "eccl-02",
+          "title": "A Time for Everything; Oppression and Toil",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "eccl-03",
+          "title": "Vows, Wealth and What Is Good",
+          "range": "5-6",
+          "status": "read"
+        },
+        {
+          "id": "eccl-04",
+          "title": "Wisdom and Its Limits",
+          "range": "7-8",
+          "status": "read"
+        },
+        {
+          "id": "eccl-05",
+          "title": "One Fate for All; Wisdom and Folly",
+          "range": "9-10",
+          "status": "read"
+        },
+        {
+          "id": "eccl-06",
+          "title": "Youth, Old Age and the End of the Matter",
+          "range": "11-12",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Song",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "ca616de5bdee0fc5"
+      },
+      "sections": [
+        {
+          "id": "song-01",
+          "title": "The Bride and the Beloved",
+          "range": "1:1-2:7",
+          "status": "read"
+        },
+        {
+          "id": "song-02",
+          "title": "Springtime; a Search by Night",
+          "range": "2:8-3:11",
+          "status": "read"
+        },
+        {
+          "id": "song-03",
+          "title": "The Garden",
+          "range": "4:1-5:1",
+          "status": "read"
+        },
+        {
+          "id": "song-04",
+          "title": "Lost and Found",
+          "range": "5:2-6:3",
+          "status": "read"
+        },
+        {
+          "id": "song-05",
+          "title": "The Beauty of the Shulammite",
+          "range": "6:4-8:4",
+          "status": "read"
+        },
+        {
+          "id": "song-06",
+          "title": "The Last Song",
+          "range": "8:5-14",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Wis",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "78087010efb9fb70"
+      },
+      "sections": [
+        {
+          "id": "wis-01",
+          "title": "Love Justice; the Reasoning of the Ungodly",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "wis-02",
+          "title": "The Hope of the Righteous",
+          "range": "3-5",
+          "status": "read"
+        },
+        {
+          "id": "wis-03",
+          "title": "Solomon Seeks Wisdom",
+          "range": "6-9",
+          "status": "read"
+        },
+        {
+          "id": "wis-04",
+          "title": "Wisdom in History: Adam to the Exodus",
+          "range": "10-12",
+          "status": "read"
+        },
+        {
+          "id": "wis-05",
+          "title": "The Folly of Idols",
+          "range": "13-15",
+          "status": "read"
+        },
+        {
+          "id": "wis-06",
+          "title": "Egypt and Israel Contrasted",
+          "range": "16-19",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Sir",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "4dde3a32be98e453"
+      },
+      "sections": [
+        {
+          "id": "sir-01",
+          "title": "Wisdom and the Fear of the Lord",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "sir-02",
+          "title": "Parents, Humility and the Poor",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "sir-03",
+          "title": "Speech and Friendship",
+          "range": "5-6",
+          "status": "read"
+        },
+        {
+          "id": "sir-04",
+          "title": "Duties at Home and in the World",
+          "range": "7-9",
+          "status": "read"
+        },
+        {
+          "id": "sir-05",
+          "title": "Pride, Humility and Riches",
+          "range": "10-11",
+          "status": "read"
+        },
+        {
+          "id": "sir-06",
+          "title": "Choosing Companions; Rich and Poor",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "sir-07",
+          "title": "Free Will and the Lord’s Mercy",
+          "range": "15-18",
+          "status": "read"
+        },
+        {
+          "id": "sir-08",
+          "title": "Speech, Silence and Folly",
+          "range": "19-22",
+          "status": "read"
+        },
+        {
+          "id": "sir-09",
+          "title": "A Prayer for Self-Control; Wisdom Praises Herself",
+          "range": "23-24",
+          "status": "read"
+        },
+        {
+          "id": "sir-10",
+          "title": "Wives, Friends and Hidden Sins",
+          "range": "25-27",
+          "status": "read"
+        },
+        {
+          "id": "sir-11",
+          "title": "Anger, Lending and Hospitality",
+          "range": "28-29",
+          "status": "read"
+        },
+        {
+          "id": "sir-12",
+          "title": "Children, Health and Banquets",
+          "range": "30-32",
+          "status": "read"
+        },
+        {
+          "id": "sir-13",
+          "title": "Servants, Dreams and True Worship",
+          "range": "33-35",
+          "status": "read"
+        },
+        {
+          "id": "sir-14",
+          "title": "A Prayer for Israel; Counsel, Physicians and Trades",
+          "range": "36-38",
+          "status": "read"
+        },
+        {
+          "id": "sir-15",
+          "title": "The Scholar’s Calling; Good and Evil; Death",
+          "range": "39-41",
+          "status": "read"
+        },
+        {
+          "id": "sir-16",
+          "title": "Shame, Daughters and the Glory of Creation",
+          "range": "42-43",
+          "status": "read"
+        },
+        {
+          "id": "sir-17",
+          "title": "Praise of the Ancestors: Enoch to Aaron",
+          "range": "44-45",
+          "status": "read"
+        },
+        {
+          "id": "sir-18",
+          "title": "Praise of the Ancestors: Joshua to Nehemiah",
+          "range": "46-49",
+          "status": "read"
+        },
+        {
+          "id": "sir-19",
+          "title": "Simon the High Priest; Ben Sira’s Prayer",
+          "range": "50-51",
+          "status": "read"
+        }
+      ]
     }
   ]
 }
