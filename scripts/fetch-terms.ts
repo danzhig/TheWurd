@@ -11,9 +11,17 @@ import { download, readSourcesManifest, sha256 } from './fetch-sources';
 import { RAW_DIR } from './lib/paths';
 
 export async function fetchTerms(): Promise<Record<string, string>> {
+  return fetchPipeline('terms');
+}
+
+/**
+ * Download and verify every source of one side pipeline (`terms`, `themes`) into sources/raw.
+ * Zips (eBible USFM, the SWORD module, OpenBible's data) are unpacked beside themselves.
+ */
+export async function fetchPipeline(pipeline: 'terms' | 'themes'): Promise<Record<string, string>> {
   fs.mkdirSync(RAW_DIR, { recursive: true });
   const out: Record<string, string> = {};
-  for (const src of readSourcesManifest().filter((s) => s.pipeline === 'terms')) {
+  for (const src of readSourcesManifest().filter((s) => s.pipeline === pipeline)) {
     const dest = path.join(RAW_DIR, src.file);
     if (!fs.existsSync(dest)) {
       console.log(`fetch  ${src.id}`);
@@ -27,8 +35,8 @@ export async function fetchTerms(): Promise<Record<string, string>> {
       );
     }
     out[src.id] = dest;
-    // eBible texts arrive as zipped USFM: unpack beside the zip.
-    if (src.file.endsWith('_usfm.zip')) {
+    // Zipped sources (eBible USFM, SWORD modules, OpenBible data): unpack beside the zip.
+    if (src.file.endsWith('.zip')) {
       const dir = path.join(RAW_DIR, src.id);
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
@@ -37,7 +45,7 @@ export async function fetchTerms(): Promise<Record<string, string>> {
       out[`${src.id}Dir`] = dir;
     }
   }
-  console.log(`ok     ${Object.keys(out).length} terms sources verified`);
+  console.log(`ok     ${Object.keys(out).length} ${pipeline} sources verified`);
   return out;
 }
 
