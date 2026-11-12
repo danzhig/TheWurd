@@ -79,30 +79,34 @@ export function writeSettings(patch: Partial<Settings>): Settings {
 
 // ---------------------------------------------------------------------------
 // Reading progress (PLAN §10): `progress` = { [sectionId]: completedAtISO }, `last` = where to continue.
+// The library (Phase 5) keeps its own ledger, `library`, in the same shape: reading there never
+// changes the path's progress.
 // ---------------------------------------------------------------------------
 
 export type Progress = Record<string, string>;
+/** Which record a page's reading goes to: the path's or the library's. */
+export type Ledger = 'progress' | 'library';
 
-export function readProgress(): Progress {
+export function readProgress(ledger: Ledger = 'progress'): Progress {
   try {
-    const p = JSON.parse(readRaw('progress') ?? '{}') as unknown;
+    const p = JSON.parse(readRaw(ledger) ?? '{}') as unknown;
     return p && typeof p === 'object' ? (p as Progress) : {};
   } catch {
     return {};
   }
 }
 
-export function markRead(sectionId: string): void {
-  const p = readProgress();
+export function markRead(sectionId: string, ledger: Ledger = 'progress'): void {
+  const p = readProgress(ledger);
   if (p[sectionId]) return;
   p[sectionId] = new Date().toISOString();
-  writeRaw('progress', JSON.stringify(p));
+  writeRaw(ledger, JSON.stringify(p));
 }
 
-export function markUnread(sectionId: string): void {
-  const p = readProgress();
+export function markUnread(sectionId: string, ledger: Ledger = 'progress'): void {
+  const p = readProgress(ledger);
   delete p[sectionId];
-  writeRaw('progress', JSON.stringify(p));
+  writeRaw(ledger, JSON.stringify(p));
 }
 
 export interface LastPlace {

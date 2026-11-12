@@ -45,6 +45,8 @@ export default async function ReadPage({ params }: Params) {
       data-pagefind-body=""
       data-pagefind-sort={`order:${pathPosition(s.id)}`}
       data-pagefind-meta={`status:${s.status}`}
+      // Search filter (P5.4): the path or the library.
+      data-pagefind-filter={`part:${library ? 'library' : 'path'}`}
     >
       <header className={styles.header}>
         <p className="label" data-pagefind-meta="book" data-pagefind-ignore="index">

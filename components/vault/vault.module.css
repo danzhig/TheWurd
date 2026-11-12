@@ -207,6 +207,26 @@
   transition: opacity 0.2s;
 }
 
+/* A library book with sections read (Phase 5): brighter, with a thin gold ring of progress. */
+.offStarted {
+  opacity: 0.95;
+}
+
+.offStarted::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--gold-light) calc(var(--p) * 1turn), transparent 0);
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 1.5px),
+    #000 calc(100% - 1.5px)
+  );
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+  pointer-events: none;
+}
+
 .offpath:hover {
   opacity: 1;
   border-color: color-mix(in srgb, var(--gold-light) 60%, transparent);

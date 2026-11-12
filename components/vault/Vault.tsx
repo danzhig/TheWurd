@@ -28,6 +28,8 @@ export interface VaultBook {
   taglineDraft?: boolean;
   group: string;
   inPlan: boolean;
+  /** A library book (Phase 5): its stops are counted in the library's ledger. */
+  library?: boolean;
   stops: string[]; // section ids that count toward progress
   minutes: number;
 }
@@ -48,8 +50,13 @@ const subscribe = (cb: () => void) => {
 function useReaderKey(): string {
   return useSyncExternalStore(
     subscribe,
-    () => `${readLast()?.sectionId ?? ''}|${Object.keys(readProgress()).sort().join(',')}`,
-    () => '|',
+    () =>
+      `${readLast()?.sectionId ?? ''}|${Object.keys(readProgress()).sort().join(',')}|${Object.keys(
+        readProgress('library'),
+      )
+        .sort()
+        .join(',')}`,
+    () => '||',
   );
 }
 
@@ -85,8 +92,12 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
   const [lifted, setLifted] = useState<string | null>(null);
 
   const readerKey = useReaderKey();
-  const [lastSection, doneList] = readerKey.split('|');
+  const [lastSection, doneList, libraryList] = readerKey.split('|');
   const done = useMemo(() => new Set((doneList ?? '').split(',').filter(Boolean)), [doneList]);
+  const libraryDone = useMemo(
+    () => new Set((libraryList ?? '').split(',').filter(Boolean)),
+    [libraryList],
+  );
 
   const layout = useMemo(
     () => layoutVault(data.path, data.bridges, data.satellites, data.offpath, GROUP_ORDER),
@@ -357,8 +368,9 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
   // ---------------------------------------------------------------------------------------------
 
   const k = 2 ** kq;
-  const progressOf = (b: VaultBook) =>
-    b.stops.length ? b.stops.filter((s) => done.has(s)).length / b.stops.length : 0;
+  const readIn = (b: VaultBook) => (b.library ? libraryDone : done);
+  const readCount = (b: VaultBook) => b.stops.filter((s) => readIn(b).has(s)).length;
+  const progressOf = (b: VaultBook) => (b.stops.length ? readCount(b) / b.stops.length : 0);
   const lastMedallion = sections[lastSection ?? ''];
 
   return (
@@ -463,12 +475,18 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
                 key={o.id}
                 href={`/book/${o.id}/`}
                 tabIndex={-1}
-                className={`${styles.offpath} ${focused === o.id ? styles.focused : ''} ${lifted === o.id ? styles.lifted : ''}`}
+                className={[
+                  styles.offpath,
+                  progressOf(b) > 0 ? styles.offStarted : '',
+                  focused === o.id ? styles.focused : '',
+                  lifted === o.id ? styles.lifted : '',
+                ].join(' ')}
                 style={{
                   left: o.x - o.size / 2,
                   top: o.y - o.size / 2,
                   width: o.size,
                   height: o.size,
+                  ['--p' as string]: progressOf(b),
                 }}
                 data-book={o.id}
                 data-offpath={o.id}
@@ -572,7 +590,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
             const b = byId.get(p.id)!;
             const bridge = bridges.find((x) => x.after === p.id);
             const sat = data.satellites.filter((s) => s.of === p.id);
-            const read = b.stops.filter((s) => done.has(s)).length;
+            const read = readCount(b);
             return [
               <li key={p.id}>
                 <Link
@@ -649,7 +667,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
                       >
                         <span className="book-name">{b.name}</span>
                       </Link>{' '}
-                      — {b.tagline}
+                      — {b.tagline} · {readCount(b)} of {b.stops.length} read
                     </li>
                   );
                 })}

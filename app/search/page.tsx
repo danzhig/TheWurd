@@ -5,10 +5,13 @@ import { Search } from '@/components/search/Search';
 
 export const metadata: Metadata = {
   title: 'Search · Scripture as Story',
-  description: 'Search every section on the path; results open at the verse.',
+  description: 'Search the whole Bible, the path and the library; results open at the verse.',
 };
 
-/** Search (PLAN P2.3): Pagefind over the built section and bridge pages, in path order. */
+/**
+ * Search (PLAN P2.3, P5.4): Pagefind over every section and bridge page; the path first, then
+ * the library, with a filter for either.
+ */
 export default function SearchPage() {
   return (
     <main className={styles.page} data-testid="search">

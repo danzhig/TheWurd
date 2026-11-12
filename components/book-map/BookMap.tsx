@@ -37,10 +37,13 @@ const subscribe = (cb: () => void) => {
 };
 
 /** Progress as a stable string snapshot (useSyncExternalStore needs referential stability). */
-function useProgressKey(): string {
+function useProgressKey(library: boolean): string {
   return useSyncExternalStore(
     subscribe,
-    () => `${Object.keys(readProgress()).sort().join(',')}|${readLast()?.sectionId ?? ''}`,
+    () =>
+      `${Object.keys(readProgress(library ? 'library' : 'progress'))
+        .sort()
+        .join(',')}|${readLast()?.sectionId ?? ''}`,
     () => '|',
   );
 }
@@ -54,7 +57,7 @@ export function BookMap({
   bookId: string;
   bookName: string;
   stations: StationData[];
-  /** A library book (Phase 5): its reading is not counted yet (P5.4). */
+  /** A library book (Phase 5): its reading is counted in the library's own ledger. */
   library?: boolean;
 }) {
   const router = useRouter();
@@ -63,7 +66,7 @@ export function BookMap({
   const [held, setHeld] = useState<string | null>(null);
   const holdTimer = useRef<number | null>(null);
   const suppressClick = useRef(false);
-  const progressKey = useProgressKey();
+  const progressKey = useProgressKey(library);
   const [doneList, current] = progressKey.split('|');
   const done = new Set((doneList ?? '').split(',').filter(Boolean));
 
@@ -124,11 +127,9 @@ export function BookMap({
 
   return (
     <>
-      {library ? null : (
-        <p className={styles.progress} data-testid="book-progress">
-          {read} of {stops.length} sections read
-        </p>
-      )}
+      <p className={styles.progress} data-testid="book-progress">
+        {read} of {stops.length} sections read
+      </p>
       <div
         ref={boxRef}
         className={`${styles.map} ${layout ? styles[layout.mode] : `${styles.list} ${styles.pending}`}`}

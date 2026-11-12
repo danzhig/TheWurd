@@ -14,7 +14,7 @@ test.describe('search', () => {
     await page.getByTestId('search-link').click();
     await page.waitForURL(/\/search\/$/);
     await page.getByTestId('search-input').fill('Moses');
-    await expect(page.getByTestId('search-count')).toContainText('in path order');
+    await expect(page.getByTestId('search-count')).toContainText('the path first');
     const results = page.locator('[data-result]');
     await expect(results.first()).toBeVisible();
     const hrefs = await results.evaluateAll((a) => a.map((x) => x.getAttribute('href')!));
@@ -40,6 +40,30 @@ test.describe('search', () => {
     await page.getByTestId('search-input').fill('zzqxv');
     await expect(page.getByTestId('search-count')).toHaveText('No sections match.');
     await expect(page).toHaveURL(/\?q=zzqxv$/);
+  });
+
+  test('searches the path, the library or both (P5.4)', async ({ page }) => {
+    const results = page.locator('[data-result]');
+    await page.goto('/search/?q=Zacchaeus');
+    await expect(results).toHaveCount(2);
+    await expect(page.getByTestId('search-count')).toContainText(
+      'the path first, then the library',
+    );
+    await expect(results.nth(1)).toContainText('library');
+
+    await page.getByRole('radio', { name: 'The library' }).check({ force: true });
+    await expect(results).toHaveCount(1);
+    await expect(results.first()).toHaveAttribute('href', /^\/read\/2macc-/);
+    await expect(page).toHaveURL(/in=library/);
+
+    await page.getByRole('radio', { name: 'The path' }).check({ force: true });
+    await expect(results).toHaveCount(1);
+    await expect(results.first()).toHaveAttribute('href', /^\/read\/luke-12\//);
+
+    // The choice survives a reload (it is in the address).
+    await page.reload();
+    await expect(page.getByRole('radio', { name: 'The path' })).toBeChecked();
+    await expect(results).toHaveCount(1);
   });
 
   test('has no serious accessibility issues', async ({ page }) => {
