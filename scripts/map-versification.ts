@@ -25,7 +25,13 @@ export interface RenumberEntry {
 export interface RecordCheck {
   header: string;
   line: number;
-  decision: 'applied' | 'identical' | 'same-tests' | 'webc-follows-hebrew' | 'undetermined';
+  decision:
+    | 'applied'
+    | 'identical'
+    | 'same-tests'
+    | 'webc-follows-hebrew'
+    | 'undetermined'
+    | 'not-applicable';
   english: TestResult[];
   hebrew: TestResult[];
 }
@@ -189,6 +195,14 @@ export function tvtmsMapping(parsed: ParsedBook, records: TvtmsRecord[]): BookMa
     };
     m.recordChecks.push(check);
     if (rec.rows.every((r) => norm(r.cells[e]) === norm(r.cells[h]))) continue;
+    // A record whose English and Hebrew columns name no verse of this book (e.g. 2Ch.37, where
+    // English is the Prayer of Manasseh, "Man.1:1-15", and Hebrew "NoVerse") cannot move any verse
+    // WEBC prints here: it does not apply.
+    const ofBook = (s: string | undefined) => (s ?? '').includes(`${book.tvtms}.`);
+    if (rec.rows.every((r) => !ofBook(r.cells[e]) && !ofBook(r.cells[h]))) {
+      check.decision = 'not-applicable';
+      continue;
+    }
 
     const passes = (rs: TestResult[]) => rs.includes('pass') && !rs.includes('fail');
     if (rec.tests.every((t) => norm(t[e]) === norm(t[h])) && passes(english)) {

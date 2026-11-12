@@ -163,6 +163,31 @@ Plan verse (Hebrew numbering) → WEBC verse, with the TVTMS record that defines
 | 2:1 | 1:17 | TVTMS Jon.1:17--2:10 (line 2784, OneToOne) |
 | 2:2–11 | 2:1–10 | TVTMS Jon.1:17--2:10 (line 2785, OneToOne) |
 
+### Leviticus
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 5:20–26 | 6:1–7 | TVTMS Lev.6:1-6:30 (line 349, OneToOne) |
+| 6:1–23 | 6:8–30 | TVTMS Lev.6:1-6:30 (line 350, OneToOne) |
+
+### 1 Chronicles
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 5:27–41 | 6:1–15 | TVTMS 1Ch.6:1-6:81 (line 697, OneToOne) |
+| 6:1–66 | 6:16–81 | TVTMS 1Ch.6:1-6:81 (line 698, OneToOne) |
+| 12:5 | 12:4 | TVTMS 1Ch.12:4-12:40 (line 707, SubdividedVerse) |
+| 12:6–41 | 12:5–40 | TVTMS 1Ch.12:4-12:40 (line 708, OneToOne) |
+
+### 2 Chronicles
+
+| Plan | WEBC | Source |
+| --- | --- | --- |
+| 1:18 | 2:1 | TVTMS 2Ch.2:1-2:18 (line 717, OneToOne) |
+| 2:1–17 | 2:2–18 | TVTMS 2Ch.2:1-2:18 (line 718, OneToOne) |
+| 13:23 | 14:1 | TVTMS 2Ch.14:1-14:15 (line 722, OneToOne) |
+| 14:1–14 | 14:2–15 | TVTMS 2Ch.14:1-14:15 (line 723, OneToOne) |
+
 ## TVTMS records checked against WEBC
 
 `applied` = WEBC passed the English column's tests and failed the Hebrew column's, so the mapping was used. `same-tests` = the columns differ only in subverses WEBC does not have. Records where both columns agree are omitted.
@@ -193,3 +218,9 @@ Plan verse (Hebrew numbering) → WEBC verse, with the TVTMS record that defines
 | Neh | Neh.7:68-7:73 (line 746) | applied | pass, unknown | fail, unknown |
 | Neh | Neh.9:38--10:39 (line 753) | applied | pass | fail |
 | Jonah | Jon.1:17--2:10 (line 2782) | applied | pass | fail |
+| Lev | Lev.6:1-6:30 (line 347) | applied | pass | fail |
+| 1Chr | 1Ch.6:1-6:81 (line 695) | applied | pass | fail |
+| 1Chr | 1Ch.12:4-12:40 (line 705) | applied | pass | fail |
+| 2Chr | 2Ch.2:1-2:18 (line 715) | applied | pass | fail |
+| 2Chr | 2Ch.14:1-14:15 (line 720) | applied | pass | fail |
+| 2Chr | 2Ch.37:1-38 (line 725) | not-applicable | unknown, pass, pass, unknown | unknown, pass, pass, unknown |
