@@ -38,6 +38,7 @@ import {
 } from './emit';
 import { estherDanielMap, pipelineReport, versificationLog } from './reports';
 import { readTvtmsCondensed } from './lib/tvtms';
+import { buildThemes, writeThemes } from './themes/emit-themes';
 import {
   CONTENT_DIR,
   DATA_DIR,
@@ -146,6 +147,13 @@ async function main() {
   } catch (err) {
     errors.push((err as Error).message);
   }
+  // Theme passages (Phase 6): checked against the built sections; only approved ones are published.
+  const libraryBookIds = new Set(library.map((b) => b.id));
+  const libraryIds = new Set(
+    sectionFiles.filter((s) => libraryBookIds.has(s.bookId)).map((s) => s.id),
+  );
+  const themes = sectionFiles.length ? buildThemes(sectionFiles, libraryIds) : null;
+  errors.push(...(themes?.errors ?? []));
   const ok = errors.length === 0;
   const sources = readSourcesManifest();
   const target = CHECK
@@ -157,6 +165,10 @@ async function main() {
       { plan, parsed, mappings, resolution, sources, outDir: target, contentDir: null, library },
       sectionFiles,
     );
+    if (themes?.data) {
+      writeThemes(target, themes.data);
+      result.files++;
+    }
     console.log(`wrote ${result.files} files to ${path.relative(process.cwd(), target) || target}`);
     errors.push(...checkFidelity(target, mappings));
   }
