@@ -1666,6 +1666,618 @@
           "status": "read"
         }
       ]
+    },
+    {
+      "id": "Isa",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "7993eec1e7e6b7d8"
+      },
+      "sections": [
+        {
+          "id": "isa-01",
+          "title": "Judgment and Hope for Zion",
+          "range": "1-4",
+          "status": "read"
+        },
+        {
+          "id": "isa-02",
+          "title": "The Song of the Vineyard; Isaiah’s Call",
+          "range": "5-6",
+          "status": "read"
+        },
+        {
+          "id": "isa-03",
+          "title": "Ahaz, Assyria and the Promised Child",
+          "range": "7-9",
+          "status": "read"
+        },
+        {
+          "id": "isa-04",
+          "title": "Assyria Judged; the Shoot from Jesse",
+          "range": "10-12",
+          "status": "read"
+        },
+        {
+          "id": "isa-05",
+          "title": "Against Babylon, Philistia and Moab",
+          "range": "13-16",
+          "status": "read"
+        },
+        {
+          "id": "isa-06",
+          "title": "Against Damascus, Cush and Egypt",
+          "range": "17-20",
+          "status": "read"
+        },
+        {
+          "id": "isa-07",
+          "title": "Against Babylon, Edom, Arabia, Jerusalem and Tyre",
+          "range": "21-23",
+          "status": "read"
+        },
+        {
+          "id": "isa-08",
+          "title": "The Earth Judged; a Feast on the Mountain",
+          "range": "24-27",
+          "status": "read"
+        },
+        {
+          "id": "isa-09",
+          "title": "Woes on Ephraim and Jerusalem",
+          "range": "28-31",
+          "status": "read"
+        },
+        {
+          "id": "isa-10",
+          "title": "A Righteous King; Edom’s Ruin; the Desert Blooms",
+          "range": "32-35",
+          "status": "read"
+        },
+        {
+          "id": "isa-11",
+          "title": "Hezekiah, Sennacherib and Isaiah",
+          "range": "36-39",
+          "status": "read"
+        },
+        {
+          "id": "isa-12",
+          "title": "Comfort for the Exiles; the Servant",
+          "range": "40-42",
+          "status": "read"
+        },
+        {
+          "id": "isa-13",
+          "title": "Israel the Witness; Idols Mocked; Cyrus",
+          "range": "43-45",
+          "status": "read"
+        },
+        {
+          "id": "isa-14",
+          "title": "The Fall of Babylon; Israel Called Back",
+          "range": "46-48",
+          "status": "read"
+        },
+        {
+          "id": "isa-15",
+          "title": "The Servant and Zion’s Children",
+          "range": "49-51",
+          "status": "read"
+        },
+        {
+          "id": "isa-16",
+          "title": "Zion Awakes; the Suffering Servant",
+          "range": "52-53",
+          "status": "read"
+        },
+        {
+          "id": "isa-17",
+          "title": "Zion Renewed; an Everlasting Covenant",
+          "range": "54-55",
+          "status": "read"
+        },
+        {
+          "id": "isa-18",
+          "title": "True Fasting; Sin and Justice",
+          "range": "56-59",
+          "status": "read"
+        },
+        {
+          "id": "isa-19",
+          "title": "The Glory of Zion",
+          "range": "60-62",
+          "status": "read"
+        },
+        {
+          "id": "isa-20",
+          "title": "Lament and the New Creation",
+          "range": "63-66",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Lam",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "da357675962f431f"
+      },
+      "sections": [
+        {
+          "id": "lam-01",
+          "title": "The City Weeps",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "lam-02",
+          "title": "The Lord’s Anger against Zion",
+          "range": "2",
+          "status": "read"
+        },
+        {
+          "id": "lam-03",
+          "title": "Waiting for the Lord",
+          "range": "3",
+          "status": "read"
+        },
+        {
+          "id": "lam-04",
+          "title": "The Siege Remembered",
+          "range": "4",
+          "status": "read"
+        },
+        {
+          "id": "lam-05",
+          "title": "A Prayer for Restoration",
+          "range": "5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Bar",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "e3013558a1cc64e2"
+      },
+      "sections": [
+        {
+          "id": "bar-01",
+          "title": "The Exiles’ Confession",
+          "range": "1:1-3:8",
+          "status": "read"
+        },
+        {
+          "id": "bar-02",
+          "title": "Wisdom Given to Israel",
+          "range": "3:9-4:4",
+          "status": "read"
+        },
+        {
+          "id": "bar-03",
+          "title": "Take Courage, Jerusalem",
+          "range": "4:5-5:9",
+          "status": "read"
+        },
+        {
+          "id": "bar-04",
+          "title": "The Letter of Jeremiah",
+          "range": "6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Ezek",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "f39c2f4933e1b052"
+      },
+      "sections": [
+        {
+          "id": "ezek-01",
+          "title": "The Vision of God’s Glory; the Prophet’s Call",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "ezek-02",
+          "title": "Acted Signs of the Siege",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "ezek-03",
+          "title": "Against the Mountains; the End Comes",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "ezek-04",
+          "title": "Idolatry in the Temple; the Glory Departs",
+          "range": "8-11",
+          "status": "read"
+        },
+        {
+          "id": "ezek-05",
+          "title": "The Exile Acted Out; False Prophets",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "ezek-06",
+          "title": "The Vine and the Unfaithful City",
+          "range": "15-16",
+          "status": "read"
+        },
+        {
+          "id": "ezek-07",
+          "title": "The Eagles and the Cedar; Each Answers for His Own Sin",
+          "range": "17-18",
+          "status": "read"
+        },
+        {
+          "id": "ezek-08",
+          "title": "Laments; Israel’s History of Rebellion",
+          "range": "19-20",
+          "status": "read"
+        },
+        {
+          "id": "ezek-09",
+          "title": "The Sword; the Guilty City; Two Sisters",
+          "range": "21-23",
+          "status": "read"
+        },
+        {
+          "id": "ezek-10",
+          "title": "The Boiling Pot; a Sign in Mourning",
+          "range": "24",
+          "status": "read"
+        },
+        {
+          "id": "ezek-11",
+          "title": "Against the Nations and Tyre",
+          "range": "25-26",
+          "status": "read"
+        },
+        {
+          "id": "ezek-12",
+          "title": "Lament for Tyre; the Prince of Tyre; Sidon",
+          "range": "27-28",
+          "status": "read"
+        },
+        {
+          "id": "ezek-13",
+          "title": "Against Egypt",
+          "range": "29-30",
+          "status": "read"
+        },
+        {
+          "id": "ezek-14",
+          "title": "Pharaoh the Cedar; a Lament for Egypt",
+          "range": "31-32",
+          "status": "read"
+        },
+        {
+          "id": "ezek-15",
+          "title": "The Watchman; the Shepherds of Israel",
+          "range": "33-34",
+          "status": "read"
+        },
+        {
+          "id": "ezek-16",
+          "title": "Edom; the Mountains of Israel Renewed",
+          "range": "35-36",
+          "status": "read"
+        },
+        {
+          "id": "ezek-17",
+          "title": "The Valley of Dry Bones; Two Sticks",
+          "range": "37",
+          "status": "read"
+        },
+        {
+          "id": "ezek-18",
+          "title": "Gog of Magog",
+          "range": "38-39",
+          "status": "read"
+        },
+        {
+          "id": "ezek-19",
+          "title": "The New Temple Measured",
+          "range": "40-42",
+          "status": "read"
+        },
+        {
+          "id": "ezek-20",
+          "title": "The Glory Returns; the Altar",
+          "range": "43",
+          "status": "read"
+        },
+        {
+          "id": "ezek-21",
+          "title": "Priests, Offerings and Feasts",
+          "range": "44-46",
+          "status": "read"
+        },
+        {
+          "id": "ezek-22",
+          "title": "The River from the Temple; the Land Divided",
+          "range": "47-48",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Hos",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "1b5c6517f0fa6248"
+      },
+      "sections": [
+        {
+          "id": "hos-01",
+          "title": "Hosea’s Marriage",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "hos-02",
+          "title": "No Knowledge of God",
+          "range": "4-6",
+          "status": "read"
+        },
+        {
+          "id": "hos-03",
+          "title": "Ephraim’s Sin",
+          "range": "7-10",
+          "status": "read"
+        },
+        {
+          "id": "hos-04",
+          "title": "The Lord’s Love; Return, Israel",
+          "range": "11-14",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Joel",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "290c146f8a5bdb18"
+      },
+      "sections": [
+        {
+          "id": "joel-01",
+          "title": "The Locusts and a Call to Mourn",
+          "range": "1:1-2:17",
+          "status": "read"
+        },
+        {
+          "id": "joel-02",
+          "title": "Restoration and the Lord’s Spirit",
+          "range": "2:18-3:5",
+          "status": "read"
+        },
+        {
+          "id": "joel-03",
+          "title": "Judgment in the Valley of Jehoshaphat",
+          "range": "4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Amos",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "75dde47567491b08"
+      },
+      "sections": [
+        {
+          "id": "amos-01",
+          "title": "Oracles against the Nations",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "amos-02",
+          "title": "Words against Israel",
+          "range": "3-6",
+          "status": "read"
+        },
+        {
+          "id": "amos-03",
+          "title": "Five Visions; Amos and Amaziah",
+          "range": "7-9",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Obad",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "17349da31c9292c7"
+      },
+      "sections": [
+        {
+          "id": "obad-01",
+          "title": "Against Edom",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Mic",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "176ff972e0932deb"
+      },
+      "sections": [
+        {
+          "id": "mic-01",
+          "title": "Judgment on Samaria and Judah",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "mic-02",
+          "title": "The Mountain of the Lord; a Ruler from Bethlehem",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "mic-03",
+          "title": "The Lord’s Case; Hope after Judgment",
+          "range": "6-7",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Nah",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "2d76389e88588367"
+      },
+      "sections": [
+        {
+          "id": "nah-01",
+          "title": "The Fall of Nineveh",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Hab",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "d5e02fea3b577464"
+      },
+      "sections": [
+        {
+          "id": "hab-01",
+          "title": "The Prophet’s Complaint and the Answer",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "hab-02",
+          "title": "Habakkuk’s Prayer",
+          "range": "3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Zeph",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "fc3a3bcb0e8765f7"
+      },
+      "sections": [
+        {
+          "id": "zeph-01",
+          "title": "The Day of the Lord and the Joy of Zion",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Hag",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "3624bef62a9e5dcc"
+      },
+      "sections": [
+        {
+          "id": "hag-01",
+          "title": "Rebuild the Temple",
+          "range": "1-2",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Zech",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "aabca30986c2ca49"
+      },
+      "sections": [
+        {
+          "id": "zech-01",
+          "title": "Night Visions",
+          "range": "1-6",
+          "status": "read"
+        },
+        {
+          "id": "zech-02",
+          "title": "Fasting and the Promised Peace",
+          "range": "7-8",
+          "status": "read"
+        },
+        {
+          "id": "zech-03",
+          "title": "The Coming King; the Shepherds",
+          "range": "9-11",
+          "status": "read"
+        },
+        {
+          "id": "zech-04",
+          "title": "Jerusalem Mourns and Is Cleansed; the Day of the Lord",
+          "range": "12-14",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Mal",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "64c1148823b3b717"
+      },
+      "sections": [
+        {
+          "id": "mal-01",
+          "title": "A Polluted Table; Faithless Priests",
+          "range": "1:1-2:9",
+          "status": "read"
+        },
+        {
+          "id": "mal-02",
+          "title": "Broken Faith; the Messenger",
+          "range": "2:10-3:12",
+          "status": "read"
+        },
+        {
+          "id": "mal-03",
+          "title": "The Day Is Coming",
+          "range": "3:13-24",
+          "status": "read"
+        }
+      ]
     }
   ]
 }
