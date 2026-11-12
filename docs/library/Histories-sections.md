@@ -1,12 +1,12 @@
 # Histories: proposed library sections (1 Chronicles, 2 Chronicles, 2 Maccabees)
 
-**Status: proposed, awaiting the owner's approval.** Group: Histories (the history books off the path).
+**Status: approved by the owner on 2026-11-12.** Group: Histories (the history books off the path).
 
 Titles are written for this site and never quote scripture. Each chapter's subject was checked against the WEBC text by its most distinctive words (computed per chapter, e.g. _uzza, cart_ in 1 Chronicles 13, _micaiah_ in 2 Chronicles 18, _mother, brothers_ in 2 Maccabees 7); see each book's `-outline.md` for the chapter outline and the verses the plan numbers differently. A trial build confirmed every verse of each book is covered exactly once; reading times use 230 words per minute.
 
 ## 1 Chronicles
 
-**85 minutes** in all. Fingerprint on approval: `acec4089167c2046`.
+**85 minutes** in all. Approved, fingerprint `acec4089167c2046`.
 
 | #   | Section                                                     | Plan range | WEBC       | Minutes |
 | --- | ----------------------------------------------------------- | ---------- | ---------- | ------- |
@@ -32,7 +32,7 @@ Titles are written for this site and never quote scripture. Each chapter's subje
 
 ## 2 Chronicles
 
-**108 minutes** in all. Fingerprint on approval: `1c1c1622185a6974`.
+**108 minutes** in all. Approved, fingerprint `1c1c1622185a6974`.
 
 | #   | Section                                                       | Plan range | WEBC       | Minutes |
 | --- | ------------------------------------------------------------- | ---------- | ---------- | ------- |
@@ -58,7 +58,7 @@ Titles are written for this site and never quote scripture. Each chapter's subje
 
 ## 2 Maccabees
 
-**71 minutes** in all. Fingerprint on approval: `bcfdcf0ea93125e4`.
+**71 minutes** in all. Approved, fingerprint `bcfdcf0ea93125e4`.
 
 | #   | Section                                                             | Plan range | WEBC       | Minutes |
 | --- | ------------------------------------------------------------------- | ---------- | ---------- | ------- |
@@ -79,6 +79,6 @@ Titles are written for this site and never quote scripture. Each chapter's subje
 - **Chapters 1–2** (two letters and the author's preface) go together; then **one chapter per section** for the persecution and the revolt (3–13), since each chapter is one episode; **14–15** (Nicanor) together.
 - The plan and WEBC number this book the same way.
 
-## To approve
+## Approval
 
-Reply with approval (or changes) for any or all three books. On approval each book's sections go into `content/plan/library.json` with the fingerprint shown.
+Approved on 2026-11-12; the sections are in `content/plan/library.json` with the fingerprints shown. Any change stops the build until it is approved again.

@@ -118,6 +118,294 @@
         "date": "2026-11-10",
         "fingerprint": "a5ecd637db3c6316"
       }
+    },
+    {
+      "id": "1Chr",
+      "sections": [
+        {
+          "id": "1chr-01",
+          "title": "Genealogies: From Adam to the Kings of Edom",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "1chr-02",
+          "title": "The Line of Judah and of David",
+          "range": "2-4",
+          "status": "read"
+        },
+        {
+          "id": "1chr-03",
+          "title": "Reuben, Gad, Half-Manasseh and Levi",
+          "range": "5-6",
+          "status": "read"
+        },
+        {
+          "id": "1chr-04",
+          "title": "The Northern Tribes and Benjamin",
+          "range": "7-8",
+          "status": "read"
+        },
+        {
+          "id": "1chr-05",
+          "title": "Jerusalem’s Families and Gatekeepers",
+          "range": "9",
+          "status": "read"
+        },
+        {
+          "id": "1chr-06",
+          "title": "The Death of Saul",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "1chr-07",
+          "title": "David’s Mighty Men",
+          "range": "11-12",
+          "status": "read"
+        },
+        {
+          "id": "1chr-08",
+          "title": "Bringing the Ark to Jerusalem",
+          "range": "13-16",
+          "status": "read"
+        },
+        {
+          "id": "1chr-09",
+          "title": "God’s Promise to David",
+          "range": "17",
+          "status": "read"
+        },
+        {
+          "id": "1chr-10",
+          "title": "David’s Wars",
+          "range": "18-20",
+          "status": "read"
+        },
+        {
+          "id": "1chr-11",
+          "title": "The Census and the Threshing Floor",
+          "range": "21",
+          "status": "read"
+        },
+        {
+          "id": "1chr-12",
+          "title": "Preparing to Build the Temple",
+          "range": "22",
+          "status": "read"
+        },
+        {
+          "id": "1chr-13",
+          "title": "Levites, Priests and Singers",
+          "range": "23-25",
+          "status": "read"
+        },
+        {
+          "id": "1chr-14",
+          "title": "Gatekeepers, Treasurers and Officers",
+          "range": "26-27",
+          "status": "read"
+        },
+        {
+          "id": "1chr-15",
+          "title": "Solomon Charged; David’s Last Days",
+          "range": "28-29",
+          "status": "read"
+        }
+      ],
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "acec4089167c2046"
+      }
+    },
+    {
+      "id": "2Chr",
+      "sections": [
+        {
+          "id": "2chr-01",
+          "title": "Solomon’s Wisdom and His Builders",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "2chr-02",
+          "title": "The Temple and Its Furnishings",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "2chr-03",
+          "title": "The Ark, the Prayer and the Glory",
+          "range": "5-7",
+          "status": "read"
+        },
+        {
+          "id": "2chr-04",
+          "title": "Solomon’s Reign; the Queen of Sheba",
+          "range": "8-9",
+          "status": "read"
+        },
+        {
+          "id": "2chr-05",
+          "title": "The Kingdom Divides under Rehoboam",
+          "range": "10-12",
+          "status": "read"
+        },
+        {
+          "id": "2chr-06",
+          "title": "Abijah and Asa",
+          "range": "13-16",
+          "status": "read"
+        },
+        {
+          "id": "2chr-07",
+          "title": "Jehoshaphat",
+          "range": "17-20",
+          "status": "read"
+        },
+        {
+          "id": "2chr-08",
+          "title": "Jehoram, Ahaziah and Athaliah",
+          "range": "21-23",
+          "status": "read"
+        },
+        {
+          "id": "2chr-09",
+          "title": "Joash, Amaziah and Uzziah",
+          "range": "24-26",
+          "status": "read"
+        },
+        {
+          "id": "2chr-10",
+          "title": "Jotham and Ahaz",
+          "range": "27-28",
+          "status": "read"
+        },
+        {
+          "id": "2chr-11",
+          "title": "Hezekiah Restores the Temple and the Passover",
+          "range": "29-31",
+          "status": "read"
+        },
+        {
+          "id": "2chr-12",
+          "title": "Sennacherib’s Siege",
+          "range": "32",
+          "status": "read"
+        },
+        {
+          "id": "2chr-13",
+          "title": "Manasseh and Amon",
+          "range": "33",
+          "status": "read"
+        },
+        {
+          "id": "2chr-14",
+          "title": "Josiah and the Book of the Law",
+          "range": "34-35",
+          "status": "read"
+        },
+        {
+          "id": "2chr-15",
+          "title": "The Fall of Jerusalem and Cyrus’s Decree",
+          "range": "36",
+          "status": "read"
+        }
+      ],
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "1c1c1622185a6974"
+      }
+    },
+    {
+      "id": "2Macc",
+      "sections": [
+        {
+          "id": "2macc-01",
+          "title": "Letters to the Jews in Egypt; the Author’s Preface",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "2macc-02",
+          "title": "Heliodorus and the Temple Treasury",
+          "range": "3",
+          "status": "read"
+        },
+        {
+          "id": "2macc-03",
+          "title": "Jason and Menelaus Buy the High Priesthood",
+          "range": "4",
+          "status": "read"
+        },
+        {
+          "id": "2macc-04",
+          "title": "Antiochus Attacks Jerusalem",
+          "range": "5",
+          "status": "read"
+        },
+        {
+          "id": "2macc-05",
+          "title": "The Persecution; Eleazar",
+          "range": "6",
+          "status": "read"
+        },
+        {
+          "id": "2macc-06",
+          "title": "The Seven Brothers and Their Mother",
+          "range": "7",
+          "status": "read"
+        },
+        {
+          "id": "2macc-07",
+          "title": "Judas Maccabeus Takes the Field",
+          "range": "8",
+          "status": "read"
+        },
+        {
+          "id": "2macc-08",
+          "title": "The Death of Antiochus",
+          "range": "9",
+          "status": "read"
+        },
+        {
+          "id": "2macc-09",
+          "title": "The Temple Purified; Wars with the Idumaeans",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "2macc-10",
+          "title": "Lysias and the Letters of Peace",
+          "range": "11",
+          "status": "read"
+        },
+        {
+          "id": "2macc-11",
+          "title": "Judas’s Campaigns; a Prayer for the Fallen",
+          "range": "12",
+          "status": "read"
+        },
+        {
+          "id": "2macc-12",
+          "title": "Antiochus Eupator’s Campaign",
+          "range": "13",
+          "status": "read"
+        },
+        {
+          "id": "2macc-13",
+          "title": "Nicanor and the Final Victory",
+          "range": "14-15",
+          "status": "read"
+        }
+      ],
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "bcfdcf0ea93125e4"
+      }
     }
   ]
 }
