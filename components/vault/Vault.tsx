@@ -5,6 +5,7 @@ import type { ZoomBehavior, ZoomTransform } from 'd3-zoom';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
+  Fragment,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -18,7 +19,9 @@ import { camera, easeCamera, prefersReducedMotion } from '@/lib/camera';
 import { animationsOn, bookIn, bookOut, END_EVENT, transition } from '@/lib/transition';
 import { CHANGE_EVENT, readLast, readProgress } from '@/lib/store';
 import { GROUP_ORDER, type VaultData } from './data';
-import { layoutVault, type Medallion } from './layout';
+import { nearestConstellation, type Constellation } from './constellations';
+import { layoutVault, type Medallion, type Point } from './layout';
+import { useThemes } from './useThemes';
 import styles from './vault.module.css';
 
 export interface VaultBook {
@@ -65,6 +68,17 @@ type Cam = { x: number; y: number; k: number };
 
 const FLY_MS = 850;
 const K_MAX = 2.6; // medallion detail
+const K_MAX_THEMES = 5; // passage labels in a constellation
+// The focused constellation's passages become links once it is this wide on screen (px).
+const PASSAGE_PX = 260;
+// …and their references show beside their stars from this zoom.
+const PASSAGE_LABEL_K = 2.6;
+
+/** A passage's address in the reader: its section, at its first verse (WEBC numbering). */
+function passageHref(sectionId: string, ref: string, subId: string): string {
+  const [, c, v] = ref.split('-')[0]!.split('.');
+  return `/read/${sectionId}/?theme=${subId}#v-${c}-${v ?? 1}`;
+}
 
 export function Vault({ data, books, bridges, sections }: VaultProps) {
   const router = useRouter();
@@ -109,6 +123,44 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
     [layout],
   );
 
+  // Where each book's stars live in the Spiral view: its medallion, on the spiral or the outer ring.
+  const homes = useMemo(() => {
+    const h = new Map<string, Point & { r: number }>();
+    for (const m of [...layout.medallions, ...layout.satellites])
+      h.set(m.id, { x: m.x, y: m.y, r: m.w / 2 });
+    for (const o of layout.offpath) h.set(o.id, { x: o.x, y: o.y, r: o.size / 2 });
+    return h;
+  }, [layout]);
+  const {
+    view: themeView,
+    data: themeData,
+    layout: themeLayout,
+    canvasRef: starCanvas,
+    spiralRef,
+    labelsRef,
+    draw: drawThemes,
+    switchTo: switchThemes,
+    setLit,
+  } = useThemes({ camRef, homes });
+  const drawStars = useRef(drawThemes);
+  const themesLayout = useRef(themeLayout);
+  useLayoutEffect(() => {
+    drawStars.current = drawThemes;
+    themesLayout.current = themeLayout;
+  }, [drawThemes, themeLayout]);
+  const [focusC, setFocusC] = useState<string | null>(null);
+  const passageOf = useMemo(
+    () =>
+      new Map(
+        (themeData?.themes ?? []).flatMap((t) =>
+          t.subthemes.flatMap((s) =>
+            s.passages.map((p) => [`${s.id}:${p.ref}` as string, p] as const),
+          ),
+        ),
+      ),
+    [themeData],
+  );
+
   const currentBook = lastSection ? sections[lastSection]?.bookId : undefined;
   const currentMedallion = layout.medallions.find((m) => m.id === currentBook);
   const sparkAt = currentMedallion ?? layout.medallions[0]!;
@@ -134,6 +186,13 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
     });
     const q = Math.round(Math.log2(t.k) * 6) / 6;
     setKq((prev) => (prev === q ? prev : q));
+    // Themes: the stars follow the camera, and the constellation in view gets its passage links.
+    drawStars.current(t);
+    const tl = themesLayout.current;
+    if (tl) {
+      const c = nearestConstellation(tl, { x: (cx - t.x) / t.k, y: (cy - t.y) / t.k });
+      setFocusC((prev) => (prev === (c?.id ?? null) ? prev : (c?.id ?? null)));
+    }
   }, []);
 
   const fit = useCallback((): Cam => {
@@ -245,6 +304,50 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
       transition.medallionRect = null;
     };
   }, [apply, byId, fit, flyTo, layout.radius, placed, target]);
+
+  // Themes zoom further in, to the passages of one constellation.
+  useEffect(() => {
+    const z = zoomRef.current;
+    const view = viewRef.current;
+    if (!z || !view) return;
+    const minK = Math.min(view.clientWidth, view.clientHeight) / (2 * layout.radius);
+    z.scaleExtent([minK, themeView === 'spiral' ? K_MAX : K_MAX_THEMES]);
+    if (themeView === 'spiral' && camRef.current.k > K_MAX)
+      void flyTo(
+        target(
+          {
+            x: (view.clientWidth / 2 - camRef.current.x) / camRef.current.k,
+            y: (view.clientHeight / 2 - camRef.current.y) / camRef.current.k,
+          },
+          K_MAX,
+        ),
+        400,
+      );
+  }, [themeView, ready, layout.radius, flyTo, target]);
+
+  /** Spiral ⇄ Themes: the camera settles back to the whole ceiling while the stars fly. */
+  const switchView = useCallback(
+    (to: 'spiral' | 'themes') => {
+      const base = baseRef.current;
+      if (Math.abs(camRef.current.k - base.k) / base.k > 0.15 || to === 'spiral')
+        void flyTo(base, prefersReducedMotion() ? 0 : 1100);
+      void switchThemes(to);
+    },
+    [flyTo, switchThemes],
+  );
+
+  const flyToConstellation = useCallback(
+    (c: Constellation) => {
+      const view = viewRef.current;
+      if (!view) return;
+      const k = Math.min(
+        K_MAX_THEMES,
+        (Math.min(view.clientWidth, view.clientHeight) * 0.46) / c.r,
+      );
+      void flyTo(target(c, k), 700);
+    },
+    [flyTo, target],
+  );
 
   // Parallax against the pointer (off under reduced motion).
   useEffect(() => {
@@ -382,11 +485,30 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
             type="button"
             className={styles.button}
             onClick={continueReading}
-            disabled={mode === 'list'}
+            disabled={mode === 'list' || themeView !== 'spiral'}
             data-testid="continue"
           >
             Continue
           </button>
+          {/* Two ways through the same Bible (PLAN §16): the story's spiral, or its themes. */}
+          <div className={styles.switch} role="group" aria-label="View">
+            {(['spiral', 'themes'] as const).map((v) => (
+              <button
+                key={v}
+                type="button"
+                className={styles.switchButton}
+                aria-pressed={themeView === v || themeView === `to-${v}`}
+                disabled={mode === 'list'}
+                onPointerEnter={() =>
+                  v === 'themes' && void import('./useThemes').then((m) => m.loadThemes())
+                }
+                onClick={() => switchView(v)}
+                data-testid={`view-${v}`}
+              >
+                {v === 'spiral' ? 'Spiral' : 'Themes'}
+              </button>
+            ))}
+          </div>
           <button
             type="button"
             className={styles.button}
@@ -449,114 +571,204 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
         <div ref={sceneRef} className={styles.scene} data-testid="vault-scene">
           {/* Light falling through the oculus, turning very slowly (still under reduced motion). */}
           <div className={styles.rays} aria-hidden="true" />
-          <svg
-            className={styles.threadSvg}
-            width={layout.radius * 2}
-            height={layout.radius * 2}
-            viewBox={`${-layout.radius} ${-layout.radius} ${layout.radius * 2} ${layout.radius * 2}`}
-            style={{ left: -layout.radius, top: -layout.radius }}
-          >
-            <path d={layout.thread} className={styles.thread} />
-            <path d={layout.threadUpTo(sparkAt.along)} className={styles.threadLit} />
-            {layout.detours.map((t) => (
-              <path key={t.id} d={t.d} className={styles.detour} data-detour={t.id} />
-            ))}
-          </svg>
-          {layout.groups.map((g) => (
-            <span key={g.label} className={styles.group} style={{ left: g.x, top: g.y }}>
-              {g.label}
-            </span>
-          ))}
-          {layout.offpath.map((o) => {
-            const b = byId.get(o.id)!;
-            // Books outside the path open into the library (Phase 5), with the same flight.
-            return (
-              <a
-                key={o.id}
-                href={`/book/${o.id}/`}
-                tabIndex={-1}
-                className={[
-                  styles.offpath,
-                  progressOf(b) > 0 ? styles.offStarted : '',
-                  focused === o.id ? styles.focused : '',
-                  lifted === o.id ? styles.lifted : '',
-                ].join(' ')}
-                style={{
-                  left: o.x - o.size / 2,
-                  top: o.y - o.size / 2,
-                  width: o.size,
-                  height: o.size,
-                  ['--p' as string]: progressOf(b),
-                }}
-                data-book={o.id}
-                data-offpath={o.id}
-                onClick={(e) => {
-                  e.preventDefault();
-                  void openBook(o.id);
-                }}
+          {themeView !== 'themes' ? (
+            <div
+              ref={spiralRef}
+              className={styles.spiralLayer}
+              style={themeView === 'to-spiral' ? { opacity: 0 } : undefined}
+              data-testid="spiral-layer"
+            >
+              <svg
+                className={styles.threadSvg}
+                width={layout.radius * 2}
+                height={layout.radius * 2}
+                viewBox={`${-layout.radius} ${-layout.radius} ${layout.radius * 2} ${layout.radius * 2}`}
+                style={{ left: -layout.radius, top: -layout.radius }}
               >
-                {k * o.size >= 40 ? b.name : ''}
-              </a>
-            );
-          })}
-          {layout.bridges.map((br) => {
-            const b = bridges.find((x) => x.id === br.id)!;
-            return (
-              <a
-                key={br.id}
-                href={`/bridge/${br.id}/`}
-                tabIndex={-1}
-                className={`${styles.star} ${focused === br.id ? styles.focused : ''}`}
-                style={{ left: br.x, top: br.y }}
-                data-bridge={br.id}
-                title={b.title}
-              >
-                ✦
-              </a>
-            );
-          })}
-          {placed.map((m) => {
-            const b = byId.get(m.id)!;
-            const screenW = m.w * k;
-            const p = progressOf(b);
-            return (
-              <a
-                key={m.id}
-                href={`/book/${m.id}/`}
-                tabIndex={-1}
-                data-book={m.id}
-                className={[
-                  styles.medallion,
-                  screenW >= 56 ? styles.named : '',
-                  screenW >= 150 ? styles.detailed : '',
-                  focused === m.id ? styles.focused : '',
-                  m.id === currentBook ? styles.current : '',
-                  p >= 1 ? styles.finished : '',
-                  lifted === m.id ? styles.lifted : '',
-                ].join(' ')}
-                style={{
-                  left: m.x - m.w / 2,
-                  top: m.y - m.h / 2,
-                  width: m.w,
-                  height: m.h,
-                  ['--p' as string]: p,
-                  ['--fs' as string]: `${Math.max(11, m.w * 0.17)}px`,
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  void openBook(m.id);
-                }}
-              >
-                <span className={styles.name}>{b.name}</span>
-                {screenW >= 150 ? <span className={styles.tag}>{b.tagline}</span> : null}
-              </a>
-            );
-          })}
-          <span
-            className={styles.spark}
-            style={{ left: sparkAt.x, top: sparkAt.y - sparkAt.h / 2 - 10 }}
-          />
+                <path d={layout.thread} className={styles.thread} />
+                <path d={layout.threadUpTo(sparkAt.along)} className={styles.threadLit} />
+                {layout.detours.map((t) => (
+                  <path key={t.id} d={t.d} className={styles.detour} data-detour={t.id} />
+                ))}
+              </svg>
+              {layout.groups.map((g) => (
+                <span key={g.label} className={styles.group} style={{ left: g.x, top: g.y }}>
+                  {g.label}
+                </span>
+              ))}
+              {layout.offpath.map((o) => {
+                const b = byId.get(o.id)!;
+                // Books outside the path open into the library (Phase 5), with the same flight.
+                return (
+                  <a
+                    key={o.id}
+                    href={`/book/${o.id}/`}
+                    tabIndex={-1}
+                    className={[
+                      styles.offpath,
+                      progressOf(b) > 0 ? styles.offStarted : '',
+                      focused === o.id ? styles.focused : '',
+                      lifted === o.id ? styles.lifted : '',
+                    ].join(' ')}
+                    style={{
+                      left: o.x - o.size / 2,
+                      top: o.y - o.size / 2,
+                      width: o.size,
+                      height: o.size,
+                      ['--p' as string]: progressOf(b),
+                    }}
+                    data-book={o.id}
+                    data-offpath={o.id}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      void openBook(o.id);
+                    }}
+                  >
+                    {k * o.size >= 40 ? b.name : ''}
+                  </a>
+                );
+              })}
+              {layout.bridges.map((br) => {
+                const b = bridges.find((x) => x.id === br.id)!;
+                return (
+                  <a
+                    key={br.id}
+                    href={`/bridge/${br.id}/`}
+                    tabIndex={-1}
+                    className={`${styles.star} ${focused === br.id ? styles.focused : ''}`}
+                    style={{ left: br.x, top: br.y }}
+                    data-bridge={br.id}
+                    title={b.title}
+                  >
+                    ✦
+                  </a>
+                );
+              })}
+              {placed.map((m) => {
+                const b = byId.get(m.id)!;
+                const screenW = m.w * k;
+                const p = progressOf(b);
+                return (
+                  <a
+                    key={m.id}
+                    href={`/book/${m.id}/`}
+                    tabIndex={-1}
+                    data-book={m.id}
+                    className={[
+                      styles.medallion,
+                      screenW >= 56 ? styles.named : '',
+                      screenW >= 150 ? styles.detailed : '',
+                      focused === m.id ? styles.focused : '',
+                      m.id === currentBook ? styles.current : '',
+                      p >= 1 ? styles.finished : '',
+                      lifted === m.id ? styles.lifted : '',
+                    ].join(' ')}
+                    style={{
+                      left: m.x - m.w / 2,
+                      top: m.y - m.h / 2,
+                      width: m.w,
+                      height: m.h,
+                      ['--p' as string]: p,
+                      ['--fs' as string]: `${Math.max(11, m.w * 0.17)}px`,
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      void openBook(m.id);
+                    }}
+                  >
+                    <span className={styles.name}>{b.name}</span>
+                    {screenW >= 150 ? <span className={styles.tag}>{b.tagline}</span> : null}
+                  </a>
+                );
+              })}
+              <span
+                className={styles.spark}
+                style={{ left: sparkAt.x, top: sparkAt.y - sparkAt.h / 2 - 10 }}
+              />
+            </div>
+          ) : null}
+          {themeView !== 'spiral' && themeData && themeLayout ? (
+            <div
+              ref={labelsRef}
+              className={styles.themesLayer}
+              style={themeView === 'to-themes' ? { opacity: 0 } : undefined}
+              data-testid="themes-layer"
+            >
+              {themeLayout.constellations.map((c, i) => {
+                const t = themeData!.themes[i]!;
+                const open = c.r * k >= 110;
+                return (
+                  <Fragment key={c.id}>
+                    <button
+                      type="button"
+                      tabIndex={-1}
+                      className={styles.constName}
+                      style={{ left: c.x, top: c.y - c.r - 4, fontSize: `${14 / k}px` }}
+                      data-constellation={c.id}
+                      onClick={() => flyToConstellation(c)}
+                    >
+                      {t.title}
+                    </button>
+                    {open
+                      ? c.subs.map((s, j) => (
+                          <button
+                            key={s.id}
+                            type="button"
+                            tabIndex={-1}
+                            className={styles.subName}
+                            style={{ left: s.x, top: s.y, fontSize: `${11 / k}px` }}
+                            data-subtheme={s.id}
+                            onPointerEnter={() => setLit(s.id)}
+                            onPointerLeave={() => setLit(null)}
+                            onClick={() => void flyTo(target(s, K_MAX_THEMES), 600)}
+                          >
+                            {t.subthemes[j]!.title}
+                          </button>
+                        ))
+                      : null}
+                  </Fragment>
+                );
+              })}
+              {themeView === 'themes' &&
+              (themeLayout.constellations.find((c) => c.id === focusC)?.r ?? 0) * 2 * k >=
+                PASSAGE_PX
+                ? themeLayout.stars
+                    .filter((s) => s.themeId === focusC)
+                    .map((s) => {
+                      const p = passageOf.get(s.key);
+                      if (!p) return null;
+                      return (
+                        <a
+                          key={s.key}
+                          href={passageHref(p.sectionId, p.ref, s.subId)}
+                          tabIndex={-1}
+                          className={`${styles.passage} ${p.library ? styles.passageLibrary : ''}`}
+                          style={{ left: s.x, top: s.y, fontSize: `${10 / k}px` }}
+                          data-passage={s.key}
+                          onClick={(e) => {
+                            // A client navigation keeps the Vault's memory (Themes, the camera).
+                            e.preventDefault();
+                            router.push(passageHref(p.sectionId, p.ref, s.subId));
+                          }}
+                          onPointerEnter={() => setLit(s.subId)}
+                          onPointerLeave={() => setLit(null)}
+                        >
+                          {/* The reference names the link; the section's title is its tooltip. */}
+                          <span
+                            className={`${styles.passageName} ${k >= PASSAGE_LABEL_K ? '' : styles.quiet}`}
+                            title={p.sectionTitle}
+                          >
+                            {p.display}
+                          </span>
+                        </a>
+                      );
+                    })
+                : null}
+            </div>
+          ) : null}
         </div>
+        {/* The passages as stars, in screen space (pixels, not elements: see starfield.ts). */}
+        <canvas ref={starCanvas} className={styles.stars} data-testid="star-canvas" />
       </div>
 
       {mode === 'map' ? (

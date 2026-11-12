@@ -9,9 +9,15 @@ export interface CameraTransform {
   k: number;
 }
 
-export const camera: { last: CameraTransform | null; fromBook: string | null } = {
+export const camera: {
+  last: CameraTransform | null;
+  fromBook: string | null;
+  /** Which way the Vault was showing the Bible: the story's spiral or the themes (Phase 6). */
+  view: 'spiral' | 'themes';
+} = {
   last: null,
   fromBook: null,
+  view: 'spiral',
 };
 
 export function prefersReducedMotion(): boolean {

@@ -294,7 +294,15 @@
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+/* On phones the Spiral / Themes switch takes its own row under the buttons. */
+@media (max-width: 520px) {
+  .actions .switch {
+    order: 1;
+  }
 }
 
 .button,
@@ -435,4 +443,123 @@
   .rays {
     animation: none;
   }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* Spiral ⇄ Themes (PLAN §16, P6.3)                                                             */
+/* ------------------------------------------------------------------------------------------- */
+
+.switch {
+  display: inline-flex;
+  border: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  padding: 2px;
+}
+
+.switchButton {
+  font: inherit;
+  min-height: 40px;
+  min-width: 44px;
+  padding: 0 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.switchButton[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--text-strong);
+}
+
+.switchButton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* The spiral's medallions, thread and ring, faded as a whole while their stars fly. */
+.spiralLayer,
+.themesLayer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The stars: one canvas over the ceiling, never in the way of a tap. */
+.stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.constName,
+.subName {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  font: inherit;
+  font-family: var(--font-display);
+  white-space: nowrap;
+  border: 0;
+  background: none;
+  padding: 0.2em 0.4em;
+  cursor: pointer;
+  color: var(--text-strong);
+}
+
+.constName {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 6px var(--night);
+}
+
+.subName {
+  transform: translate(-50%, -50%);
+  color: var(--text);
+  font-style: italic;
+  text-shadow: 0 0 5px var(--night);
+}
+
+.subName:hover,
+.constName:hover {
+  color: var(--accent-strong);
+}
+
+/* A passage of the constellation in view: a tap target over its star, its reference beside it. */
+.passage {
+  position: absolute;
+  width: 2.4em;
+  height: 2.4em;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  text-decoration: none;
+  color: var(--text-strong);
+}
+
+.passage:hover,
+.passage:focus-visible {
+  box-shadow: 0 0 0 1px var(--gold-light);
+}
+
+.passageName {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  text-shadow: 0 0 4px var(--night);
+}
+
+.passageLibrary {
+  color: var(--text-muted);
+}
+
+/* Too far out to read: the reference stays as the link's name but is not drawn. */
+.quiet {
+  opacity: 0;
 }

@@ -42,6 +42,56 @@ test.describe('performance', () => {
     expect(long / frames.length).toBeLessThan(0.05);
   });
 
+  // PLAN §16 P6.3: the Spiral ⇄ Themes flight holds 60 fps both ways on the same profile.
+  test('the Spiral ⇄ Themes flight holds 60 fps on a throttled mobile profile', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('data-vault', 'ready');
+    await page.waitForTimeout(500);
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+    const frames: number[] = [];
+    for (const to of ['themes', 'spiral']) {
+      frames.push(
+        ...(await page.evaluate(async (to) => {
+          const ts: number[] = [];
+          let on = true;
+          const tick = (t: number) => {
+            ts.push(t);
+            if (on) requestAnimationFrame(tick);
+          };
+          document.querySelector<HTMLButtonElement>(`[data-testid=view-${to}]`)!.click();
+          // Time the flight itself, from the moment the stars start moving.
+          await new Promise<void>((r) => {
+            const wait = () =>
+              document.documentElement.dataset.vaultView === `to-${to}` ? r() : setTimeout(wait, 5);
+            wait();
+          });
+          requestAnimationFrame(tick);
+          await new Promise<void>((r) => {
+            const wait = () =>
+              document.documentElement.dataset.vaultView === to ? r() : setTimeout(wait, 20);
+            wait();
+          });
+          on = false;
+          return ts.slice(1).map((t, i) => t - ts[i]!);
+        }, to)),
+      );
+    }
+    await cdp.send('Emulation.setCPUThrottlingRate', { rate: 1 });
+    const sorted = [...frames].sort((a, b) => a - b);
+    const median = sorted[sorted.length >> 1]!;
+    const long = frames.filter((f) => f > 25).length;
+    test.info().annotations.push({
+      type: 'frames',
+      description: `n=${frames.length} median=${median.toFixed(1)}ms long=${long}`,
+    });
+    expect(frames.length).toBeGreaterThan(100);
+    expect(median).toBeLessThan(17.5);
+    expect(long / frames.length).toBeLessThan(0.05);
+  });
+
   // PLAN §12: Largest Contentful Paint under 2.5 s on a throttled mobile profile.
   for (const path of ['/', '/book/Gen/', '/read/gen-01/']) {
     test(`LCP on ${path} is under 2.5 s on a throttled phone`, async ({ page }) => {

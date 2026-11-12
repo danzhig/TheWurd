@@ -7,6 +7,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { verseText, type SectionFile } from '../../lib/types';
+import { CANON_BY_ID } from '../lib/canon';
 import { readThemes, themesFingerprint } from './taxonomy';
 
 export interface PublicThemePassage {
@@ -93,7 +94,8 @@ export function buildThemes(
         const v = sec.verses.find((x) => x.ref.split('!')[0] === first(p.ref));
         passages.push({
           ref: p.ref,
-          display: displayRef(p.ref, sec.bookName),
+          // The book's own name, not the plan's label for the part it reads ("Daniel 1–6, 13–14").
+          display: displayRef(p.ref, CANON_BY_ID.get(sec.bookId)?.name ?? sec.bookName),
           sectionId: p.sectionId,
           sectionTitle: sec.title,
           bookId: sec.bookId,

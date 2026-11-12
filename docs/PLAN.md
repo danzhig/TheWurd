@@ -950,7 +950,7 @@ interface Theme {
 | --- | --- | --- | --- |
 | P6.1 ✓ | Taxonomy | Import Nave's and OpenBible topics; propose 8–10 themes with sub-themes for approval | `docs/themes/taxonomy.md` approved; every theme and sub-theme has a description |
 | P6.2 ✓ | Passages | Candidates per theme from the datasets, each citing its row; approval per theme | Every approved passage resolves to built sections; every one cites a dataset row; drafts are hidden in production |
-| P6.3 | Constellation scene | Spiral / Themes switch, the morph, constellations, semantic zoom into sub-themes and passages | The morph runs at 60 fps in the throttled phone trace, both ways; an e2e test samples stars mid-flight and finds them between their book's medallion and their constellation place; under 300 interactive nodes at any zoom; reduced motion cross-fades |
+| P6.3 ✓ | Constellation scene | Spiral / Themes switch, the morph, constellations, semantic zoom into sub-themes and passages | The morph runs at 60 fps in the throttled phone trace, both ways; an e2e test samples stars mid-flight and finds them between their book's medallion and their constellation place; under 300 interactive nodes at any zoom; reduced motion cross-fades |
 | P6.4 | Tree, reader links and tests | The theme tree (List and phone default), "Themes" margin links in the reader, breadcrumbs back | Every star has a matching tree link; e2e walks theme → passage → back on both viewports; axe reports no serious issues |
 
 ## 17. Later: bookmarks, highlights and accounts
