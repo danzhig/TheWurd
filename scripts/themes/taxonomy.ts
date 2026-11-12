@@ -3,6 +3,7 @@
  * built sections. Sources are `nave:KEY` (every row of a Nave entry), `nave:KEY#n` (one row) or
  * `openbible:topic` (every passage OpenBible lists for that topic).
  */
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { z } from 'zod';
@@ -112,4 +113,56 @@ export function readSectionIndex(dataDir = path.join(process.cwd(), 'public/data
 export function sectionFor(ref: string, index: SectionIndex): string | undefined {
   const first = ref.split('-')[0]!;
   return index.sectionOf.get(first.split('.').length === 2 ? `${first}.1` : first);
+}
+
+// ---------------------------------------------------------------------------------------------
+// Passages (P6.2): content/themes/themes.json, written by `pnpm themes:build`.
+// ---------------------------------------------------------------------------------------------
+
+export const THEMES_FILE = path.join(process.cwd(), 'content/themes/themes.json');
+
+const PassageSchema = z.object({
+  /** OSIS, WEBC (English) numbering: a verse, a range or a whole chapter. */
+  ref: z.string(),
+  /** The built section holding the first verse (path or library). */
+  sectionId: z.string(),
+  sources: z.array(z.object({ dataset: z.enum(['naves', 'openbible']), row: z.string() })).min(1),
+  score: z.number(),
+  status: z.enum(['draft', 'approved']),
+});
+export type ThemePassage = z.infer<typeof PassageSchema>;
+
+const SubthemeSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+  passages: z.array(PassageSchema),
+});
+
+export const ThemesFileSchema = z.object({
+  $comment: z.string(),
+  themes: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      description: z.string(),
+      subthemes: z.array(SubthemeSchema),
+      approval: z.object({ by: z.string(), date: z.string(), fingerprint: z.string() }).nullable(),
+    }),
+  ),
+});
+export type ThemesFile = z.infer<typeof ThemesFileSchema>;
+
+export function readThemes(file = THEMES_FILE): ThemesFile | null {
+  if (!fs.existsSync(file)) return null;
+  return ThemesFileSchema.parse(JSON.parse(fs.readFileSync(file, 'utf8')));
+}
+
+/** A theme's approval covers exactly these sub-themes and passages (ids, refs, sections, statuses). */
+export function themesFingerprint(subthemes: z.infer<typeof SubthemeSchema>[]): string {
+  const canonical = subthemes.map((s) => [
+    s.id,
+    s.passages.map((p) => [p.ref, p.sectionId, p.status]),
+  ]);
+  return createHash('sha256').update(JSON.stringify(canonical)).digest('hex').slice(0, 16);
 }
