@@ -918,15 +918,15 @@ interface Connection {
 
 **Phase 6 adds a second way through the same Bible: the Spiral shows the story in order; Themes rearranges passages into constellations by meaning, so the reader can explore what the Bible says about mercy, suffering, prayer or family, wherever it says it.** Added on 2026-11-10 at the owner's request; it depends on Phase 5, since most thematic passages lie outside the path.
 
-**Interaction.** A Spiral / Themes switch on the Vault. Switching morphs the scene: passages, drawn as stars, fly out of their books and settle into 8–10 constellations around the oculus, one per top-level theme, joined by gilt hairlines. Zooming into a constellation shows its sub-themes as smaller star groups, then the passages themselves, each labelled with its reference and a short title. Tapping a star opens the passage in the reader, with a breadcrumb back to the theme. Passages on the path glow gold; library passages are paler. Switching back flies every star home to its book. The reader gains a margin line, "Themes: …", linking each passage to its constellations.
+**Interaction.** A Spiral / Themes switch on the Vault. Switching morphs the scene: passages, drawn as stars, fly out of their books and settle into 8–10 constellations around the oculus, one per top-level theme, joined by gilt hairlines. Zooming into a constellation shows its sub-themes as smaller star groups, then the passages themselves, each labelled with its reference and a short title. Tapping a star opens the passage in the reader, with a breadcrumb back to the theme. Passages on the path glow gold; library passages are paler. Switching back flies every star home to its book. The switch is always an active flight in both directions (owner, 2026-11-12): each passage's star starts exactly where its book sits, on the spiral or in the outer ring, and travels along its own path to its place in its constellation, so the spiral and outer ring visibly come apart into the constellations; switching back, every star flies from its constellation to its book and the spiral and outer ring visibly re-form. Nothing jumps or fades in place except under reduced motion. The reader gains a margin line, "Themes: …", linking each passage to its constellations.
 
 **Accessibility and phones.** The constellations are decorative for assistive technology; the accessible structure is a tree (theme → sub-theme → passage), shown by the List toggle and as the default on narrow phones. Keyboard arrows move between stars in a constellation. The interactive layer stays under 300 nodes: only the focused constellation renders its passages. Reduced motion replaces the morph with a cross-fade.
 
 **Sources and approval.** Which passage belongs to which theme is interpretation, so nothing is classified from memory:
 
 - **Candidates** come from public datasets: Nave's Topical Bible (1896, public domain; a hierarchy of topics with verse references) and OpenBible.info topical data (license to be verified before use), both pinned in `sources/manifest.json` and credited on `/sources`.
-- **The taxonomy** (top-level themes and sub-themes, with a one-line description each) is proposed in `docs/themes/taxonomy.md` and approved by David before any passages are assigned.
-- **Passages** are proposed per theme in `docs/themes/<themeId>-candidates.md`, each citing its dataset row; David approves them. Unapproved items are `draft` and hidden.
+- **The taxonomy** (top-level themes and sub-themes, with a one-line description each) is proposed in `docs/themes/taxonomy.md` and approved by the owner before any passages are assigned.
+- **Passages** are proposed per theme in `docs/themes/<themeId>-candidates.md`, each citing its dataset row; the owner approves them. Unapproved items are `draft` and hidden.
 - **Text** shown on a star or card is an excerpt from the built text by reference, never typed. Theme descriptions are original prose; any interpretive claim cites its source (section 18, check 12).
 
 **Data model** (`content/themes/themes.json`)
@@ -948,9 +948,9 @@ interface Theme {
 
 | # | Milestone | Scope | Acceptance |
 | --- | --- | --- | --- |
-| P6.1 | Taxonomy | Import Nave's and OpenBible topics; propose 8–10 themes with sub-themes for approval | `docs/themes/taxonomy.md` approved; every theme and sub-theme has a description |
+| P6.1 ✓ | Taxonomy | Import Nave's and OpenBible topics; propose 8–10 themes with sub-themes for approval | `docs/themes/taxonomy.md` approved; every theme and sub-theme has a description |
 | P6.2 | Passages | Candidates per theme from the datasets, each citing its row; approval per theme | Every approved passage resolves to built sections; every one cites a dataset row; drafts are hidden in production |
-| P6.3 | Constellation scene | Spiral / Themes switch, the morph, constellations, semantic zoom into sub-themes and passages | The morph runs at 60 fps in the throttled phone trace; under 300 interactive nodes at any zoom; reduced motion cross-fades |
+| P6.3 | Constellation scene | Spiral / Themes switch, the morph, constellations, semantic zoom into sub-themes and passages | The morph runs at 60 fps in the throttled phone trace, both ways; an e2e test samples stars mid-flight and finds them between their book's medallion and their constellation place; under 300 interactive nodes at any zoom; reduced motion cross-fades |
 | P6.4 | Tree, reader links and tests | The theme tree (List and phone default), "Themes" margin links in the reader, breadcrumbs back | Every star has a matching tree link; e2e walks theme → passage → back on both viewports; axe reports no serious issues |
 
 ## 17. Later: bookmarks, highlights and accounts

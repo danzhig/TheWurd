@@ -25,6 +25,9 @@
     "library:propose": "tsx scripts/library-propose.ts",
     "terms:fetch": "tsx scripts/fetch-terms.ts",
     "terms:lookup": "tsx scripts/terms-lookup.ts",
+    "themes:fetch": "tsx scripts/fetch-themes.ts",
+    "themes:topics": "tsx scripts/themes-topics.ts",
+    "themes:taxonomy": "tsx scripts/themes-taxonomy.ts",
     "tokens": "tsx scripts/gen-tokens.ts",
     "fonts": "tsx scripts/fetch-fonts.ts",
     "textures": "tsx scripts/render-textures.ts"

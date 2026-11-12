@@ -1,0 +1,6 @@
+Topic	OSIS	Quality Score (based on percentage of votes for the passage)	# Generated 2026-11-09. CC-BY License: www.openbible.info/topics
+10 commandments	Exod.20.1-Exod.20.26	7
+10 commandments	Gal.5.14	4
+10 commandments	Rom.13.8-Rom.13.10	3
+10 commandments	Deut.4.13	2
+10 commandments	Exod.34.28	2

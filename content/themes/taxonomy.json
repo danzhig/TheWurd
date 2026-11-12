@@ -1,0 +1,431 @@
+{
+  "$comment": "Phase 6 taxonomy (docs/PLAN.md §16): top-level themes and sub-themes with original one-line descriptions, and the dataset topics each draws its candidate passages from (nave:KEY, nave:KEY#row, openbible:topic). Proposed in docs/themes/taxonomy.md; passages are assigned only after the owner approves it.",
+  "status": "approved",
+  "approval": {
+    "by": "the owner",
+    "date": "2026-11-12"
+  },
+  "themes": [
+    {
+      "id": "creation",
+      "title": "God and creation",
+      "description": "The one God who makes the world, keeps it in being, and shows himself holy, faithful and glorious.",
+      "subthemes": [
+        {
+          "id": "creation-making",
+          "title": "Creation",
+          "description": "The making of the heavens, the earth and humankind, and creation's praise of its maker.",
+          "sources": ["nave:CREATION", "openbible:creation"]
+        },
+        {
+          "id": "creation-holiness",
+          "title": "The holiness of God",
+          "description": "God set apart from all that is not God, and the call to be holy in return.",
+          "sources": ["nave:HOLINESS", "openbible:holiness"]
+        },
+        {
+          "id": "creation-faithfulness",
+          "title": "God's faithfulness",
+          "description": "A God who keeps his word through every generation.",
+          "sources": ["nave:FAITHFULNESS", "openbible:faithfulness"]
+        },
+        {
+          "id": "creation-glory",
+          "title": "Glory",
+          "description": "The weight and splendour of God's presence, seen in the tent, the temple and the face of Christ.",
+          "sources": ["nave:GLORY", "openbible:glory"]
+        }
+      ]
+    },
+    {
+      "id": "covenant",
+      "title": "Covenant and promise",
+      "description": "The bonds God makes with his people, and the promises that carry the story forward.",
+      "subthemes": [
+        {
+          "id": "covenant-covenants",
+          "title": "Covenants",
+          "description": "God binding himself to Noah, Abraham, Israel and David, and the new covenant to come.",
+          "sources": ["nave:COVENANT", "openbible:promises"]
+        },
+        {
+          "id": "covenant-law",
+          "title": "The law",
+          "description": "The instruction given at Sinai, and how it shapes a people's life.",
+          "sources": ["nave:LAW", "openbible:law"]
+        },
+        {
+          "id": "covenant-sabbath",
+          "title": "Sabbath and feasts",
+          "description": "Holy time: the day of rest and the yearly feasts that remember what God has done.",
+          "sources": ["nave:SABBATH", "nave:FEASTS", "openbible:sabbath"]
+        },
+        {
+          "id": "covenant-messiah",
+          "title": "The promised Messiah",
+          "description": "The hope of an anointed king, and its fulfilment as the Church reads it.",
+          "sources": [
+            "nave:JESUS, THE CHRIST#711",
+            "nave:JESUS, THE CHRIST#301",
+            "openbible:messiah"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin",
+      "title": "Sin and turning back",
+      "description": "How people turn from God, and how they find their way back.",
+      "subthemes": [
+        {
+          "id": "sin-sin",
+          "title": "Sin",
+          "description": "The fall and its spread, and sin named for what it is.",
+          "sources": ["nave:SIN", "openbible:sin"]
+        },
+        {
+          "id": "sin-temptation",
+          "title": "Temptation",
+          "description": "Trials of desire and loyalty, resisted or given in to.",
+          "sources": ["nave:TEMPTATION", "openbible:temptation"]
+        },
+        {
+          "id": "sin-idols",
+          "title": "Idolatry and pride",
+          "description": "Putting something else in God's place, including oneself.",
+          "sources": ["nave:IDOLATRY", "nave:PRIDE", "openbible:idolatry", "openbible:pride"]
+        },
+        {
+          "id": "sin-repentance",
+          "title": "Repentance and confession",
+          "description": "Turning around: owning wrong, asking pardon, beginning again.",
+          "sources": [
+            "nave:REPENTANCE",
+            "nave:CONFESSION",
+            "openbible:repentance",
+            "openbible:confession"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercy",
+      "title": "Mercy and forgiveness",
+      "description": "God's mercy to sinners, and the forgiveness people are asked to pass on.",
+      "subthemes": [
+        {
+          "id": "mercy-mercy",
+          "title": "Mercy",
+          "description": "Compassion that goes beyond what is owed.",
+          "sources": ["nave:MERCY", "openbible:mercy", "openbible:divine mercy"]
+        },
+        {
+          "id": "mercy-forgiveness",
+          "title": "Forgiveness",
+          "description": "Sins forgiven by God, and forgiving one another.",
+          "sources": [
+            "nave:FORGIVENESS",
+            "openbible:forgiveness",
+            "openbible:forgiving one another"
+          ]
+        },
+        {
+          "id": "mercy-grace",
+          "title": "Grace",
+          "description": "A gift that cannot be earned.",
+          "sources": ["openbible:grace"]
+        },
+        {
+          "id": "mercy-reconciliation",
+          "title": "Redemption and reconciliation",
+          "description": "A people bought back and enemies made friends again, with God and with each other.",
+          "sources": [
+            "nave:REDEMPTION",
+            "nave:RECONCILIATION",
+            "nave:ATONEMENT",
+            "openbible:redemption",
+            "openbible:reconciliation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faith",
+      "title": "Faith, hope and trust",
+      "description": "Holding on to God in the dark, and acting on what he has said.",
+      "subthemes": [
+        {
+          "id": "faith-faith",
+          "title": "Faith",
+          "description": "Believing God and staking a life on his word.",
+          "sources": ["nave:FAITH", "openbible:faith"]
+        },
+        {
+          "id": "faith-hope",
+          "title": "Hope",
+          "description": "Looking forward to what God has promised but not yet given.",
+          "sources": ["nave:HOPE", "openbible:hope"]
+        },
+        {
+          "id": "faith-trust",
+          "title": "Trust and fear",
+          "description": "Trusting God when afraid or anxious.",
+          "sources": ["openbible:trust", "openbible:fear", "openbible:anxiety"]
+        },
+        {
+          "id": "faith-obedience",
+          "title": "Obedience and patience",
+          "description": "Faith that listens, waits and keeps going.",
+          "sources": [
+            "nave:OBEDIENCE",
+            "nave:PATIENCE",
+            "openbible:obedience",
+            "openbible:patience"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prayer",
+      "title": "Prayer and worship",
+      "description": "Speaking to God, praising him, and the worship of his people.",
+      "subthemes": [
+        {
+          "id": "prayer-prayer",
+          "title": "Prayer",
+          "description": "Asking, pleading, listening: people at prayer.",
+          "sources": ["nave:PRAYER", "openbible:prayer"]
+        },
+        {
+          "id": "prayer-praise",
+          "title": "Praise and thanksgiving",
+          "description": "Song and thanks for who God is and what he has done.",
+          "sources": ["nave:PRAISE", "openbible:praise", "openbible:thanksgiving"]
+        },
+        {
+          "id": "prayer-worship",
+          "title": "Worship and sacrifice",
+          "description": "Altar, tabernacle and temple, and the offering of oneself.",
+          "sources": ["nave:WORSHIP", "openbible:worship", "openbible:sacrifice"]
+        },
+        {
+          "id": "prayer-fasting",
+          "title": "Fasting",
+          "description": "Going without, to seek God or to mourn.",
+          "sources": ["nave:FASTING", "openbible:fasting"]
+        },
+        {
+          "id": "prayer-sacraments",
+          "title": "Baptism and the Lord's Supper",
+          "description": "Washing and the shared meal at the heart of the Church's life.",
+          "sources": [
+            "nave:BAPTISM",
+            "openbible:baptism",
+            "openbible:lords supper",
+            "openbible:eucharist"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suffering",
+      "title": "Suffering and comfort",
+      "description": "Pain, loss and persecution, and God's comfort in them.",
+      "subthemes": [
+        {
+          "id": "suffering-suffering",
+          "title": "Suffering",
+          "description": "Affliction borne, questioned and lamented.",
+          "sources": ["nave:SUFFERING", "openbible:suffering", "openbible:affliction"]
+        },
+        {
+          "id": "suffering-grief",
+          "title": "Grief and death",
+          "description": "Mourning the dead and facing death.",
+          "sources": [
+            "nave:DEATH",
+            "nave:MOURNING",
+            "openbible:grief",
+            "openbible:death",
+            "openbible:mourning"
+          ]
+        },
+        {
+          "id": "suffering-persecution",
+          "title": "Persecution",
+          "description": "Suffering for faithfulness.",
+          "sources": ["nave:PERSECUTION", "openbible:persecution"]
+        },
+        {
+          "id": "suffering-healing",
+          "title": "Healing and comfort",
+          "description": "The sick restored and the grieving consoled.",
+          "sources": ["openbible:healing", "openbible:sickness", "openbible:comfort"]
+        }
+      ]
+    },
+    {
+      "id": "love",
+      "title": "Love, family and neighbour",
+      "description": "Love of God and neighbour, lived out at home and among strangers and the poor.",
+      "subthemes": [
+        {
+          "id": "love-love",
+          "title": "Love",
+          "description": "The love God shows, and the love he commands.",
+          "sources": ["nave:LOVE", "openbible:love"]
+        },
+        {
+          "id": "love-marriage",
+          "title": "Marriage",
+          "description": "Husband and wife, faithfulness and its breaking.",
+          "sources": [
+            "nave:MARRIAGE",
+            "nave:ADULTERY",
+            "nave:DIVORCE",
+            "openbible:marriage",
+            "openbible:divorce"
+          ]
+        },
+        {
+          "id": "love-family",
+          "title": "Parents and children",
+          "description": "Raising children, honouring parents, families blessed and broken.",
+          "sources": [
+            "nave:CHILDREN",
+            "nave:PARENTS",
+            "nave:FAMILY",
+            "openbible:family",
+            "openbible:children",
+            "openbible:parents"
+          ]
+        },
+        {
+          "id": "love-neighbour",
+          "title": "Friendship and hospitality",
+          "description": "Friends, neighbours and the welcome of strangers.",
+          "sources": [
+            "nave:FRIENDSHIP",
+            "nave:HOSPITALITY",
+            "nave:NEIGHBOR",
+            "openbible:friendship",
+            "openbible:hospitality",
+            "openbible:neighbor"
+          ]
+        },
+        {
+          "id": "love-poor",
+          "title": "Justice and the poor",
+          "description": "Fair dealing, and care for the poor, the widow and the orphan.",
+          "sources": [
+            "nave:JUSTICE",
+            "nave:POOR",
+            "nave:WIDOW",
+            "nave:ORPHAN",
+            "openbible:justice",
+            "openbible:poor",
+            "openbible:widow",
+            "openbible:orphan"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wisdom",
+      "title": "Wisdom and the way of life",
+      "description": "How to live well before God: wisdom, humility, peace and the right use of things.",
+      "subthemes": [
+        {
+          "id": "wisdom-wisdom",
+          "title": "Wisdom",
+          "description": "The fear of the Lord and the practical wisdom that follows from it.",
+          "sources": ["nave:WISDOM", "openbible:wisdom"]
+        },
+        {
+          "id": "wisdom-humility",
+          "title": "Humility",
+          "description": "Knowing one's place before God and others.",
+          "sources": ["nave:HUMILITY", "openbible:humility"]
+        },
+        {
+          "id": "wisdom-peace",
+          "title": "Peace and joy",
+          "description": "Peace with God and gladness of heart.",
+          "sources": ["nave:PEACE", "nave:JOY", "openbible:peace", "openbible:joy"]
+        },
+        {
+          "id": "wisdom-self",
+          "title": "Self-control and contentment",
+          "description": "Mastery of oneself, and being satisfied with enough.",
+          "sources": [
+            "nave:CONTENTMENT",
+            "nave:SELF-CONTROL",
+            "openbible:self-control",
+            "openbible:contentment"
+          ]
+        },
+        {
+          "id": "wisdom-riches",
+          "title": "Work, money and generosity",
+          "description": "Labour, wealth and its dangers, and open-handed giving.",
+          "sources": [
+            "nave:RICHES",
+            "nave:MONEY",
+            "openbible:work",
+            "openbible:wealth",
+            "openbible:money",
+            "openbible:generosity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kingdom",
+      "title": "The kingdom and the life to come",
+      "description": "God's reign breaking in, the Spirit and the Church, and the hope of resurrection.",
+      "subthemes": [
+        {
+          "id": "kingdom-kingdom",
+          "title": "The kingdom of God",
+          "description": "God's rule announced, taught in parables and prayed for.",
+          "sources": [
+            "nave:KINGDOM OF HEAVEN",
+            "openbible:kingdom of god",
+            "openbible:kingdom of heaven"
+          ]
+        },
+        {
+          "id": "kingdom-salvation",
+          "title": "Salvation",
+          "description": "Rescue and deliverance, from the sea to the cross.",
+          "sources": ["nave:SALVATION", "openbible:salvation", "openbible:deliverance"]
+        },
+        {
+          "id": "kingdom-spirit",
+          "title": "The Holy Spirit and the Church",
+          "description": "The Spirit given, and the community it gathers.",
+          "sources": [
+            "nave:HOLY SPIRIT",
+            "nave:CHURCH",
+            "openbible:holy spirit",
+            "openbible:church"
+          ]
+        },
+        {
+          "id": "kingdom-last",
+          "title": "Resurrection and judgment",
+          "description": "The dead raised, the world judged, and life with God for ever.",
+          "sources": [
+            "nave:RESURRECTION",
+            "nave:JUDGMENT",
+            "nave:HEAVEN",
+            "openbible:resurrection",
+            "openbible:eternal life",
+            "openbible:judgment",
+            "openbible:heaven"
+          ]
+        }
+      ]
+    }
+  ]
+}

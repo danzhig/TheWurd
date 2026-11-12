@@ -1290,6 +1290,40 @@
       "attribution": "Swete, The Old Testament in Greek (1909–1930), transcribed by the First1KGreek Project (CC BY-SA 4.0), as vendored by https://github.com/QuantForgeSoftware/lxx",
       "usedFor": "Septuagint card: the Greek text (approved by the owner on 2026-11-10; derived word data is CC BY-SA 4.0)",
       "phase": 3
+    },
+    {
+      "id": "naves",
+      "name": "Nave’s Topical Bible (CrossWire SWORD module)",
+      "layer": "Themes",
+      "url": "https://www.crosswire.org/ftpmirror/pub/sword/packages/rawzip/Nave.zip",
+      "file": "Nave.zip",
+      "sha256": "52d9b7cde04c2abb5187ae804bcb97d93c7344a1358539f50ebc178ac0c945f0",
+      "version": "SWORD module Nave 3.0 (2021-02-28, from ccel.org)",
+      "homepage": "https://www.crosswire.org/sword/modules/ModInfo.jsp?modName=Nave",
+      "license": "Public domain",
+      "licenseUrl": "https://www.crosswire.org/sword/modules/ModInfo.jsp?modName=Nave",
+      "licenseVerified": "2026-11-12",
+      "attribution": "Orville J. Nave, Nave’s Topical Bible (1896); SWORD module by the CrossWire Bible Society",
+      "usedFor": "Themes: candidate topics and passages for the constellations, each citing its Nave entry",
+      "phase": 6,
+      "pipeline": "themes"
+    },
+    {
+      "id": "openbible-topics",
+      "name": "OpenBible.info Topical Bible data",
+      "layer": "Themes",
+      "url": "https://a.openbible.info/data/topic-scores.zip",
+      "file": "openbible-topic-scores.zip",
+      "sha256": "91363593f9d1726e5e68cfef3c758e6b348768f316f3c9207f5a7a73d688b03d",
+      "version": "topic-scores.txt generated 2026-11-09 (updated weekly upstream; re-pin deliberately)",
+      "homepage": "https://www.openbible.info/topics/",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseVerified": "2026-11-12",
+      "attribution": "Topical data from OpenBible.info, licensed CC BY 4.0",
+      "usedFor": "Themes: candidate topics and passages for the constellations, each citing its data row",
+      "phase": 6,
+      "pipeline": "themes"
     }
   ]
 }
