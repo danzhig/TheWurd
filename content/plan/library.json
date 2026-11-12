@@ -2278,6 +2278,798 @@
           "status": "read"
         }
       ]
+    },
+    {
+      "id": "Matt",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "475176b660f24e8d"
+      },
+      "sections": [
+        {
+          "id": "matt-01",
+          "title": "The Genealogy and Birth of Jesus",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "matt-02",
+          "title": "John the Baptist; the Temptation; the First Disciples",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "matt-03",
+          "title": "The Sermon on the Mount: the Beatitudes and the Law",
+          "range": "5",
+          "status": "read"
+        },
+        {
+          "id": "matt-04",
+          "title": "The Sermon on the Mount: Prayer and Trust",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "matt-05",
+          "title": "Healings and the Cost of Following",
+          "range": "8-9",
+          "status": "read"
+        },
+        {
+          "id": "matt-06",
+          "title": "The Twelve Sent Out",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "matt-07",
+          "title": "John’s Question; Sabbath Controversies",
+          "range": "11-12",
+          "status": "read"
+        },
+        {
+          "id": "matt-08",
+          "title": "Parables of the Kingdom",
+          "range": "13",
+          "status": "read"
+        },
+        {
+          "id": "matt-09",
+          "title": "Feeding the Crowds; Walking on the Water",
+          "range": "14-15",
+          "status": "read"
+        },
+        {
+          "id": "matt-10",
+          "title": "Peter’s Confession; the Transfiguration",
+          "range": "16-17",
+          "status": "read"
+        },
+        {
+          "id": "matt-11",
+          "title": "Life in the Community",
+          "range": "18",
+          "status": "read"
+        },
+        {
+          "id": "matt-12",
+          "title": "On the Road to Jerusalem",
+          "range": "19-20",
+          "status": "read"
+        },
+        {
+          "id": "matt-13",
+          "title": "Entry into Jerusalem; Controversies in the Temple",
+          "range": "21-22",
+          "status": "read"
+        },
+        {
+          "id": "matt-14",
+          "title": "Woes on the Scribes and Pharisees",
+          "range": "23",
+          "status": "read"
+        },
+        {
+          "id": "matt-15",
+          "title": "The End of the Age",
+          "range": "24-25",
+          "status": "read"
+        },
+        {
+          "id": "matt-16",
+          "title": "The Last Supper and the Arrest",
+          "range": "26",
+          "status": "read"
+        },
+        {
+          "id": "matt-17",
+          "title": "The Trial and the Crucifixion",
+          "range": "27",
+          "status": "read"
+        },
+        {
+          "id": "matt-18",
+          "title": "The Resurrection and the Great Commission",
+          "range": "28",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Mark",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "e9c50f8e63068974"
+      },
+      "sections": [
+        {
+          "id": "mark-01",
+          "title": "John, the Baptism and the First Days in Galilee",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "mark-02",
+          "title": "Controversies; the Twelve Chosen",
+          "range": "2-3",
+          "status": "read"
+        },
+        {
+          "id": "mark-03",
+          "title": "Parables; the Storm Calmed",
+          "range": "4",
+          "status": "read"
+        },
+        {
+          "id": "mark-04",
+          "title": "The Gerasene Demoniac; Jairus’s Daughter",
+          "range": "5",
+          "status": "read"
+        },
+        {
+          "id": "mark-05",
+          "title": "Rejected at Nazareth; the Twelve Sent; Five Thousand Fed",
+          "range": "6",
+          "status": "read"
+        },
+        {
+          "id": "mark-06",
+          "title": "Clean and Unclean; Four Thousand Fed",
+          "range": "7:1-8:21",
+          "status": "read"
+        },
+        {
+          "id": "mark-07",
+          "title": "Peter’s Confession; the Transfiguration",
+          "range": "8:22-9:50",
+          "status": "read"
+        },
+        {
+          "id": "mark-08",
+          "title": "On the Way to Jerusalem",
+          "range": "10",
+          "status": "read"
+        },
+        {
+          "id": "mark-09",
+          "title": "Entry into Jerusalem; Questions in the Temple",
+          "range": "11-12",
+          "status": "read"
+        },
+        {
+          "id": "mark-10",
+          "title": "The End of the Age",
+          "range": "13",
+          "status": "read"
+        },
+        {
+          "id": "mark-11",
+          "title": "The Anointing, the Supper and the Arrest",
+          "range": "14",
+          "status": "read"
+        },
+        {
+          "id": "mark-12",
+          "title": "The Trial and the Crucifixion",
+          "range": "15",
+          "status": "read"
+        },
+        {
+          "id": "mark-13",
+          "title": "The Resurrection",
+          "range": "16",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Rom",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "45b8e6cc267a02ca"
+      },
+      "sections": [
+        {
+          "id": "rom-01",
+          "title": "The Gospel; All under Sin; Righteousness through Faith",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "rom-02",
+          "title": "Abraham’s Faith; Peace with God; Adam and Christ",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "rom-03",
+          "title": "Dead to Sin; the Law and the Divided Self",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "rom-04",
+          "title": "Life in the Spirit",
+          "range": "8",
+          "status": "read"
+        },
+        {
+          "id": "rom-05",
+          "title": "Israel and the Nations in God’s Plan",
+          "range": "9-11",
+          "status": "read"
+        },
+        {
+          "id": "rom-06",
+          "title": "Life in the Body; Love and the Authorities",
+          "range": "12-13",
+          "status": "read"
+        },
+        {
+          "id": "rom-07",
+          "title": "The Weak and the Strong; Paul’s Plans and Greetings",
+          "range": "14-16",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Cor",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "cace072466d0c8ef"
+      },
+      "sections": [
+        {
+          "id": "1cor-01",
+          "title": "Divisions and the Wisdom of the Cross",
+          "range": "1-4",
+          "status": "read"
+        },
+        {
+          "id": "1cor-02",
+          "title": "Immorality, Lawsuits and Marriage",
+          "range": "5-7",
+          "status": "read"
+        },
+        {
+          "id": "1cor-03",
+          "title": "Food Offered to Idols; Paul’s Freedom",
+          "range": "8-10",
+          "status": "read"
+        },
+        {
+          "id": "1cor-04",
+          "title": "Order in Worship; the Lord’s Supper",
+          "range": "11",
+          "status": "read"
+        },
+        {
+          "id": "1cor-05",
+          "title": "Gifts of the Spirit and the Way of Love",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "1cor-06",
+          "title": "The Resurrection of the Dead",
+          "range": "15",
+          "status": "read"
+        },
+        {
+          "id": "1cor-07",
+          "title": "The Collection and Farewell",
+          "range": "16",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Cor",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "fc896b657ee33c64"
+      },
+      "sections": [
+        {
+          "id": "2cor-01",
+          "title": "Paul’s Change of Plans; Forgiveness",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "2cor-02",
+          "title": "Ministers of the New Covenant; Reconciliation",
+          "range": "3-5",
+          "status": "read"
+        },
+        {
+          "id": "2cor-03",
+          "title": "Hardships and Joy at Corinth’s Repentance",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "2cor-04",
+          "title": "The Collection for Jerusalem",
+          "range": "8-9",
+          "status": "read"
+        },
+        {
+          "id": "2cor-05",
+          "title": "Paul Defends His Apostleship",
+          "range": "10-13",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Gal",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "5d8db89ad6bd9fe9"
+      },
+      "sections": [
+        {
+          "id": "gal-01",
+          "title": "Paul’s Gospel and His Call",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "gal-02",
+          "title": "Faith, the Law and Sonship",
+          "range": "3-4",
+          "status": "read"
+        },
+        {
+          "id": "gal-03",
+          "title": "Freedom and Life in the Spirit",
+          "range": "5-6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Eph",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "5fb97fa1ca24d29f"
+      },
+      "sections": [
+        {
+          "id": "eph-01",
+          "title": "God’s Plan and the One New People",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "eph-02",
+          "title": "Unity and the New Life; the Household; the Armour of God",
+          "range": "4-6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Phil",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "da2958d0f778683a"
+      },
+      "sections": [
+        {
+          "id": "phil-01",
+          "title": "Joy in Prison; Christ’s Humility",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "phil-02",
+          "title": "Paul’s Goal; Peace and Thanks",
+          "range": "3-4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Col",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "aa45c98de1c52854"
+      },
+      "sections": [
+        {
+          "id": "col-01",
+          "title": "The Supremacy of Christ; Warnings against False Teaching",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "col-02",
+          "title": "The New Life; the Household; Greetings",
+          "range": "3-4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Thess",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "f99d123aec7727ce"
+      },
+      "sections": [
+        {
+          "id": "1thess-01",
+          "title": "Paul’s Thanks and His Work in Thessalonica",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "1thess-02",
+          "title": "Holy Living; the Lord’s Coming",
+          "range": "4-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Thess",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "61e9fa0f6372d2ab"
+      },
+      "sections": [
+        {
+          "id": "2thess-01",
+          "title": "Endurance; the Day of the Lord; Idleness",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Tim",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "c59aa7ce17170613"
+      },
+      "sections": [
+        {
+          "id": "1tim-01",
+          "title": "Sound Teaching; Prayer; Overseers and Deacons",
+          "range": "1-3",
+          "status": "read"
+        },
+        {
+          "id": "1tim-02",
+          "title": "A Good Minister; Widows, Elders and Wealth",
+          "range": "4-6",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Tim",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "68b28de562d4dbb2"
+      },
+      "sections": [
+        {
+          "id": "2tim-01",
+          "title": "Guard the Gospel; Paul’s Last Charge",
+          "range": "1-4",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Titus",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "c23609ae7e114fff"
+      },
+      "sections": [
+        {
+          "id": "titus-01",
+          "title": "Elders and Good Works",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Phlm",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "01fa6ef99269546c"
+      },
+      "sections": [
+        {
+          "id": "phlm-01",
+          "title": "Paul’s Appeal for Onesimus",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Heb",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "3329617dd4e08be3"
+      },
+      "sections": [
+        {
+          "id": "heb-01",
+          "title": "The Son above the Angels and Moses; the Promised Rest",
+          "range": "1-4",
+          "status": "read"
+        },
+        {
+          "id": "heb-02",
+          "title": "Christ the High Priest; Melchizedek",
+          "range": "5-7",
+          "status": "read"
+        },
+        {
+          "id": "heb-03",
+          "title": "The New Covenant and the Once-for-All Sacrifice",
+          "range": "8-10",
+          "status": "read"
+        },
+        {
+          "id": "heb-04",
+          "title": "The Witnesses of Faith",
+          "range": "11",
+          "status": "read"
+        },
+        {
+          "id": "heb-05",
+          "title": "Endurance and Discipline; Final Exhortations",
+          "range": "12-13",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Jas",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "b6070cf52d5d3a97"
+      },
+      "sections": [
+        {
+          "id": "jas-01",
+          "title": "Trials; Hearing and Doing; Faith and Works",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "jas-02",
+          "title": "The Tongue, Humility, the Rich, Patience and Prayer",
+          "range": "3-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1Pet",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "12216cd4fe9d9d82"
+      },
+      "sections": [
+        {
+          "id": "1pet-01",
+          "title": "New Birth and Hope; a Holy People",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "1pet-02",
+          "title": "Suffering for Doing Good; Shepherds of the Flock",
+          "range": "3-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2Pet",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "5f1dab4937e51a84"
+      },
+      "sections": [
+        {
+          "id": "2pet-01",
+          "title": "Growing in Grace; False Teachers; the Day of the Lord",
+          "range": "1-3",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "1John",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "dc6415e6aea1830a"
+      },
+      "sections": [
+        {
+          "id": "1john-01",
+          "title": "Light, Sin and the Commandment",
+          "range": "1-2",
+          "status": "read"
+        },
+        {
+          "id": "1john-02",
+          "title": "Children of God; Love and Faith",
+          "range": "3-5",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "2John",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "0ad61a8dfd5137f5"
+      },
+      "sections": [
+        {
+          "id": "2john-01",
+          "title": "A Letter to a Church: Truth and Love",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "3John",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "38126ff2959e1d6d"
+      },
+      "sections": [
+        {
+          "id": "3john-01",
+          "title": "A Letter to Gaius",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Jude",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "c4f86e276271eb04"
+      },
+      "sections": [
+        {
+          "id": "jude-01",
+          "title": "Against the Intruders",
+          "range": "1",
+          "status": "read"
+        }
+      ]
+    },
+    {
+      "id": "Rev",
+      "approval": {
+        "by": "owner",
+        "date": "2026-11-12",
+        "fingerprint": "7feb29e028496fd1"
+      },
+      "sections": [
+        {
+          "id": "rev-01",
+          "title": "The Vision on Patmos",
+          "range": "1",
+          "status": "read"
+        },
+        {
+          "id": "rev-02",
+          "title": "Letters to the Seven Churches",
+          "range": "2-3",
+          "status": "read"
+        },
+        {
+          "id": "rev-03",
+          "title": "The Throne and the Lamb",
+          "range": "4-5",
+          "status": "read"
+        },
+        {
+          "id": "rev-04",
+          "title": "The Seven Seals",
+          "range": "6-7",
+          "status": "read"
+        },
+        {
+          "id": "rev-05",
+          "title": "The Seven Trumpets",
+          "range": "8-11",
+          "status": "read"
+        },
+        {
+          "id": "rev-06",
+          "title": "The Woman, the Dragon and the Beasts",
+          "range": "12-14",
+          "status": "read"
+        },
+        {
+          "id": "rev-07",
+          "title": "The Seven Bowls",
+          "range": "15-16",
+          "status": "read"
+        },
+        {
+          "id": "rev-08",
+          "title": "The Fall of Babylon",
+          "range": "17-18",
+          "status": "read"
+        },
+        {
+          "id": "rev-09",
+          "title": "The Rider on the White Horse; the Thousand Years",
+          "range": "19-20",
+          "status": "read"
+        },
+        {
+          "id": "rev-10",
+          "title": "The New Jerusalem",
+          "range": "21-22",
+          "status": "read"
+        }
+      ]
     }
   ]
 }
