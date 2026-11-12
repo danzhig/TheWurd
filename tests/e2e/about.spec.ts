@@ -9,7 +9,9 @@ test.describe('About this path', () => {
     await page.waitForURL(/\/about\/$/);
     await expect(page.getByRole('heading', { level: 1, name: 'About this path' })).toBeVisible();
     // 21 Old Testament and 2 New Testament books on the main path, four bridges.
-    await expect(page.locator('main a[href^="/book/"]')).toHaveCount(23);
+    await expect(page.locator('main ol a[href^="/book/"]')).toHaveCount(23);
+    // The 49 books outside the path link to their library books (Phase 5).
+    await expect(page.locator('main a[href^="/book/"]')).toHaveCount(23 + 49);
     await expect(page.locator('main a[href^="/bridge/"]')).toHaveCount(4);
     await expect(page.getByRole('heading', { name: 'Why it ends with Acts' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'The detour into John 11' })).toBeVisible();
