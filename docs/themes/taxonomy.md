@@ -1,6 +1,6 @@
 # Themes: taxonomy
 
-**Status: proposed, awaiting the owner’s approval.** No passages are assigned until it is approved.
+**Status: approved by the owner on 2026-11-12.**
 
 10 themes and 43 sub-themes for the constellation view (docs/PLAN.md §16). Titles and descriptions are original prose and never quote scripture. Each sub-theme names the dataset topics its candidate passages will come from (P6.2): `nave:KEY` is a whole entry of Nave’s Topical Bible (public domain), `nave:KEY#n` one row of it, and `openbible:topic` a topic in OpenBible.info’s data (CC BY 4.0). Both datasets are pinned in `sources/manifest.json`.
 

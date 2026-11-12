@@ -1,7 +1,10 @@
 {
   "$comment": "Phase 6 taxonomy (docs/PLAN.md §16): top-level themes and sub-themes with original one-line descriptions, and the dataset topics each draws its candidate passages from (nave:KEY, nave:KEY#row, openbible:topic). Proposed in docs/themes/taxonomy.md; passages are assigned only after the owner approves it.",
-  "status": "proposed",
-  "approval": null,
+  "status": "approved",
+  "approval": {
+    "by": "the owner",
+    "date": "2026-11-12"
+  },
   "themes": [
     {
       "id": "creation",
