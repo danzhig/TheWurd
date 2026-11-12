@@ -298,10 +298,14 @@
   gap: 0.5rem;
 }
 
-/* On phones the Spiral / Themes switch takes its own row under the buttons. */
+/* On phones the Spiral / Themes switch sits at the bottom left, across from the zoom buttons,
+   so the header keeps its height and never covers the books on the ceiling. */
 @media (max-width: 520px) {
   .actions .switch {
-    order: 1;
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 5;
   }
 }
 
