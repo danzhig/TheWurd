@@ -92,8 +92,12 @@ test.describe('themes', () => {
 
     const href = (await passages.first().getAttribute('href'))!;
     expect(href).toMatch(/^\/read\/[^/]+\/\?theme=mercy-[a-z]+#v-\d+-\d+$/);
-    await passages.first().click({ force: true });
-    await page.waitForURL(/\/read\//);
+    // Click that very link (the stars are small and the camera may still be gliding, so a click
+    // by position could land on a neighbour), then wait for its own section.
+    await passages.first().dispatchEvent('click');
+    const section = href.split('/')[2]!;
+    await page.waitForURL(new RegExp(`/read/${section}/`));
+    await expect(page.locator('html')).toHaveAttribute('data-reader', section);
     await expect(page.locator(`[id="${href.split('#')[1]}"]`)).toBeAttached();
     // Back on the Vault, it is still showing the themes.
     await page.goBack();
