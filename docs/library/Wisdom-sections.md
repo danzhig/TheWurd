@@ -18,22 +18,21 @@ Titles: Psalm 1, Psalm 2, Psalm 3, Psalm 4, Psalm 5, Psalm 6, Psalm 7, Psalm 8, 
 
 The collections follow the book's own headings in WEBC: the proverbs of Solomon begin at 10:1, the sayings of the wise at 22:17, the proverbs copied by Hezekiah's men at 25:1, Agur at 30 and Lemuel at 31. Chapters 1–9 (the father's instruction and wisdom's speeches) are taken two or three chapters at a time.
 
-| #   | Section                                                          | Plan range | WEBC       | Minutes |
-| --- | ---------------------------------------------------------------- | ---------- | ---------- | ------- |
-| 1   | **Wisdom’s Call and a Father’s Warnings** (`prov-01`)            | 1-2        | 1:1–2:22   | 4       |
-| 2   | **Trust, Discipline and the Path of Life** (`prov-02`)           | 3-4        | 3:1–4:27   | 4       |
-| 3   | **Warnings against Folly and Adultery** (`prov-03`)              | 5-7        | 5:1–7:27   | 6       |
-| 4   | **Wisdom at Creation; Wisdom’s Feast** (`prov-04`)               | 8-9        | 8:1–9:18   | 3       |
-| 5   | **Solomon’s Proverbs: the Righteous and the Wicked** (`prov-05`) | 10-12      | 10:1–12:28 | 7       |
-| 6   | **Solomon’s Proverbs: Speech, Work and Wealth** (`prov-06`)      | 13-15      | 13:1–15:33 | 6       |
-
-| 7 | **Solomon’s Proverbs: Plans, Pride and Friendship** (`prov-07`) | 16-18 | 16:1–18:24 | 6 |
-| 8 | **Solomon’s Proverbs: the Poor, the King and Wine** (`prov-08`) | 19:1-22:16 | 19:1–22:16 | 7 |
-| 9 | **Sayings of the Wise** (`prov-09`) | 22:17-24:34 | 22:17–24:34 | 6 |
-| 10 | **Proverbs Copied by Hezekiah’s Men** (`prov-10`) | 25-27 | 25:1–27:27 | 6 |
-| 11 | **Hezekiah’s Collection, Continued** (`prov-11`) | 28-29 | 28:1–29:27 | 4 |
-| 12 | **The Words of Agur** (`prov-12`) | 30 | 30:1–33 | 3 |
-| 13 | **King Lemuel’s Mother; the Ideal Wife** (`prov-13`) | 31 | 31:1–31 | 2 |
+| #   | Section                                                          | Plan range  | WEBC        | Minutes |
+| --- | ---------------------------------------------------------------- | ----------- | ----------- | ------- |
+| 1   | **Wisdom’s Call and a Father’s Warnings** (`prov-01`)            | 1-2         | 1:1–2:22    | 4       |
+| 2   | **Trust, Discipline and the Path of Life** (`prov-02`)           | 3-4         | 3:1–4:27    | 4       |
+| 3   | **Warnings against Folly and Adultery** (`prov-03`)              | 5-7         | 5:1–7:27    | 6       |
+| 4   | **Wisdom at Creation; Wisdom’s Feast** (`prov-04`)               | 8-9         | 8:1–9:18    | 3       |
+| 5   | **Solomon’s Proverbs: the Righteous and the Wicked** (`prov-05`) | 10-12       | 10:1–12:28  | 7       |
+| 6   | **Solomon’s Proverbs: Speech, Work and Wealth** (`prov-06`)      | 13-15       | 13:1–15:33  | 6       |
+| 7   | **Solomon’s Proverbs: Plans, Pride and Friendship** (`prov-07`)  | 16-18       | 16:1–18:24  | 6       |
+| 8   | **Solomon’s Proverbs: the Poor, the King and Wine** (`prov-08`)  | 19:1-22:16  | 19:1–22:16  | 7       |
+| 9   | **Sayings of the Wise** (`prov-09`)                              | 22:17-24:34 | 22:17–24:34 | 6       |
+| 10  | **Proverbs Copied by Hezekiah’s Men** (`prov-10`)                | 25-27       | 25:1–27:27  | 6       |
+| 11  | **Hezekiah’s Collection, Continued** (`prov-11`)                 | 28-29       | 28:1–29:27  | 4       |
+| 12  | **The Words of Agur** (`prov-12`)                                | 30          | 30:1–33     | 3       |
+| 13  | **King Lemuel’s Mother; the Ideal Wife** (`prov-13`)             | 31          | 31:1–31     | 2       |
 
 ## Ecclesiastes
 
@@ -86,26 +85,24 @@ Three movements: the righteous and the ungodly (1–5), Solomon's search for wis
 
 Ben Sira's teaching in groups of two to four chapters, following each chapter's most distinctive words (e.g. _physician_ in 38, _Elijah, Isaiah, Hezekiah_ in 48), then the praise of the ancestors (44–49) and the closing prayer (51).
 
-| #   | Section                                           | Plan range | WEBC       | Minutes |
-| --- | ------------------------------------------------- | ---------- | ---------- | ------- |
-| 1   | **Wisdom and the Fear of the Lord** (`sir-01`)    | 1-2        | 1:1–2:18   | 3       |
-| 2   | **Parents, Humility and the Poor** (`sir-02`)     | 3-4        | 3:1–4:31   | 5       |
-| 3   | **Speech and Friendship** (`sir-03`)              | 5-6        | 5:1–6:37   | 4       |
-| 4   | **Duties at Home and in the World** (`sir-04`)    | 7-9        | 7:1–9:18   | 6       |
-| 5   | **Pride, Humility and Riches** (`sir-05`)         | 10-11      | 10:1–11:34 | 5       |
-| 6   | **Choosing Companions; Rich and Poor** (`sir-06`) | 12-14      | 12:1–14:27 | 6       |
-
-| 7 | **Free Will and the Lord’s Mercy** (`sir-07`) | 15-18 | 15:1–18:33 | 8 |
-| 8 | **Speech, Silence and Folly** (`sir-08`) | 19-22 | 19:1–22:27 | 9 |
-| 9 | **A Prayer for Self-Control; Wisdom Praises Herself** (`sir-09`) | 23-24 | 23:1–24:34 | 5 |
-| 10 | **Wives, Friends and Hidden Sins** (`sir-10`) | 25-27 | 25:1–27:30 | 6 |
-| 11 | **Anger, Lending and Hospitality** (`sir-11`) | 28-29 | 28:1–29:28 | 4 |
-| 12 | **Children, Health and Banquets** (`sir-12`) | 30-32 | 30:1–32:24 | 6 |
-| 13 | **Servants, Dreams and True Worship** (`sir-13`) | 33-35 | 33:1–35:20 | 7 |
-
-| 14 | **A Prayer for Israel; Counsel, Physicians and Trades** (`sir-14`) | 36-38 | 36:1–38:34 | 8 |
-| 15 | **The Scholar’s Calling; Good and Evil; Death** (`sir-15`) | 39-41 | 39:1–41:24 | 8 |
-| 16 | **Shame, Daughters and the Glory of Creation** (`sir-16`) | 42-43 | 42:1–43:33 | 5 |
-| 17 | **Praise of the Ancestors: Enoch to Aaron** (`sir-17`) | 44-45 | 44:1–45:26 | 5 |
-| 18 | **Praise of the Ancestors: Joshua to Nehemiah** (`sir-18`) | 46-49 | 46:1–49:16 | 8 |
-| 19 | **Simon the High Priest; Ben Sira’s Prayer** (`sir-19`) | 50-51 | 50:1–51:30 | 5 |
+| #   | Section                                                            | Plan range | WEBC       | Minutes |
+| --- | ------------------------------------------------------------------ | ---------- | ---------- | ------- |
+| 1   | **Wisdom and the Fear of the Lord** (`sir-01`)                     | 1-2        | 1:1–2:18   | 3       |
+| 2   | **Parents, Humility and the Poor** (`sir-02`)                      | 3-4        | 3:1–4:31   | 5       |
+| 3   | **Speech and Friendship** (`sir-03`)                               | 5-6        | 5:1–6:37   | 4       |
+| 4   | **Duties at Home and in the World** (`sir-04`)                     | 7-9        | 7:1–9:18   | 6       |
+| 5   | **Pride, Humility and Riches** (`sir-05`)                          | 10-11      | 10:1–11:34 | 5       |
+| 6   | **Choosing Companions; Rich and Poor** (`sir-06`)                  | 12-14      | 12:1–14:27 | 6       |
+| 7   | **Free Will and the Lord’s Mercy** (`sir-07`)                      | 15-18      | 15:1–18:33 | 8       |
+| 8   | **Speech, Silence and Folly** (`sir-08`)                           | 19-22      | 19:1–22:27 | 9       |
+| 9   | **A Prayer for Self-Control; Wisdom Praises Herself** (`sir-09`)   | 23-24      | 23:1–24:34 | 5       |
+| 10  | **Wives, Friends and Hidden Sins** (`sir-10`)                      | 25-27      | 25:1–27:30 | 6       |
+| 11  | **Anger, Lending and Hospitality** (`sir-11`)                      | 28-29      | 28:1–29:28 | 4       |
+| 12  | **Children, Health and Banquets** (`sir-12`)                       | 30-32      | 30:1–32:24 | 6       |
+| 13  | **Servants, Dreams and True Worship** (`sir-13`)                   | 33-35      | 33:1–35:20 | 7       |
+| 14  | **A Prayer for Israel; Counsel, Physicians and Trades** (`sir-14`) | 36-38      | 36:1–38:34 | 8       |
+| 15  | **The Scholar’s Calling; Good and Evil; Death** (`sir-15`)         | 39-41      | 39:1–41:24 | 8       |
+| 16  | **Shame, Daughters and the Glory of Creation** (`sir-16`)          | 42-43      | 42:1–43:33 | 5       |
+| 17  | **Praise of the Ancestors: Enoch to Aaron** (`sir-17`)             | 44-45      | 44:1–45:26 | 5       |
+| 18  | **Praise of the Ancestors: Joshua to Nehemiah** (`sir-18`)         | 46-49      | 46:1–49:16 | 8       |
+| 19  | **Simon the High Priest; Ben Sira’s Prayer** (`sir-19`)            | 50-51      | 50:1–51:30 | 5       |
