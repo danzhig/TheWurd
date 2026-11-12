@@ -89,3 +89,9 @@
   margin: 0;
   font-variant-numeric: lining-nums;
 }
+
+/* Library books (Phase 5): off the path, said quietly above the meta line. */
+.library {
+  color: var(--text-muted);
+  margin: 0 0 0.3em;
+}

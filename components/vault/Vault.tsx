@@ -73,7 +73,6 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
   const [kq, setKq] = useState(0); // zoom, quantised: labels update only when it crosses a step
   const [ready, setReady] = useState(false);
   const [mode, setMode] = useState<'map' | 'list'>('map');
-  const [tip, setTip] = useState<{ id: string; x: number; y: number } | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   // Book transitions: the ceiling dims behind a flying book; the medallion it left is hidden.
@@ -265,29 +264,13 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
     return () => window.removeEventListener(END_EVENT, undim);
   }, []);
 
-  // The off-path tooltip closes on Escape or a click elsewhere.
-  useEffect(() => {
-    if (!tip) return;
-    const close = (e: Event) => {
-      if (e instanceof KeyboardEvent && e.key !== 'Escape') return;
-      if (e.type === 'pointerdown' && (e.target as HTMLElement).closest('[data-offpath]')) return;
-      setTip(null);
-    };
-    window.addEventListener('keydown', close);
-    window.addEventListener('pointerdown', close);
-    return () => {
-      window.removeEventListener('keydown', close);
-      window.removeEventListener('pointerdown', close);
-    };
-  }, [tip]);
-
   // ---------------------------------------------------------------------------------------------
   // Actions
   // ---------------------------------------------------------------------------------------------
 
   const openBook = useCallback(
     async (id: string) => {
-      const m = placed.find((x) => x.id === id);
+      const m = placed.find((x) => x.id === id) ?? layout.offpath.find((x) => x.id === id);
       const view = viewRef.current;
       if (!m || !view || mode === 'list' || prefersReducedMotion()) {
         router.push(`/book/${id}/`);
@@ -310,7 +293,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
       camera.last = before;
       router.push(`/book/${id}/`);
     },
-    [byId, flyTo, mode, placed, router, target],
+    [byId, flyTo, layout.offpath, mode, placed, router, target],
   );
 
   const continueReading = useCallback(() => {
@@ -361,7 +344,10 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
   const onListFocus = (id: string | null) => {
     setFocused(id);
     if (!id || mode !== 'map') return;
-    const p = placed.find((m) => m.id === id) ?? layout.bridges.find((b) => b.id === id);
+    const p =
+      placed.find((m) => m.id === id) ??
+      layout.offpath.find((o) => o.id === id) ??
+      layout.bridges.find((b) => b.id === id);
     const view = viewRef.current;
     if (p && view) void flyTo(target(p, Math.max(camRef.current.k, baseRef.current.k * 1.6)), 450);
   };
@@ -374,7 +360,6 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
   const progressOf = (b: VaultBook) =>
     b.stops.length ? b.stops.filter((s) => done.has(s)).length / b.stops.length : 0;
   const lastMedallion = sections[lastSection ?? ''];
-  const tipBook = tip ? byId.get(tip.id) : null;
 
   return (
     <div className={styles.vault} data-mode={mode}>
@@ -472,26 +457,28 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
           ))}
           {layout.offpath.map((o) => {
             const b = byId.get(o.id)!;
+            // Books outside the path open into the library (Phase 5), with the same flight.
             return (
-              <button
+              <a
                 key={o.id}
-                type="button"
+                href={`/book/${o.id}/`}
                 tabIndex={-1}
-                className={styles.offpath}
+                className={`${styles.offpath} ${focused === o.id ? styles.focused : ''} ${lifted === o.id ? styles.lifted : ''}`}
                 style={{
                   left: o.x - o.size / 2,
                   top: o.y - o.size / 2,
                   width: o.size,
                   height: o.size,
                 }}
+                data-book={o.id}
                 data-offpath={o.id}
                 onClick={(e) => {
-                  const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                  setTip({ id: o.id, x: r.left + r.width / 2, y: r.top });
+                  e.preventDefault();
+                  void openBook(o.id);
                 }}
               >
                 {k * o.size >= 40 ? b.name : ''}
-              </button>
+              </a>
             );
           })}
           {layout.bridges.map((br) => {
@@ -575,21 +562,6 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
         </div>
       ) : null}
 
-      {tipBook ? (
-        <div
-          role="dialog"
-          aria-label={tipBook.name}
-          className={styles.tooltip}
-          style={{ left: tip!.x, top: tip!.y }}
-          data-testid="offpath-tip"
-          onClick={() => setTip(null)}
-        >
-          <p className="book-name">{tipBook.name}</p>
-          <p className="tagline">{tipBook.tagline}</p>
-          <p className={styles.notOnPath}>Not on this path.</p>
-        </div>
-      ) : null}
-
       {/* The same content as an ordered list (PLAN §9 accessibility). Visible in List mode. */}
       <section
         className={mode === 'list' ? styles.list : 'visually-hidden'}
@@ -651,7 +623,7 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
             ];
           })}
         </ol>
-        <h2 className={styles.listHeading}>Not on this path</h2>
+        <h2 className={styles.listHeading}>The library: not on this path</h2>
         {GROUP_ORDER.map((g) => {
           const members = data.offpath.filter((o) => o.group === g);
           if (!members.length) return null;
@@ -663,7 +635,21 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
                   const b = byId.get(o.id)!;
                   return (
                     <li key={o.id} data-offpath-item={o.id}>
-                      <span className="book-name">{b.name}</span> — {b.tagline}
+                      <Link
+                        href={`/book/${o.id}/`}
+                        data-book={o.id}
+                        onFocus={() => onListFocus(o.id)}
+                        onBlur={() => onListFocus(null)}
+                        onClick={(e) => {
+                          if (mode === 'map') {
+                            e.preventDefault();
+                            void openBook(o.id);
+                          }
+                        }}
+                      >
+                        <span className="book-name">{b.name}</span>
+                      </Link>{' '}
+                      — {b.tagline}
                     </li>
                   );
                 })}

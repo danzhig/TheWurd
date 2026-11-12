@@ -49,10 +49,13 @@ export function BookMap({
   bookId,
   bookName,
   stations,
+  library = false,
 }: {
   bookId: string;
   bookName: string;
   stations: StationData[];
+  /** A library book (Phase 5): its reading is not counted yet (P5.4). */
+  library?: boolean;
 }) {
   const router = useRouter();
   const boxRef = useRef<HTMLDivElement>(null);
@@ -121,9 +124,11 @@ export function BookMap({
 
   return (
     <>
-      <p className={styles.progress} data-testid="book-progress">
-        {read} of {stops.length} sections read
-      </p>
+      {library ? null : (
+        <p className={styles.progress} data-testid="book-progress">
+          {read} of {stops.length} sections read
+        </p>
+      )}
       <div
         ref={boxRef}
         className={`${styles.map} ${layout ? styles[layout.mode] : `${styles.list} ${styles.pending}`}`}

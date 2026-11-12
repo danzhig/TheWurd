@@ -27,17 +27,38 @@ export interface PublicSource {
   version: string;
 }
 
+let full: Manifest | null = null;
 let manifest: Manifest | null = null;
+
+/** Every section, the path's and the library's (Phase 5). */
+export function getFullManifest(): Manifest {
+  full ??= JSON.parse(fs.readFileSync(path.join(DATA, 'manifest.json'), 'utf8')) as Manifest;
+  return full;
+}
+
 /**
- * The manifest as the site uses it. Library sections (Phase 5) are left out until the site shows
- * the library (P5.3); they are built and checked in `public/data` already.
+ * The path as the site uses it: the manifest without library sections, which never join the path
+ * (its sequence, progress, the spiral's reading times or the timeline).
  */
 export function getManifest(): Manifest {
-  if (!manifest) {
-    const raw = JSON.parse(fs.readFileSync(path.join(DATA, 'manifest.json'), 'utf8')) as Manifest;
-    manifest = { ...raw, sections: raw.sections.filter((s) => !s.library) };
-  }
+  manifest ??= {
+    ...getFullManifest(),
+    sections: getFullManifest().sections.filter((s) => !s.library),
+  };
   return manifest;
+}
+
+/**
+ * The library in reading order: books in canonical order (as the manifest lists them), each
+ * book's sections in order.
+ */
+export function librarySequence(): SectionIndexEntry[] {
+  const m = getFullManifest();
+  return m.books
+    .filter((b) => b.library)
+    .flatMap((b) =>
+      m.sections.filter((s) => s.library && s.bookId === b.id).sort((a, z) => a.order - z.order),
+    );
 }
 
 export function getSection(id: string): SectionFile {

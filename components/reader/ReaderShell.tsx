@@ -29,6 +29,8 @@ export interface ReaderShellProps {
   stop: boolean;
   /** Mark as read as soon as the page is seen (whole-section skims). */
   readOnOpen?: boolean;
+  /** A library section (Phase 5): never a stop, never the path's "Continue" position. */
+  library?: boolean;
   nav: PageNav;
   children: ReactNode;
 }
@@ -41,9 +43,12 @@ export function ReaderShell({
   bookName,
   stop,
   readOnOpen,
+  library = false,
   nav,
   children,
 }: ReaderShellProps) {
+  // Only path pages set the Vault's Continue/Resume position.
+  const keepsPlace = kind === 'section' && !library;
   const router = useRouter();
   // Up a level: a section returns to its book's map; a bridge to all books.
   const upHref = bookId ? `/book/${bookId}/` : '/';
@@ -88,7 +93,7 @@ export function ReaderShell({
     sync();
     window.addEventListener(CHANGE_EVENT, sync);
     if (stop && readOnOpen) markRead(id);
-    if (kind === 'section') writeLast({ sectionId: id });
+    if (keepsPlace) writeLast({ sectionId: id });
     const end = endRef.current;
     let io: IntersectionObserver | null = null;
     if (stop && end && 'IntersectionObserver' in window) {
@@ -101,7 +106,7 @@ export function ReaderShell({
       window.removeEventListener(CHANGE_EVENT, sync);
       io?.disconnect();
     };
-  }, [id, kind, stop, readOnOpen]);
+  }, [id, keepsPlace, stop, readOnOpen]);
 
   // Top bar hides while scrolling down and returns on scroll up; gold hairline tracks progress.
   useEffect(() => {
@@ -117,7 +122,7 @@ export function ReaderShell({
         setHidden(y > lastY && y > 80);
         lastY = y;
         const now = Date.now();
-        if (kind === 'section' && now - lastSaved > 1500) {
+        if (keepsPlace && now - lastSaved > 1500) {
           lastSaved = now;
           const verse = [...document.querySelectorAll<HTMLElement>('[data-verse]')].find(
             (el) => el.getBoundingClientRect().bottom > 72,
@@ -131,7 +136,7 @@ export function ReaderShell({
       window.removeEventListener('scroll', onScroll);
       cancelAnimationFrame(frame);
     };
-  }, [id, kind]);
+  }, [id, keepsPlace]);
 
   // Verse links (P2.4): tapping a verse number copies a link to that verse.
   const [copied, setCopied] = useState<string | null>(null);
@@ -214,7 +219,7 @@ export function ReaderShell({
       {children}
 
       <div ref={endRef} className={styles.end} aria-hidden="true" />
-      <nav className={styles.pathNav} aria-label="Reading path">
+      <nav className={styles.pathNav} aria-label={library ? 'Library' : 'Reading path'}>
         {stop ? (
           <div className={styles.readState}>
             {done ? (
@@ -249,6 +254,12 @@ export function ReaderShell({
                   : ''}
             </span>
           </Link>
+        ) : library ? (
+          <div className={styles.nextCard} data-testid="library-end">
+            <span className="label">The end of the library</span>
+            <span className={`display ${styles.nextTitle}`}>The last book of the Bible.</span>
+            <Link href="/path/">Back to the path</Link>
+          </div>
         ) : (
           <div className={styles.nextCard} data-testid="path-end">
             <span className="label">The end of the path</span>

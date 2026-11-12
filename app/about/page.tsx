@@ -132,7 +132,9 @@ export default function AboutPage() {
         <p>
           The other {a.offpathCount} books stay on the map, dimmed, in the outer ring. They are
           scripture as much as the rest; this path leaves them out because they are mostly not
-          narrative, or because they retell events the path already covers.
+          narrative, or because they retell events the path already covers. Each one still opens:
+          tap it on the map to read it in the library, section by section, beside the path. Reading
+          there never moves your place on the path.
         </p>
         {GROUP_ORDER.map((label) => {
           const books = a.offpath.filter((b) => GROUP_LABEL[b.group] === label);
@@ -145,7 +147,9 @@ export default function AboutPage() {
                 {books.map((b, i) => (
                   <span key={b.id}>
                     {i ? ' · ' : ''}
-                    <span title={b.tagline}>{b.name}</span>
+                    <Link href={`/book/${b.id}/`} title={b.tagline}>
+                      {b.name}
+                    </Link>
                   </span>
                 ))}
               </p>

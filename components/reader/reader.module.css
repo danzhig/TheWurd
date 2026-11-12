@@ -34,6 +34,17 @@
   font-variant-numeric: lining-nums;
 }
 
+/* Library sections (Phase 5): a quiet note that this page is off the path. */
+.library {
+  margin: 0.6em 0 0;
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+.library a {
+  color: var(--link);
+}
+
 .badges {
   display: flex;
   flex-wrap: wrap;

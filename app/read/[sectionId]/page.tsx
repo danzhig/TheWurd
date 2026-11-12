@@ -3,15 +3,19 @@ import { ContentNote } from '@/components/reader/ContentNote';
 import { ReaderShell } from '@/components/reader/ReaderShell';
 import { SectionBody } from '@/components/reader/SectionBody';
 import styles from '@/components/reader/reader.module.css';
-import { getManifest, getSection } from '@/lib/data';
+import Link from 'next/link';
+import { getFullManifest, getSection } from '@/lib/data';
 import { prettyRange } from '@/lib/format';
-import { canBeStop, defaultNav, pathPosition } from '@/lib/nav';
+import { canBeStop, defaultNav, libraryNav, pathPosition } from '@/lib/nav';
 
 export const dynamicParams = false;
 
+// Every section: the path's and the library's (Phase 5).
 export function generateStaticParams() {
-  return getManifest().sections.map((s) => ({ sectionId: s.id }));
+  return getFullManifest().sections.map((s) => ({ sectionId: s.id }));
 }
+
+const isLibrary = (id: string) => !!getFullManifest().sections.find((s) => s.id === id)?.library;
 
 type Params = { params: Promise<{ sectionId: string }> };
 
@@ -31,6 +35,7 @@ export default async function ReadPage({ params }: Params) {
   const { sectionId } = await params;
   const s = getSection(sectionId);
   const statusLabel = STATUS_LABEL[s.status];
+  const library = isLibrary(s.id);
   const article = (
     <article
       className={styles.page}
@@ -59,6 +64,12 @@ export default async function ReadPage({ params }: Params) {
           {s.minutes} min
         </p>
         {s.versificationNote ? <p className={styles.ref}>{s.versificationNote}</p> : null}
+        {library ? (
+          <p className={styles.library} data-testid="library-label" data-pagefind-ignore="all">
+            <span className="label">Library · not on the path</span>{' '}
+            <Link href="/path/">Back to the path</Link>
+          </p>
+        ) : null}
         {statusLabel || s.highlight ? (
           <p className={styles.badges}>
             {statusLabel ? <span className={styles.badge}>{statusLabel}</span> : null}
@@ -87,9 +98,10 @@ export default async function ReadPage({ params }: Params) {
       heading={`${s.bookName} · ${s.title}`}
       bookId={s.bookId}
       bookName={s.bookName}
-      stop={canBeStop(s.id)}
+      stop={!library && canBeStop(s.id)}
       readOnOpen={s.status === 'skim'}
-      nav={defaultNav(s.id)}
+      library={library}
+      nav={library ? libraryNav(s.id) : defaultNav(s.id)}
     >
       {article}
     </ReaderShell>
