@@ -50,15 +50,16 @@ test.describe('the library', () => {
       await expect(page.locator('[data-verse]').first()).toBeVisible();
       expect(await serious(page)).toEqual([]);
 
-      // Library pages are never stops and never the path's "Continue" place.
-      await expect(page.getByRole('button', { name: 'Mark as read' })).toHaveCount(0);
-      await page.mouse.wheel(0, 3000);
-      await page.waitForTimeout(1800);
+      // Reading to the end counts in the library's own ledger (P5.4), never the path's progress
+      // or its "Continue" place.
+      await page.getByTestId('next-link').scrollIntoViewIfNeeded();
+      await expect(page.getByText('Read', { exact: true })).toBeVisible();
       const stored = await page.evaluate(() => ({
         last: localStorage.getItem('sas:v1:last'),
         progress: localStorage.getItem('sas:v1:progress'),
+        library: Object.keys(JSON.parse(localStorage.getItem('sas:v1:library') ?? '{}')),
       }));
-      expect(stored).toEqual({ last: null, progress: null });
+      expect(stored).toEqual({ last: null, progress: null, library: [first!.id] });
 
       // Next leads on through the library: the book's next section, or the next library book.
       const next = page.getByTestId('next-link');
@@ -68,6 +69,37 @@ test.describe('the library', () => {
       await expect(next).toHaveAttribute('data-next', expected!.id);
     });
   }
+
+  test('library progress shows on its book map and the Vault, apart from the path', async ({
+    page,
+  }) => {
+    const [a, b] = sectionsOf('Rev');
+    await page.addInitScript(
+      ([x, y]) =>
+        localStorage.setItem(
+          'sas:v1:library',
+          JSON.stringify({ [x!]: '2026-11-12', [y!]: '2026-11-12' }),
+        ),
+      [a!.id, b!.id],
+    );
+    await page.goto('/book/Rev/');
+    await expect(page.locator('html')).toHaveAttribute('data-book-map', /.+/);
+    await expect(page.getByTestId('book-progress')).toHaveText(
+      `2 of ${sectionsOf('Rev').length} sections read`,
+    );
+    await expect(page.locator(`[data-station="${a!.id}"]`)).toHaveClass(/done/);
+
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('data-vault', 'ready');
+    await expect(page.locator('[data-testid="vault-scene"] [data-offpath="Rev"]')).toHaveClass(
+      /offStarted/,
+    );
+    await expect(page.locator('[data-offpath-item="Rev"]')).toContainText(
+      `2 of ${sectionsOf('Rev').length} read`,
+    );
+    // The path is untouched: Genesis is unread and the reader still begins at the start.
+    await expect(page.getByTestId('resume')).toContainText('Begin');
+  });
 
   test('the last library section ends the library, not the path', async ({ page }) => {
     const all = manifest.books.filter((b) => b.library);

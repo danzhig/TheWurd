@@ -38,6 +38,7 @@ export default async function BridgePage({ params }: Params) {
           data-pagefind-body=""
           data-pagefind-sort={`order:${pathPosition(b.id)}`}
           data-pagefind-meta="book:Bridge, status:bridge"
+          data-pagefind-filter="part:path"
         >
           <p className="label">Between the books</p>
           <h1 id="page-heading" tabIndex={-1} className="display">

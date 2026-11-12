@@ -21,6 +21,50 @@
   outline-offset: 2px;
 }
 
+/* Where to search: the path, the library, or both (P5.4). */
+.scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.scopeOption {
+  position: relative;
+  display: inline-flex;
+}
+
+.scopeOption input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.scopeOption span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 1px solid var(--rule-soft);
+  border-radius: 999px;
+  color: var(--text);
+}
+
+.scopeOption input:checked + span {
+  border-color: var(--accent);
+  color: var(--text-strong);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.scopeOption input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .count {
   min-height: 1.6em;
   color: var(--text-muted);

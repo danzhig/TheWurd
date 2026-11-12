@@ -29,7 +29,10 @@ export interface ReaderShellProps {
   stop: boolean;
   /** Mark as read as soon as the page is seen (whole-section skims). */
   readOnOpen?: boolean;
-  /** A library section (Phase 5): never a stop, never the path's "Continue" position. */
+  /**
+   * A library section (Phase 5): its reading goes to the library's own ledger; it is never a stop
+   * on the path and never the path's "Continue" place.
+   */
   library?: boolean;
   nav: PageNav;
   children: ReactNode;
@@ -49,6 +52,9 @@ export function ReaderShell({
 }: ReaderShellProps) {
   // Only path pages set the Vault's Continue/Resume position.
   const keepsPlace = kind === 'section' && !library;
+  // Library sections count too, in their own ledger, never the path's (Phase 5).
+  const tracked = stop || library;
+  const ledger = library ? 'library' : 'progress';
   const router = useRouter();
   // Up a level: a section returns to its book's map; a bridge to all books.
   const upHref = bookId ? `/book/${bookId}/` : '/';
@@ -82,23 +88,23 @@ export function ReaderShell({
 
   // Progress: read state, completion when the end is in view, "Continue" position.
   useEffect(() => {
-    let was = readProgress()[id] ?? null;
+    let was = readProgress(ledger)[id] ?? null;
     const sync = () => {
-      const now = readProgress()[id] ?? null;
+      const now = readProgress(ledger)[id] ?? null;
       // A short tick on phones when a stop completes during this visit (off under reduced motion).
-      if (!was && now && stop) tick();
+      if (!was && now && tracked) tick();
       was = now;
       setDone(now);
     };
     sync();
     window.addEventListener(CHANGE_EVENT, sync);
-    if (stop && readOnOpen) markRead(id);
+    if (tracked && readOnOpen) markRead(id, ledger);
     if (keepsPlace) writeLast({ sectionId: id });
     const end = endRef.current;
     let io: IntersectionObserver | null = null;
-    if (stop && end && 'IntersectionObserver' in window) {
+    if (tracked && end && 'IntersectionObserver' in window) {
       io = new IntersectionObserver((entries) => {
-        if (entries.some((e) => e.isIntersecting)) markRead(id);
+        if (entries.some((e) => e.isIntersecting)) markRead(id, ledger);
       });
       io.observe(end);
     }
@@ -106,7 +112,7 @@ export function ReaderShell({
       window.removeEventListener(CHANGE_EVENT, sync);
       io?.disconnect();
     };
-  }, [id, keepsPlace, stop, readOnOpen]);
+  }, [id, keepsPlace, tracked, ledger, readOnOpen]);
 
   // Top bar hides while scrolling down and returns on scroll up; gold hairline tracks progress.
   useEffect(() => {
@@ -220,17 +226,25 @@ export function ReaderShell({
 
       <div ref={endRef} className={styles.end} aria-hidden="true" />
       <nav className={styles.pathNav} aria-label={library ? 'Library' : 'Reading path'}>
-        {stop ? (
+        {tracked ? (
           <div className={styles.readState}>
             {done ? (
               <>
                 <span className={styles.readMark}>Read</span>
-                <button type="button" className={styles.linkButton} onClick={() => markUnread(id)}>
+                <button
+                  type="button"
+                  className={styles.linkButton}
+                  onClick={() => markUnread(id, ledger)}
+                >
                   Mark as unread
                 </button>
               </>
             ) : (
-              <button type="button" className={styles.quietButton} onClick={() => markRead(id)}>
+              <button
+                type="button"
+                className={styles.quietButton}
+                onClick={() => markRead(id, ledger)}
+              >
                 Mark as read
               </button>
             )}

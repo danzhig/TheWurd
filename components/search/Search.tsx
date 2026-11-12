@@ -18,6 +18,7 @@ interface ResultData {
   url: string;
   excerpt: string;
   meta: { title?: string; book?: string; range?: string; status?: string };
+  filters?: { part?: string[] };
 }
 interface Row extends ResultData {
   id: string;
@@ -53,6 +54,15 @@ async function hrefFor(url: string, query: string): Promise<string> {
   }
 }
 
+/** Where to search (P5.4): everything (the path first, then the library), or one of them. */
+type Scope = 'all' | 'path' | 'library';
+const SCOPES: { id: Scope; label: string }[] = [
+  { id: 'all', label: 'Everything' },
+  { id: 'path', label: 'The path' },
+  { id: 'library', label: 'The library' },
+];
+const readScope = (v: string | null): Scope => (v === 'path' || v === 'library' ? v : 'all');
+
 const STATUS: Record<string, string> = {
   skim: 'skim',
   optional: 'optional detour',
@@ -64,6 +74,8 @@ export function Search() {
   const [total, setTotal] = useState<number | null>(null);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
+  const [scope, setScope] = useState<Scope>('all');
+  const scopeRef = useRef<Scope>('all');
   const input = useRef<HTMLInputElement>(null);
   const all = useRef<{ id: string; data: () => Promise<ResultData> }[]>([]);
   const run = useRef(0);
@@ -89,6 +101,9 @@ export function Search() {
     const url = new URL(window.location.href);
     if (q) url.searchParams.set('q', q);
     else url.searchParams.delete('q');
+    const where = scopeRef.current;
+    if (where === 'all') url.searchParams.delete('in');
+    else url.searchParams.set('in', where);
     window.history.replaceState(window.history.state, '', url);
     const token = ++run.current;
     window.clearTimeout(timer.current);
@@ -101,8 +116,12 @@ export function Search() {
         }
         try {
           const pf = await loadPagefind();
-          // Results in path order: each page carries its position as the `order` sort key.
-          const res = await pf.search(q, { sort: { order: 'asc' } });
+          // Results in path order, then the library in canonical order: each page carries its
+          // position as the `order` sort key, and `part` (path or library) as a filter.
+          const res = await pf.search(q, {
+            sort: { order: 'asc' },
+            ...(where === 'all' ? {} : { filters: { part: where } }),
+          });
           if (token !== run.current) return;
           all.current = res.results;
           setTotal(res.results.length);
@@ -121,7 +140,10 @@ export function Search() {
 
   // Start from ?q= so searches can be linked and survive Back.
   useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get('q') ?? '';
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q') ?? '';
+    scopeRef.current = readScope(params.get('in'));
+    setScope(scopeRef.current);
     if (q && input.current) {
       input.current.value = q;
       schedule(q);
@@ -133,7 +155,7 @@ export function Search() {
   return (
     <div className={styles.search}>
       <label className={styles.field}>
-        <span className="label">Search the path</span>
+        <span className="label">Search the Bible</span>
         <input
           ref={input}
           type="search"
@@ -145,6 +167,25 @@ export function Search() {
           autoFocus
         />
       </label>
+      <fieldset className={styles.scope} data-testid="search-scope">
+        <legend className="visually-hidden">Search in</legend>
+        {SCOPES.map((o) => (
+          <label key={o.id} className={styles.scopeOption}>
+            <input
+              type="radio"
+              name="scope"
+              value={o.id}
+              checked={scope === o.id}
+              onChange={() => {
+                scopeRef.current = o.id;
+                setScope(o.id);
+                schedule(input.current?.value ?? '');
+              }}
+            />
+            <span>{o.label}</span>
+          </label>
+        ))}
+      </fieldset>
       <p className={styles.count} role="status" aria-live="polite" data-testid="search-count">
         {total === -1
           ? typeof navigator !== 'undefined' && !navigator.onLine
@@ -154,7 +195,13 @@ export function Search() {
             ? ''
             : total === 0
               ? 'No sections match.'
-              : `${total} ${total === 1 ? 'section' : 'sections'}, in path order`}
+              : `${total} ${total === 1 ? 'section' : 'sections'}, ${
+                  scope === 'library'
+                    ? 'in Bible order'
+                    : scope === 'path'
+                      ? 'in path order'
+                      : 'the path first, then the library'
+                }`}
       </p>
       {total === -1 ? (
         <button
@@ -174,6 +221,7 @@ export function Search() {
                 {r.meta.book}
                 {r.meta.range ? ` ${r.meta.range.replace(/;/g, ',')}` : ''}
                 {r.meta.status && STATUS[r.meta.status] ? ` · ${STATUS[r.meta.status]}` : ''}
+                {r.filters?.part?.includes('library') ? ' · library' : ''}
               </span>
               <span className={styles.title}>{r.meta.title}</span>
               {/* Pagefind escapes the page text and adds <mark> around the matches. */}
