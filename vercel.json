@@ -3,6 +3,9 @@
   "framework": null,
   "buildCommand": "pnpm build",
   "outputDirectory": "out",
+  "github": {
+    "silent": true
+  },
   "headers": [
     {
       "source": "/read/:id/opengraph-image",
