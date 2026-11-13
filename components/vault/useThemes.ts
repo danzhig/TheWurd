@@ -203,12 +203,16 @@ export function useThemes(opts: {
           };
           requestAnimationFrame(step);
         });
+        // Land first: the layer that has faded out is removed while it is still invisible. Only
+        // then are the animations and inline fades cleared, on whatever stays on screen (whose
+        // final state they already match), so nothing flashes back for a frame.
+        camera.view = target;
+        setView(target);
+        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
         for (const a of anims) a.cancel();
         for (const el of layers) el.style.willChange = '';
         if (spiralRef.current) spiralRef.current.style.opacity = '';
         if (labelsRef.current) labelsRef.current.style.opacity = '';
-        camera.view = target;
-        setView(target);
       } finally {
         busy.current = false;
       }
