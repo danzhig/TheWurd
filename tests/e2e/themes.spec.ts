@@ -74,6 +74,63 @@ test.describe('themes', () => {
     expect((await sample(page))!.p).toBe(0);
   });
 
+  test('nothing flashes back when a flight lands, either way', async ({ page }) => {
+    await openVault(page);
+    // Watch every frame: once the stars are almost in, the layer they left must stay invisible
+    // (the spiral after the flight out, the constellations' names after the flight home).
+    // A resize observer runs after the frame's callbacks and layout, just before paint, so it
+    // sees exactly what is about to be painted.
+    const watch = (leaving: 'spiral-layer' | 'themes-layer', settled: string) =>
+      page.evaluate(
+        ([leaving, settled]) =>
+          new Promise<number>((resolve) => {
+            let worst = 0;
+            let after = -1;
+            const probe = document.createElement('div');
+            probe.style.cssText =
+              'position:fixed;left:0;top:0;height:1px;width:1px;pointer-events:none';
+            document.body.append(probe);
+            const sample = () => {
+              const s = (
+                window as unknown as { __sasStars: () => { p: number } | null }
+              ).__sasStars();
+              const near = !!s && (leaving === 'spiral-layer' ? s.p > 0.9 : s.p < 0.1);
+              const layer = document.querySelector<HTMLElement>(`[data-testid="${leaving}"]`);
+              if ((near || after >= 0) && layer) {
+                const kids = [
+                  ...layer.querySelectorAll<HTMLElement>('[data-book], [data-constellation]'),
+                ].slice(0, 40);
+                const child = kids.length
+                  ? Math.max(...kids.map((k) => Number(getComputedStyle(k).opacity)))
+                  : 1;
+                worst = Math.max(worst, Number(getComputedStyle(layer).opacity) * child);
+              }
+            };
+            const ro = new ResizeObserver(sample);
+            ro.observe(probe);
+            const tick = () => {
+              probe.style.width = probe.style.width === '1px' ? '2px' : '1px';
+              if (document.documentElement.dataset.vaultView === settled && after < 0) after = 0;
+              if (after >= 0 && ++after > 10) {
+                ro.disconnect();
+                probe.remove();
+                resolve(worst);
+                return;
+              }
+              requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }),
+        [leaving, settled] as const,
+      );
+    const out = watch('spiral-layer', 'themes');
+    await page.getByTestId('view-themes').click();
+    expect(await out).toBeLessThan(0.05);
+    const home = watch('themes-layer', 'spiral');
+    await page.getByTestId('view-spiral').click();
+    expect(await home).toBeLessThan(0.05);
+  });
+
   test('a constellation opens to its passages; a passage opens the reader at its verse', async ({
     page,
   }) => {
