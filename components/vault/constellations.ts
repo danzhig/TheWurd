@@ -47,6 +47,16 @@ const STAR_STEP = 9; // sunflower spacing between a sub-theme's stars
 const GOLDEN = Math.PI * (3 - Math.sqrt(5));
 export const STAGGER = 0.35; // the last star leaves this far into the flight
 
+/**
+ * The switch in three steps (owner, 2026-11-13), on one progress scale p from 0 (Spiral) to 1
+ * (Themes); going back runs the same steps in reverse:
+ * - SHRINK (0 → FLY_FROM): every book's bubble shrinks away, leaving its passages as small stars;
+ * - fly (FLY_FROM → FLY_TO): the stars fly to their places, each on its own curve;
+ * - settle (FLY_TO → 1): the constellations' lines and names draw in.
+ */
+export const FLY_FROM = 0.2;
+export const FLY_TO = 0.85;
+
 /** A stable pseudo-random number in [0, 1) for a string (FNV-1a). */
 export function hash01(s: string): number {
   let h = 0x811c9dc5;
@@ -122,12 +132,18 @@ export function easeInOut(t: number): number {
 }
 
 /**
- * Where a star is at flight progress `p` (0 = home, 1 = in its constellation). Each star moves
- * over its own window [delay, delay + 1 − STAGGER] along a quadratic curve bowed sideways by its
- * `bend`, so the paths cross and swirl instead of all running straight.
+ * Where a star is at progress `p` (0 = home, 1 = in its constellation). Within the flight step
+ * each star moves over its own window [delay, delay + 1 − STAGGER] along a quadratic curve bowed
+ * sideways by its `bend`, so the paths cross and swirl instead of all running straight.
  */
+/** How far along its own flight a star is at overall progress p (0 = home, 1 = arrived), eased. */
+export function flightT(s: Star, p: number): number {
+  const q = Math.min(1, Math.max(0, (p - FLY_FROM) / (FLY_TO - FLY_FROM)));
+  return easeInOut(Math.min(1, Math.max(0, (q - s.delay) / (1 - STAGGER))));
+}
+
 export function starAt(s: Star, p: number): Point {
-  const t = easeInOut(Math.min(1, Math.max(0, (p - s.delay) / (1 - STAGGER))));
+  const t = flightT(s, p);
   const mx = (s.home.x + s.x) / 2;
   const my = (s.home.y + s.y) / 2;
   const dx = s.x - s.home.x;

@@ -5,7 +5,7 @@
  * Path passages glow gold; library passages are paler.
  */
 import type { Point } from './layout';
-import { starAt, type ThemesLayout } from './constellations';
+import { FLY_FROM, FLY_TO, flightT, starAt, type ThemesLayout } from './constellations';
 
 export interface Cam {
   x: number;
@@ -20,6 +20,8 @@ export interface DrawOptions {
   fade: boolean;
   /** The sub-theme whose stars are lit up (hovered or focused), if any. */
   lit: string | null;
+  /** Which way the flight is going: +1 out to the constellations, −1 home to the books. */
+  dir?: 1 | -1;
 }
 
 const smooth = (a: number, b: number, x: number) => {
@@ -82,10 +84,13 @@ export class StarField {
     ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
     const X = (x: number) => cam.x + x * cam.k;
     const Y = (y: number) => cam.y + y * cam.k;
-    const alpha = o.fade ? o.p : 1;
+    // Reduced motion: everything in place, fading. Otherwise the stars appear as the bubbles
+    // shrink away (and vanish into them on the way home), and the lines draw in once they land.
+    const starsAlpha = o.fade ? o.p : smooth(0.02, FLY_FROM, o.p);
+    const lines = (o.fade ? o.p : smooth(FLY_TO, 1, o.p)) * 0.5;
+    const flying = !o.fade && o.p > FLY_FROM && o.p < FLY_TO;
+    const dir = o.dir ?? 1;
 
-    // Hairlines between sub-themes, drawn in once the stars have nearly arrived.
-    const lines = (o.fade ? o.p : smooth(0.72, 1, o.p)) * 0.5;
     if (lines > 0) {
       ctx.strokeStyle = this.gold;
       ctx.lineWidth = 1;
@@ -113,27 +118,55 @@ export class StarField {
       }
     }
 
-    const r = Math.min(5, Math.max(1.6, 1.5 * cam.k));
-    const pos = this.positions(o.p, o.fade);
-    // Glows first, then the stars over them.
-    ctx.globalAlpha = alpha;
+    // Where each star is now, in screen pixels.
+    const n = this.layout.stars.length;
+    const xs = new Float32Array(n);
+    const ys = new Float32Array(n);
     this.layout.stars.forEach((s, i) => {
-      if (s.library) return;
-      const g = r * (s.subId === o.lit ? 7 : 5);
-      ctx.drawImage(this.glow, X(pos[i]!.x) - g / 2, Y(pos[i]!.y) - g / 2, g, g);
+      const at = o.fade ? s : starAt(s, o.p);
+      xs[i] = X(at.x);
+      ys[i] = Y(at.y);
+    });
+    const shown = (i: number) =>
+      xs[i]! > -20 && ys[i]! > -20 && xs[i]! < this.w + 20 && ys[i]! < this.h + 20;
+    const r = Math.min(4, Math.max(1.3, 1.3 * cam.k));
+
+    // A short, thin streak behind each star while it flies.
+    if (flying) {
+      ctx.lineWidth = 1;
+      ctx.lineCap = 'round';
+      for (const lib of [true, false]) {
+        ctx.strokeStyle = lib ? this.pale : this.gold;
+        ctx.globalAlpha = lib ? 0.25 : 0.4;
+        ctx.beginPath();
+        this.layout.stars.forEach((s, i) => {
+          if (s.library !== lib || !shown(i)) return;
+          const t = flightT(s, o.p);
+          if (t <= 0 || t >= 1) return;
+          const back = starAt(s, Math.min(1, Math.max(0, o.p - dir * 0.025)));
+          ctx.moveTo(X(back.x), Y(back.y));
+          ctx.lineTo(xs[i]!, ys[i]!);
+        });
+        ctx.stroke();
+      }
+    }
+
+    // A small soft glow under each path star, then the stars themselves.
+    ctx.globalAlpha = starsAlpha;
+    this.layout.stars.forEach((s, i) => {
+      if (s.library || !shown(i)) return;
+      const g = r * (s.subId === o.lit ? 7 : 4.5);
+      ctx.drawImage(this.glow, xs[i]! - g / 2, ys[i]! - g / 2, g, g);
     });
     for (const lib of [true, false]) {
       ctx.fillStyle = lib ? this.pale : this.gold;
-      ctx.globalAlpha = alpha * (lib ? 0.62 : 1);
+      ctx.globalAlpha = starsAlpha * (lib ? 0.62 : 1);
       ctx.beginPath();
       this.layout.stars.forEach((s, i) => {
-        if (s.library !== lib) return;
+        if (s.library !== lib || !shown(i)) return;
         const rr = (lib ? 0.75 : 1) * r * (s.subId === o.lit ? 1.4 : 1);
-        const x = X(pos[i]!.x);
-        const y = Y(pos[i]!.y);
-        if (x < -10 || y < -10 || x > this.w + 10 || y > this.h + 10) return;
-        ctx.moveTo(x + rr, y);
-        ctx.arc(x, y, rr, 0, Math.PI * 2);
+        ctx.moveTo(xs[i]! + rr, ys[i]!);
+        ctx.arc(xs[i]!, ys[i]!, rr, 0, Math.PI * 2);
       });
       ctx.fill();
     }

@@ -771,6 +771,13 @@ export function Vault({ data, books, bridges, sections }: VaultProps) {
         <canvas ref={starCanvas} className={styles.stars} data-testid="star-canvas" />
       </div>
 
+      {/* What the two kinds of star mean (Themes only). */}
+      {themeView !== 'spiral' && mode === 'map' ? (
+        <p className={styles.legend} data-testid="themes-legend">
+          <span className={styles.keyPath} aria-hidden="true" /> On the path
+          <span className={styles.keyLibrary} aria-hidden="true" /> In the library
+        </p>
+      ) : null}
       {mode === 'map' ? (
         <div className={styles.zoomButtons}>
           <button
