@@ -87,13 +87,13 @@ export class StarField {
     // Reduced motion: everything in place, fading. Otherwise the stars appear as the bubbles
     // shrink away (and vanish into them on the way home), and the lines draw in once they land.
     const starsAlpha = o.fade ? o.p : smooth(0.02, FLY_FROM, o.p);
-    const lines = (o.fade ? o.p : smooth(FLY_TO, 1, o.p)) * 0.5;
+    const lines = (o.fade ? o.p : smooth(FLY_TO, 1, o.p)) * 0.75;
     const flying = !o.fade && o.p > FLY_FROM && o.p < FLY_TO;
     const dir = o.dir ?? 1;
 
     if (lines > 0) {
       ctx.strokeStyle = this.gold;
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1.4;
       ctx.globalAlpha = lines;
       ctx.beginPath();
       for (const c of this.layout.constellations)
