@@ -142,10 +142,18 @@ test.describe('themes', () => {
     await page.locator('[data-constellation="mercy"]').click({ force: true });
     const passages = page.locator('[data-passage^="mercy-"]');
     await expect(passages.first()).toBeAttached({ timeout: 6000 });
-    expect(await page.locator('[data-testid="vault-view"] *').count()).toBeLessThan(300);
+    expect(
+      await page
+        .locator('[data-testid="vault-view"] *, [data-testid="vault-label-frame"] *')
+        .count(),
+    ).toBeLessThan(300);
     // Zoomed all the way in, still under the budget.
     for (let i = 0; i < 6; i++) await page.getByRole('button', { name: 'Zoom in' }).click();
-    expect(await page.locator('[data-testid="vault-view"] *').count()).toBeLessThan(300);
+    expect(
+      await page
+        .locator('[data-testid="vault-view"] *, [data-testid="vault-label-frame"] *')
+        .count(),
+    ).toBeLessThan(300);
 
     const href = (await passages.first().getAttribute('href'))!;
     expect(href).toMatch(/^\/read\/[^/]+\/\?theme=mercy-[a-z]+#v-\d+-\d+$/);

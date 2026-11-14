@@ -116,26 +116,6 @@
   opacity: 1;
 }
 
-.name {
-  font-size: var(--fs);
-  font-weight: 500;
-  font-variant-caps: small-caps;
-  letter-spacing: 0.06em;
-  opacity: 0;
-  transition: opacity var(--dur-ui) ease;
-}
-
-.named .name {
-  opacity: 1;
-}
-
-.tag {
-  font-size: calc(var(--fs) * 0.55);
-  font-style: italic;
-  color: var(--cloud);
-  max-width: 100%;
-}
-
 .finished {
   box-shadow:
     inset 0 0 0 1px var(--gold-light),
@@ -233,12 +213,11 @@
 }
 
 .group {
-  position: absolute;
   transform: translate(-50%, -50%);
   font-family: var(--font-display);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.14em;
-  font-size: 16px;
+  font-size: calc(16px * var(--k));
   color: var(--text-muted);
   white-space: nowrap;
   pointer-events: none;
@@ -502,9 +481,9 @@
   pointer-events: none;
 }
 
+/* Constellation names: the size they were, but brighter and outlined against the sky. */
 .constName,
 .subName {
-  position: absolute;
   transform: translate(-50%, -100%);
   font: inherit;
   font-family: var(--font-display);
@@ -513,20 +492,31 @@
   background: none;
   padding: 0.2em 0.4em;
   cursor: pointer;
-  color: var(--text-strong);
+  pointer-events: auto;
 }
 
 .constName {
+  font-size: 15px;
+  font-weight: 600;
   font-variant-caps: small-caps;
   letter-spacing: 0.08em;
-  text-shadow: 0 0 6px var(--night);
+  color: var(--accent-strong);
+  text-shadow:
+    0 0 2px var(--night),
+    0 0 6px var(--night),
+    0 0 12px var(--night);
 }
 
+/* Sub-theme names: larger, bright, on a soft dark pill so they read over stars and lines. */
 .subName {
   transform: translate(-50%, -50%);
-  color: var(--text);
-  font-style: italic;
-  text-shadow: 0 0 5px var(--night);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-strong);
+  background: color-mix(in srgb, var(--night) 62%, transparent);
+  border-radius: 999px;
+  padding: 0.15em 0.6em;
+  text-shadow: 0 0 3px var(--night);
 }
 
 .subName:hover,
@@ -536,13 +526,13 @@
 
 /* A passage of the constellation in view: a tap target over its star, its reference beside it. */
 .passage {
-  position: absolute;
-  width: 2.4em;
-  height: 2.4em;
+  width: 26px;
+  height: 26px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   text-decoration: none;
   color: var(--text-strong);
+  pointer-events: auto;
 }
 
 .passage:hover,
@@ -556,11 +546,14 @@
   top: 50%;
   transform: translateY(-50%);
   white-space: nowrap;
-  text-shadow: 0 0 4px var(--night);
+  font-size: 12.5px;
+  text-shadow:
+    0 0 2px var(--night),
+    0 0 6px var(--night);
 }
 
 .passageLibrary {
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 /* Too far out to read: the reference stays as the link's name but is not drawn. */
@@ -606,4 +599,107 @@
   .legend {
     bottom: calc(1rem + 52px);
   }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+/* The label layer: every name on the ceiling, in screen space (see Vault.tsx). Its transform  */
+/* follows the camera's translation and --k its zoom; text is laid out at real pixel sizes.    */
+/* ------------------------------------------------------------------------------------------- */
+
+.labelLayer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  --k: 1;
+}
+
+.labelGroup {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Over the sky, the same size, but outside it (its vignette would dim the names). */
+.labelFrame {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.labelFrame.ready {
+  opacity: 1;
+}
+
+[data-mode='list'] .labelFrame {
+  visibility: hidden;
+}
+
+/* Placed at a world point (--x, --y) times the zoom. */
+.at {
+  position: absolute;
+  left: calc(var(--x) * var(--k) * 1px);
+  top: calc(var(--y) * var(--k) * 1px);
+}
+
+.medName {
+  transform: translate(-50%, -50%);
+  width: calc(var(--w) * var(--k) * 0.84px);
+  display: grid;
+  justify-items: center;
+  gap: 0.15em;
+  text-align: center;
+  color: var(--vellum);
+  font-family: var(--font-display);
+  opacity: 0;
+  transition: opacity var(--dur-ui) ease;
+}
+
+.medTitle {
+  font-size: calc(var(--fs) * var(--k) * 1px);
+  font-weight: 500;
+  font-variant-caps: small-caps;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.medTag {
+  font-size: calc(var(--fs) * var(--k) * 0.55px);
+  font-style: italic;
+  color: var(--cloud);
+}
+
+.offName {
+  transform: translate(-50%, -50%);
+  width: calc(var(--w) * var(--k) * 0.9px);
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: calc(8px * var(--k));
+  line-height: 1.05;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity var(--dur-ui) ease;
+}
+
+/* A name close enough to read (set when the camera comes to rest), unless its book has lifted off. */
+.medName[data-shown],
+.offName[data-shown] {
+  opacity: 1;
+}
+
+.gone[data-shown] {
+  opacity: 0;
+}
+
+.medTag {
+  display: none;
+}
+
+.medName[data-detail] .medTag {
+  display: block;
 }

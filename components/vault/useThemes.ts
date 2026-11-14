@@ -67,6 +67,7 @@ export function useThemes(opts: {
   const { camRef, homes } = opts;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const spiralRef = useRef<HTMLDivElement>(null);
+  const spiralLabelsRef = useRef<HTMLDivElement>(null); // the spiral's names (label layer)
   const labelsRef = useRef<HTMLDivElement>(null);
   const [view, setView] = useState<ThemesView>(() =>
     typeof window !== 'undefined' && camera.view === 'themes' ? 'themes' : 'spiral',
@@ -187,14 +188,16 @@ export function useThemes(opts: {
             fill: 'both',
           }),
         );
-        const layers = [spiralRef.current, labelsRef.current].filter(Boolean) as HTMLElement[];
+        const layers = [spiralRef.current, spiralLabelsRef.current, labelsRef.current].filter(
+          Boolean,
+        ) as HTMLElement[];
         for (const el of layers) el.style.willChange = 'opacity';
         await new Promise<void>((resolve) => {
           const step = (now: number) => {
             const u = Math.min(1, (now - t0) / ms);
             p.current = from + (to - from) * u;
-            if (spiralRef.current)
-              spiralRef.current.style.opacity = String(spiralOpacity(p.current, fade.current));
+            for (const el of [spiralRef.current, spiralLabelsRef.current])
+              if (el) el.style.opacity = String(spiralOpacity(p.current, fade.current));
             if (labelsRef.current)
               labelsRef.current.style.opacity = String(labelsOpacity(p.current, fade.current));
             draw();
@@ -211,7 +214,8 @@ export function useThemes(opts: {
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
         for (const a of anims) a.cancel();
         for (const el of layers) el.style.willChange = '';
-        if (spiralRef.current) spiralRef.current.style.opacity = '';
+        for (const el of [spiralRef.current, spiralLabelsRef.current])
+          if (el) el.style.opacity = '';
         if (labelsRef.current) labelsRef.current.style.opacity = '';
       } finally {
         busy.current = false;
@@ -228,5 +232,16 @@ export function useThemes(opts: {
     [draw],
   );
 
-  return { view, data, layout, canvasRef, spiralRef, labelsRef, draw, switchTo, setLit };
+  return {
+    view,
+    data,
+    layout,
+    canvasRef,
+    spiralRef,
+    spiralLabelsRef,
+    labelsRef,
+    draw,
+    switchTo,
+    setLit,
+  };
 }

@@ -137,11 +137,8 @@ test.describe('the Vault', () => {
     for (let i = 0; i < 8; i++) await zoomIn.click();
     // Quick taps add up, to the medallion-detail limit and no further.
     await expect.poll(() => scale(page)).toBeCloseTo(2.6, 2);
-    const named = await page
-      .getByTestId('vault-scene')
-      .locator('a[data-book][class*="named"]')
-      .count();
-    expect(named).toBeGreaterThan(0);
+    // Book names appear in the label layer (screen space, sharp at any zoom).
+    await expect(page.locator('[data-testid="vault-labels"] [data-name]').first()).toBeVisible();
     // Wheel zoom works too.
     const before = await scale(page);
     await page.mouse.move(200, 400);
@@ -160,7 +157,8 @@ test.describe('the Vault', () => {
 
   test('stays under 300 interactive nodes at any zoom', async ({ page }) => {
     await openVault(page);
-    const count = () => page.locator('[data-testid="vault-view"] *').count();
+    const count = () =>
+      page.locator('[data-testid="vault-view"] *, [data-testid="vault-label-frame"] *').count();
     expect(await count()).toBeLessThan(300);
     for (let i = 0; i < 8; i++) await page.getByRole('button', { name: 'Zoom in' }).click();
     expect(await count()).toBeLessThan(300);
